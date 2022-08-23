@@ -1,0 +1,31 @@
+<body> 
+<div class="card">
+<p class="Text1"> Staff_login?</p>
+<p class="NewUsers-title"> Create Account </p>
+<section class="UserNew">
+<%= form_with url: users_path do |form| %>
+<div class="Form-section">
+<p class="FormInput-label"> Name</p>
+ <%= form.text_field :name, class: "Form-input", placeholder:"Enter your name"%>
+ </div>
+ <div class="Form-section">
+<p class="FormInput-label"> Mobile Number</p>
+ <%= form.text_field :mobile_no, class: "Form-input", placeholder:"Enter your number"%>
+ </div>
+ <div class="Form-section">
+<p class="FormInput-label"> Password</p>
+ <%= form.password_field :password, class: "Form-input", placeholder:"Enter password here"%>
+ </div>
+ <div class="Form-section">
+<p class="FormInput-label"> Address</p>
+ <%= form.text_field :address, class: "Form-input", placeholder:"Enter your address"%>
+ </div>
+ <div class="Form-section">
+ <%= form.submit "Sign-up!", class: "Form-submit"%>
+ </div>
+ <p class="Text" > Already a customer?</p>
+ </section>
+<% end%>
+</div>
+
+</body>
