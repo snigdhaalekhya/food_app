@@ -10,32 +10,33 @@ body {
 .NewUsers-title{
     margin-bottom: 30px;
     font-size: 30px;
-    margin-left: 12%;
-    margin-top: 20px;
+    margin-left: 17%;
+    margin-top: 16px;
 }
 .Form-section{
     margin-bottom: 20px;
-    margin-left: 12%;
+    margin-left: 17%;
 }
 
 .Form-input{
  font-size: 15px;
- padding: 8px;
- width: 270px;
+ padding: 6px;
+ width: 320px;
  border: 3px;
- border-radius: 5px transparent;
- background-color: #E0E0E0;
+ border-radius: 4px ;
+ border:0;
+ background-color :#F0F0F0;
  
 }
 .FormInput-label{
  color: #2f0303;
- margin-bottom: 12px;
+ margin-bottom: 16px;
  font-size: 18px
 }
 .Form-submit{
     font-size: 18px;
     padding: 8px;
-    width: 290px;
+    width: 330px;
     color: white;
     margin-top: 19px;
     background-color: rgb(69, 156, 120);
@@ -45,7 +46,7 @@ body {
 .Text
 {
     margin-top: 35px;
-    margin-left: 12%;
+    margin-left: 17%;
     margin-bottom: 10%;
     padding:15px;
 }
