@@ -1,36 +1,44 @@
 body {
     font-family: sams-serif;
-    max-width: 700px;
-    margin-top:50px;
-    margin-bottom:0;
+    max-width: 80%;
+    height:auto;
+    margin-top:15px;
     margin-left: auto;
     margin-right:auto;
-    max-height: 700px;
   }
 .NewUsers-title{
-    margin-bottom: 30px;
+    margin-bottom: 5px;
     font-size: 30px;
-    margin-left: 17%;
-    margin-top: 16px;
+    margin-left: 33%;
+    margin-top: 8px;
+}
+.NewUsers-Undertitle{
+    margin-bottom: 30px;
+    margin-left: 33%;
+    font-size: 15px;
+    width:400px;
+    color: #888787;
 }
 .Form-section{
     margin-bottom: 20px;
-    margin-left: 17%;
+    margin-left: 33%;
 }
 
 .Form-input{
  font-size: 15px;
- padding: 6px;
+ padding: 4px;
  width: 320px;
+ color:#888787;
  border: 3px;
  border-radius: 4px ;
  border:0;
  background-color :#F0F0F0;
  
+ 
 }
 .FormInput-label{
  color: #2f0303;
- margin-bottom: 16px;
+ margin-bottom: 10px;
  font-size: 18px
 }
 .Form-submit{
@@ -39,30 +47,101 @@ body {
     width: 330px;
     color: white;
     margin-top: 19px;
+    margin-bottom:3px;
     background-color: rgb(69, 156, 120);
     border-radius: 4px;
     border:0;
 }
 .Text
 {
-    margin-top: 35px;
-    margin-left: 17%;
-    margin-bottom: 10%;
-    padding:15px;
+    margin-left: 33%;
+    margin-bottom: 25%;
+    padding-bottom:80px;
+
+}
+.TextStyle{
+    text-decoration: none;
+    color:green;
+    margin-left: 8px;
+}
+.TextStylePassword{
+    text-decoration: none;
+    color:green;
+    font-size: 15px;
+    margin-left: 88%;
+    margin-bottom:10px;
 }
 .Text1
 {
-    margin-left: 80%;
-    margin-top:150px;
+    margin-left: 100%;
+    margin-top:15px;
     padding: 20px;
 }
 .card {
-    /* Add shadows to create the "card" effect */
+
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.8s;
+    margin-top: 0;
+    padding:0;
   }
   
-  /* On mouse-over, add a deeper shadow */
   .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  } 
+  .card1 {
+    display: flex;
+    justify-content:space-between;
   }
+  .Image{
+    box-shadow: 0 6px 6px 2px rgba(249, 3, 3, 0.2);
+    box-sizing:auto;
+    border-radius: 10px;
+    width:700px;
+    margin-top:80px;
+    margin-bottom:100px;
+    margin-left: 20%;
+    height: auto;
+  }
+
+  .Flash-error{
+    color: darkred;
+    margin-top:75px;
+    padding:0;
+    font-size: 18px;
+}
+.Or{
+    margin-left:70%;
+    margin-bottom:3px;
+    color: #888787;
+}
+.Form-submitGoogle{
+    font-size: 14px;
+    padding: 8px;
+    width: 150px;
+    color: black;
+    margin-top: 19px;
+    margin-bottom:3px;
+    margin-left:30%;
+    background-color: #ECECEC;
+    border-radius: 6px ;
+    border:0;
+}
+.Title{
+    color:Black;
+    font-size:20px;
+    margin-left: 75%;
+    margin-top: 50px;
+}
+.card7 {
+    display: flex;
+  }
+.style{
+    padding:10px;
+}
+.card8 {
+    display: flex;
+} 
+.card9{
+    display: flex;
+    margin-top:15px;
+}  

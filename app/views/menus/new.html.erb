@@ -1,0 +1,28 @@
+<body style="width:40%;margin-top:80px">
+<div class="card3">
+<section class="UserNew">
+<%= form_with url: menus_path do |form| %>
+<br>
+<br>
+<div class="Form-section1">
+<p class="FormInput-label"> Menu Name</p>
+ <%= form.text_field :menu_name, class: "Form-input1", placeholder:"Enter item name"%>
+ </div>
+ <div class="Form-section1">
+<p class="FormInput-label"> Menu Cost</p>
+ <%= form.text_field :menu_cost, class: "Form-input1", placeholder:"Enter item cost"%>
+ </div>
+ <div class="Form-section1">
+<p class="FormInput-label"> Menu Description</p>
+ <%= form.text_field :menu_description, class: "Form-input2", placeholder:"Enter description"%>
+ </div>
+ 
+ <div class="Form-section1">
+ <%= form.submit "Create Item", class: "Form-submit1"%>
+ </div>
+ </section>
+<% end%>
+
+</div>
+</div>
+</body>

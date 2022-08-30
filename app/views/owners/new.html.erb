@@ -2,19 +2,19 @@
 <div class="card">
 <div class=card1" style="display:flex">
 <section>
-<p class="Title"> Customers </p>
-<p class="Text1"> <%= link_to "Staff_login", new_sessions_res_path , class:"TextStylePassword"%></p>
+<p class="Title"> Restaurants </p>
+<p class="Text1"> <%= link_to "Customer_login", new_sessions_path , class:"TextStylePassword"%></p>
 <p class="NewUsers-title"> Create Account </p>
-<p class="NewUsers-Undertitle">This helps you to manage your orders and preferences better</p>
+<p class="NewUsers-Undertitle">This helps you to manage your orders and preferences better</p> 
 <section class="UserNew">
-<%= form_with url: users_path do |form| %>
+<%= form_with url: owners_path do |form| %>
 <div class="Form-section">
 <p class="FormInput-label"> Name</p>
  <%= form.text_field :name, class: "Form-input", placeholder:"Enter your name"%>
  </div>
  <div class="Form-section">
-<p class="FormInput-label"> Mobile Number</p>
- <%= form.text_field :mobile_no, class: "Form-input", placeholder:"Enter your number"%>
+<p class="FormInput-label"> Email Id</p>
+ <%= form.email_field :email, class: "Form-input", placeholder:"Enter your email id"%>
  </div>
  <div class="Form-section">
 <p class="FormInput-label"> Password</p>
@@ -33,8 +33,8 @@
  <%= form.submit "Sign in with Google", class: "Form-submitGoogle"%>
  <% end%>
  </div>
--->
- <p class="Text" > Already a customer?<%= link_to "Sign In", new_sessions_path, class:"TextStyle"%></p>
+ -->
+ <p class="Text" > Already a customer?<%= link_to "Sign In", new_sessions_res_path, class:"TextStyle"%></p>
  </section>
 </section>
 <section class="Image"> 

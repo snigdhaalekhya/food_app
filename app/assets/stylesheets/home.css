@@ -1,0 +1,49 @@
+.Sidebar{
+    font-size:30px;
+    padding:15px;
+}
+.SidebarComponentsRuby{
+    text-decoration: none;
+    color: green;
+}
+.SidebarComponents{
+    margin-top:30px;
+    margin-bottom:15px;
+    font-size: 25px;
+    margin-left:40px;
+}
+.SidebarComponentsRuby1{
+    text-decoration: none;
+    color: black;
+    font-size:20px;
+    padding:10px;
+}
+.SidebarComponentsRuby2{
+    color: black;
+    font-size:20px;
+    padding:10px;
+}
+.UserHeader{
+    padding: 10px;
+    background-color: #F2F2F2;
+    font-size: 16px;
+    width:85%;
+    margin-left:5%;
+    margin-top:20px;
+    margin-bottom: 20px;
+    margin-right:0;
+    display: flex;
+}
+.UserHeader1{
+    background-color:green ;
+    border-radius: 3px;
+   border: 1px solid transparent;
+    font-size: 14px;
+    margin-top:20px;
+    color: white;
+    margin-left:0;
+    margin-left:0%;
+    margin-bottom: 20px;
+    width: 75px;
+    height: 37px;
+}

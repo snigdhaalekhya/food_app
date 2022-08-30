@@ -1,0 +1,246 @@
+  /* Float four columns side by side */
+  .column {
+    float:left;
+    width: 29.5%;
+    padding: 10px;
+    margin-top:10px;
+    margin-bottom:8px;
+    margin-left:20px;
+  }
+  
+  /* Remove extra left and right margins, due to padding */
+  .row {margin: 0px;
+    margin-top:12px;
+    }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    
+  }
+  
+  /* Responsive columns */
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+      display: block;
+      padding:10px;
+    }
+  }
+  
+  /* Style the counter cards */
+  .card3 {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius:8px;
+    text-align: left;
+    background-color: white;
+  }
+  .name
+  {
+    font-size:20px;
+    margin-bottom:4px;
+    margin-right:10%;
+    margin-left:7%;
+  }
+  .description{
+    font-size:14px;
+    color:grey;
+    margin-bottom:14px;
+    margin-left:7%;
+  }
+  .cost{
+    font-size:18px;
+    margin-bottom:0px;
+    margin-left:7%;
+  }
+  .card2{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.8s;
+    margin-top: 0;
+    margin-left:50px;
+    margin-right:40px;
+    margin-bottom:3px;
+    padding:0;
+    width:100%
+  }
+.body.card4{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        border-radius:8px;
+        text-align: left;
+        background-color: white;
+        margin-bottom:30px;
+        width:500px;
+}
+.AddMenu{
+    padding: 6px 12px;
+     font-size:14px;
+     margin-left: 90%;
+     margin-top:20px;
+     height:40px;
+     color: white;
+     background-color: green;
+     border-radius: 4px;
+     border: 1px solid transparent;
+}
+.Form-section1{
+    margin-bottom: 20px;
+    margin-left: 24%;
+    margin-top:30px;
+}
+.Form-input1{
+    font-size: 15px;
+    padding: 4px;
+    width: 320px;
+    height:30px;
+    color:#888787;
+    border: 3px;
+    border-radius: 4px ;
+    border:0;
+    background-color :#F0F0F0;   
+   }
+   .Form-input2{
+    font-size: 15px;
+    padding: 4px;
+    width: 320px;
+    height:70px;
+    font-display: top;
+    color:#888787;
+    border: 3px;
+    border-radius: 4px ;
+    border:0;
+    background-color :#F0F0F0;   
+   }
+   .Form-submit1{
+    font-size: 18px;
+    padding: 8px;
+    width: 330px;
+    color: white;
+    margin-top: 19px;
+    margin-bottom:50px;
+    background-color: rgb(69, 156, 120);
+    border-radius: 4px;
+    border:0;
+}
+.Add{
+  padding: 6px 12px;
+   font-size:14px;
+   margin-left: 80%;
+   margin-top:20px;
+   height:35px;
+   width:60px;
+   color: white;
+   background-color: green;
+   border-radius: 4px;
+   border: 1px solid transparent;
+}
+.Added{
+  padding: 6px 12px;
+   font-size:14px;
+   margin-left: 80%;
+   margin-top:20px;
+   height:35px;
+   color: green;
+   background-color:#F0F0F0; ;
+   border-radius: 4px;
+   border: 1px solid transparent;
+}
+.card4 {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius:8px;
+  text-align: left;
+  padding:10px;
+  background-color: white;
+}
+.card5{
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+  border-radius:8px;
+  text-align: left;
+  width:500px;
+  padding:10px;
+  margin-left:25px;
+  margin-bottom:25px;
+  background-color: #d9d8d8;
+}
+.plus{
+ margin-left: 10%;
+ background-color:#f5f0f0 transparent;
+ color:green;
+ font-size:small;
+}
+.minus{
+  background-color:#f5f0f0 transparent;
+  color:green;
+  font-size:small;
+  
+}
+.cost1{
+  font-size:18px;
+  margin-top:5px;
+  color:green;
+  margin-bottom:0px;
+  margin-left:10%;
+}
+.Total{
+  margin-left: 7%;
+  font-size:24px;
+  margin-bottom:20px;
+
+}
+.card6{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius:8px;
+  text-align: left;
+  padding:10px;
+  width:800px;
+  margin-left:25px;
+  margin-right:20px;
+  margin-bottom:25px;
+}
+.Order{
+  font-size: 18px;
+  padding: 8px;
+  width: 330px;
+  color: white;
+  margin-top: 30px;
+  margin-bottom:50px;
+  background-color: rgb(69, 156, 120);
+  border-radius: 4px;
+  margin-left: 50px;
+  border:0;
+}
+.user_name
+  {
+    font-size:20px;
+    margin-bottom:14px;
+    margin-left:7%;
+  }
+  .user_title
+  {
+    margin-left:50%;
+    font-size:24px;
+    color:#380c0c;
+    margin-bottom:16px;
+  }
+  .plus1{
+    margin-left: 10%;
+    background-color:green ;
+    color:black;
+    font-size:small;
+    margin-right:6px;
+    width: 30px;
+    height:30px;
+    border-radius: 4px;
+   border: 1px solid transparent;
+   }
+   .minus1{ 
+    background-color:green ;
+    color:black;
+    margin-left: 15px;
+    font-size:small;
+    width: 30px;
+    height:30px;
+    border-radius: 4px;
+   border: 1px solid transparent;
+     
+   }

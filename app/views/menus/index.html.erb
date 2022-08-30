@@ -1,0 +1,44 @@
+<body> 
+<div class="card">
+<div class=card1" style="display:flex">
+<section>
+  <p class="SidebarComponents"> <%= link_to "Orders", orders_restaurant_path, class:"SidebarComponentsRuby"%></p>
+ <p class="SidebarComponents"> <%= link_to "Menu", menu_restaurant_path, class:"SidebarComponentsRuby"%></p>
+  <p class="SidebarComponents"><%= link_to "Users", users_restaurant_path, class:"SidebarComponentsRuby"%></p>
+  <p class="SidebarComponents"><%= link_to "Reports", reports_restaurant_path, class:"SidebarComponentsRuby"%></p>
+</section>
+<section class="card2">
+<%= button_to "Add Menu", new_menu_path, method: "get", class:"AddMenu"%>
+<% Menu.all.each do |menu|%>
+<div class="row">
+  <div class="column">
+    <div class="card3">
+     <br>
+      <p class="name"><%= menu.menu_name %></p>
+      <p class="description"><%= menu.menu_description %></p>
+      <p class="cost"><%= menu.menu_cost%> ₹</p>
+      <br>
+      <br>
+    </div>
+  </div>
+<%end%>
+</section>
+</div>
+</div>
+</body>
+
+
+<%Menu.all.each do |menu|%> 
+<!--
+<div class="row">
+  <div class="column">
+    <div class="card">
+     <br>
+      <p class="name"><%= menu.menu_name %></p>
+      <p class="description"><%= menu.menu_description %></p>
+      <p class="cost"><%= menu.menu_cost%> ₹</p>
+      <br>
+    </div>
+  </div>
+  -->
+<%end%>
