@@ -1,1 +1,50 @@
-<p>  This is Orders Page </p>
+<body> 
+<div class="card2">
+<p style="margin-left: 60%;margin-top:30px;display:inline-flex"><%= link_to "Menu", view_user_path, class:"SidebarComponentsRuby1"%>
+  <%= link_to "My Orders", orders_path, class:"SidebarComponentsRuby1"%>
+  <%= link_to "Cart", carts_path, class:"SidebarComponentsRuby1"%>
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKGxujYqqoJ2wjE-cUDwfmfhjX-ls8t7TAcwcfgjd5LspLpQnT7-pXfP_pVapr9qF1kZQ&usqp=CAU" width="40px" height=40px >
+  </p>
+  <br>
+  <hr>
+<div class=card1" style="display:flex">
+<section style="width:25%">
+  <p class="SidebarComponents"> <%= link_to "All Orders", orders_path, class:"SidebarComponentsRuby3"%></p>
+ <p class="SidebarComponents"> <%= link_to "Active Orders", menu_restaurant_path, class:"SidebarComponentsRuby3"%></p>
+  <p class="SidebarComponents"><%= link_to "Completed Orders", users_restaurant_path, class:"SidebarComponentsRuby3"%></p>
+</section>
+<section class="card2">
+<%= form_with(url: "/orders"  , method: "post") do %>
+<% @orders.each do |order|%>
+    <div class="card10">
+     <br>
+      <section class="card11">
+        <p class="OrderNo">Order Id: #<%= order.id %></p>
+        <p class="name">Status: <%= order.status %></p>
+      </section>
+      <section style="display:flex">
+      <p class="user_name"><%= @user.name%> - </p> 
+      <p class="mobile_no"><%= @user.mobile_no %></p>
+      </section>
+      <p class="items">Items: </p>
+      <p class="menu">
+      <% @cost=0 %>
+      <% order.menu.split("+") do |o| %>
+       <br>
+       <br>
+        <% str= o.split("*")%>
+        <%= str[0]%>
+        &nbsp;&nbsp;&nbsp;&nbsp;<%= "X "+str[1]%>
+        <% @cost=str[2].to_i+@cost%>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= str[2]+" ₹"%>
+      <%end%>
+      <br>
+      </p>
+      <p class="menu1">Total: &nbsp;&nbsp;<%= @cost.to_s+" ₹"%></p>
+      <%# <%= button_to "Add", new_menu_path, method: "get", class:"Add"%> 
+      <%# <%= menu.id%> 
+</div>
+<% end%>
+<% end%>
+</section>
+      

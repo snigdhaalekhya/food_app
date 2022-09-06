@@ -18,6 +18,15 @@
   </p>
   </div>
   <% end%>
+
+   <% if @current_owner %>
+  <div class="card1">
+  <p class="UserHeader"> Welcome <%= @current_owner.name%>!
+    <%= button_to "Sign-out", destroy_session_path, method: "delete", class:"UserHeader1"%>
+  </p>
+  </div>
+  <% end%>
+
   <% if flash[:error] %>
     <p class="Flash-error">
       <%= flash[:error] %>

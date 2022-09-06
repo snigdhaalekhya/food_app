@@ -15,11 +15,12 @@
   </section>
   <br>
   <hr>
-<% User.all.each do |user|%>
+<% Worker.all.each do |worker|%>
      <br>
       <section style="display:flex;">
-      <p class="user_name">Name: <%= user.name%> </p> 
-      <p class="user_name">Mobile No: <%= user.mobile_no%> </p> 
+      <p class="user_name">Name: <%= worker.name%> </p> 
+      <p class="user_name">Email Id: <%= worker.email%> </p>
+      <p class="user_name">Mobile No: <%= worker.mobile_no%>
       </section>
       <hr>
 <% end%>

@@ -7,17 +7,36 @@
   <p class="SidebarComponents"><%= link_to "Users", users_restaurant_path, class:"SidebarComponentsRuby"%></p>
   <p class="SidebarComponents"><%= link_to "Reports", reports_restaurant_path, class:"SidebarComponentsRuby"%></p>
 </section>
-<section class="card2">
-<h1 style="margin-top:20px;margin-left:40%;font-size:20px"> All Customer Reports </h1>
-<% Order.all.each do |order|%>
+<section class="card2", style="margin-right:0px;">
+<p style="margin-top:30px;margin-left:20px;display:inline-flex"><%= link_to "My Queue", orders_restaurant_path, class:"SidebarComponentsRuby1"%>
+  <%= link_to "All Orders", all_orders_path, class:"SidebarComponentsRuby1"%>
+  <%= link_to "Completed Orders", completed_orders_path, class:"SidebarComponentsRuby1"%>
+  </p>
+  <br>
+  <hr>
+<% @orders_queue=Order.where.not(status: "Delivered")%>
+<% @orders_queue.each do |order|%>
     <div class="card10">
      <br>
       <section class="card11">
         <p class="OrderNo">Order Id: #<%= order.id %></p>
-        <p class="name">Status: <%= order.status %></p>
+        <%= form_with(url: "/orders1/#{order.id}"  , method: "get") do |form| %>
+        <%= form.select :status, ["Pending", "Add to queue", "Preparing", "Delivered"] %>
+        <%= form.submit "Update",{class: "Update"} %>
+        <!--
+        <p class="name">Status:
+        <select name="cars" id="cars">
+           <option value="volvo">Pending</option>
+           <option value="saab">Add to queue</option>
+           <option value="opel">Preparing</option>
+           <option value="audi">Delivered</option>
+         </select>
+         -->
       </section>
-      <section style="display:flex">
+      <%end%>
+      <section style="display:flex;justify-content:space-between;">
       <p class="user_name">Customer name: <%= User.find(order.user_id).name%> </p> 
+      <p class="description", style="font-size:18px;color:rgb(148, 0, 78);margin-right:15px;"> Status: <%= order.status %></p>
       </section>
       <p class="items">Items: </p>
       <p class="menu">

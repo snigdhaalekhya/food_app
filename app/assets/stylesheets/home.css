@@ -12,6 +12,12 @@
     font-size: 25px;
     margin-left:40px;
 }
+.SidebarComponents3{
+    margin-top:30px;
+    margin-bottom:15px;
+    font-size: 25px;
+    margin-left:10px;
+}
 .SidebarComponentsRuby1{
     text-decoration: none;
     color: black;
@@ -23,6 +29,19 @@
     font-size:20px;
     padding:10px;
 }
+.SidebarComponentsRuby3{
+    text-decoration: none;
+    color: green;
+    font-size:18px;
+    padding:4px;
+}
+.SidebarComponentsRuby4{
+    text-decoration: none;
+    color: rgb(142, 0, 1);
+    font-size:20px;
+    padding:10px;
+}
+
 .UserHeader{
     padding: 10px;
     background-color: #F2F2F2;

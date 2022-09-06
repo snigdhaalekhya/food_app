@@ -1,7 +1,9 @@
 class MenusController < ApplicationController 
-    #skip_before_action :ensure_user_logged_in
-    def index
-       render "index"
+   skip_before_action :ensure_user_logged_in  
+   before_action :ensure_owner_logged_in
+   skip_before_action :ensure_owner_logged_in
+
+    def index     
     end
 
     def create

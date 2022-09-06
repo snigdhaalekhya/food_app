@@ -1,0 +1,36 @@
+<body style="width:40%;margin-top:40px">
+<div class="card3">
+<section class="UserNew">
+<%= form_with url: workers_path do |form| %>
+<br>
+<br>
+<div class="Form-section1">
+<p class="FormInput-label"> Name</p>
+ <%= form.text_field :name, class: "Form-input1", placeholder:"Enter name"%>
+ </div>
+ <div class="Form-section1">
+<p class="FormInput-label"> Mobile No</p>
+ <%= form.text_field :mobile_no, class: "Form-input1", placeholder:"Enter mobile number"%>
+ </div>
+ <div class="Form-section1">
+<p class="FormInput-label"> Email Id</p>
+ <%= form.email_field :email, class: "Form-input1", placeholder:"Enter email"%>
+ </div>
+ <div class="Form-section1">
+<p class="FormInput-label"> Password</p>
+ <%= form.password_field :password, class: "Form-input1", placeholder:"Enter password "%>
+ </div>
+ <div class="Form-section1">
+<p class="FormInput-label"> Address</p>
+ <%= form.text_field :address, class: "Form-input1", placeholder:"Enter address"%>
+ </div>
+ <div class="Form-section1">
+ <%= form.submit "Add_Worker", class: "Form-submit1"%>
+ </div>
+
+ </section>
+<% end%>
+
+</div>
+</div>
+</body>

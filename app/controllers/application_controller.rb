@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
     before_action :ensure_user_logged_in
+    # before_action :ensure_owner_logged_in
     
     def ensure_user_logged_in
         unless current_user
@@ -17,4 +18,26 @@ class ApplicationController < ActionController::Base
             nil
         end
     end
+
+    # before_action :ensure_owner_logged_in
+    
+    def ensure_owner_logged_in
+        unless current_owner
+             redirect_to new_owner_path
+            # render pain: "Not logged in"
+        end
+    end
+
+    def current_owner
+        return @current_owner if @current_owner
+
+        current_owner_id=session[:current_owner_id]
+        if current_owner_id
+            @current_owner = Owner.find(current_owner_id)
+        else
+            nil
+        end
+    end
+ 
+    
 end

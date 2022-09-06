@@ -1,5 +1,5 @@
-class Cart < ActiveRecord::Base
-    #validates :menu_name, presence: true
+class Order < ActiveRecord::Base
+    # validates :menu_name, presence: true
     # validates :menu_description, presence: true
     # validates :menu_cost, presence: true
 

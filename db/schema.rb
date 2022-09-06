@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_26_091614) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_06_043145) do
   create_table "carts", charset: "utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "menu_id"
@@ -25,6 +25,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_26_091614) do
     t.string "menu_name"
     t.string "menu_description"
     t.bigint "menu_cost"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "menu_category"
+  end
+
+  create_table "orders", charset: "utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "menu"
+    t.string "status"
+    t.bigint "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -45,6 +55,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_26_091614) do
     t.bigint "mobile_no"
     t.string "password_digest"
     t.string "address"
+  end
+
+  create_table "workers", charset: "utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "owner_id"
+    t.bigint "mobile_no"
   end
 
 end

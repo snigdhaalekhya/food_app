@@ -1,12 +1,13 @@
 <body >
 <div class="card2">
  <p style="margin-left: 60%;margin-top:30px;display:inline-flex"><%= link_to "Menu", view_user_path, class:"SidebarComponentsRuby1"%>
-  <%= link_to "My Orders", menu_restaurant_path, class:"SidebarComponentsRuby1"%>
+  <%= link_to "My Orders", orders_path, class:"SidebarComponentsRuby1"%>
   <%= link_to "Cart", carts_path, class:"SidebarComponentsRuby1"%>
   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKGxujYqqoJ2wjE-cUDwfmfhjX-ls8t7TAcwcfgjd5LspLpQnT7-pXfP_pVapr9qF1kZQ&usqp=CAU" width="40px" height=40px >
   </p>
   <br>
   <hr>
+
 <div class="card1" style="display:inline-flex">
 <section class="card5">
 <% @carts.each do |cart|%>
@@ -21,7 +22,6 @@
       <br>
     <br>
 <%end%>
-
 <% @carts.each do |cart|%>
 <% @cost=@cost+(cart.count*Menu.find(cart.menu_id).menu_cost)%>
 <%end%>
@@ -33,10 +33,10 @@
       <p class="user_name">Name:  <%= @user.name%> </p>
       <p class="user_name">Mobile Number:  <%= @user.mobile_no %> </p>
       <p class="user_name">Address:  <%= @user.address %> </p>
-      <%= button_to "Place Order", new_menu_path, method: "get", class:"Order"%> 
+      <% if @carts_notempty%>
+         <%= button_to "Place Order", orders_path, method: "post", class:"Order" %> 
+      <% end %> 
 </section>
 </div>
 </div>
 </body>
-
-<%# <%= Menu.find(cart.menu_id).menu_cost%> 
