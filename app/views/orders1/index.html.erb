@@ -14,15 +14,21 @@
   </p>
   <br>
   <hr>
-<% @orders_queue=Order.where.not(status: "Delivered")%>
+<% @orders_queue=Order.where.not(status: "Delivered").and (Order.where.not(status: "Cancelled"))%>
 <% @orders_queue.each do |order|%>
     <div class="card10">
      <br>
       <section class="card11">
         <p class="OrderNo">Order Id: #<%= order.id %></p>
         <%= form_with(url: "/orders1/#{order.id}"  , method: "get") do |form| %>
-        <%= form.select :status, ["Pending", "Add to queue", "Preparing", "Delivered"] %>
+        <%= form.select :status, ["Pending","Cancelled", "Add to queue", "Preparing", "Delivered"] %>
+        <%# <%= @owner_worker.to_s %>
+        <% if Owner.find_by(email: @owner_worker.to_s)%>
         <%= form.submit "Update",{class: "Update"} %>
+        <% elsif Worker.find_by(email: @owner_worker.to_s)%>
+        <%= form.submit "Update",class: "Update_Not", disabled: "true" %>
+        <% end %>
+
         <!--
         <p class="name">Status:
         <select name="cars" id="cars">
@@ -38,6 +44,18 @@
       <p class="user_name">Customer name: <%= User.find(order.user_id).name%> </p> 
       <p class="description", style="font-size:18px;color:rgb(148, 0, 78);margin-right:15px;"> Status: <%= order.status %></p>
       </section>
+      <section style="display:flex;margin-left:7%;width:400px"> 
+      <p style="color:rgb(1, 158, 0)"> Ordered on: </p>
+      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" style="width:30px;height:23px">
+      <p class="date"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
+      </section>
+      <% if order.status!="Pending"%>
+      <section style="display:flex;margin-left:7%;width:400px">
+      <p style="color:rgb(1, 158, 0)"> Updated on: </p>
+      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" style="width:30px;height:23px">
+      <p class="date"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
+      </section>
+      <% end %>
       <p class="items">Items: </p>
       <p class="menu">
       <% @cost=0 %>

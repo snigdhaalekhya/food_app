@@ -2,26 +2,34 @@
 <div class="card">
 <div class=card1" style="display:flex">
 <section>
-<p class="Title"> Restaurants </p>
+<p class="Title"> Restaurant_Owner </p>
 <p class="Text1"> <%= link_to "Customer_login", new_sessions_path , class:"TextStylePassword"%></p>
 <p class="NewUsers-title"> Create Account </p>
 <p class="NewUsers-Undertitle">This helps you to manage your orders and preferences better</p> 
 <section class="UserNew">
 <%= form_with url: owners_path do |form| %>
 <div class="Form-section">
-<p class="FormInput-label"> Name</p>
+<section style="display:inline-flex">
+<p class="FormInput-label"> Name<section class="mandatory">*</section> </p></p>
+</section>
  <%= form.text_field :name, class: "Form-input", placeholder:"Enter your name"%>
  </div>
  <div class="Form-section">
-<p class="FormInput-label"> Email Id</p>
+ <section style="display:inline-flex">
+<p class="FormInput-label"> Email Id<section class="mandatory">*</section> </p></p>
+</section>
  <%= form.email_field :email, class: "Form-input", placeholder:"Enter your email id"%>
  </div>
  <div class="Form-section">
-<p class="FormInput-label"> Password</p>
+ <section style="display:inline-flex">
+<p class="FormInput-label"> Password<section class="mandatory">*</section> </p></p>
+</section>
  <%= form.password_field :password, class: "Form-input", placeholder:"Enter password here"%>
  </div>
  <div class="Form-section">
-<p class="FormInput-label"> Address</p>
+ <section style="display:inline-flex">
+<p class="FormInput-label"> Address<section class="mandatory">*</section> </p></p>
+</section>
  <%= form.text_field :address, class: "Form-input", placeholder:"Enter your address"%>
  </div>
  <div class="Form-section">

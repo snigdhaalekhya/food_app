@@ -15,6 +15,41 @@ class SessionsController < ApplicationController
         redirect_to new_sessions_path
        end
     end
+    
+    def update_password_view
+    end
+
+    def update_password
+        user=User.find_by(mobile_no: params[:mobile_no])
+        if user
+            new_password=params[:password]
+            confirm_password=params[:password_confirm]
+            # if new_password == "" && confirm_password.eql?("")
+            #     flash[:error]="Enter new password"
+            #     redirect_to signin_users_update_password_path
+            # end
+            # if confirm_password.eql?("") && new_password!=""
+            #     flash[:error]="Enter confirm password"
+            #     redirect_to signin_users_update_password_path
+            # end
+            if new_password.eql?(confirm_password)
+                 if new_password==""&& confirm_password == ""
+                     flash[:error]="New password and Confirm password couldn't be empty"
+                     redirect_to signin_users_update_password_path
+                 else
+                 user.password=params[:password]
+                 user.save!
+                 redirect_to new_sessions_path
+                 end
+            else
+                flash[:error]="New password and Confirm password doesn't match"
+                redirect_to signin_users_update_password_path
+            end
+        else 
+            flash[:error]="User doesn't exist with this registered mobile number."
+            redirect_to new_user_path
+        end
+    end 
 
     def destroy
         #console.log('------hi-------s')

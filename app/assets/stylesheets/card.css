@@ -43,6 +43,14 @@
     margin-right:10%;
     margin-left:7%;
   }
+  .date
+  {
+    font-size:16px;
+    margin-top:4px;
+    margin-right:3%;
+    margin-left:2%;
+    margin-bottom:10px;
+  }
   .description{
     font-size:14px;
     color:grey;
@@ -82,16 +90,46 @@
         margin-bottom:30px;
         width:500px;
 }
+.dropdown{
+  padding: 6px 12px;
+   font-size:14px;
+   margin-top:20px;
+   height:40px;
+   color: white;
+   border-radius: 4px;
+   border: 1px solid transparent;
+}
+.dropdown2{
+  padding: 6px 12px;
+   font-size:14px;
+   margin-left: 80%;
+   height:40px;
+   color: white;
+   border-radius: 4px;
+   border: 1px solid transparent;
+}
 .AddMenu{
     padding: 6px 12px;
      font-size:14px;
-     margin-left: 90%;
      margin-top:20px;
+     margin-right:10px;
      height:40px;
      color: white;
      background-color: green;
      border-radius: 4px;
      border: 1px solid transparent;
+}
+.AddMenu_Not{
+  cursor: not-allowed;
+  padding: 6px 12px;
+   font-size:14px;
+   margin-top:20px;
+   margin-right:10px;
+   height:40px;
+   color: white;
+   background-color:#C0C0C0;
+   border-radius: 4px;
+   border: 1px solid transparent;
 }
 .AddNew{
   padding: 6px 12px;
@@ -99,7 +137,22 @@
    margin-left:800%;
    margin-right:0%;
    color: white;
+   height:auto;
+   width:100px;
    background-color: green;
+   border-radius: 4px;
+   border: 1px solid transparent;
+}
+.AddNew_Not{
+   cursor: not-allowed;
+   padding: 6px 12px;
+   font-size:14px;
+   margin-left:800%;
+   margin-right:0%;
+   height:auto;
+   width:100px;
+   color: white;
+   background-color: #C0C0C0;
    border-radius: 4px;
    border: 1px solid transparent;
 }
@@ -122,7 +175,7 @@
    .Form-input2{
     font-size: 15px;
     padding: 4px;
-    width: 320px;
+    width: 322px;
     height:70px;
     font-display: top;
     color:#888787;
@@ -130,6 +183,27 @@
     border-radius: 4px ;
     border:0;
     background-color :#F0F0F0;   
+   }
+   .Form-input3{
+    font-size: 15px;
+    padding: 4px;
+    width:126px;
+    height:30px;
+    color:#888787;
+    border: 3px;
+    border-radius: 4px ;
+    border:0;
+    background-color :#F0F0F0;   
+   }
+   .Form-input4{
+    font-size: 15px;
+    padding: 4px;
+    width:100px;
+    height:30px;
+    color:#888787;
+    border: 3px;
+    border-radius: 4px ;
+    border:0;
    }
    .Form-submit1{
     font-size: 18px;
@@ -304,9 +378,103 @@
   }
   .Update{
      font-size:14px;
-     margin-right: 5px;
+     margin-right: 10px;
      color: white;
      background-color: green;
      border-radius: 2px;
      border: 1px solid transparent;
+}
+.Update_Not{
+     cursor: not-allowed;
+     margin-right: 10px;
+     color: white;
+     background-color: #C0C0C0;
+     border-radius: 2px;
+     border: 1px solid transparent;
+}
+.Show{
+  font-size:14px;
+  margin-right: 10px;
+  color: white;
+  background-color: green;
+  border-radius: 2px;
+  border: 1px solid transparent;
+}
+.Reports{
+  font-size:14px;
+  margin-right: 10px;
+  margin-left:15px;
+  color: white;
+  background-color: green;
+  border-radius: 4px;
+  width:70px;
+  border: 1px solid transparent;
+}
+.select{
+  width:50px;
+  display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+  background-color: black;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 3px;
+  border: none;
+  background: #f1f1f1;
+  padding: 2px;
+}
+.sam{
+  margin-left: 45%
+}
+.sam1{
+  margin-left: 40%
+}
+.action{
+   top: 20px;
+   right: 30px;
+}
+.action .profile{
+   width: 60px;
+   height: 60px;
+   border-radius : 50%;
+   overflow: hidden;
+   cursor: pointer;
+}
+.action .profile img{
+  position: absolute;
+  top:62px;
+   right: 80px;
+   width:50px;
+   height:50px;
+   object-fit: cover;
+}
+.action .MenuToggle{
+  position: absolute;
+  top: 120px;
+  right: 18px;
+  padding: 10px 20px;
+  background :#E9E9E9;
+  box-sizing : 0 5px 5px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  transition: 0.5px;
+  visibility: hidden;
+  opacity: 0;
+}
+.action .MenuToggle.active{
+   visibility: visible;
+   opacity: 1;
+}
+
+.action .MenuToggle p{
+  width: 100%;
+  text-align: left;
+  font-size: 18px;
+  font-weight: 500;
+  font-size: 18px;
+  color: #555;
+  line-height: 1.2em; 
 }

@@ -5,15 +5,29 @@
 <br>
 <br>
 <div class="Form-section1">
-<p class="FormInput-label"> Menu Name</p>
+<section style="display:flex">
+<p class="FormInput-label"> Menu Name<section class="mandatory">*</section> </p></p>
+</section>
  <%= form.text_field :menu_name, class: "Form-input1", placeholder:"Enter item name"%>
  </div>
+ <section style="display:inline-flex;margin-left:15%">
  <div class="Form-section1">
-<p class="FormInput-label"> Menu Cost</p>
- <%= form.text_field :menu_cost, class: "Form-input1", placeholder:"Enter item cost"%>
+ <section style="display:flex">
+<p class="FormInput-label"> Menu_Category<section class="mandatory">*</section> </p></p>
+</section>
+ <p class= "Form-input4"><%= form.select :menu_category, ["Breakfast", "Lunch", "Snacks", "Dinner"], class:"dropdown1",  placeholder:"Select category"%></p>
  </div>
  <div class="Form-section1">
-<p class="FormInput-label"> Menu Description</p>
+ <section style="display:flex">
+<p class="FormInput-label"> Menu Cost<section class="mandatory">*</section> </p></p>
+</section>
+ <%= form.text_field :menu_cost, class: "Form-input3", placeholder:"Enter cost"%>
+ </div>
+ </section>
+ <div class="Form-section1">
+ <section style="display:flex">
+<p class="FormInput-label"> Menu Description<section class="mandatory">*</section> </p></p>
+</section>
  <%= form.text_field :menu_description, class: "Form-input2", placeholder:"Enter description"%>
  </div>
  

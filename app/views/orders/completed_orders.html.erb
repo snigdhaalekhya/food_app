@@ -14,7 +14,7 @@
   <p class="SidebarComponents"><%= link_to "Completed Orders", user_completed_orders_path, class:"SidebarComponentsRuby3"%></p>
 </section>
 <section class="card2">
-<% @orders.each do |order|%>
+<% @orders_completed.each do |order|%>
     <div class="card10">
      <br>
       <section class="card11">
@@ -25,7 +25,6 @@
       <p class="user_name"><%= @user.name%> - </p> 
       <p class="mobile_no"><%= @user.mobile_no %></p>
       </section>
-      <% if order.status=="Delivered"%>
       <section style="display:flex;margin-left:7%;width:400px">
       <p style="color:rgb(1, 158, 0);margin-top:3px"> Orderd on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" style="width:30px;height:23px">
@@ -36,38 +35,6 @@
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" style="width:30px;height:23px">
       <p class="date"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
-      <% elsif order.status=="Pending" %>
-      <section style="display:flex;margin-left:7%;width:400px">
-      <p style="color:rgb(1, 158, 0);margin-top:3px"> Orderd on: </p>
-      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" style="width:30px;height:23px">
-      <p class="date"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
-      </section>
-      <% elsif order.status=="Cancelled"%>
-      <section style="display:flex;margin-left:7%;width:400px">
-      <p style="color:rgb(1, 158, 0);margin-top:3px"> Orderd on: </p>
-      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" style="width:30px;height:23px">
-      <p class="date"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
-      </section>
-      <section style="display:flex;margin-left:7%;width:400px">
-      <p style="color:rgb(1, 158, 0);margin-top:3px"> Cancelled on: </p>
-      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" style="width:30px;height:23px">
-      <p class="date"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
-      </section>
-      <% else %>
-      <section style="display:flex;margin-left:7%;width:500px">
-      <p style="color:rgb(1, 158, 0);margin-top:3px"> Ordered on: </p>
-      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" style="width:30px;height:23px">
-      <p class="date"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
-      <% time_diff=(order.updated_at - order.created_at) %>
-      <% time_diff=(time_diff / 1.hour).round %>
-      <p class="date">( <%= time_diff%> hours ago )</p>
-      </section>
-      <section style="display:flex;margin-left:7%;width:400px">
-      <p style="color:rgb(1, 158, 0);margin-top:3px"> Updated on: </p>
-      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" style="width:30px;height:23px">
-      <p class="date"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
-      </section>
-      <% end %>
       <p class="items">Items: </p>
       <p class="menu">
       <% @cost=0 %>
@@ -86,6 +53,7 @@
       <%# <%= button_to "Add", new_menu_path, method: "get", class:"Add"%> 
       <%# <%= menu.id%> 
 </div>
-<% end %>
+<% end%>
+
 </section>
       

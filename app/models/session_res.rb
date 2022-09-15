@@ -1,10 +1,8 @@
-class Owner < ApplicationRecord
-    validates :name, presence: true
+class SessionRes < ApplicationRecord
     validates :email, presence: true
-    validates :address, presence: true
     validates :password, presence: true
+    validates :identity, presence: true
 
      has_secure_password
-     has_many :menus
     # has_many :todos
 end

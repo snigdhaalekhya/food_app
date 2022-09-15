@@ -8,15 +8,20 @@
   <p class="SidebarComponents"><%= link_to "Reports", reports_restaurant_path, class:"SidebarComponentsRuby"%></p>
 </section>
 <section class="card2">
-<h1 style="margin-top:20px;margin-left:40%;font-size:20px"> Select Customer to see the  Reports </h1>
-<br>
-<br>
-<%= form_with(url:"/reports/customer_orders_view", method: "get", class:"sam")  do |form| %>
-   <p class="dropdown">
-   <%= form.select :name, User.all.map { |t| t.name}, class:"select"%>
-   <%= form.submit "Reports", class:"Reports" %>
-   </p>
+<h1 style="margin-top:20px;margin-left:40%;font-size:20px;color:rgb(117, 0, 0);"> <%= @category.to_s %> Items </h1>
+<% @menus_category.each do |menu|%>
+  <div class="column">
+    <div class="card3">
+     <br>
+      <p class="name"><%= menu.menu_name %></p>
+      <p class="description"><%= menu.menu_description %></p>
+      <p class="cost"><%= menu.menu_cost%> ₹</p>
+      <br>
+      <br>
+    </div>
+  </div>
 <% end %>
 </section>
+</div>
 </div>
 </body>

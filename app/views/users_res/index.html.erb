@@ -11,7 +11,11 @@
 <section style="margin-top:30px;margin-left:40px;display:inline-flex">
   <%= link_to "Customers", users_restaurant_path, class:"SidebarComponentsRuby4"%>
   <%= link_to "Workers", workers_path, class:"SidebarComponentsRuby4"%>
-  <%= button_to "Add_Worker", new_worker_path, method: "get", class:"AddNew"%>
+  <% if Owner.find_by(email: @owner_worker.to_s)%>
+      <%= button_to "Add Worker", new_worker_path, method: "get", class:"AddNew"%>
+  <% elsif Worker.find_by(email: @owner_worker.to_s)%>
+      <%= button_to "Add Worker", new_worker_path, method: "get", class:"AddNew_Not", disabled:"true"%>
+  <% end %>
   </section>
   <br>
   <hr>

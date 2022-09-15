@@ -23,7 +23,10 @@ body {
     margin-bottom: 20px;
     margin-left: 33%;
 }
-
+.mandatory{
+    margin-left:5px;
+    color:red;
+}
 .Form-input{
  font-size: 15px;
  padding: 4px;
@@ -39,7 +42,7 @@ body {
 .FormInput-label{
  color: #2f0303;
  margin-bottom: 10px;
- font-size: 18px
+ font-size: 18px;
 }
 .Form-submit{
     font-size: 18px;
@@ -151,4 +154,8 @@ body {
     justify-content:space-between;
     margin-top:15px;
     
+} 
+.card_profile{
+    display: flex;
+    justify-content:space-between;
 } 

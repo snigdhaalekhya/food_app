@@ -1,12 +1,22 @@
 class WorkersController < ApplicationController 
     skip_before_action :ensure_user_logged_in  
     before_action :ensure_owner_logged_in
-    skip_before_action :ensure_owner_logged_in
+   #  skip_before_action :ensure_owner_logged_in
  
-     def index     
-     end
+   def index  
+      if Owner.find_by(email: current_owner.email)
+         @owner_worker= current_owner.email
+     elsif Worker.find_by(email: current_owner.email)
+         @owner_worker= current_owner.email
+     end   
+   end
  
-     def create
+   def create
+      worker=Worker.find_by(email: params[:email])
+      if worker
+         flash[:error]="This email is already registered. Please retry."
+         redirect_to new_worker_path 
+      else
          worker=Worker.new(
             name: params[:name],
              mobile_no: params[:mobile_no],
@@ -14,17 +24,18 @@ class WorkersController < ApplicationController
              password: params[:password],
              address: params[:address]
           )
-          #session[:current_user_id]= user.id
+          session[:current_worker_id]= worker.id
             if worker.save
                redirect_to workers_path
          #response_text= "new todo #{new_todo.id}"
          #render plain:  response_text
-             else
+            else
                 flash[:error]= menu.errors.full_messages.join(", ")
                 redirect_to "/workers/new"
-             end
-     end
+            end
+      end
+   end
  
-     def new
-     end
+   def new
+   end
  end

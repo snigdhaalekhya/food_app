@@ -9,14 +9,25 @@
 <section class="UserNew">
 <%= form_with url: sessions_res_path do |form| %>
 <div class="Form-section">
-<p class="FormInput-label"> Email Id</p>
+<section style="display:flex">
+ <p class="FormInput-label">Choose login type<section class="mandatory">*</section></p>
+ </section>
+<%= form.radio_button :identity, 'Owner' %> Owner<br />
+<%= form.radio_button :identity, 'Worker' %> Worker<br />
+</div>
+<div class="Form-section">
+<section style="display:inline-flex">
+<p class="FormInput-label"> Email Id<section class="mandatory">*</section> </p></p>
+</section>
  <%= form.email_field :email, class: "Form-input", placeholder:"Enter your email id"%>
  </div>
  <div class="Form-section">
-<p class="FormInput-label"> Password</p>
+ <section style="display:inline-flex">
+<p class="FormInput-label"> Password<section class="mandatory">*</section> </p></p>
+</section>
  <%= form.password_field :password, class: "Form-input", placeholder:"Enter your password"%>
  </div>
-  <p> <%= link_to "Forgot_password?", new_owner_path , class:"TextStylePassword"%></p>
+  <p> <%= link_to "Forgot_password?", signin_restaurant_update_password_path , class:"TextStylePassword"%></p>
  <div class="Form-section">
  <%= form.submit "Sign-in!", class: "Form-submit"%>
  </div>

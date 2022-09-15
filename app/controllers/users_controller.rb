@@ -21,7 +21,7 @@ class UsersController < ApplicationController
             password: params[:password],
             address: params[:address],
          )
-        #  session[:current_user_id]= user.id
+          session[:current_user_id]= user.id
            if user.save
               redirect_to new_sessions_path 
             else

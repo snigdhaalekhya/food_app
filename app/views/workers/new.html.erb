@@ -5,23 +5,34 @@
 <br>
 <br>
 <div class="Form-section1">
-<p class="FormInput-label"> Name</p>
+<section style="display:flex">
+ <p class="FormInput-label"> Name<section class="mandatory">*</section> </p>
+ </section>
  <%= form.text_field :name, class: "Form-input1", placeholder:"Enter name"%>
- </div>
+</div>
+
+<div class="Form-section1">
+ <section style="display:flex">
+ <p class="FormInput-label"> Mobile No<section class="mandatory">*</section></p>
+ </section>
+ <%= form.text_field :mobile_no, class: "Form-input1", placeholder:"Enter mobile number", data: { numeric: true }%>
+</div>
  <div class="Form-section1">
-<p class="FormInput-label"> Mobile No</p>
- <%= form.text_field :mobile_no, class: "Form-input1", placeholder:"Enter mobile number"%>
- </div>
- <div class="Form-section1">
-<p class="FormInput-label"> Email Id</p>
+ <section style="display:flex">
+<p class="FormInput-label"> Email Id<section class="mandatory">*</section> </p>
+</section>
  <%= form.email_field :email, class: "Form-input1", placeholder:"Enter email"%>
  </div>
  <div class="Form-section1">
-<p class="FormInput-label"> Password</p>
+ <section style="display:flex">
+<p class="FormInput-label"> Password<section class="mandatory">*</section> </p>
+</section>
  <%= form.password_field :password, class: "Form-input1", placeholder:"Enter password "%>
  </div>
  <div class="Form-section1">
-<p class="FormInput-label"> Address</p>
+ <section style="display:flex">
+<p class="FormInput-label"> Address<section class="mandatory">*</section> </p>
+</section>
  <%= form.text_field :address, class: "Form-input1", placeholder:"Enter address"%>
  </div>
  <div class="Form-section1">

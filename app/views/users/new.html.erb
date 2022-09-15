@@ -9,19 +9,27 @@
 <section class="UserNew">
 <%= form_with url: users_path do |form| %>
 <div class="Form-section">
-<p class="FormInput-label"> Name</p>
+<section style="display:inline-flex">
+<p class="FormInput-label">Name<section class="mandatory">*</section> </p>
+</section>
  <%= form.text_field :name, class: "Form-input", placeholder:"Enter your name"%>
+</div>
+ <div class="Form-section">
+ <section style="display:inline-flex">
+<p class="FormInput-label"> Mobile Number<section class="mandatory">*</section></p>
+</section>
+ <%= form.text_field :mobile_no, class: "Form-input", placeholder:"Enter your number", data: { numeric: true }%>
  </div>
  <div class="Form-section">
-<p class="FormInput-label"> Mobile Number</p>
- <%= form.text_field :mobile_no, class: "Form-input", placeholder:"Enter your number"%>
- </div>
- <div class="Form-section">
-<p class="FormInput-label"> Password</p>
+ <section style="display:inline-flex">
+<p class="FormInput-label"> Password<section class="mandatory">*</section></p>
+</section>
  <%= form.password_field :password, class: "Form-input", placeholder:"Enter password here"%>
  </div>
  <div class="Form-section">
-<p class="FormInput-label"> Address</p>
+ <section style="display:inline-flex">
+<p class="FormInput-label"> Address<section class="mandatory">*</section></p>
+</section>
  <%= form.text_field :address, class: "Form-input", placeholder:"Enter your address"%>
  </div>
  <div class="Form-section">

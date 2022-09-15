@@ -1,6 +1,6 @@
 class User < ApplicationRecord
     validates :name, presence: true
-    validates :mobile_no, presence: true
+    validates :mobile_no, length: { is: 10 },presence: true
     validates :address, presence: true
     validates :password, presence: true
 
