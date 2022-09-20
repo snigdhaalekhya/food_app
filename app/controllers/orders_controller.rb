@@ -24,9 +24,13 @@ class OrdersController < ApplicationController
               user_id: current_user.id,
               menu: @menu,
               status: "Pending",
+              owner_id: 1
              )
             if order.save
                  redirect_to orders_path
+                 # If order is placed owner receives mail with order,customer details
+                 NotifierMailer.with(order: order).send_mail_order.deliver_later
+                 NotifierMailer.with(order: order).send_mail_status.deliver_later
                 @carts.each do |cart|
                     cart.destroy
                     # redirect_to orders_path

@@ -21,6 +21,7 @@
    <div class="MenuToggle">
    <p>Name: <%= @current_user.name%></p>
    <p>Mobile No: <%= @current_user.mobile_no%></p>
+   <p>Email Id: <%= @current_user.email%></p>
    <p>Address: <%= @current_user.address%></p>
    <%= button_to "Sign-out", destroy_session_path, method: "delete", class:"UserHeader1"%>
   </div>

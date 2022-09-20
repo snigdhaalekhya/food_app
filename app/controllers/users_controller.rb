@@ -14,10 +14,14 @@ class UsersController < ApplicationController
      if user
          flash[:error]="This mobile number is already registered. Please retry."
          redirect_to new_user_path 
+     elsif User.find_by(email: params[:email])
+         flash[:error]="This email is already registered. Please retry."
+          redirect_to new_user_path 
      else
          user=User.new(
             name: params[:name],
             mobile_no: params[:mobile_no],
+            email: params[:email],
             password: params[:password],
             address: params[:address],
          )

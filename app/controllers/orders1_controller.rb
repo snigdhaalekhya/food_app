@@ -33,8 +33,10 @@ class Orders1Controller < ApplicationController
         order_id=Order.find(id)
         # @orders_queue= Order.where.not(status: "Delivered")
         order_id.status=params[:status]
-        order_id.save!
-        redirect_to orders_restaurant_path
+        if order_id.save!
+           NotifierMailer.with(order: order_id).send_mail_status.deliver_later
+           redirect_to orders_restaurant_path
+        end
     end
      
      def all_orders

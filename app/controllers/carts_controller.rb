@@ -11,32 +11,9 @@ class CartsController < ApplicationController
     end
 
     def create
-        # menu=Menu.new(
-        #     menu_name: params[:menu_name],
-        #     menu_cost: params[:menu_cost],
-        #     menu_description: params[:menu_description],
-        #  )
-        #  #session[:current_user_id]= user.id
-        #    if menu.save
-        #       redirect_to "/menu_restaurant" 
-        # #response_text= "new todo #{new_todo.id}"
-        # #render plain:  response_text
-        #     else
-        #        flash[:error]= menu.errors.full_messages.join(", ")
-        #        redirect_to "/menus/new"
-        #     end
+        
     end
-    # def update
-    #     id=params[:id],
-    #     menu=Menu.find(id)
-    #     cart=Cart.of_user(current_user).where(menu_id: menu.id)
-    #     # cart=Cart.where(menu_id: menu.id)
-    #     count= count+1
-    #     render plain: count
-    #     # cart.count=cart.count+1
-    #     # cart.save
-    # end
-
+    
     def show
        id= params[:id]
        menu=Menu.find(id)
