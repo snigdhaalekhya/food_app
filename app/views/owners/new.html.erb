@@ -3,7 +3,7 @@
 <div class=card1" style="display:flex">
 <section>
 <p class="Title"> Restaurant_Owner </p>
-<p class="Text1"> <%= link_to "Customer_login", new_sessions_path , class:"TextStylePassword"%></p>
+<p class="Text1"> <%= link_to "Customer login", new_sessions_path , class:"TextStylePassword"%></p>
 <p class="NewUsers-title"> Create Account </p>
 <p class="NewUsers-Undertitle">This helps you to manage your orders and preferences better</p> 
 <section class="UserNew">
@@ -25,6 +25,7 @@
 <p class="FormInput-label"> Password<section class="mandatory">*</section> </p></p>
 </section>
  <%= form.password_field :password, class: "Form-input", placeholder:"Enter password here"%>
+ <p class="note" >Atleast of 8 characters, one uppercase, digit, symbol</p>
  </div>
  <div class="Form-section">
  <section style="display:inline-flex">
@@ -42,7 +43,7 @@
  <% end%>
  </div>
  -->
- <p class="Text" > Already a customer?<%= link_to "Sign In", new_sessions_res_path, class:"TextStyle"%></p>
+ <p class="Text" > Already a user?<%= link_to "Sign In", new_sessions_res_path, class:"TextStyle"%></p>
  </section>
 </section>
 <section class="Image"> 

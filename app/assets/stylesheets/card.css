@@ -478,3 +478,8 @@
   color: #555;
   line-height: 1.2em; 
 }
+.note{
+  font-size:13px;
+  color:#a40000;
+  margin-bottom:14px;
+}

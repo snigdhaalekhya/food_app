@@ -77,3 +77,41 @@
     border-color:  #E9E9E9 transparent;
     border: 1px transparent; 
 }
+.Delete{
+    background-color:#970200;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    font-size: 14px;
+    color: white;
+    margin-left:20px;
+    margin-bottom: 15px;
+}
+.Edit{
+    background-color:green;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    font-size: 14px;
+    color: white;
+    margin-left: 130px;
+    margin-bottom: 15px;
+}
+.Edit_Not{
+    cursor: not-allowed;
+    background-color:#C0C0C0;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    font-size: 14px;
+    color: white;
+    margin-left: 130px;
+    margin-bottom: 15px;
+}
+.Delete_Not{
+    cursor: not-allowed;
+    background-color:#C0C0C0;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    font-size: 14px;
+    color: white;
+    margin-left:20px;
+}
+   

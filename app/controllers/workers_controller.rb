@@ -16,6 +16,9 @@ class WorkersController < ApplicationController
       if worker
          flash[:error]="This email is already registered. Please retry."
          redirect_to new_worker_path 
+      elsif Worker.find_by(mobile_no: params[:mobile_no])
+         flash[:error]="This mobile no is already registered. Please retry."
+         redirect_to new_worker_path 
       else
          worker=Worker.new(
             name: params[:name],
@@ -30,7 +33,7 @@ class WorkersController < ApplicationController
          #response_text= "new todo #{new_todo.id}"
          #render plain:  response_text
             else
-                flash[:error]= menu.errors.full_messages.join(", ")
+                flash[:error]= worker.errors.full_messages.join(", ")
                 redirect_to "/workers/new"
             end
       end

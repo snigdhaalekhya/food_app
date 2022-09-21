@@ -25,12 +25,28 @@
 <% Menu.all.each do |menu|%>
   <div class="column">
     <div class="card3">
+   
      <br>
       <p class="name"><%= menu.menu_name %></p>
       <p class="description"><%= menu.menu_description %></p>
       <p class="cost"><%= menu.menu_cost%> ₹</p>
       <br>
       <br>
+     
+      <section style="display:inline-flex;">
+    <% if Owner.find_by(email: @owner_worker.to_s)%>
+      <%= button_to "Edit", "/menus/#{menu.id}/edit", method: "get", class:"Edit"%>
+    <% elsif Worker.find_by(email: @owner_worker.to_s)%>
+       <%= button_to "Edit", "/menus/#{menu.id}/edit", method: "get", class:"Edit_Not", disabled:"true"%>
+    <%end%>
+
+    <% if Owner.find_by(email: @owner_worker.to_s)%>
+    <%= button_to "Delete", "/menus/#{menu.id}", method: "delete", class:"Delete"%>
+    <% elsif Worker.find_by(email: @owner_worker.to_s)%>
+    <%= button_to "Delete", "/menus/#{menu.id}", method: "delete", class:"Delete_Not", disabled:"true"%>
+    <%end%>
+      </section>
+   
     </div>
   </div>
 <%end%>
@@ -38,19 +54,3 @@
 </div>
 </div>
 </body>
-
-
-<%Menu.all.each do |menu|%> 
-<!--
-<div class="row">
-  <div class="column">
-    <div class="card">
-     <br>
-      <p class="name"><%= menu.menu_name %></p>
-      <p class="description"><%= menu.menu_description %></p>
-      <p class="cost"><%= menu.menu_cost%> ₹</p>
-      <br>
-    </div>
-  </div>
-  -->
-<%end%>

@@ -1,7 +1,7 @@
 <body style="width:40%;margin-top:20px">
 <div class="card3">
 <section class="UserNew">
-<%= form_with url: menus_path do |form| %>
+<%= form_for @menu_edit do |form| %>
 <br>
 <br>
 <div class="Form-section1">
@@ -32,7 +32,7 @@
  </div>
  
  <div class="Form-section1">
- <%= form.submit "Create Item", class: "Form-submit1"%>
+ <%= form.submit "Save Menu", class: "Form-submit1"%>
  </div>
  </section>
 <% end%>

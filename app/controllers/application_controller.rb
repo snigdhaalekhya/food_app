@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
     
     def ensure_owner_logged_in
         unless current_owner
-             redirect_to new_owner_path
+             redirect_to new_sessions_res_path
             # render pain: "Not logged in"
         end
     end

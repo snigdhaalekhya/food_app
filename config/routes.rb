@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     get "/view_user/search" => "menus#search"
   get "/users_restaurant" => "users_res#index"
   get "/reports_restaurant" => "reports#index"
-       get "/reports/customer_orders_view" => "reports#customer_orders_view"
+      #  get "/reports/customer_orders_view" => "reports#customer_orders_view"
       #  post "/reports/customer_orders" => "reports#customer_orders"
   get "/" => "users#new"
   get "/carts/:id/remove"  => "carts#remove", as: :remove

@@ -35,8 +35,36 @@ class MenusController < ApplicationController
 
     #get
     def category_wise
+      if Owner.find_by(email: current_owner.email)
+        @owner_worker= current_owner.email
+      elsif Worker.find_by(email: current_owner.email)
+        @owner_worker= current_owner.email
+      end  
       @category=params[:menu_category]
       @menus_category= Menu.where(menu_category: params[:menu_category])
     end 
+
+
+
+    def edit
+      id=params[:id]
+      @menu_edit=Menu.find(id)
+    end
+
+    def update
+      id=params[:id]
+      @menu=Menu.find(id)
+      @menu.update(menu_name: params[:menu][:menu_name], menu_description: params[:menu][:menu_description], menu_category: params[:menu][:menu_category], menu_cost: params[:menu][:menu_cost] )
+      redirect_to "/menu_restaurant"
+    end
+
+
+    def destroy
+        id = params[:id]
+        menu_delete=Menu.find(id)
+        menu_delete.destroy
+        redirect_to "/menu_restaurant"
+        # render plain: "deleted"
+    end
     
 end

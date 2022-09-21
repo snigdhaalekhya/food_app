@@ -27,6 +27,6 @@ class NotifierMailer < ApplicationMailer
      @owner_name=Owner.find(@owner).name
      @status=order.status
      @owner_mail=Owner.find(@owner).email
-     mail(from: "ammualekhya6@gmail.com",to: @user_mail, subject: "Status for the order you have placed from restaurant1")
+     mail(from: "ammualekhya6@gmail.com",to: @user_mail, subject: "Status for the Order ##{@order_id} placed from restaurant")
     end
 end

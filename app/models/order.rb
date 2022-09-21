@@ -9,7 +9,4 @@ class Order < ActiveRecord::Base
     def self.of_user(user)
         all.where(user_id: user.id)
     end
-    # def self.search(search)
-    #     where(["status LIKE?","%#{search}%"]).uniq
-    # end
 end
