@@ -4,10 +4,16 @@
   <%= link_to "My Orders", orders_path, class:"SidebarComponentsRuby1"%>
   <%= link_to "Cart", carts_path, class:"SidebarComponentsRuby1"%>
   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKGxujYqqoJ2wjE-cUDwfmfhjX-ls8t7TAcwcfgjd5LspLpQnT7-pXfP_pVapr9qF1kZQ&usqp=CAU" width="40px" height=40px >
+   <% @carts.each do |cart|%>    
+     <% @cart_totalcount=@cart_totalcount+cart.count%>
+   <% end %>
+   <% if @cart_totalcount!=0%>
+    <%= @cart_totalcount%>
+  <% end %>
   </p>
   <br>
   <hr>
-
+ <% @cart_totalcount=0%>
 <div class="card1" style="display:inline-flex">
 <section class="card5">
 <% @carts.each do |cart|%>
@@ -16,12 +22,14 @@
       <p class="name"><%= Menu.find(cart.menu_id).menu_name %> 
       <div class="card8" style="display=flex">         
      <p class="style"> Quantity: <%= cart.count %>
+     <% @cart_totalcount=@cart_totalcount+cart.count%>
       </div>
       </div>
       <p class="cost1"><%= @c=cart.count*Menu.find(cart.menu_id).menu_cost %> ₹</p> 
       <br>
     <br>
 <%end%>
+<p class="name" style="margin-bottom:15px;font-size:18px;margin-top:10px">Total Quantity: <%= @cart_totalcount%></p>
 <% @carts.each do |cart|%>
 <% @cost=@cost+(cart.count*Menu.find(cart.menu_id).menu_cost)%>
 <%end%>

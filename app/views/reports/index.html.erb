@@ -11,7 +11,7 @@
 <h1 style="margin-top:20px;margin-left:45%;font-size:20px"> Customer Reports </h1>
 <%= form_with(url:"/reports_restaurant", method: "get", class:"sam")  do |form| %>
    <p class="dropdown">
-   <%= form.select :name, User.all.map { |t| t.name}, class:"select",:onchange => 'Rails.fire(this.form, "submit")', :selected => params[:name] %>
+   <%= form.select :name, User.all.map { |t| t.name}, class:"select", :selected => params[:name] %>
    <%= form.submit "Reports", class:"Reports" %>
    </p>
 <% end %>

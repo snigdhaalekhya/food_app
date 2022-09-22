@@ -4,6 +4,13 @@
   <%= link_to "My Orders", orders_path, class:"SidebarComponentsRuby1"%>
   <%= link_to "Cart", carts_path, class:"SidebarComponentsRuby1"%>
   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKGxujYqqoJ2wjE-cUDwfmfhjX-ls8t7TAcwcfgjd5LspLpQnT7-pXfP_pVapr9qF1kZQ&usqp=CAU" width="40px" height=40px >
+  <% c=0%>
+  <% @carts.each do |cart|%>
+    <%c=c+cart.count%>
+  <% end %>
+  <% if c!=0%>
+  <%= c%>
+  <% end %>
   </p>
   <br>
   <hr>

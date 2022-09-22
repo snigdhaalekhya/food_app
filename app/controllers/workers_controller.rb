@@ -1,7 +1,7 @@
 class WorkersController < ApplicationController 
     skip_before_action :ensure_user_logged_in  
     before_action :ensure_owner_logged_in
-   #  skip_before_action :ensure_owner_logged_in
+    skip_before_action :ensure_owner_logged_in
  
    def index  
       if Owner.find_by(email: current_owner.email)

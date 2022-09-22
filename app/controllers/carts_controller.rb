@@ -1,11 +1,10 @@
 class CartsController < ApplicationController 
-    #skip_before_action :ensure_user_logged_in
-    # skip_before_action :ensure_owner_logged_in
-
+    
     def index
         @carts= Cart.of_user(current_user)
         @carts_notempty=Cart.find_by(user_id: current_user)
         @user=current_user
+        @cart_totalcount=0;
         @cost=0;
         @c=1;
     end

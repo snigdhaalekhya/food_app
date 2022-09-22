@@ -45,7 +45,7 @@
    <p>Name: <%= @current_owner.name%></p>
    <p>Email Id: <%= @current_owner.email%></p>
    <p>Address: <%= @current_owner.address%></p>
-   <%= button_to "Sign-out", destroy_session_path, method: "delete", class:"UserHeader1"%>
+   <%= button_to "Sign-out", destroy_session_res_path, method: "delete", class:"UserHeader1"%>
   </div>
   <script>
      function menuToggle(){

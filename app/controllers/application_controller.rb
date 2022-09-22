@@ -19,12 +19,11 @@ class ApplicationController < ActionController::Base
         end
     end
 
-    # before_action :ensure_owner_logged_in
+   
     
     def ensure_owner_logged_in
         unless current_owner
-             redirect_to new_sessions_res_path
-            # render pain: "Not logged in"
+            redirect_to new_owner_path
         end
     end
 
@@ -42,23 +41,6 @@ class ApplicationController < ActionController::Base
             nil
         end
     end
-    # def ensure_worker_logged_in
-    #     unless current_worker
-    #          redirect_to new_owner_path
-    #         # render pain: "Not logged in"
-    #     end
-    # end
-
-    # def current_worker
-    #     return @current_worker if @current_worker
-
-    #     current_worker_id=session[:current_worker_id]
-    #     if current_worker_id
-    #         @current_worker = Worker.find(current_worker_id)
-    #     else
-    #         nil
-    #     end
-    # end
- 
+    
     
 end

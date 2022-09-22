@@ -22,7 +22,7 @@ class OwnersController < ApplicationController
             password: params[:password],
             address: params[:address],
          )
-        #  session[:current_user_id]= user.id
+          session[:current_owner_id]=owner.email
            if owner.save
               redirect_to "/users/new" 
             else

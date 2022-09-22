@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController 
     skip_before_action :ensure_user_logged_in
-    # skip_before_action :ensure_owner_logged_in
+   
     
     def new
     end
@@ -24,14 +24,6 @@ class SessionsController < ApplicationController
         if user
             new_password=params[:password]
             confirm_password=params[:password_confirm]
-            # if new_password == "" && confirm_password.eql?("")
-            #     flash[:error]="Enter new password"
-            #     redirect_to signin_users_update_password_path
-            # end
-            # if confirm_password.eql?("") && new_password!=""
-            #     flash[:error]="Enter confirm password"
-            #     redirect_to signin_users_update_password_path
-            # end
             if new_password.eql?(confirm_password)
                  if new_password==""&& confirm_password == ""
                      flash[:error]="New password and Confirm password couldn't be empty"

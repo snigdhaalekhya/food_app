@@ -1,27 +1,11 @@
 class SessionsResController < ApplicationController 
     skip_before_action :ensure_user_logged_in
-    # before_action :ensure_owner_logged_in
-    # skip_before_action :ensure_owner_logged_in
+    before_action :ensure_owner_logged_in
+    skip_before_action :ensure_owner_logged_in
 
     def new
     end
-    # def create
-    #     owner=Owner.find_by(email: params[:email])
-    #     worker=Worker.find_by(email: params[:email])
-    #     if owner && owner.authenticate(params[:password]) 
-    #          session[:current_owner_id]=owner.id
-    #         #debugger
-    #         redirect_to orders_restaurant_path
-    #     elsif worker && worker.authenticate(params[:password]) 
-    #          session[:current_worker_id]=worker.id
-    #         #  render plain:worker.id
-    #         #debugger
-    #          redirect_to orders_restaurant_path
-    #    else
-    #     flash[:error]="Your login attempt was invalid. Please retry."
-    #     redirect_to new_sessions_res_path
-    #    end
-    # end
+    
     
     def create
       identity= params[:identity]
@@ -33,9 +17,6 @@ class SessionsResController < ApplicationController
                  #debugger
                  redirect_to orders_restaurant_path
              else
-                # if identity== nil
-                 # flash[:error]="Please Choose login type"
-                # end
              flash[:error]="Your login attempt was invalid. Please retry."
             redirect_to new_sessions_res_path
            end
@@ -43,13 +24,8 @@ class SessionsResController < ApplicationController
             owner=Worker.find_by(email: params[:email])
             if  identity && owner && owner.authenticate(params[:password]) 
                  session[:current_owner_id]=owner.email
-                #  render plain: session[:current_owner_id]
-                 #debugger
                  redirect_to orders_restaurant_path
              else
-                # if identity== nil
-                #     flash[:error]="Please Choose login type"
-                # end
                 flash[:error]="Your login attempt was invalid. Please retry."
                 redirect_to new_sessions_res_path
            end
@@ -122,11 +98,11 @@ class SessionsResController < ApplicationController
     end
 
     def destroy
-        #console.log('------hi-------s')
-        if session[:current_owner_id]
-          session[:current_owner_id] = nil
-          @current_owner = nil
-          redirect_to new_user_path
-        end
+        # console.log('------hi-------s')
+      if session[:current_owner_id]
+        session[:current_owner_id] = nil
+        @current_owner = nil
+        redirect_to new_user_path
+      end
     end
 end
