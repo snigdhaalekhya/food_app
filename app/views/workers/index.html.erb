@@ -19,7 +19,8 @@
   </section>
   <br>
   <hr>
-<% Worker.all.each do |worker|%>
+<% Worker.all_cached.each do |worker|%>
+  <%cache worker do%>
      <br>
       <section style="display:flex;">
       <p class="user_name">Name: <%= worker.name%> </p> 
@@ -27,6 +28,7 @@
       <p class="user_name">Mobile No: <%= worker.mobile_no%>
       </section>
       <hr>
+    <% end%>
 <% end%>
 <br>
 </section>

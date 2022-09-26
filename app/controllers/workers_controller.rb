@@ -1,3 +1,5 @@
+gem 'actionpack-action_caching'
+require 'actionpack/action_caching'
 class WorkersController < ApplicationController 
     skip_before_action :ensure_user_logged_in  
     before_action :ensure_owner_logged_in
