@@ -13,4 +13,13 @@ PASSWORD_REQUIREMENTS = /\A
 
      has_secure_password
      has_many :carts
+
+    #  after_save    :expire_all_cache
+    #  after_destroy :expire_all_cache
+   
+    def self.call
+      cachemethod()
+      expire_all_cache()
+    end 
+
 end

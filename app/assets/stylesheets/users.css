@@ -107,7 +107,10 @@ body {
     margin-left: 20%;
     height: auto;
   }
-
+.image1{
+    margin-left:80px;
+    margin-top:3px;
+}
   .Flash-error{
     color: darkred;
     margin-top:75px;

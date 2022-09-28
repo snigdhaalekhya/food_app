@@ -30,7 +30,12 @@
 </section>
  <%= form.text_field :menu_description, class: "Form-input2", placeholder:"Enter description"%>
  </div>
- 
+ <div class="Form-section1">
+ <section style="display:flex">
+<p class="FormInput-label"> Menu Image<section class="mandatory">*</section> </p></p>
+</section>
+ <%= form.text_field :menu_image, class: "Form-input2", placeholder:"Add/Edit item image"%>
+ </div>
  <div class="Form-section1">
  <%= form.submit "Save Menu", class: "Form-submit1"%>
  </div>

@@ -1,6 +1,7 @@
 class CartsController < ApplicationController 
     
     def index
+        @orders= Order.of_user(current_user)
         @carts= Cart.of_user(current_user)
         @carts_notempty=Cart.find_by(user_id: current_user)
         @user=current_user

@@ -14,7 +14,9 @@
   </p>
   <br>
   <hr>
+<% @orders_completed=Order.orders1cachecompleted.to_a%>
 <% @orders_completed.each do |order|%>
+<% cache order do%>
     <div class="card10">
      <br>
      <p class="OrderNo">Order Id: #<%= order.id %></p>
@@ -50,6 +52,7 @@
       <%# <%= menu.id%> 
 </div>
 <% end%>
+<% end %>
 </section>
 </div>
 </div>

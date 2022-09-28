@@ -14,8 +14,10 @@
   </p>
   <br>
   <hr>
-<% @orders_queue=Order.where.not(status: "Delivered").and (Order.where.not(status: "Cancelled"))%>
+  <%# <% @orders_queue=Order.where.not(status: "Delivered").and (Order.where.not(status: "Cancelled"))%>
+<% @orders_queue = Order.orders1cache.to_a%>
 <% @orders_queue.each do |order|%>
+<% cache order do%>
     <div class="card10">
      <br>
       <section class="card11">
@@ -35,7 +37,11 @@
       </section>
       <%end%>
       <section style="display:flex;justify-content:space-between;">
-      <p class="user_name">Customer name: <%= User.find(order.user_id).name%> </p> 
+      <p class="user_name">Customer name: 
+      <%cache do%>
+      <%= User.find(order.user_id).name%>
+      <% end %>
+       </p> 
       <p class="description", style="font-size:18px;color:rgb(148, 0, 78);margin-right:15px;"> Status: <%= order.status %></p>
       </section>
       <section style="display:flex;margin-left:7%;width:400px"> 
@@ -66,6 +72,7 @@
        <br>
        
 </div>
+<% end %>
 <% end%>
 </section>
 </div>

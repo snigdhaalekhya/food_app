@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_19_054240) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_26_055157) do
   create_table "carts", charset: "utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "menu_id"
@@ -28,6 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_19_054240) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "menu_category"
+    t.string "menu_image"
   end
 
   create_table "orders", charset: "utf8", force: :cascade do |t|

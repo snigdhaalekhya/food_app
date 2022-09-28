@@ -33,8 +33,6 @@ Rails.application.routes.draw do
   resources :orders
    get "/user_active_orders" => "orders#active_orders"
    get "/user_completed_orders" => "orders#completed_orders"
-
-
   #users(Customers)
   get "/signin_users" => "sessions#new", as: :new_sessions
   post "/signin_users" => "sessions#create", as: :sessions

@@ -13,5 +13,15 @@ PASSWORD_REQUIREMENTS = /\A
     validates :password, presence: true, format: PASSWORD_REQUIREMENTS
     
      has_secure_password
-    # has_many :todos
+    
+  # after_save    :cachemethod
+  # after_destroy :expire_all_cache
+
+  def self.cachemethod
+    Rails.cache.fetch(Worker.all) {all.to_a}
+  end
+
+  def self.expire_all_cache
+     Rails.cache.delete('Worker.all')
+  end
 end

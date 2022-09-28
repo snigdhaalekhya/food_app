@@ -22,78 +22,39 @@
 <% end %>
 <% @customer_id=User.find_by(name: @name).id %>
 <% @customer_orders=Order.where(user_id: @customer_id.to_s).to_a %>
-<% @customer_orders.each do |report|%>
-<div class="card10">
-     <br>
-      <section class="card11">
-        <p class="OrderNo">Order Id: #<%= report.id %></p>
-      </section>
-      <section style="display:flex">
-         <p class="user_name"><%= User.find(report.user_id).name%></p>
-         <p class="mobile_no"><%= User.find(report.user_id).mobile_no %></p> 
-      <p class="description", style="font-size:18px;color:rgb(148, 0, 78);margin-left:60%;"> Status:  <%= report.status %></p>
-      </section>
-      <% if report.status=="Delivered"%>
-      <section style="display:flex;margin-left:7%;width:400px">
-      <p style="color:rgb(1, 158, 0);margin-top:3px"> Orderd on: </p>
-      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" style="width:30px;height:23px">
-      <p class="date"><%= report.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
-      </section>
-      <section style="display:flex;margin-left:7%;width:400px">
-      <p style="color:rgb(1, 158, 0);margin-top:3px"> Delivered on: </p>
-      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" style="width:30px;height:23px">
-      <p class="date"><%= report.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
-      </section>
-      <% elsif report.status=="Pending" %>
-      <section style="display:flex;margin-left:7%;width:400px">
-      <p style="color:rgb(1, 158, 0);margin-top:3px"> Orderd on: </p>
-      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" style="width:30px;height:23px">
-      <p class="date"><%= report.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
-      </section>
-      <% elsif report.status=="Cancelled"%>
-      <section style="display:flex;margin-left:7%;width:400px">
-      <p style="color:rgb(1, 158, 0);margin-top:3px"> Orderd on: </p>
-      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" style="width:30px;height:23px">
-      <p class="date"><%= report.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
-      </section>
-      <section style="display:flex;margin-left:7%;width:400px">
-      <p style="color:rgb(1, 158, 0);margin-top:3px"> Cancelled on: </p>
-      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" style="width:30px;height:23px">
-      <p class="date"><%= report.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
-      </section>
-      <% else %>
-      <section style="display:flex;margin-left:7%;width:500px">
-      <p style="color:rgb(1, 158, 0);margin-top:3px"> Ordered on: </p>
-      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" style="width:30px;height:23px">
-      <p class="date"><%= report.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
-      <% time_diff=(report.updated_at - report.created_at) %>
-      <% time_diff=(time_diff / 1.hour).round %>
-      <p class="date">( <%= time_diff%> hours ago )</p>
-      </section>
-      <section style="display:flex;margin-left:7%;width:400px">
-      <p style="color:rgb(1, 158, 0);margin-top:3px"> Updated on: </p>
-      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" style="width:30px;height:23px">
-      <p class="date"><%= report.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
-      </section>
-      <% end %>
-       <p class="items">Items: </p>
-        <p class="menu">
-       <% @cost=0%>
+<table>
+  <tr style="color: #890000;;font-size:20px">
+    <th>Order Id</th>
+    <th>Customer Name</th>
+    <th>Mobile No</th>
+    <th>Ordered On</th>
+    <th>Status</th>
+    <th>Items</th>
+    <th>Total Cost</th>
+  </tr>
+  <% @customer_orders.each do |report|%>
+  <% cache report do%>
+  <tr style="font-size:18px">
+    <td><%= report.id %></td>
+    <td class="user_name" style="margin-top:15px;"><%= User.find(report.user_id).name%></td>
+    <td><%= User.find(report.user_id).mobile_no %></td>
+    <td><%= report.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p") %></td>
+    <td class="user_name"><%= report.status %></td>
+    <td>
+    <% @cost=0%>
        <% report.menu.split("+") do |o| %>      
-        <br>
         <% str= o.split("*")%>
         <%= str[0]%>
-        &nbsp;&nbsp;&nbsp;&nbsp;<%= "X "+str[1]%>
+        &nbsp;&nbsp;&nbsp;<%= "X "+str[1]%>
         <% @cost=str[2].to_i+@cost%>
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= str[2]+" ₹" %> 
-         <br>
-        <% end %>
         <br>
-        </p>
-        <p class="menu1">Total: &nbsp;&nbsp;<%= @cost.to_s+" ₹"%></p>
-</div>
+        <% end %>
+    </td>
+    <td><%= @cost.to_s+" ₹"%></td>
+  </tr>
+  <% end %>
 <% end %>
-</section>
+</table>
 </div>
 </div>
 </body>

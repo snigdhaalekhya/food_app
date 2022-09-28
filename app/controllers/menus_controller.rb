@@ -16,12 +16,12 @@ class MenusController < ApplicationController
             menu_category: params[:menu_category],
             menu_cost: params[:menu_cost],
             menu_description: params[:menu_description],
+            menu_image: params[:menu_image]
           )
-        #  session[:current_owner_id]= owner.id
+
            if menu.save
               redirect_to "/menu_restaurant" 
-        #response_text= "new todo #{new_todo.id}"
-        #render plain:  response_text
+       
             else
                flash[:error]= menu.errors.full_messages.join(", ")
                redirect_to "/menus/new"
@@ -54,7 +54,7 @@ class MenusController < ApplicationController
     def update
       id=params[:id]
       @menu=Menu.find(id)
-      @menu.update(menu_name: params[:menu][:menu_name], menu_description: params[:menu][:menu_description], menu_category: params[:menu][:menu_category], menu_cost: params[:menu][:menu_cost] )
+      @menu.update(menu_name: params[:menu][:menu_name], menu_description: params[:menu][:menu_description], menu_category: params[:menu][:menu_category], menu_cost: params[:menu][:menu_cost], menu_image: params[:menu][:menu_image] )
       redirect_to "/menu_restaurant"
     end
 

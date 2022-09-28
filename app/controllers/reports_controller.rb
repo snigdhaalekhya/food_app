@@ -5,15 +5,4 @@ class ReportsController < ApplicationController
     def index
       
     end
-    # def customer_orders_view
-    #     @name=params[:name]
-    #     # @customer_id=User.find_by(name: name)
-    #     # @customer_orders=Order.where(user_id: @customer_id.id.to_s).to_a
-    #      # render plain: @customer_orders
-    #     #  redirect_to reports_customer_orders_view_path
-    # end
-
-    # def customer_orders
-    #     @name=params[:name]
-    # end
 end
