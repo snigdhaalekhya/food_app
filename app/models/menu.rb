@@ -1,17 +1,18 @@
 class Menu < ApplicationRecord
-
+  # gem 'active_storage_validations'
+  # require 'active_storage_validations'
+  # #  include ActiveStorageValidations
+  # include ActiveModel::Model
+  # include ActiveStorage
+  include ActiveStorageValidations
     validates :menu_name, presence: true
     validates :menu_category, presence: true
     validates :menu_description, presence: true
     validates :menu_cost, presence: true
-    validates :menu_image, presence: true
+     validates :menu_image, presence: true
+    # has_one_attached :image 
+    # validates :image, presence:true
 
-     #has_secure_password
-    # has_many :todos
-    #  belongs_to :owner
-    # def self.of_user(owner)
-    #     all.where(owner_id: owner.id)
-    # end
     def self.search(search)
         where(["menu_name LIKE?","%#{search}%"]).uniq
     end

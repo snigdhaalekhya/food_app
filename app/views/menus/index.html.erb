@@ -11,23 +11,17 @@
 <section style="display:flex;justify-content:flex-end">
 <%=form_with(url:"/menus/category_wise"  , method: "get")  do |form| %>
    <p class="dropdown">
-   <%= form.select :menu_category, ["Breakfast", "Lunch", "Snacks", "Dinner"],:onChange=>"window.location='localhost:3000/menus/category_wise'",prompt: "Choose category"%>
+   <%= form.select :menu_category, ["Breakfast", "Lunch", "Snacks", "Dinner"],{},{:onchange=>"this.form.submit()",prompt: "Choose category"}%>
    </p>
 <% end %>
 
-<script type="text/javascript">
- function change(this) {      
-    var url = $(this).val();       
-   window.location ="localhost:3000/menus/category_wise" 
- });
-</script>
 <% if Owner.find_by(email: @owner_worker.to_s)%>
       <%= button_to "Add Menu", new_menu_path, method: "get", class:"AddMenu"%>
   <% elsif Worker.find_by(email: @owner_worker.to_s)%>
       <%= button_to "Add Menu", new_menu_path, method: "get", class:"AddMenu_Not", disabled:"true"%>
   <% end %>
 </section>
-
+<%# <%= image_tag(Menu.last.image) %> 
 <% Menu.cachemethod.each do |menu|%>
 <% cache menu do%>
   <div class="column">

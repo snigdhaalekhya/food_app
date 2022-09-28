@@ -11,13 +11,13 @@ class MenusController < ApplicationController
     end
 
     def create
-        menu=Menu.new(
-            menu_name: params[:menu_name],
-            menu_category: params[:menu_category],
-            menu_cost: params[:menu_cost],
-            menu_description: params[:menu_description],
-            menu_image: params[:menu_image]
-          )
+        menu=Menu.new(post_params)
+          #   menu_name: params[:menu_name],
+          #   menu_category: params[:menu_category],
+          #   menu_cost: params[:menu_cost],
+          #   menu_description: params[:menu_description],
+          #   # menu_image: params[:image]
+          # )
 
            if menu.save
               redirect_to "/menu_restaurant" 
@@ -54,7 +54,7 @@ class MenusController < ApplicationController
     def update
       id=params[:id]
       @menu=Menu.find(id)
-      @menu.update(menu_name: params[:menu][:menu_name], menu_description: params[:menu][:menu_description], menu_category: params[:menu][:menu_category], menu_cost: params[:menu][:menu_cost], menu_image: params[:menu][:menu_image] )
+      @menu.update(menu_name: params[:menu][:menu_name], menu_description: params[:menu][:menu_description], menu_category: params[:menu][:menu_category], menu_cost: params[:menu][:menu_cost], menu_image: params[:menu][:image] )
       redirect_to "/menu_restaurant"
     end
 
@@ -67,4 +67,8 @@ class MenusController < ApplicationController
         # render plain: "deleted"
     end
     
+  private
+    def post_params
+      params.require(:post).permit(:menu_name, :menu_description, :menu_cost, :menu_category,:image)
+    end
 end

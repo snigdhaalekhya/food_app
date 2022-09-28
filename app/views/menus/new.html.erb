@@ -30,13 +30,16 @@
 </section>
  <%= form.text_field :menu_description, class: "Form-input2", placeholder:"Enter description"%>
  </div>
+
  <div class="Form-section1">
 <section style="display:flex">
 <p class="FormInput-label"> Menu Image<section class="mandatory">*</section> </p></p>
 </section>
- <%= form.text_field :menu_image, class: "Form-input1", placeholder:"Add item image"%>
+ <%= form.text_field :menu_image, class: "Form-input1", placeholder:"Add item image url"%>
  </div>
- 
+ <!--
+ <%= form.file_field :image, direct_upload: true %>
+ -->
  <div class="Form-section1">
  <%= form.submit "Create Item", class: "Form-submit1"%>
  </div>
