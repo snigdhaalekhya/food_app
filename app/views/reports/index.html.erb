@@ -33,6 +33,7 @@
     <th>Total Cost</th>
   </tr>
   <% @customer_orders.each do |report|%>
+  <% cache report do%>
   <tr style="font-size:18px">
     <td><%= report.id %></td>
     <td class="user_name" style="margin-top:15px;"><%= User.find(report.user_id).name%></td>
@@ -51,7 +52,8 @@
     </td>
     <td><%= @cost.to_s+" ₹"%></td>
   </tr>
-  <%end%>
+  <% end %>
+<% end %>
 </table>
 </div>
 </div>

@@ -19,7 +19,8 @@
   </section>
   <br>
   <hr>
-<% User.all.each do |user|%>
+<% User.cachemethod.each do |user|%>
+   <%cache user do%>
      <br>
       <section style="display:flex;">
       <p class="user_name">Name: <%= user.name%> </p> 
@@ -27,6 +28,7 @@
       <p class="user_name">Mobile No: <%= user.mobile_no%> </p> 
       </section>
       <hr>
+    <% end %>
 <% end%>
 <br>
 </section>

@@ -2,8 +2,8 @@ class OrdersController < ApplicationController
     
     def index
          @carts=Cart.of_user(current_user) 
-         @orders= Order.of_user(current_user)
-         @orders=@orders.sort_by(&:updated_at).reverse
+         @orders_user= Order.of_user(current_user)
+         @orders=@orders_user.sort_by(&:updated_at).reverse
          @user=current_user
          @cost=0
     end
@@ -42,8 +42,6 @@ class OrdersController < ApplicationController
   
     def active_orders
         @orders= Order.of_user(current_user)
-       #  @orders=@orders.sort_by(&:updated_at).reverse
-       #  render plain: @orders.to_a.join("\n")
         @user=current_user
         @cost=0
        @orders_active=@orders.where.not(status: "Delivered").and(@orders.where.not(status: "Cancelled"))
@@ -52,11 +50,18 @@ class OrdersController < ApplicationController
 
     def completed_orders
          @orders= Order.of_user(current_user)
-        #  @orders=@orders.sort_by(&:updated_at).reverse
-        #  render plain: @orders.to_a.join("\n")
          @user=current_user
          @cost=0
         @orders_completed=@orders.where(status: "Delivered")
         @orders_completed=@orders_completed.sort_by(&:updated_at).reverse
      end
+
+     def update
+        id= params[:id]
+        order_id=Order.find(id)
+        order_id.status="Confirm Success"
+        if order_id.save!
+            redirect_to view_user_path
+        end
+     end 
 end

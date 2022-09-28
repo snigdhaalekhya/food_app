@@ -4,6 +4,7 @@ class MainController < ApplicationController
 
     def index
         @carts= Cart.of_user(current_user)
+        @orders= Order.of_user(current_user)
         if params[:search].blank?
         #   redirect_to view_user_path
         else

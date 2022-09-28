@@ -32,8 +32,6 @@ class WorkersController < ApplicationController
           session[:current_worker_id]= worker.id
             if worker.save
                redirect_to workers_path
-         #response_text= "new todo #{new_todo.id}"
-         #render plain:  response_text
             else
                 flash[:error]= worker.errors.full_messages.join(", ")
                 redirect_to "/workers/new"

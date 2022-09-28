@@ -1,10 +1,4 @@
 class Worker < ApplicationRecord
-  after_save    :expire_worker_all_cache
-  after_destroy :expire_worker_all_cache
-
-  def expire_worker_all_cache
-    Rails.cache.delete('Worker.all')
-  end
 
 PASSWORD_REQUIREMENTS = /\A
   (?=.{8,})          # Must contain 8 or more characters
@@ -20,7 +14,14 @@ PASSWORD_REQUIREMENTS = /\A
     
      has_secure_password
     
-     def self.all_cached
-      Rails.cache.fetch('Worker.all') { all.to_a }
-    end
+  # after_save    :cachemethod
+  # after_destroy :expire_all_cache
+
+  def self.cachemethod
+    Rails.cache.fetch(Worker.all) {all.to_a}
+  end
+
+  def self.expire_all_cache
+     Rails.cache.delete('Worker.all')
+  end
 end

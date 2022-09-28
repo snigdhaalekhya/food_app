@@ -25,6 +25,6 @@ class Orders1Controller < ApplicationController
      end
 
      def completed_orders
-        @orders_completed=Order.where(status: "Delivered")
+        # @orders_completed=Order.where(status: "Delivered")
      end
 end

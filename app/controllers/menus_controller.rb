@@ -18,11 +18,10 @@ class MenusController < ApplicationController
             menu_description: params[:menu_description],
             menu_image: params[:menu_image]
           )
-        #  session[:current_owner_id]= owner.id
+
            if menu.save
               redirect_to "/menu_restaurant" 
-        #response_text= "new todo #{new_todo.id}"
-        #render plain:  response_text
+       
             else
                flash[:error]= menu.errors.full_messages.join(", ")
                redirect_to "/menus/new"
