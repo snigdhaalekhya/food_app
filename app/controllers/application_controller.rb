@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
     
     def ensure_owner_logged_in
         unless current_owner
-            return "Owner"
+            redirect_to new_owner_path
         end
     end
 

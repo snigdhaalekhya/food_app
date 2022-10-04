@@ -17,7 +17,6 @@
   <%# <% @orders_queue=Order.where.not(status: "Delivered").and (Order.where.not(status: "Cancelled"))%>
 <% orders_queue = Order.orders1cache.to_a%>
 <% orders_queue.each do |order|%>
-<% cache order do%>
     <div class="card10">
      <br>
       <section class="card11">
@@ -72,7 +71,6 @@
        <br>
        
 </div>
-<% end %>
 <% end%>
 </section>
 </div>

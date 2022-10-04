@@ -1,11 +1,11 @@
 <body> 
-<div class="card2">
+<div class="card14">
 <p style="margin-left: 60%;margin-top:30px;display:inline-flex"><%= link_to "Menu", view_user_path, class:"SidebarComponentsRuby1"%>
   <%= link_to "My Orders", orders_path, class:"SidebarComponentsRuby1"%>
   <%= link_to "Cart", carts_path, class:"SidebarComponentsRuby1"%>
   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKGxujYqqoJ2wjE-cUDwfmfhjX-ls8t7TAcwcfgjd5LspLpQnT7-pXfP_pVapr9qF1kZQ&usqp=CAU" width="40px" height=40px >
   <% c=0%>
-  <% model_user(Cart).cachemethod.each do |cart|%>
+  <% model_user(Cart).each do |cart|%>
     <% cart.count%>
     <%c=c+cart.count%>
   <% end %>
@@ -49,7 +49,7 @@
    <% orders_completed = model_user(Order).where(status: params[:status_almost])%>
    <% orders_completed = model_user_reverse(orders_completed) %>
 <% end %>
-
+<% orders_completed = method_completed_orders.cachemethod.sort_by(&:updated_at).reverse%>
 <% orders_completed.each do |order|%>
     <div class="card10">
      <br>

@@ -33,13 +33,11 @@ module MainHelper
     end
 
     def method_active_orders
-         orders_active = model_user(Order).where.not(status: ["Delivered", "Confirm Success","Cancelled"])
-         model_user_reverse(orders_active)
+         orders_active = model_user(Order).where.not(status: ["Delivered", "Confirm Success","Cancelled"])    
     end
 
     def method_completed_orders
         orders_completed = model_user(Order).where(status: ["Delivered", "Confirm Success"])
-        model_user_reverse(orders_completed)
     end
 
 end 

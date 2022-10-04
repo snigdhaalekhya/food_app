@@ -8,14 +8,11 @@
   </p>
   <br>
   <hr>
-<% @menus_category.each do |menu|%>
+<% Menu.cache(@menus_category).each do |menu|%>
 <div class="row">
   <div class="column">
     <div class="card3">
      <br>
-     <% if menu.id==27%>
-     <%= image_tag(menu.menu_image)%>
-     <% end %>
       <p class="name"><%= menu.menu_name %></p>
       <p class="description"><%= menu.menu_description %></p>
       <p class="cost"><%= menu.menu_cost%> ₹</p>
