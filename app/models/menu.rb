@@ -11,21 +11,19 @@ class Menu < ApplicationRecord
     validates :menu_cost, presence: true
      validates :menu_image, presence: true
     # has_one_attached :image 
-    # validates :image, presence:true
+    # validates :image, presence:truepo\
 
     def self.search(search)
         where(["menu_name LIKE?","%#{search}%"]).uniq
     end
 
-    # after_save    :expire_all_cache
-    # after_destroy :expire_all_cache
-   
-    def self.cachemethod
-      Rails.cache.fetch('Menu.all') {all.to_a}
-    end
-
-
- def self.expire_all_cache
-       Rails.cache.delete('Menu.all')
- end
+    def self.menu_create(menu_name,menu_category,menu_cost, menu_description,menu_image)
+      menu=Menu.new(
+        menu_name: menu_name,
+        menu_category:menu_category,
+        menu_cost: menu_cost,
+        menu_description: menu_description,
+        menu_image: menu_image
+      )
+    end 
 end

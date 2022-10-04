@@ -111,6 +111,7 @@
 .AddMenu{
     padding: 6px 12px;
      font-size:14px;
+     margin-left:350px;
      margin-top:20px;
      margin-right:10px;
      height:40px;
@@ -122,6 +123,7 @@
 .AddMenu_Not{
   cursor: not-allowed;
   padding: 6px 12px;
+  margin-left:350px;
    font-size:14px;
    margin-top:20px;
    margin-right:10px;
@@ -407,13 +409,67 @@
   color: white;
   background-color: green;
   border-radius: 4px;
-  width:70px;
+  width:75px;
+  height: calc(1.5em + 0.75rem + 2px);
   border: 1px solid transparent;
 }
 .select{
-  width:50px;
   display: block;
-    width: 100%;
+  width: 20%;
+  margin-left:10px;
+  height: calc(1.5em + 0.75rem + 2px);
+  background-color: black;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 3px;
+  border: none;
+  background: #f1f1f1;
+  padding: 2px;
+}
+.select1{ 
+  display: block;
+  width: 25%;
+  margin-left:20px;
+  height: calc(1.5em + 0.75rem + 2px);
+  background-color: black;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 3px;
+  border: none;
+  background: #f1f1f1;
+  padding: 2px;
+}
+.select2{
+  display: block;
+  width: 45%;
+  margin-top:20px;
+  margin-left:25%;
+  height: calc(1.5em + 0.75rem + 2px);
+  background-color: black;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 3px;
+  border: none;
+  background: #f1f1f1;
+  padding: 2px;
+}
+.select3{
+  display: block;
+    width: 50%;
+    margin-left:600px;
+    margin-top:20px;
     height: calc(1.5em + 0.75rem + 2px);
   background-color: black;
   position: relative;
@@ -432,6 +488,9 @@
 }
 .sam1{
   margin-left: 40%
+}
+.sam2{
+  margin-left: 70px;
 }
 .action{
    top: 20px;
@@ -511,9 +570,10 @@
   margin-bottom:14px;
 }
 table {
+  margin-top:20px;
   border-collapse: collapse;
   margin-left:15px;
-  width: 85%;
+  width: 100%;
 }
 tr{
   font-size:20px;

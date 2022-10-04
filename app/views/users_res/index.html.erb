@@ -11,16 +11,15 @@
 <section style="margin-top:30px;margin-left:40px;display:inline-flex">
   <%= link_to "Customers", users_restaurant_path, class:"SidebarComponentsRuby4"%>
   <%= link_to "Workers", workers_path, class:"SidebarComponentsRuby4"%>
-  <% if Owner.find_by(email: @owner_worker.to_s)%>
+  <% if Owner.find_by(email: current_owner.email)%>
       <%= button_to "Add Worker", new_worker_path, method: "get", class:"AddNew"%>
-  <% elsif Worker.find_by(email: @owner_worker.to_s)%>
+  <% elsif Worker.find_by(email: current_owner.email)%>
       <%= button_to "Add Worker", new_worker_path, method: "get", class:"AddNew_Not", disabled:"true"%>
   <% end %>
   </section>
   <br>
   <hr>
 <% User.cachemethod.each do |user|%>
-   <%cache user do%>
      <br>
       <section style="display:flex;">
       <p class="user_name">Name: <%= user.name%> </p> 
@@ -28,7 +27,6 @@
       <p class="user_name">Mobile No: <%= user.mobile_no%> </p> 
       </section>
       <hr>
-    <% end %>
 <% end%>
 <br>
 </section>

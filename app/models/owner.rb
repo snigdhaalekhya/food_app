@@ -16,8 +16,12 @@ PASSWORD_REQUIREMENTS = /\A
     # after_save    :expire_all_cache
     # after_destroy :expire_all_cache
    
-    def self.call
-      cachemethod()
-      expire_all_cache()
+    def self.owner_create(name,email,password,address)
+      owner = Owner.new(
+        name: name,
+        email: email,
+        password: password,
+        address: address
+     )
     end 
 end

@@ -19,15 +19,15 @@
       <br>
       <br>
       <section style="display:inline-flex;">
-    <% if Owner.find_by(email: @owner_worker.to_s)%>
+    <% if Owner.find_by(email: current_owner.email)%>
       <%= button_to "Edit", "/menus/#{menu.id}/edit", method: "get", class:"Edit"%>
-    <% elsif Worker.find_by(email: @owner_worker.to_s)%>
+    <% elsif Worker.find_by(email: current_owner.email)%>
        <%= button_to "Edit", "/menus/#{menu.id}/edit", method: "get", class:"Edit_Not", disabled:"true"%>
     <%end%>
     
-    <% if Owner.find_by(email: @owner_worker.to_s)%>
+    <% if Owner.find_by(email: current_owner.email)%>
     <%= button_to "Delete", "/menus/#{menu.id}", method: "delete", class:"Delete"%>
-    <% elsif Worker.find_by(email: @owner_worker.to_s)%>
+    <% elsif Worker.find_by(email: current_owner.email)%>
     <%= button_to "Delete", "/menus/#{menu.id}", method: "delete", class:"Delete_Not", disabled:"true"%>
     <%end%>
       </section>

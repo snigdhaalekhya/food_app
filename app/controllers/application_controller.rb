@@ -1,13 +1,14 @@
 class ApplicationController < ActionController::Base
     before_action :ensure_user_logged_in
-    # before_action :ensure_owner_logged_in
     
     def ensure_user_logged_in
         unless current_user
             redirect_to "/"
         end
     end
-
+  def same
+    return 1
+  end
     def current_user
         return @current_user if @current_user
 
@@ -23,7 +24,7 @@ class ApplicationController < ActionController::Base
     
     def ensure_owner_logged_in
         unless current_owner
-            redirect_to new_owner_path
+            return "Owner"
         end
     end
 

@@ -2,7 +2,8 @@ class SessionsResController < ApplicationController
     skip_before_action :ensure_user_logged_in
     before_action :ensure_owner_logged_in
     skip_before_action :ensure_owner_logged_in
-
+    
+    include ApplicationHelper
     def new
     end
     
@@ -14,7 +15,6 @@ class SessionsResController < ApplicationController
            owner=Owner.find_by(email: params[:email])
             if  identity && owner && owner.authenticate(params[:password]) 
                  session[:current_owner_id]=owner.email
-                 #debugger
                  redirect_to orders_restaurant_path
              else
              flash[:error]="Your login attempt was invalid. Please retry."
@@ -98,11 +98,10 @@ class SessionsResController < ApplicationController
     end
 
     def destroy
-        # console.log('------hi-------s')
-      if session[:current_owner_id]
+      
         session[:current_owner_id] = nil
-        @current_owner = nil
-        redirect_to new_user_path
-      end
+        current_owner = nil
+         redirect_to new_user_path
+      
     end
 end

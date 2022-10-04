@@ -8,22 +8,20 @@
   <p class="SidebarComponents"><%= link_to "Reports", reports_restaurant_path, class:"SidebarComponentsRuby"%></p>
 </section>
 <section class="card2">
-<section style="display:flex;justify-content:flex-end">
+<section style="display:flex;">
 <%=form_with(url:"/menus/category_wise"  , method: "get")  do |form| %>
-   <p class="dropdown">
-   <%= form.select :menu_category, ["Breakfast", "Lunch", "Snacks", "Dinner"],{},{:onchange=>"this.form.submit()",prompt: "Choose category"}%>
-   </p>
+   <%= form.select :menu_category, ["Breakfast", "Lunch", "Snacks", "Dinner"],{:prompt=>"Choose category",},{class:"select3",:onchange=>"this.form.submit()"}%>
 <% end %>
 
-<% if Owner.find_by(email: @owner_worker.to_s)%>
+<% if Owner.find_by(email: current_owner.email)%>
       <%= button_to "Add Menu", new_menu_path, method: "get", class:"AddMenu"%>
-  <% elsif Worker.find_by(email: @owner_worker.to_s)%>
+  <% elsif Worker.find_by(email: current_owner.email)%>
       <%= button_to "Add Menu", new_menu_path, method: "get", class:"AddMenu_Not", disabled:"true"%>
   <% end %>
 </section>
-<%# <%= image_tag(Menu.last.image) %> 
+
 <% Menu.cachemethod.each do |menu|%>
-<% cache menu do%>
+
   <div class="column">
     <div class="card3">
    
@@ -36,22 +34,22 @@
       <br>
      
       <section style="display:inline-flex;">
-    <% if Owner.find_by(email: @owner_worker.to_s)%>
+    <% if Owner.find_by(email:current_owner.email)%>
       <%= button_to "Edit", "/menus/#{menu.id}/edit", method: "get", class:"Edit"%>
-    <% elsif Worker.find_by(email: @owner_worker.to_s)%>
+    <% elsif Worker.find_by(email: current_owner.email)%>
        <%= button_to "Edit", "/menus/#{menu.id}/edit", method: "get", class:"Edit_Not", disabled:"true"%>
     <%end%>
 
-    <% if Owner.find_by(email: @owner_worker.to_s)%>
+    <% if Owner.find_by(email: current_owner.email)%>
     <%= button_to "Delete", "/menus/#{menu.id}", method: "delete", class:"Delete"%>
-    <% elsif Worker.find_by(email: @owner_worker.to_s)%>
+    <% elsif Worker.find_by(email: current_owner.email)%>
     <%= button_to "Delete", "/menus/#{menu.id}", method: "delete", class:"Delete_Not", disabled:"true"%>
     <%end%>
       </section>
    
     </div>
   </div>
-<%end%>
+
 <% end %>
 </section>
 </div>

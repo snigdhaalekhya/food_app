@@ -4,17 +4,18 @@
   <%= link_to "My Orders", orders_path, class:"SidebarComponentsRuby1"%>
   <%= link_to "Cart", carts_path, class:"SidebarComponentsRuby1"%>
   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKGxujYqqoJ2wjE-cUDwfmfhjX-ls8t7TAcwcfgjd5LspLpQnT7-pXfP_pVapr9qF1kZQ&usqp=CAU" width="40px" height=40px >
-   <% @carts.each do |cart|%>    
-     <% @cart_totalcount=@cart_totalcount+cart.count%>
+   <% cart_totalcount=0%>
+   <% model_user(Cart).each do |cart|%>    
+     <% cart_totalcount=cart_totalcount+cart.count%>
    <% end %>
-   <% if @cart_totalcount!=0%>
-    <%= @cart_totalcount%>
+   <% if cart_totalcount!=0%>
+    <%= cart_totalcount%>
   <% end %>
   <input type="image" class="image1" src="https://icones.pro/wp-content/uploads/2022/02/icone-de-cloche-grise.png" width="35px" height=35px onclick="menuToggle1();">
-   <%= @orders.where(status: "Delivered").count %>
+   <%= method_status("Delivered").count %>
   <div class="action1">
    <div class="MenuToggle1">
-   <% @orders.where(status: "Delivered").each do |del|%>
+   <% method_status("Delivered").each do |del|%>
    <section style="display:inline-flex">
    <p>Order no: #<%= del.id %> was Delivered?</p>
    <%= button_to "Yes", "/orders/#{del.id}", method: "put", class:"UserHeader2"%>
@@ -28,38 +29,38 @@
         toggleMenu.classList.toggle('active')
      }
   </script>
-
   <br>
   <hr>
- <% @cart_totalcount=0%>
+ <% cart_totalcount=0%>
 <div class="card1" style="display:inline-flex">
 <section class="card5">
-<% @carts.each do |cart|%>
+<% model_user(Cart).each do |cart|%>
      <br>
      <div class="card7">
       <p class="name"><%= Menu.find(cart.menu_id).menu_name %> 
       <div class="card8" style="display=flex">         
      <p class="style"> Quantity: <%= cart.count %>
-     <% @cart_totalcount=@cart_totalcount+cart.count%>
+     <% cart_totalcount=cart_totalcount+cart.count%>
       </div>
       </div>
-      <p class="cost1"><%= @c=cart.count*Menu.find(cart.menu_id).menu_cost %> ₹</p> 
+      <p class="cost1"><%= c=cart.count*Menu.find(cart.menu_id).menu_cost %> ₹</p> 
       <br>
     <br>
 <%end%>
-<p class="name" style="margin-bottom:15px;font-size:18px;margin-top:10px">Total Quantity: <%= @cart_totalcount%></p>
-<% @carts.each do |cart|%>
-<% @cost=@cost+(cart.count*Menu.find(cart.menu_id).menu_cost)%>
+<% cost=0%>
+<p class="name" style="margin-bottom:15px;font-size:18px;margin-top:10px">Total Quantity: <%= cart_totalcount%></p>
+<% model_user(Cart).each do |cart|%>
+<% cost=cost+(cart.count*Menu.find(cart.menu_id).menu_cost)%>
 <%end%>
 <br>
-<p class="Total">Grand Total: <%= @cost %> ₹</h1>
+<p class="Total">Grand Total: <%= cost %> ₹</h1>
 </section>
 <section class="card6">
 <p class="user_title"> User details</p>
-      <p class="user_name">Name:  <%= @user.name%> </p>
-      <p class="user_name">Mobile Number:  <%= @user.mobile_no %> </p>
-      <p class="user_name">Address:  <%= @user.address %> </p>
-      <% if @carts_notempty%>
+      <p class="user_name">Name:  <%= current_user.name%> </p>
+      <p class="user_name">Mobile Number:  <%= current_user.mobile_no %> </p>
+      <p class="user_name">Address:  <%= current_user.address %> </p>
+      <% if cart_notempty %>
          <%= button_to "Place Order", orders_path, method: "post", class:"Order" %> 
       <% end %> 
 </section>

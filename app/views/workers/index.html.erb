@@ -7,21 +7,19 @@
   <p class="SidebarComponents"><%= link_to "Users", users_restaurant_path, class:"SidebarComponentsRuby"%></p>
   <p class="SidebarComponents"><%= link_to "Reports", reports_restaurant_path, class:"SidebarComponentsRuby"%></p>
 </section>
-<section class="card2", style="margin-right:0px;">
+<section class="card2" style="margin-right:0px;">
 <section style="margin-top:30px;margin-left:40px;display:inline-flex">
   <%= link_to "Customers", users_restaurant_path, class:"SidebarComponentsRuby4"%>
   <%= link_to "Workers", workers_path, class:"SidebarComponentsRuby4"%>
-  <% if Owner.find_by(email: @owner_worker.to_s)%>
+  <% if Owner.find_by(email: current_owner.email)%>
       <%= button_to "Add Worker", new_worker_path, method: "get", class:"AddNew"%>
-  <% elsif Worker.find_by(email: @owner_worker.to_s)%>
+  <% elsif Worker.find_by(email: current_owner.email)%>
       <%= button_to "Add Worker", new_worker_path, method: "get", class:"AddNew_Not", disabled:"true"%>
   <% end %>
   </section>
   <br>
   <hr>
-  <%# <%= Worker.cachemethod %> 
-<% Worker.cachemethod.each do |worker|%>
-  <% cache worker do%>
+<% Worker.cache(Worker).each do |worker|%>
      <br>
       <section style="display:flex;">
       <p class="user_name">Name: <%= worker.name%> </p> 
@@ -29,7 +27,6 @@
       <p class="user_name">Mobile No: <%= worker.mobile_no%>
       </section>
       <hr>
-   <% end %>
 <% end%>
 <br>
 </section>

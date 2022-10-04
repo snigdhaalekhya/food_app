@@ -13,15 +13,17 @@ PASSWORD_REQUIREMENTS = /\A
     validates :password, presence: true, format: PASSWORD_REQUIREMENTS
     
      has_secure_password
-    
-  # after_save    :cachemethod
-  # after_destroy :expire_all_cache
 
-  def self.cachemethod
-    Rails.cache.fetch(Worker.all) {all.to_a}
-  end
 
-  def self.expire_all_cache
-     Rails.cache.delete('Worker.all')
-  end
+     def self.worker_create(name,mobile_no,email,password,address)
+      worker = Worker.new(
+         name: name,
+         mobile_no: mobile_no,
+         email: email,
+         password: password,
+         address: address
+      )
+     end
+     
+  
 end

@@ -15,8 +15,8 @@
   <br>
   <hr>
   <%# <% @orders_queue=Order.where.not(status: "Delivered").and (Order.where.not(status: "Cancelled"))%>
-<% @orders_queue = Order.orders1cache.to_a%>
-<% @orders_queue.each do |order|%>
+<% orders_queue = Order.orders1cache.to_a%>
+<% orders_queue.each do |order|%>
 <% cache order do%>
     <div class="card10">
      <br>
@@ -24,14 +24,14 @@
         <p class="OrderNo">Order Id: #<%= order.id %></p>
         <%= form_with(url: "/orders1/#{order.id}"  , method: "put") do |form| %> 
        <% if order.status!="Pending" %>
-           <% @status=order.status%>
+           <% status=order.status%>
       <% else %>
-          <% @status="Pending"%>
+          <% status="Pending"%>
        <% end %>
-         <%= form.select :status, options_for_select(["Pending","Cancelled", "Add to queue", "Preparing", "Delivered"],@status)%>
-        <% if Owner.find_by(email: @owner_worker.to_s)%>
+         <%= form.select :status, options_for_select(["Pending","Cancelled", "Add to queue", "Preparing", "Delivered"],status)%>
+        <% if Owner.find_by(email: current_owner.email)%>
         <%= form.submit "Update",{class: "Update"} %>
-        <% elsif Worker.find_by(email: @owner_worker.to_s)%>
+        <% elsif Worker.find_by(email: current_owner.email)%>
         <%= form.submit "Update",class: "Update_Not", disabled: "true" %>
         <% end %>
       </section>

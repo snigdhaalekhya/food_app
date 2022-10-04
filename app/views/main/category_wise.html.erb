@@ -25,8 +25,8 @@
       <% end %>
      
        <section style="color:red;margin-top:4px; margin-left:3px;">
-         <% @carts_menuid=@carts.where(menu_id: menu.id)%>
-         <% @carts_menuid.each do |cart|%>
+         <% carts_menuid=model_user(Cart).where(menu_id: menu.id)%>
+         <% carts_menuid.each do |cart|%>
          <%= cart.count%>   
          <% end%>
       </section>

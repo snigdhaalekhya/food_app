@@ -7,23 +7,52 @@
   <p class="SidebarComponents"><%= link_to "Users", users_restaurant_path, class:"SidebarComponentsRuby"%></p>
   <p class="SidebarComponents"><%= link_to "Reports", reports_restaurant_path, class:"SidebarComponentsRuby"%></p>
 </section>
-<section class="card2">
+<section class="card2"  style="margin-right:3px;">
 <h1 style="margin-top:20px;margin-left:45%;font-size:20px"> Customer Reports </h1>
-<%= form_with(url:"/reports_restaurant", method: "get", class:"sam")  do |form| %>
+<%= form_with(url:"/reports_restaurant", method: "get", class:"sam2")  do |form| %>
    <p class="dropdown">
-   <%= form.select :name, User.all.map { |t| t.name}, class:"select", :selected => params[:name] %>
+   <%= form.select :name, User.all.map{ |t| t.name},{:prompt=>"Choose Customer name",:selected=>params[:name]},{class:"select1"}%>
+   <%= form.select :status, ["Pending","Cancelled", "Add to queue", "Preparing", "Delivered","Confirm Success"], {:prompt=>"Choose status", :selected => params[:status]},{class:"select1"} %>
+   <%= form.select :ordered, Order.all.map { |t| t.created_at.in_time_zone("Chennai").strftime("%b %d, %Y")}.uniq, {:prompt=>"Choose Ordered date", :selected => params[:ordered]},{class:"select1"} %> 
    <%= form.submit "Reports", class:"Reports" %>
    </p>
 <% end %>
-<% if params[:name].nil? %>
-<% @name=User.first.name%>
+<% if params[:name].blank? && params[:status].blank?&& params[:ordered].blank?%>
+<% customer_orders=Order.all%>
 <% else %>
-<% @name=params[:name]%>
+<% if params[:name] && params[:status].blank?&& params[:ordered].blank?%>
+  <% customer_id=User.find_by(name: params[:name]).id %>
+  <% customer_orders=Order.where(user_id: customer_id).to_a %>
+
+<% elsif params[:status]&& params[:name].blank? && params[:ordered].blank? %>
+  <% customer_orders=Order.where(status: params[:status]).to_a %>
+  
+<% elsif params[:ordered]&& params[:name].blank?&& params[:status].blank?%>
+  <% customer_orders=Order.where(created_at: Date.parse(params[:ordered].to_s).beginning_of_day..Date.parse(params[:ordered].to_s).end_of_day).to_a %>
+
+<% elsif params[:name]&& params[:status] && params[:ordered].blank? %>
+  <% customer_id=User.find_by(name: params[:name]).id %>
+   <% customer_orders=Order.where(user_id: customer_id).and(Order.where(status: params[:status])) %> 
+
+<% elsif params[:name]&& params[:ordered] && params[:status].blank? %>
+<% customer_id=User.find_by(name: params[:name]).id %>
+<% customer_orders=Order.where(user_id: customer_id).and(Order.where(created_at: Date.parse(params[:ordered].to_s).beginning_of_day..Date.parse(params[:ordered].to_s).end_of_day)) %>
+
+<% elsif params[:status]&& params[:ordered] && params[:name].blank? %>
+<% customer_orders=Order.where(status: params[:status]).and(Order.where(created_at: Date.parse(params[:ordered].to_s).beginning_of_day..Date.parse(params[:ordered].to_s).end_of_day)) %>
+
+<% elsif params[:name]&& params[:status] && params[:ordered] %>
+<% customer_id=User.find_by(name: params[:name]).id %>
+<% customer=Order.where(user_id: customer_id).and(Order.where(created_at: Date.parse(params[:ordered].to_s).beginning_of_day..Date.parse(params[:ordered].to_s).end_of_day)) %>
+<% customer.to_a %>
+<% customer_orders=Order.where(status: params[:status]).and(customer)%>
+
 <% end %>
-<% @customer_id=User.find_by(name: @name).id %>
-<% @customer_orders=Order.where(user_id: @customer_id.to_s).to_a %>
+<% end %>
+<br>
+<br>
 <table>
-  <tr style="color: #890000;;font-size:20px">
+  <tr style="color: #890000;font-size:20px;">
     <th>Order Id</th>
     <th>Customer Name</th>
     <th>Mobile No</th>
@@ -32,7 +61,7 @@
     <th>Items</th>
     <th>Total Cost</th>
   </tr>
-  <% @customer_orders.each do |report|%>
+  <% customer_orders.each do |report|%>
   <% cache report do%>
   <tr style="font-size:18px">
     <td><%= report.id %></td>
@@ -41,16 +70,16 @@
     <td><%= report.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p") %></td>
     <td class="user_name"><%= report.status %></td>
     <td>
-    <% @cost=0%>
+    <% cost=0%>
        <% report.menu.split("+") do |o| %>      
         <% str= o.split("*")%>
         <%= str[0]%>
         &nbsp;&nbsp;&nbsp;<%= "X "+str[1]%>
-        <% @cost=str[2].to_i+@cost%>
+        <% cost=str[2].to_i+cost%>
         <br>
         <% end %>
     </td>
-    <td><%= @cost.to_s+" ₹"%></td>
+    <td><%= cost.to_s+" ₹"%></td>
   </tr>
   <% end %>
 <% end %>

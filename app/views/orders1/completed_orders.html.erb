@@ -14,9 +14,8 @@
   </p>
   <br>
   <hr>
-<% @orders_completed=Order.orders1cachecompleted.to_a%>
-<% @orders_completed.each do |order|%>
-<% cache order do%>
+<% orders_completed=Order.orders1cachecompleted.to_a%>
+<% orders_completed.each do |order|%>
     <div class="card10">
      <br>
      <p class="OrderNo">Order Id: #<%= order.id %></p>
@@ -36,23 +35,21 @@
       </section>
       <p class="items">Items: </p>
       <p class="menu">
-      <% @cost=0 %>
+      
       <% order.menu.split("+") do |o| %>
        <br>
         <% str= o.split("*")%>
         <%= str[0]%>
         &nbsp;&nbsp;&nbsp;&nbsp;<%= "X "+str[1]%>
-        <%# <% @cost=str[2].to_i+@cost%>
-        <%# &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= str[2]+" ₹" %> 
+        
         <%end %>
       <br>
       </p>
        <br>
-      <%# <%= button_to "Add", new_menu_path, method: "get", class:"Add"%> 
-      <%# <%= menu.id%> 
+     
 </div>
 <% end%>
-<% end %>
+
 </section>
 </div>
 </div>

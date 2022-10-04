@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get "/view_user" => "main#index"
       get"/view_user/category_wise" =>"main#category_wise"
 
-  #for Restaurant side orders
+  #for Restaurant side ordersp
   get "/orders_restaurant" => "orders1#index"
      get "/all_orders" => "orders1#all_orders"
      get "/completed_orders" => "orders1#completed_orders"
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get "/reports_restaurant" => "reports#index"
       #  get "/reports/customer_orders_view" => "reports#customer_orders_view"
       #  post "/reports/customer_orders" => "reports#customer_orders"
-  get "/" => "users#new"
+   get "/" => "users#new"
   get "/carts/:id/remove"  => "carts#remove", as: :remove
   resources :users
   resources :owners

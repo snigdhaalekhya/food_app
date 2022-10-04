@@ -3,27 +3,29 @@ class Order < ApplicationRecord
     def self.of_user(user)
         all.where(user_id: user.id)
     end
-
-    # after_save    :expire_all_cache
-    # after_destroy :expire_all_cache
+    
+    def self.order_create(id,menu,status,owner_id)
+      order=Order.new(
+        user_id: id,
+        menu: menu,
+        status: status,
+        owner_id: owner_id,
+       )
+    end
    
-    def self.call
-      cachemethod()
-      expire_all_cache()
-    end 
     def self.orders1cache
-      Rails.cache.fetch("") {Order.where.not(status: "Delivered").and (Order.where.not(status: "Cancelled"))}
-    end 
+      Rails.cache.fetch("") {Order.where.not(status: ["Delivered","Cancelled","Confirm Success"])}
+    end
     def self.orders1cachecompleted
       Rails.cache.fetch("") {Order.where(status: "Delivered")}
     end
-    # def self.orders1cachename
-    #   Rails.cache.fetch("") do
-    #     Order.all.each do |order|
-    #     return User.find(order.user_id).name.to_a
-    #      return order
-    #     end
-    #   end
-    # end
     
+    def cost
+      cost = 0
+      menu.split("+") do |o| 
+        str = o.split("*")
+        cost = str[2].to_i+cost
+      end
+      "#{cost.to_i} ₹"   
+    end
 end

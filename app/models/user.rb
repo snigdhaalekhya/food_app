@@ -14,12 +14,14 @@ PASSWORD_REQUIREMENTS = /\A
      has_secure_password
      has_many :carts
 
-    #  after_save    :expire_all_cache
-    #  after_destroy :expire_all_cache
-   
-    def self.call
-      cachemethod()
-      expire_all_cache()
-    end 
+    def self.user_create(name,mobile_no,email,password,address)
+       user = User.new(
+      name: name,
+      mobile_no: mobile_no,
+      email: email,
+      password: password,
+      address: address,
+   )
+  end
 
 end
