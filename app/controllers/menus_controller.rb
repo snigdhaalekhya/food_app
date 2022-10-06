@@ -7,16 +7,11 @@ class MenusController < ApplicationController
 
     def create
         menu = Menu.menu_create(params[:menu_name],params[:menu_category],params[:menu_cost], params[:menu_description],params[:menu_image])
-        # debugger
-          # menu = Menu.new(menu_params)
-          # render plain: "Image"
             if menu.save
-              # render plain: "true"
                redirect_to "/menu_restaurant" 
        
             else
-              # render plain: "false"
-               flash[:error]= menu.errors.full_messages.join(", ")
+               flash[:error] = menu.errors.full_messages.join(", ")
                redirect_to "/menus/new"
             end
     end
@@ -25,31 +20,26 @@ class MenusController < ApplicationController
     end
 
     def category_wise
-      @category=params[:menu_category]
-      @menus_category= Menu.where(menu_category: params[:menu_category])
+      @category = params[:menu_category]
+      @menus_category = Menu.where(menu_category: params[:menu_category])
     end 
 
 
 
     def edit
-      @menu_edit=Menu.find(params[:id])
+      @menu_edit = Menu.find(params[:id])
     end
 
     def update
-      @menu=Menu.find(params[:id])
-      @menu.update(menu_name: params[:menu][:menu_name], menu_description: params[:menu][:menu_description], menu_category: params[:menu][:menu_category], menu_cost: params[:menu][:menu_cost], menu_image: params[:menu][:menu_image] )
+      menu = Menu.find(params[:id])
+      menu.update(menu_name: params[:menu][:menu_name], menu_description: params[:menu][:menu_description], menu_category: params[:menu][:menu_category], menu_cost: params[:menu][:menu_cost], menu_image: params[:menu][:menu_image] )
       redirect_to "/menu_restaurant"
     end
 
 
     def destroy
-        menu_delete=Menu.find(params[:id])
+        menu_delete = Menu.find(params[:id])
         menu_delete.destroy
         redirect_to "/menu_restaurant"
     end
-    
-    # private
-    # def menu_params
-    #   params.require(:menu)
-    # end
 end

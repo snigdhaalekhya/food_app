@@ -1,65 +1,66 @@
-<body >
-<div class="card14">
- <p style="margin-left: 60%;margin-top:30px;display:inline-flex"><%= link_to "Menu", view_user_path, class:"SidebarComponentsRuby1"%>
-  <%= link_to "My Orders", orders_path, class:"SidebarComponentsRuby1"%>
-  <%= link_to "Cart", carts_path, class:"SidebarComponentsRuby1"%>
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKGxujYqqoJ2wjE-cUDwfmfhjX-ls8t7TAcwcfgjd5LspLpQnT7-pXfP_pVapr9qF1kZQ&usqp=CAU" width="40px" height=40px >
-   <% cart_totalcount=0%>
+<body>
+<div class = "carts_card">
+ <p class = "menu_style">
+   <%= link_to "Menu", view_user_path, class:"BarComponentsRuby"%>
+  <%= link_to "My Orders", orders_path, class:"BarComponentsRuby"%>
+  <%= link_to "Cart", carts_path, class:"BarComponentsRuby"%>
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKGxujYqqoJ2wjE-cUDwfmfhjX-ls8t7TAcwcfgjd5LspLpQnT7-pXfP_pVapr9qF1kZQ&usqp=CAU" class = "cart_image" >
+   <% cart_totalcount = 0%>
    <% model_user(Cart).cachemethod.each do |cart|%>    
-     <% cart_totalcount=cart_totalcount+cart.count%>
+     <% cart_totalcount = cart_totalcount+cart.count%>
    <% end %>
-   <% if cart_totalcount!=0%>
+   <% if cart_totalcount != 0%>
     <%= cart_totalcount%>
   <% end %>
-  <input type="image" class="image1" src="https://icones.pro/wp-content/uploads/2022/02/icone-de-cloche-grise.png" width="35px" height=35px onclick="menuToggle1();">
+  <input type = "image" class = "notification_image" src = "https://icones.pro/wp-content/uploads/2022/02/icone-de-cloche-grise.png"  onclick="notificationToggle();">
    <%= method_status("Delivered").count %>
-  <div class="action1">
-   <div class="MenuToggle1">
+  <div class = "notification_action">
+   <div class = "NotificationToggle">
    <% method_status("Delivered").each do |del|%>
-   <section style="display:inline-flex">
+   <section class = "display_css">
    <p>Order no: #<%= del.id %> was Delivered?</p>
-   <%= button_to "Yes", "/orders/#{del.id}", method: "put", class:"UserHeader2"%>
+   <%= button_to "Yes", "/orders/#{del.id}", method: "put", class:"YesHeader"%>
    </section>
    <%end%>
   </div>
   </p>
   <script>
-     function menuToggle1(){
-        const toggleMenu = document.querySelector('.MenuToggle1');
+     function notificationToggle(){
+        const toggleMenu = document.querySelector('.NotificationToggle');
         toggleMenu.classList.toggle('active')
      }
   </script>
   <br>
   <hr>
  <% cart_totalcount=0%>
-<div class="card1" style="display:inline-flex">
-<section class="card5">
+<div class = "main_card" class = "display_css">
+<section class = "card_cartsindex">
 <% model_user(Cart).cachemethod.each do |cart|%>
      <br>
-     <div class="card7">
-      <p class="name"><%= Menu.find(cart.menu_id).menu_name %> 
-      <div class="card8" style="display=flex">         
-     <p class="style"> Quantity: <%= cart.count %>
+     <div class = "card_cartsindexusercount">
+      <p class = "name"><%= Menu.find(cart.menu_id).menu_name %> 
+      <div class = "display">         
+     <p class = "style"> Quantity: <%= cart.count %>
      <% cart_totalcount=cart_totalcount+cart.count%>
       </div>
       </div>
-      <p class="cost1"><%= c=cart.count*Menu.find(cart.menu_id).menu_cost %> ₹</p> 
+      <p class = "cost_carts"><%= c=cart.count*Menu.find(cart.menu_id).menu_cost %> ₹</p> 
       <br>
     <br>
 <%end%>
 <% cost=0%>
-<p class="name" style="margin-bottom:15px;font-size:18px;margin-top:10px">Total Quantity: <%= cart_totalcount%></p>
+<p class = "quantity">Total Quantity: <%= cart_totalcount%></p>
 <% model_user(Cart).cachemethod.each do |cart|%>
 <% cost=cost+(cart.count*Menu.find(cart.menu_id).menu_cost)%>
 <%end%>
 <br>
-<p class="Total">Grand Total: <%= cost %> ₹</h1>
+<p class = "Total">Grand Total: <%= cost %> ₹</h1>
 </section>
-<section class="card6">
-<p class="user_title"> User details</p>
-      <p class="user_name">Name:  <%= current_user.name%> </p>
-      <p class="user_name">Mobile Number:  <%= current_user.mobile_no %> </p>
-      <p class="user_name">Address:  <%= current_user.address %> </p>
+<section class = "card_cartsindexuser">
+<p class = "user_title"> User details</p>
+      <p class = "user_name">Name:  <%= current_user.name%> </p>
+      <p class = "user_name">Mobile Number:  <%= current_user.mobile_no %> </p>
+      <p class = "user_name">Address:  <%= current_user.address %> </p>
       <% if cart_notempty %>
          <%= button_to "Place Order", orders_path, method: "post", class:"Order" %> 
       <% end %> 

@@ -6,13 +6,11 @@ class ApplicationController < ActionController::Base
             redirect_to "/"
         end
     end
-  def same
-    return 1
-  end
+  
     def current_user
         return @current_user if @current_user
 
-        current_user_id=session[:current_user_id]
+        current_user_id = session[:current_user_id]
         if current_user_id
             @current_user = User.find(current_user_id)
         else
@@ -31,12 +29,12 @@ class ApplicationController < ActionController::Base
     def current_owner
         return @current_owner if @current_owner
 
-        current_owner_id=session[:current_owner_id]
+        current_owner_id = session[:current_owner_id]
         if current_owner_id
             if Owner.find_by(email: current_owner_id)
-                @current_owner= Owner.find_by(email: current_owner_id)
+                @current_owner = Owner.find_by(email: current_owner_id)
             elsif Worker.find_by(email: current_owner_id)
-                @current_owner= Worker.find_by(email: current_owner_id)
+                @current_owner = Worker.find_by(email: current_owner_id)
             end
         else
             nil

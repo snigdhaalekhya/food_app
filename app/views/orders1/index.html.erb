@@ -1,26 +1,26 @@
 <body> 
-<div class="card">
-<div class=card1" style="display:flex">
+<div class = "card">
+<div class = "main_card" >
 <section>
-  <p class="SidebarComponents"> <%= link_to "Orders", orders_restaurant_path, class:"SidebarComponentsRuby"%></p>
- <p class="SidebarComponents"> <%= link_to "Menu", menu_restaurant_path, class:"SidebarComponentsRuby"%></p>
-  <p class="SidebarComponents"><%= link_to "Users", users_restaurant_path, class:"SidebarComponentsRuby"%></p>
-  <p class="SidebarComponents"><%= link_to "Reports", reports_restaurant_path, class:"SidebarComponentsRuby"%></p>
+  <p class = "SidebarComponents"> <%= link_to "Orders", orders_restaurant_path, class:"SidebarComponentsRuby"%></p>
+ <p class = "SidebarComponents"> <%= link_to "Menu", menu_restaurant_path, class:"SidebarComponentsRuby"%></p>
+  <p class = "SidebarComponents"><%= link_to "Users", users_restaurant_path, class:"SidebarComponentsRuby"%></p>
+  <p class = "SidebarComponents"><%= link_to "Reports", reports_restaurant_path, class:"SidebarComponentsRuby"%></p>
 </section>
-<section class="card2", style="margin-right:0px;">
-<p style="margin-top:30px;margin-left:20px;display:inline-flex"><%= link_to "My Queue", orders_restaurant_path, class:"SidebarComponentsRuby1"%>
-  <%= link_to "All Orders", all_orders_path, class:"SidebarComponentsRuby1"%>
-  <%= link_to "Completed Orders", completed_orders_path, class:"SidebarComponentsRuby1"%>
+<section class = "style_card">
+<p class = "queue-css"><%= link_to "My Queue", orders_restaurant_path, class:"BarComponentsRuby"%>
+  <%= link_to "All Orders", all_orders_path, class:"BarComponentsRuby"%>
+  <%= link_to "Completed Orders", completed_orders_path, class:"BarComponentsRuby"%>
   </p>
   <br>
   <hr>
   <%# <% @orders_queue=Order.where.not(status: "Delivered").and (Order.where.not(status: "Cancelled"))%>
 <% orders_queue = Order.orders1cache.to_a%>
 <% orders_queue.each do |order|%>
-    <div class="card10">
+    <div class = "main_card_orders">
      <br>
-      <section class="card11">
-        <p class="OrderNo">Order Id: #<%= order.id %></p>
+      <section class = "parllel">
+        <p class = "OrderNo">Order Id: #<%= order.id %></p>
         <%= form_with(url: "/orders1/#{order.id}"  , method: "put") do |form| %> 
        <% if order.status!="Pending" %>
            <% status=order.status%>
@@ -35,28 +35,28 @@
         <% end %>
       </section>
       <%end%>
-      <section style="display:flex;justify-content:space-between;">
-      <p class="user_name">Customer name: 
+      <section class = "parllel_name_status">
+      <p class = "user_name">Customer name: 
       <%cache do%>
       <%= User.find(order.user_id).name%>
       <% end %>
        </p> 
-      <p class="description", style="font-size:18px;color:rgb(148, 0, 78);margin-right:15px;"> Status: <%= order.status %></p>
+      <p class = "rightside_status"> Status: <%= order.status %></p>
       </section>
-      <section style="display:flex;margin-left:7%;width:400px"> 
-      <p style="color:rgb(1, 158, 0)"> Ordered on: </p>
-      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" style="width:30px;height:23px">
-      <p class="date"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
+      <section class = "date_style"> 
+      <p class = "status-color"> Ordered on: </p>
+      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
+      <p class = "date"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
       <% if order.status!="Pending"%>
-      <section style="display:flex;margin-left:7%;width:400px">
-      <p style="color:rgb(1, 158, 0)"> Updated on: </p>
-      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" style="width:30px;height:23px">
-      <p class="date"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
+      <section class = "date_style">
+      <p class = "status-color"> Updated on: </p>
+      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
+      <p class = "date"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
       <% end %>
-      <p class="items">Items: </p>
-      <p class="menu">
+      <p class = "items">Items: </p>
+      <p class = "menu">
       <% @cost=0 %>
       <% order.menu.split("+") do |o| %>
        

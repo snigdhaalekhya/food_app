@@ -12,18 +12,16 @@ PASSWORD_REQUIREMENTS = /\A
     validates :address, presence: true
     validates :password, presence: true, format: PASSWORD_REQUIREMENTS
     
-     has_secure_password
+    has_secure_password
 
 
-     def self.worker_create(name,mobile_no,email,password,address)
-      worker = Worker.new(
+    def self.worker_create(name,mobile_no,email,password,address)
+         worker = Worker.new(
          name: name,
          mobile_no: mobile_no,
          email: email,
          password: password,
          address: address
       )
-     end
-     
-  
+    end
 end

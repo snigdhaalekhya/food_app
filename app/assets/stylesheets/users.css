@@ -36,8 +36,6 @@ body {
  border-radius: 4px ;
  border:0;
  background-color :#F0F0F0;
- 
- 
 }
 .FormInput-label{
  color: #2f0303;
@@ -76,7 +74,7 @@ body {
     width: 200px;
     margin-bottom:10px;
 }
-.Text1
+.Text_rightedge
 {
     margin-left: 100%;
     margin-top:15px;
@@ -89,17 +87,16 @@ body {
     margin-top: 0;
     margin-left:30px;
     padding:0;
-  }
-  
-  .card:hover {
+}
+.card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  } 
-  .card1 {
+} 
+.main_card {
     display: flex;
     justify-content:space-between;
     width:100%;
-  }
-  .Image{
+}
+.Image{
     box-shadow: 0 6px 6px 2px rgba(249, 3, 3, 0.2);
     box-sizing:auto;
     border-radius: 10px;
@@ -108,12 +105,25 @@ body {
     margin-bottom:100px;
     margin-left: 20%;
     height: auto;
-  }
-.image1{
+}
+.User_Image{
+    box-shadow: 0 6px 6px 2px rgba(249, 3, 3, 0.2);
+    box-sizing:auto;
+    border-radius: 10px;
+    width:700px;
+    margin-top:80px;
+    margin-bottom:100px;
+    margin-left: 20%;
+    height: auto;
+    margin-right:28px"
+}
+.notification_image{
     margin-left:80px;
     margin-top:3px;
+    width: 35px ;
+    height: 35px
 }
-  .Flash-error{
+.Flash-error{
     color: darkred;
     margin-top:75px;
     padding:0;
@@ -142,21 +152,18 @@ body {
     margin-left: 75%;
     margin-top: 50px;
 }
-.card7 {
+.card_cartsindexusercount {
     display: flex;
   }
 .style{
     padding:10px;
 }
-.card8 {
-    display: flex;
-} 
-.card9{
+.buttoncard{
     display: flex;
     margin-top:15px;
 
 } 
-.card11{
+.parllel{
     display: flex;
     justify-content:space-between;
     margin-top:15px;
@@ -165,3 +172,43 @@ body {
     display: flex;
     justify-content:space-between;
 } 
+.cart_image{
+    width:40px ;
+    height:40px
+}
+.date_image{
+    width:30px;
+    height:23px
+}
+.width{
+    width:14%;
+}
+.date_style{
+    display:flex;
+    margin-left:7%;
+    width:400px"
+}
+.date_style_large{
+    display:flex;
+    margin-left:7%;
+    width:400px"
+}
+.on{
+    color:rgb(1, 158, 0);
+    margin-top:3px"
+}
+.middle{
+    font-family: sams-serif;
+    max-width: 98%;
+    height:auto;
+    margin-top:30px;
+    margin-right:auto;
+    width:40%;
+    margin-left:30%
+  }
+  .quantity{
+    margin-bottom:15px;
+    font-size:18px;
+    margin-top:10px;
+    margin-left:7%
+  }

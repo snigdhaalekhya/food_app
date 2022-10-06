@@ -30,7 +30,7 @@
   }
   
   /* Style the counter cards */
-  .card3 {
+  .displaycard {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius:8px;
     text-align: left;
@@ -62,7 +62,7 @@
     margin-bottom:0px;
     margin-left:7%;
   }
-  .card2{
+  .style_card{
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.8s;
     margin-top: 0;
@@ -72,7 +72,7 @@
     padding:0;
     width:100%
   }
-  .card14{
+  .carts_card{
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.8s;
     margin-top: 0;
@@ -82,7 +82,7 @@
     padding:0;
     width:98%
   }
-  .card13{
+  .main_displaycard{
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.8s;
     margin-top: 0;
@@ -92,27 +92,11 @@
     padding:0;
     width:100%
   }
-.body.card4{
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        border-radius:8px;
-        text-align: left;
-        background-color: white;
-        margin-bottom:30px;
-        width:500px;
-}
+
 .dropdown{
   padding: 6px 12px;
    font-size:14px;
    margin-top:20px;
-   height:40px;
-   color: white;
-   border-radius: 4px;
-   border: 1px solid transparent;
-}
-.dropdown2{
-  padding: 6px 12px;
-   font-size:14px;
-   margin-left: 80%;
    height:40px;
    color: white;
    border-radius: 4px;
@@ -168,12 +152,12 @@
    border-radius: 4px;
    border: 1px solid transparent;
 }
-.Form-section1{
+.Form-section-menu{
     margin-bottom: 20px;
     margin-left: 24%;
     margin-top:30px;
 }
-.Form-input1{
+.form-input{
     font-size: 15px;
     padding: 4px;
     width: 320px;
@@ -184,7 +168,7 @@
     border:0;
     background-color :#F0F0F0;   
    }
-   .Form-input2{
+.form-input-csschanges{
     font-size: 15px;
     padding: 4px;
     width: 322px;
@@ -196,7 +180,7 @@
     border:0;
     background-color :#F0F0F0;   
    }
-   .Form-input3{
+.form-input-css{
     font-size: 15px;
     padding: 4px;
     width:126px;
@@ -207,7 +191,7 @@
     border:0;
     background-color :#F0F0F0;   
    }
-   .Form-input4{
+.Form-input-menus{
     font-size: 15px;
     padding: 4px;
     width:100px;
@@ -217,7 +201,7 @@
     border-radius: 4px ;
     border:0;
    }
-   .Form-submit1{
+.submit-button{
     font-size: 18px;
     padding: 8px;
     width: 330px;
@@ -251,14 +235,7 @@
    border-radius: 4px;
    border: 1px solid transparent;
 }
-.card4 {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  border-radius:8px;
-  text-align: left;
-  padding:10px;
-  background-color: white;
-}
-.card5{
+.card_cartsindex{
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
   border-radius:8px;
   text-align: left;
@@ -268,19 +245,7 @@
   margin-bottom:25px;
   background-color: #d9d8d8;
 }
-.plus{
- margin-left: 10%;
- background-color:#f5f0f0 transparent;
- color:green;
- font-size:small;
-}
-.minus{
-  background-color:#f5f0f0 transparent;
-  color:green;
-  font-size:small;
-  
-}
-.cost1{
+.cost_carts{
   font-size:18px;
   margin-top:5px;
   color:green;
@@ -293,7 +258,7 @@
   margin-bottom:20px;
 
 }
-.card6{
+.card_cartsindexuser{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius:8px;
   text-align: left;
@@ -320,6 +285,13 @@
     margin-bottom:14px;
     margin-left:7%;
   }
+  .user_name_reports
+  {
+    font-size:20px;
+    margin-bottom:14px;
+    margin-left:7%;
+    margin-top:15px;
+  }
   .user_title
   {
     margin-left:50%;
@@ -327,7 +299,7 @@
     color:#380c0c;
     margin-bottom:16px;
   }
-  .plus1{
+  .plus{
     margin-left: 10%;
     background-color:green ;
     color:black;
@@ -338,7 +310,7 @@
     border-radius: 4px;
    border: 1px solid transparent;
    }
-   .minus1{ 
+   .minus{ 
     background-color:green ;
     color:black;
     margin-left: 15px;
@@ -349,7 +321,7 @@
    border: 1px solid transparent;
      
    }
-   .card10 {
+   .main_card_orders {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius:8px;
     width:95%;
@@ -381,7 +353,7 @@
     font-size:18px;
     margin-left:7%;
   }
-  .menu1{
+  .Total_cost{
     font-size:18px;
     margin-top:20px;
     margin-left:7%;
@@ -439,7 +411,7 @@
   background: #f1f1f1;
   padding: 2px;
 }
-.select1{ 
+.select_reports{ 
   display: block;
   width: 25%;
   margin-left:20px;
@@ -456,7 +428,7 @@
   background: #f1f1f1;
   padding: 2px;
 }
-.select2{
+.status{
   display: block;
   width: 45%;
   margin-top:20px;
@@ -474,12 +446,12 @@
   background: #f1f1f1;
   padding: 2px;
 }
-.select3{
+.select_menus{
   display: block;
-    width: 50%;
-    margin-left:600px;
-    margin-top:20px;
-    height: calc(1.5em + 0.75rem + 2px);
+  width: 50%;
+  margin-left:600px;
+  margin-top:20px;
+  height: calc(1.5em + 0.75rem + 2px);
   background-color: black;
   position: relative;
   display: inline-block;
@@ -495,10 +467,7 @@
 .sam{
   margin-left: 45%
 }
-.sam1{
-  margin-left: 40%
-}
-.sam2{
+.style{
   margin-left: 70px;
 }
 .action{
@@ -545,10 +514,10 @@
   color: black;
   line-height: 1.2em; 
 }
-.action1{
+.notification_action{
     
 }
-.action1 .MenuToggle1{
+.notification_action .NotificationToggle{
  position: absolute;
  left:76%;
  padding: 10px 20px;
@@ -559,13 +528,13 @@
  visibility: hidden;
  opacity: 0;
 }
-.action1 .MenuToggle1.active{
+.notification_action .NotificationToggle.active{
   visibility: visible;
   opacity: 1;
   width:18.5%;
 }
 
-.action1 .MenuToggle1 p{
+.notification_action .NotificationToggle p{
  width:100%;
  text-align: left;
  font-size: 18px;
@@ -583,7 +552,12 @@ table {
   margin-left:15px;
   width: 100%;
 }
-tr{
+.tr{
+  font-size:20px;
+}
+
+.tr-default{
+  color: #890000;
   font-size:20px;
 }
 td, th {
@@ -595,4 +569,74 @@ td, th {
 
 tr:nth-child(even) {
   background-color: #EEEEEE;
+}
+.menu_style{
+  margin-left: 60%;
+  margin-top:30px;
+  display:inline-flex;
+}
+.bar_style{
+  margin-left: 50px;
+  margin-top:30px;
+  display:inline-flex;
+}
+.display_css{
+  display: inline-flex;
+}
+.display{
+  display: flex;
+}
+.count_show{
+  color:red;
+  margin-top:4px;
+  margin-left:3px"
+}
+.h1_style{
+ margin-top:20px;
+ margin-left:40%;
+ font-size:20px;
+ color:rgb(117, 0, 0);
+}
+.parllel_cost_description{
+  margin-left: 15%;
+  display:inline-flex;
+}
+.menu_image{
+  width:300px;
+  height:150px;
+  margin-left:7%
+}
+.queue-css{
+  margin-top:30px;
+  margin-left:20px;
+  display:inline-flex"
+}
+.status-color{
+  color:rgb(1, 158, 0)
+}
+.rightside_status{
+  font-size:18px;
+  color:rgb(148, 0, 78);
+  margin-right:15px;
+    margin-bottom:14px;
+    margin-left:7%;
+}
+.parllel_name_status{
+display:flex;
+justify-content:space-between;
+}
+.h1_reports_style{
+  margin-top:20px;
+  margin-left:45%;
+  font-size:20px"
+}
+.style_card_reports{
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.8s;
+  margin-top: 0;
+  margin-left:40px;
+   margin-right:3px; 
+  margin-bottom:3px;
+  padding:0;
+  width:100%
 }

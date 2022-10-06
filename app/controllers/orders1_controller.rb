@@ -7,8 +7,8 @@ class Orders1Controller < ApplicationController
 
 
     def update
-        order_id=Order.find(params[:id])
-        order_id.status=params[:status]
+        order_id = Order.find(params[:id])
+        order_id.status = params[:status]
         if order_id.save!
            NotifierMailer.with(order: order_id).send_mail_status.deliver_later
             redirect_to orders_restaurant_path

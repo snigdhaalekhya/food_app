@@ -1,9 +1,9 @@
 <body> 
-<div class="card14">
-<p style="margin-left: 60%;margin-top:30px;display:inline-flex"><%= link_to "Menu", view_user_path, class:"SidebarComponentsRuby1"%>
-  <%= link_to "My Orders", orders_path, class:"SidebarComponentsRuby1"%>
-  <%= link_to "Cart", carts_path, class:"SidebarComponentsRuby1"%>
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKGxujYqqoJ2wjE-cUDwfmfhjX-ls8t7TAcwcfgjd5LspLpQnT7-pXfP_pVapr9qF1kZQ&usqp=CAU" width="40px" height=40px >
+<div class = "carts_card">
+<p class = "menu_style"><%= link_to "Menu", view_user_path, class:"BarComponentsRuby"%>
+  <%= link_to "My Orders", orders_path, class:"BarComponentsRuby"%>
+  <%= link_to "Cart", carts_path, class:"BarComponentsRuby"%>
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKGxujYqqoJ2wjE-cUDwfmfhjX-ls8t7TAcwcfgjd5LspLpQnT7-pXfP_pVapr9qF1kZQ&usqp=CAU" class = "cart_image" >
   <% c=0%>
   <% model_user(Cart).each do |cart|%>
     <% cart.count%>
@@ -12,92 +12,92 @@
   <% if c!=0%>
      <%= c%>
   <% end %>
-  <input type="image" class="image1" src="https://icones.pro/wp-content/uploads/2022/02/icone-de-cloche-grise.png" width="35px" height=35px onclick="menuToggle1();">
+  <input type = "image" class = "notification_image" src="https://icones.pro/wp-content/uploads/2022/02/icone-de-cloche-grise.png"  onclick="notificationToggle();">
    <%= method_status("Delivered").count %>
-  <div class="action1">
-   <div class="MenuToggle1">
+  <div class = "notification_action">
+   <div class = "NotificationToggle">
    <% method_status("Delivered").each do |del|%>
-   <section style="display:inline-flex">
+   <section class = "display_css">
    <p>Order no: #<%= del.id %> was Delivered?</p>
-   <%= button_to "Yes", "/orders/#{del.id}", method: "put", class:"UserHeader2"%>
+   <%= button_to "Yes", "/orders/#{del.id}", method: "put", class:"YesHeader"%>
    </section>
    <%end%>
   </div>
   </p>
   <script>
-     function menuToggle1(){
-        const toggleMenu = document.querySelector('.MenuToggle1');
+     function notificationToggle(){
+        const toggleMenu = document.querySelector('.NotificationToggle');
         toggleMenu.classList.toggle('active')
      }
   </script>
 
   <br>
   <hr>
-<div class=card1" style="display:flex">
-<section style="width:25%">
-  <p class="SidebarComponents"> <%= link_to "All Orders", orders_path, class:"SidebarComponentsRuby3"%></p>
- <p class="SidebarComponents"> <%= link_to "Active Orders", user_active_orders_path, class:"SidebarComponentsRuby3"%></p>
-  <p class="SidebarComponents"><%= link_to "Completed Orders", user_completed_orders_path, class:"SidebarComponentsRuby3"%></p>
+<div class = "main_card" >
+<section class = "width">
+  <p class = "SidebarComponents"> <%= link_to "All Orders", orders_path, class:"orders_sidebarcomponents"%></p>
+ <p class = "SidebarComponents"> <%= link_to "Active Orders", user_active_orders_path, class:"orders_sidebarcomponents"%></p>
+  <p class = "SidebarComponents"><%= link_to "Completed Orders", user_completed_orders_path, class:"orders_sidebarcomponents"%></p>
 </section>
-<section class="card2">
+<section class = "style_card">
 <% all_orders = Order.cachemethod.sort_by(&:updated_at).reverse%>
 <% all_orders.each do |order|%>
 
-    <div class="card10">
+    <div class = "main_card_orders">
      <br>
-      <section class="card11">
-        <p class="OrderNo">Order Id: #<%= order.id %></p>
-        <p class="name">Status: <%= order.status %></p>
+      <section class = "parllel">
+        <p class = "OrderNo">Order Id: #<%= order.id %></p>
+        <p class = "name">Status: <%= order.status %></p>
       </section>
-      <section style="display:flex">
-      <p class="user_name"><%= current_user.name%> - </p> 
-      <p class="mobile_no"><%= current_user.mobile_no %></p>
+      <section class = "display">
+      <p class = "user_name"><%= current_user.name%> - </p> 
+      <p class = "mobile_no"><%= current_user.mobile_no %></p>
       </section>
       <% if order.status=="Delivered"%>
-      <section style="display:flex;margin-left:7%;width:400px">
-      <p style="color:rgb(1, 158, 0);margin-top:3px"> Orderd on: </p>
-      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" style="width:30px;height:23px">
-      <p class="date"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
+      <section class = "date_style">
+      <p class = "on"> Orderd on: </p>
+      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
+      <p class = "date"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
-      <section style="display:flex;margin-left:7%;width:400px">
-      <p style="color:rgb(1, 158, 0);margin-top:3px"> Delivered on: </p>
-      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" style="width:30px;height:23px">
-      <p class="date"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
+      <section class = "date_style">
+      <p class = "on"> Delivered on: </p>
+      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
+      <p class = "date"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
       <% elsif order.status=="Pending" %>
-      <section style="display:flex;margin-left:7%;width:400px">
-      <p style="color:rgb(1, 158, 0);margin-top:3px"> Orderd on: </p>
-      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" style="width:30px;height:23px">
-      <p class="date"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
+      <section class = "date_style">
+      <p class = "on"> Orderd on: </p>
+      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
+      <p class = "date"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
       <% elsif order.status=="Cancelled"%>
-      <section style="display:flex;margin-left:7%;width:400px">
-      <p style="color:rgb(1, 158, 0);margin-top:3px"> Orderd on: </p>
-      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" style="width:30px;height:23px">
-      <p class="date"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
+      <section class = "date_style">
+      <p class = "on"> Orderd on: </p>
+      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
+      <p class = "date"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
-      <section style="display:flex;margin-left:7%;width:400px">
-      <p style="color:rgb(1, 158, 0);margin-top:3px"> Cancelled on: </p>
-      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" style="width:30px;height:23px">
-      <p class="date"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
+      <section class = "date_style">
+      <p class = "on"> Cancelled on: </p>
+      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
+      <p class = "date"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
       <% else %>
-      <section style="display:flex;margin-left:7%;width:500px">
-      <p style="color:rgb(1, 158, 0);margin-top:3px"> Ordered on: </p>
-      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" style="width:30px;height:23px">
-      <p class="date"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
+      <section class = "date_style_large">
+      <p class = "on"> Ordered on: </p>
+      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
+      <p class = "date"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       <% time_diff=(order.updated_at - order.created_at) %>
       <% time_diff=(time_diff / 1.hour).round %>
-      <p class="date">( <%= time_diff%> hours ago )</p>
+      <p class = "date">( <%= time_diff%> hours ago )</p>
       </section>
-      <section style="display:flex;margin-left:7%;width:400px">
-      <p style="color:rgb(1, 158, 0);margin-top:3px"> Updated on: </p>
-      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" style="width:30px;height:23px">
-      <p class="date"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
+      <section class = "date_style">
+      <p class = "on"> Updated on: </p>
+      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
+      <p class = "date"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
       <% end %>
-      <p class="items">Items: </p>
-      <p class="menu">
+      <p class = "items">Items: </p>
+      <p class = "menu">
       <% cost=0 %>
       <% order.menu.split("+") do |o| %>
        <br>
@@ -110,7 +110,7 @@
       <%end%>
       <br>
       </p>
-      <p class="menu1">Total: &nbsp;&nbsp;<%= cost.to_s+" ₹"%></p>
+      <p class = "Total_cost">Total: &nbsp;&nbsp;<%= cost.to_s+" ₹"%></p>
 </div>
 <% end %>
 

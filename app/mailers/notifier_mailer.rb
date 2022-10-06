@@ -2,7 +2,7 @@ class NotifierMailer < ApplicationMailer
     # If order is placed owner receives mail with order,customer details
     def send_mail_order
      order = params[:order]
-     @order_id=order.id
+     @order_id = order.id
      @order=order.user_id
      @user_name=User.find(@order).name
      @user_mobileno=User.find(@order).mobile_no
@@ -16,7 +16,7 @@ class NotifierMailer < ApplicationMailer
     #If order status is updated send mail to customer
     def send_mail_status
     order = params[:order]
-     @order_id=order.id
+     @order_id = order.id
      @order=order.user_id
      @user_name=User.find(@order).name
      @user_mobileno=User.find(@order).mobile_no

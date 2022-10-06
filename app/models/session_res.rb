@@ -9,10 +9,5 @@ PASSWORD_REQUIREMENTS = /\A
     validates :password, presence: true, format: PASSWORD_REQUIREMENTS
     validates :identity, presence: true
 
-     has_secure_password
-    # has_many :todos
-
-    # after_save    :expire_all_cache
-    # after_destroy :expire_all_cache
-   
+     has_secure_password  
 end

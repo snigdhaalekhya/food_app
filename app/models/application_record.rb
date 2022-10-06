@@ -4,8 +4,7 @@
         def self.cachemethod
              Rails.cache.fetch('model') {all.to_a}
         end
-
-
+        
         def self.expire_all_cache
               Rails.cache.delete('parameter')
         end 
@@ -16,9 +15,5 @@
 
         def self.cache1(model)
             Rails.cache.fetch('model') {model}
-       end
-
-       def self.cachemethod1
-            Rails.cache.fetch('model') {all}
        end
 end

@@ -12,12 +12,9 @@ PASSWORD_REQUIREMENTS = /\A
 
      has_secure_password
      has_many :menus
-    # has_many :todos
-    # after_save    :expire_all_cache
-    # after_destroy :expire_all_cache
-   
+    
     def self.owner_create(name,email,password,address)
-      owner = Owner.new(
+       owner = Owner.new(
         name: name,
         email: email,
         password: password,

@@ -1,46 +1,48 @@
-<body style="width:40%;margin-left:30%">
-<div class="card3">
-<section class="UserNew">
+<body class = "middle">
+<div class = "displaycard">
+<section class = "UserNew">
 <%= form_for Menu.cache1(@menu_edit) do |form| %>
 <br>
 <br>
 
-<div class="Form-section1">
-<section style="display:flex">
-<p class="FormInput-label"> Menu Name<section class="mandatory">*</section> </p></p>
+<div class = "Form-section-menu">
+<section class = "display">
+<p class = "FormInput-label"> Menu Name<section class = "mandatory">*</section> </p>
 </section>
- <%= form.text_field :menu_name, class: "Form-input1", placeholder:"Enter item name"%>
- </div>
- <section style="display:inline-flex;margin-left:15%">
- <div class="Form-section1">
- <section style="display:flex">
-<p class="FormInput-label"> Menu_Category<section class="mandatory">*</section> </p></p>
-</section>
- <p class= "Form-input4"><%= form.select :menu_category, ["Breakfast", "Lunch", "Snacks", "Dinner"], class:"dropdown1",  placeholder:"Select category"%></p>
- </div>
- <div class="Form-section1">
- <section style="display:flex">
-<p class="FormInput-label"> Menu Cost<section class="mandatory">*</section> </p></p>
-</section>
- <%= form.text_field :menu_cost, class: "Form-input3", placeholder:"Enter cost", data: { numeric: true }%>
- </div>
- </section>
- <div class="Form-section1">
- <section style="display:flex">
-<p class="FormInput-label"> Menu Description<section class="mandatory">*</section> </p></p>
-</section>
- <%= form.text_field :menu_description, class: "Form-input2", placeholder:"Enter description"%>
- </div>
- 
- <div class="Form-section1">
- <section style="display:flex">
-<p class="FormInput-label"> Menu Image<section class="mandatory">*</section> </p></p>
-</section>
- <%= form.text_field :menu_image, class: "Form-input2", placeholder:"Add/Edit item image"%>
+ <%= form.text_field :menu_name, class: "form-input", placeholder: "Enter item name"%>
  </div>
 
- <div class="Form-section1">
- <%= form.submit "Save Menu", class: "Form-submit1"%>
+ <section class = "parllel_cost_description">
+ <div class = "Form-section-menu">
+ <section class = "display">
+<p class = "FormInput-label"> Menu_Category<section class = "mandatory">*</section> </p>
+</section>
+ <p class =  "Form-input-menus"><%= form.select :menu_category, ["Breakfast", "Lunch", "Snacks", "Dinner"], class:"dropdown_menu",  placeholder: "Select category"%></p>
+ </div>
+ <div class = "Form-section-menu">
+ <section class = "display">
+<p class = "FormInput-label"> Menu Cost<section class = "mandatory">*</section> </p>
+</section>
+ <%= form.text_field :menu_cost, class: "form-input-css", placeholder: "Enter cost", data: { numeric: true }%>
+ </div>
+ </section>
+
+ <div class = "Form-section-menu">
+ <section class = "display">
+<p class = "FormInput-label"> Menu Description<section class = "mandatory">*</section> </p>
+</section>
+ <%= form.text_field :menu_description, class: "form-input-csschanges", placeholder: "Enter description"%>
+ </div>
+ 
+ <div class = "Form-section-menu">
+ <section class = "display">
+<p class = "FormInput-label"> Menu Image<section class = "mandatory">*</section> </p>
+</section>
+ <%= form.text_field :menu_image, class: "form-input-csschanges", placeholder: "Add/Edit item image"%>
+ </div>
+
+ <div class = "Form-section-menu">
+ <%= form.submit "Save Menu", class: "submit-button"%>
  </div>
  </section>
 <% end%>

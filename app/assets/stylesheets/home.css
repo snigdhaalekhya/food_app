@@ -18,7 +18,7 @@
     font-size: 25px;
     margin-left:10px;
 }
-.SidebarComponentsRuby1{
+.BarComponentsRuby{
     text-decoration: none;
     color: black;
     font-size:20px;
@@ -29,13 +29,13 @@
     font-size:20px;
     padding:10px;
 }
-.SidebarComponentsRuby3{
+.orders_sidebarcomponents{
     text-decoration: none;
     color: green;
     font-size:18px;
     padding:4px;
 }
-.SidebarComponentsRuby4{
+.RubySidebar{
     text-decoration: none;
     color: rgb(142, 0, 1);
     font-size:20px;
@@ -52,17 +52,17 @@
     margin-right:0;
     display: flex;
 }
-.UserHeader1{
+.SignOut{
     background-color:#970200;
     border-radius: 3px;
-   border: 1px solid transparent;
+    border: 1px solid transparent;
     font-size: 14px;
     margin-top:0px;
     color: white;
     margin-bottom: 15px;
    
 }
-.UserHeader2{
+.YesHeader{
     background-color:green;
     border-radius: 3px;
    border: 1px solid transparent;

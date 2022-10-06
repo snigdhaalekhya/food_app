@@ -5,7 +5,7 @@ class Order < ApplicationRecord
     end
     
     def self.order_create(id,menu,status,owner_id)
-      order=Order.new(
+        order = Order.new(
         user_id: id,
         menu: menu,
         status: status,
@@ -18,14 +18,5 @@ class Order < ApplicationRecord
     end
     def self.orders1cachecompleted
       Rails.cache.fetch("") {Order.where(status: "Delivered")}
-    end
-    
-    def cost
-      cost = 0
-      menu.split("+") do |o| 
-        str = o.split("*")
-        cost = str[2].to_i+cost
-      end
-      "#{cost.to_i} ₹"   
     end
 end

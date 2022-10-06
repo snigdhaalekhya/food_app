@@ -4,7 +4,7 @@ module ApplicationHelper
         return @current_user
     end
 
-   def current_owner
+    def current_owner
         return @current_owner
     end
     

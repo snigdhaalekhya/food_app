@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
                  # If order is placed owner receives mail with order,customer details
                  NotifierMailer.with(order: order).send_mail_order.deliver_later
                  NotifierMailer.with(order: order).send_mail_status.deliver_later
-                model_user(Cart).each do |cart|
+                 model_user(Cart).each do |cart|
                     cart.destroy
                 end
             end
@@ -23,8 +23,7 @@ class OrdersController < ApplicationController
      end
 
      def update
-        id= params[:id]
-        order_id=Order.find(id)
+        order_id = Order.find(params[:id])
         order_id.status="Confirm Success"
         if order_id.save!
             redirect_to view_user_path

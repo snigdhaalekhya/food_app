@@ -1,43 +1,43 @@
-<body style="width:40%;margin-left:30%">
-<div class="card3">
-<section class="UserNew">
+<body class = "middle">
+<div class = "displaycard">
+<section class = "UserNew">
 <%= form_with url: workers_path do |form| %>
 <br> 
 <br>
-<div class="Form-section1">
-<section style="display:flex">
- <p class="FormInput-label"> Name<section class="mandatory">*</section> </p>
+<div class = "Form-section-menu">
+<section class = "display">
+ <p class = "FormInput-label"> Name<section class = "mandatory">*</section> </p>
  </section>
- <%= form.text_field :name, class: "Form-input1", placeholder:"Enter name"%>
+ <%= form.text_field :name, class: "form-input", placeholder: "Enter name"%>
 </div>
 
-<div class="Form-section1">
- <section style="display:flex">
- <p class="FormInput-label"> Mobile No<section class="mandatory">*</section></p>
+<div class = "Form-section-menu">
+ <section class = "display">
+ <p class = "FormInput-label"> Mobile No<section class = "mandatory">*</section></p>
  </section>
- <%= form.text_field :mobile_no, class: "Form-input1", placeholder:"Enter mobile number", data: { numeric: true }%>
+ <%= form.text_field :mobile_no, class: "form-input", placeholder: "Enter mobile number", data: { numeric: true }%>
 </div>
- <div class="Form-section1">
- <section style="display:flex">
-<p class="FormInput-label"> Email Id<section class="mandatory">*</section> </p>
+ <div class = "Form-section-menu">
+ <section class = "display">
+<p class = "FormInput-label"> Email Id<section class = "mandatory">*</section> </p>
 </section>
- <%= form.email_field :email, class: "Form-input1", placeholder:"Enter email"%>
+ <%= form.email_field :email, class: "form-input", placeholder: "Enter email"%>
  </div>
- <div class="Form-section1">
- <section style="display:flex">
-<p class="FormInput-label"> Password<section class="mandatory">*</section> </p>
+ <div class = "Form-section-menu">
+ <section class = "display">
+<p class = "FormInput-label"> Password<section class = "mandatory">*</section> </p>
 </section>
- <%= form.password_field :password, class: "Form-input1", placeholder:"Enter password "%>
- <p class="note" >Atleast of 8 characters, one uppercase, digit, symbol</p>
+ <%= form.password_field :password, class: "form-input", placeholder: "Enter password "%>
+ <p class = "note" >Atleast of 8 characters, one uppercase, digit, symbol</p>
  </div>
- <div class="Form-section1">
- <section style="display:flex">
-<p class="FormInput-label"> Address<section class="mandatory">*</section> </p>
+ <div class = "Form-section-menu">
+ <section class = "display">
+<p class = "FormInput-label"> Address<section class = "mandatory">*</section> </p>
 </section>
- <%= form.text_field :address, class: "Form-input1", placeholder:"Enter address"%>
+ <%= form.text_field :address, class: "form-input", placeholder: "Enter address"%>
  </div>
- <div class="Form-section1">
- <%= form.submit "Add_Worker", class: "Form-submit1"%>
+ <div class = "Form-section-menu">
+ <%= form.submit "Add_Worker", class: "submit-button"%>
  </div>
 
  </section>
