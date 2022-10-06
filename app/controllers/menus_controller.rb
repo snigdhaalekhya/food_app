@@ -7,10 +7,15 @@ class MenusController < ApplicationController
 
     def create
         menu = Menu.menu_create(params[:menu_name],params[:menu_category],params[:menu_cost], params[:menu_description],params[:menu_image])
-           if menu.save
-              redirect_to "/menu_restaurant" 
+        # debugger
+          # menu = Menu.new(menu_params)
+          # render plain: "Image"
+            if menu.save
+              # render plain: "true"
+               redirect_to "/menu_restaurant" 
        
             else
+              # render plain: "false"
                flash[:error]= menu.errors.full_messages.join(", ")
                redirect_to "/menus/new"
             end
@@ -43,8 +48,8 @@ class MenusController < ApplicationController
         redirect_to "/menu_restaurant"
     end
     
-  # private
-  #   def post_params
-  #     params.require(:post).permit(:menu_name, :menu_description, :menu_cost, :menu_category,:menu_image)
-  #   end
+    # private
+    # def menu_params
+    #   params.require(:menu)
+    # end
 end

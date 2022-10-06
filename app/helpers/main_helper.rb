@@ -34,6 +34,7 @@ module MainHelper
 
     def method_active_orders
          orders_active = model_user(Order).where.not(status: ["Delivered", "Confirm Success","Cancelled"])    
+         
     end
 
     def method_completed_orders
