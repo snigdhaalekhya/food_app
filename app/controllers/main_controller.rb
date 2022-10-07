@@ -6,9 +6,6 @@ class MainController < ApplicationController
         end
     end
 
-    def new
-    end
-
     def category_wise
         @menus_category = Menu.where(menu_category: params[:menu_category])
     end 

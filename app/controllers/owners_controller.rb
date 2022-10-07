@@ -18,7 +18,7 @@ class OwnersController < ApplicationController
      else
          
           session[:current_owner_id] = owner.email
-           if owner.save
+           if owner.save!
               redirect_to "/users/new" 
             else
                flash[:error] = owner.errors.full_messages.join(", ")

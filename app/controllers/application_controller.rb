@@ -11,10 +11,8 @@ class ApplicationController < ActionController::Base
         return @current_user if @current_user
 
         current_user_id = session[:current_user_id]
-        if current_user_id
+        if current_user_id.present?
             @current_user = User.find(current_user_id)
-        else
-            nil
         end
     end
 
@@ -30,14 +28,12 @@ class ApplicationController < ActionController::Base
         return @current_owner if @current_owner
 
         current_owner_id = session[:current_owner_id]
-        if current_owner_id
+        if current_owner_id.present?
             if Owner.find_by(email: current_owner_id)
                 @current_owner = Owner.find_by(email: current_owner_id)
             elsif Worker.find_by(email: current_owner_id)
                 @current_owner = Worker.find_by(email: current_owner_id)
             end
-        else
-            nil
         end
     end
     

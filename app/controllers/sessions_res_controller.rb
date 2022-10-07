@@ -94,11 +94,10 @@ class SessionsResController < ApplicationController
       end
     end
 
-    def destroy
-      
+    def destroy  
         session[:current_owner_id] = nil
         current_owner = nil
-         redirect_to new_user_path
+        redirect_to new_user_path
       
     end
 end

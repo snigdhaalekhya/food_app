@@ -10,26 +10,26 @@
 <%= form_with url: owners_path do |form| %>
 <div class = "Form-section">
 <section class = "display_css">
-<p class = "FormInput-label"> Name<section class = "mandatory">*</section> </p
+<p class = "FormInput-label"> Name<section class = "mandatory">*</section> </p>
 </section>
  <%= form.text_field :name, class: "Form-input", placeholder: "Enter your name"%>
  </div>
  <div class = "Form-section">
  <section class = "display_css">
-<p class = "FormInput-label"> Email Id<section class = "mandatory">*</section> </p
+<p class = "FormInput-label"> Email Id<section class = "mandatory">*</section> </p>
 </section>
  <%= form.email_field :email, class: "Form-input", placeholder: "Enter your email id"%>
  </div>
  <div class = "Form-section">
  <section class = "display_css">
-<p class = "FormInput-label"> Password<section class = "mandatory">*</section> </p
+<p class = "FormInput-label"> Password<section class = "mandatory">*</section> </p>
 </section>
  <%= form.password_field :password, class: "Form-input", placeholder: "Enter password here"%>
  <p class = "note" >Atleast of 8 characters, one uppercase, digit, symbol</p>
  </div>
  <div class = "Form-section">
  <section class = "display_css">
-<p class = "FormInput-label"> Address<section class = "mandatory">*</section> </p
+<p class = "FormInput-label"> Address<section class = "mandatory">*</section> </p>
 </section>
  <%= form.text_field :address, class: "Form-input", placeholder: "Enter your address"%>
  </div>

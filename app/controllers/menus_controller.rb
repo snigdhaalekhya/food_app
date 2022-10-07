@@ -7,9 +7,8 @@ class MenusController < ApplicationController
 
     def create
         menu = Menu.menu_create(params[:menu_name],params[:menu_category],params[:menu_cost], params[:menu_description],params[:menu_image])
-            if menu.save
-               redirect_to "/menu_restaurant" 
-       
+            if menu.save!
+               redirect_to "/menu_restaurant"        
             else
                flash[:error] = menu.errors.full_messages.join(", ")
                redirect_to "/menus/new"
