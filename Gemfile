@@ -77,4 +77,7 @@ group :test do
   gem "webdrivers"
 end
 
-gem "minitest"
+group :development, :test do
+  gem "minitest"
+  gem "minitest-rails"
+end
