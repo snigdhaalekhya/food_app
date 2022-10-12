@@ -77,7 +77,8 @@ group :test do
   gem "webdrivers"
 end
 
-group :development, :test do
-  gem "minitest"
+group :test do
+  gem "minitest", "~> 5.13.0"
   gem "minitest-rails"
+  # gem "actioncontroller"
 end

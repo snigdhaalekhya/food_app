@@ -3,7 +3,7 @@ body {
     max-width: 98%;
     height:auto;
     margin-left: 0px;
-    margin-top:30px;
+    margin-top:10px;
     margin-right:auto;
   }
 .NewUsers-title{
@@ -118,7 +118,7 @@ body {
     margin-right:28px"
 }
 .notification_image{
-    margin-left:80px;
+    margin-left:20px;
     margin-top:3px;
     width: 35px ;
     height: 35px
@@ -185,7 +185,7 @@ body {
 }
 .date_style{
     display:flex;
-    margin-left:7%;
+    margin-left:6.55%;
     width:400px"
 }
 .date_style_large{
@@ -210,5 +210,6 @@ body {
     margin-bottom:15px;
     font-size:18px;
     margin-top:10px;
-    margin-left:7%
+    margin-left:1%;
+    color: red;
   }

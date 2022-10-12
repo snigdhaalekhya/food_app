@@ -1,22 +1,281 @@
 <body> 
-<div class = "card">
-<div class = "main_card" >
-<section>
+<script>
+let tableId = undefined;
+let currentPage = 0;
+let pages = [];
+let timeout = undefined
+let columnSortingState = {};
+let initialData = undefined;
+let arrowUp = '⇑';
+let arrowDown = '⇓';
+
+// Stores the initial array of data and triggers the table processing
+const setTable = (data, options) => {
+    tableId = options.tableId;
+    initialData = data;
+    arrowUp = options.arrowUp;
+    arrowDown = options.arrowDown;
+    loadTable(data,options);
+
+    if(data.length > 0){
+        addHeaders(data[0],options.autoHeaders);
+    }
+    addColumnSorting();
+}
+
+// Calls required methods
+const loadTable = (data,options) => {
+    paginate(data,options.perPage);
+    addPaginator(options);
+    showPage(options.currentPage-1);
+}
+
+// Generates a set of arrays representing the organized data
+const paginate = (data,perPage) => {
+    pages = [];
+    let pageNumber = 0;
+
+    data.forEach((row, index) => {
+        if(!pages[pageNumber]){
+            pages[pageNumber] = [];
+        }
+
+        if(pages[pageNumber].length < perPage){
+            pages[pageNumber].push(row);
+            if(pages[pageNumber].length == perPage){
+                pageNumber++
+            }
+        }
+    });
+}
+
+const addHeaders = (columnNames,autoHeaders) => {
+    const thead = document.querySelector(`#${tableId} thead`);
+
+    if(autoHeaders){
+        thead.innerHTML = '';
+        let tr = document.createElement('tr');
+        for(column in columnNames){
+            const th = document.createElement('th');
+            th.innerHTML = `<label>${column}</label> <span></span>`;
+            tr.appendChild(th);
+        }
+        thead.appendChild(tr);
+    }else{
+        const columnHeaders = document.querySelectorAll(`#${tableId} thead tr th`)
+        Array.from(columnHeaders).forEach(header => {
+            let span = document.createElement('span');
+            header.appendChild(span);
+        })
+
+    }
+    
+}
+
+// Generates the buttons for switching between pages
+const addPaginator = (options) =>{
+    const paginatorContainer = document.querySelector('#paginator');
+    paginatorContainer.innerHTML = pages.length > 1 ? `<button onclick="previousPage()" class="paginator-button">${options.previousText}</button>` : '';
+    for(let i = 0; i < pages.length; i++){
+        const paginatorButton = `<button onclick="showPage(${i})" class="paginator-button">${i+1}</button>`;
+        paginatorContainer.innerHTML += paginatorButton;
+    }
+    paginatorContainer.innerHTML = pages.length > 1 ? `${paginatorContainer.innerHTML}<button onclick="nextPage()" class="paginator-button">${options.nextText}</button>` : '';
+}
+
+const nextPage = () => {
+    if(currentPage < pages.length-1){
+        showPage(currentPage+1)
+    }
+}
+const previousPage = () => {
+    if(currentPage > 0){showPage(currentPage-1)}; 
+}
+
+// Populates the table with the visible rows
+const showPage = (page) => {
+    // clears the records of the tbody and iterates the records of the selected page to add new rows
+    const tableBody = document.querySelector(`#${tableId} tbody`);
+    tableBody.innerHTML = '';
+
+    // do nothing if no records
+    if(pages.length < 1 || page >= pages.length) return;
+
+    // adds a CSS class to the clicked page button
+    const paginatorButtons = document.querySelectorAll('#paginator button');
+    Array.from(paginatorButtons).forEach((button, index) => {
+        if(index-1 == page){
+            button.classList.add('active-paginator-button');
+        }else{
+            button.classList.remove('active-paginator-button');
+        }
+    });
+
+    pages[page].forEach(record => {
+        const tr = document.createElement('tr');
+        Object.values(record).forEach(field => {
+            const td = document.createElement('td');
+            // if the current element is an iterable, content is added as a list of items
+            if(typeof field == 'object'){
+                let content = '<ul>'
+                for(subfield in field){
+                    content +=  '<li>' + field[subfield] + '</li>' ;
+                }
+                field = content + '</ul>';
+            }
+            td.innerHTML = field;
+            tr.appendChild(td);
+        });
+        tableBody.appendChild(tr);
+    });
+
+    if(pages.length > 1){
+        paginatorButtons[pages.length+1].disabled = (page+1) == pages.length ? true : false;
+        paginatorButtons[0].disabled = page == 0 ? true : false;
+    }
+    currentPage = page;
+}
+
+const filter = (evt) =>{
+    if (timeout) clearTimeout(timeout);
+    timeout = setTimeout(() => {
+        let searchWord = evt.target.value;
+        let filteredData = initialData.filter(row => {
+            let wordCount = 0;
+            Object.values(row).forEach(field => {
+                let fieldText = String(field).toLowerCase();
+                if(fieldText.includes(String(searchWord).toLowerCase())){
+                    wordCount++;
+                }
+            });
+            if(wordCount > 0) return true;
+        });
+        data = filteredData; 
+
+        loadTable(filteredData,options)
+    }, 300); 
+}
+
+const sort = (clickedColumnIndex) =>{
+    if(pages.length < 1) return;
+    let arrow = '';
+
+    const columnName = Object.keys(data[0])[clickedColumnIndex]; 
+    columnSortingState[columnName] = !columnSortingState[columnName];
+
+    let sortedData = data.sort(function(a,b){
+        let fieldA = typeof a[columnName] == "number" ? Number(a[columnName]) : String(a[columnName]).toLowerCase();
+        let fieldB = typeof b[columnName] == "number" ? Number(b[columnName]) : String(b[columnName]).toLowerCase();
+
+        if(columnSortingState[columnName]){
+            arrow =  arrowUp;
+            if (fieldA < fieldB) { 
+                return -1; }
+            if (fieldA > fieldB) {
+                return 1; }
+        }else{
+            arrow =  arrowDown;
+            if (fieldA > fieldB) { return -1; }
+            if (fieldA < fieldB) { return 1; }
+        }
+
+        return 0;
+    });
+
+    const tableHeaders = document.querySelectorAll(`#${tableId} thead tr th`);
+
+    Array.from(tableHeaders).forEach((header, index) => {
+
+        if(index == clickedColumnIndex){
+            header.classList.add('active-sort')
+            document.querySelectorAll(`#${tableId} thead th span`)[index].innerHTML = arrow 
+        }else{
+            document.querySelectorAll(`#${tableId} thead th span`)[index].innerHTML = ""
+            header.classList.remove('active-sort')
+        }
+
+    });
+    
+    data = sortedData;
+    loadTable(data, options);
+}
+
+const addColumnSorting = () => {
+    const tableHeaders = Array.from(document.querySelectorAll('thead tr th'));
+    tableHeaders.forEach((header, i) => {
+        header.addEventListener('click',()=>{sort(i)});
+    })
+}
+
+</script>
+<style>
+ td, th {
+  border: 1px solid #EEEEEE;
+  text-align: center;
+  padding: 14px; 
+  font-size:20px;
+}
+</style>
+<script src="js/script.js"></script>
+<script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+const options = {
+           tableId:'easy-table',
+            currentPage:1,
+            perPage:5,
+            autoHeaders:true,
+            arrowUp:'⇑',
+            arrowDown:'⇓',
+            previousText:'&#10094',
+            nextText:'&#10095',
+}
+// the data to feed the table with
+let x = document.getElementById("easy-table").rows.length;
+ let data = [];
+        for(let i = 0; i <= x; i++){
+            let row = document.getElementById("easy-table").rows[i].innerHTML;
+            data.push(row);
+        }
+
+// create or update the table
+setTable(data, options);
+
+</script>
+
+<div class = "main_card">
+<meta name = "viewport" content = "width=device-width, initial-scale=1">
+<section class = "style_card">
+
+<section id="mySidebar" class = "sidebar">
+  <a href="javascript:void(0)" class = "closebtn" onclick = "closeNav()">×</a>
   <p class = "SidebarComponents"> <%= link_to "Orders", orders_restaurant_path, class:"SidebarComponentsRuby"%></p>
  <p class = "SidebarComponents"> <%= link_to "Menu", menu_restaurant_path, class:"SidebarComponentsRuby"%></p>
   <p class = "SidebarComponents"><%= link_to "Users", users_restaurant_path, class:"SidebarComponentsRuby"%></p>
   <p class = "SidebarComponents"><%= link_to "Reports", reports_restaurant_path, class:"SidebarComponentsRuby"%></p>
 </section>
-<section class = "style_card">
-<h1 class = "h1_reports_style"> Customer Reports </h1>
+
+<section id = "main">
+<div class = "display" >
+  <button class = "openbtn" onclick = "openNav()">☰</button>  
+  <p class = "h1_reports_style"> Customer Reports </p>
+</div>
 <%= form_with(url:"/reports_restaurant", method: "get", class:"style")  do |form| %>
    <p class = "dropdown">
-   <%= form.select :name, User.all.map{ |t| t.name},{:prompt=>"Choose Customer name",:selected=>params[:name]},{class:"select_reports",:onchange=>"this.form.submit()"}%>
-   <%= form.select :status, ["Pending","Cancelled", "Add to queue", "Preparing", "Delivered","Confirm Success"], {:prompt=>"Choose status", :selected => params[:status]},{class:"select_reports",:onchange=>"this.form.submit()"} %>
-   <%= form.select :ordered, Order.all.map { |t| t.created_at.in_time_zone("Chennai").strftime("%b %d, %Y")}.uniq, {:prompt=>"Choose Ordered date", :selected => params[:ordered]},{class:"select_reports",:onchange=>"this.form.submit()"} %> 
-   <%# <%= form.submit "Reports", class:"Reports" %> %>
+   <%= form.select :name, User.all.map{ |t| t.name},{:prompt=>"Choose Customer name",:selected=>params[:name]},{class:"select_reports"}%>
+   <%= form.select :status, ["Pending","Cancelled", "Add to queue", "Preparing", "Delivered","Confirm Success"], {:prompt=>"Choose status", :selected => params[:status]},{class:"select_reports"} %>
+   <%= form.select :ordered, Order.all.map { |t| t.created_at.in_time_zone("Chennai").strftime("%b %d, %Y")}.uniq, {:prompt=>"Choose Ordered date", :selected => params[:ordered]},{class:"select_reports"} %> 
+   <%= form.submit "Reports", class:"Reports" %>
    </p>
 <% end %>
+
 <% if params[:name].blank? && params[:status].blank?&& params[:ordered].blank?%>
 <% @customer_orders=Order.all%>
 <% else %>
@@ -29,39 +288,68 @@
   <% @customer_orders=Order.where(created_at: Date.parse(params[:ordered].to_s).beginning_of_day..Date.parse(params[:ordered].to_s).end_of_day).to_a %>
 <% end %>
 <% end %>
-<table>
+<table id = "easy-table">
+<thead>
   <tr style="color: #890000;;font-size:20px">
     <th>Order Id</th>
     <th>Customer Name</th>
-    <th>Mobile No</th>
-    <th>Ordered On</th>
-    <th>Status</th>
+    <th >Mobile No</th>
+    <th >Ordered On</th>
+    <th>Delivery Status</th>
+    <th >Delivered On</th>
     <th>Items</th>
-    <th>Total Cost</th>
+    <th >Quantity</th>
+    <th >Total Cost (₹)</th>
   </tr>
+  </thead>
   <% @customer_orders.each do |report|%>
   <% cache report do%>
-  <tr style="font-size:18px">
+  <tbody>
+  <tr>
     <td><%= report.id %></td>
     <td class = "user_name" style="margin-top:15px;"><%= User.find(report.user_id).name%></td>
     <td><%= User.find(report.user_id).mobile_no %></td>
-    <td><%= report.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p") %></td>
+    <td><%= report.created_at.in_time_zone("Chennai").strftime("%b %d, %Y") %></td>
     <td class = "user_name"><%= report.status %></td>
-    <td>
-    <% @cost=0%>
+    <%if report.status == "Delivered" %>
+      <td class = "user_name"><%= report.created_at.in_time_zone("Chennai").strftime("%b %d, %Y") %></td>
+    <% else %>
+       <td class = "user_name"></td>
+    <% end %>
+    <td >
        <% report.menu.split("+") do |o| %>      
         <% str= o.split("*")%>
         <%= str[0]%>
-        &nbsp;&nbsp;&nbsp;<%= "X "+str[1]%>
-        <% @cost=str[2].to_i+@cost%>
         <br>
         <% end %>
     </td>
-    <td><%= @cost.to_s+" ₹"%></td>
+    <td>
+    <% cost=0%>
+       <% report.menu.split("+") do |o| %>      
+        <% str= o.split("*")%>
+         <%= str[1]%> 
+        <% cost=str[2].to_i+cost%>
+        <br>
+        <% end %>
+    </td>
+
+    <td><%= cost%></td>
   </tr>
+  </tbody>
   <% end %>
 <% end %>
 </table>
+<div id="paginator">
+<button onclick="previousPage()" class="paginator-button" disabled="">❮</button>
+<button onclick="showPage(0)" class="paginator-button">1</button>
+<button onclick="showPage(1)" class="paginator-button">2</button>
+<button onclick="showPage(2)" class="paginator-button">3</button>
+<button onclick="showPage(3)" class="paginator-button">4</button>
+<button onclick="showPage(4)" class="paginator-button">5</button>
+<button onclick="showPage(5)" class="paginator-button">6</button>
+<button onclick="showPage(6)" class="paginator-button">7</button>
 </div>
+</div>
+</section>
 </div>
 </body>

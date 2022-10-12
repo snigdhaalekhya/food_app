@@ -21,6 +21,9 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+  host: localhost
+  user: root
+  password: changeme
   database: test_food_db
 
 production:

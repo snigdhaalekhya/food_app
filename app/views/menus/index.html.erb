@@ -1,5 +1,5 @@
 <body> 
-<div class = "card">
+  <div class = "card">
 <div class = "main_card" >
 <section>
   <p class = "SidebarComponents"> <%= link_to "Orders", orders_restaurant_path, class:"SidebarComponentsRuby"%></p>
@@ -7,6 +7,7 @@
   <p class = "SidebarComponents"><%= link_to "Users", users_restaurant_path, class:"SidebarComponentsRuby"%></p>
   <p class = "SidebarComponents"><%= link_to "Reports", reports_restaurant_path, class:"SidebarComponentsRuby"%></p>
 </section>
+
 <section class = "style_card">
 <section class = "display">
 <%=form_with(url:"/menus/category_wise"  , method: "get")  do |form| %>
@@ -29,24 +30,23 @@
      <img src="<%= menu.menu_image%>" class = "menu_image">
       <p class = "name"><%= menu.menu_name %></p>
       <p class = "description"><%= menu.menu_description %></p>
-      <p class = "cost"><%= menu.menu_cost%> ₹</p>
-      
-      <br>
-     
+      <p class = "cost"><%= menu.menu_cost%> ₹</p> 
+
       <section class = "display_css">
-    <% if Owner.find_by(email:current_owner.email)%>
-      <%= button_to "Edit", "/menus/#{menu.id}/edit", method: "get", class:"Edit"%>
+    <% if Owner.find_by(email:current_owner.email)%> 
+      <%= button_to '', "/menus/#{menu.id}/edit", method: "get", class:"fas fa-edit",style:"text-decoration: none; margin-left:230px;color: green; font-size:18px;margin-bottom:20px; border:hidden; background: none;"%>
     <% elsif Worker.find_by(email: current_owner.email)%>
-       <%= button_to "Edit", "/menus/#{menu.id}/edit", method: "get", class:"Edit_Not", disabled:"true"%>
+    <%= button_to '', "/menus/#{menu.id}/edit", method: "get", class:"fas fa-edit",style:" cursor: not-allowed;text-decoration: none; margin-left:230px;color: black; font-size:18px;margin-bottom:20px; border:hidden; background: none;",disabled:"true"%>
     <%end%>
 
     <% if Owner.find_by(email: current_owner.email)%>
-    <%= button_to "Delete", "/menus/#{menu.id}", method: "delete", class:"Delete"%>
+     <%= button_to '', "/menus/#{menu.id}", method: "delete", class:"fa fa-trash",style:"text-decoration: none; margin-left:30px;color: red; font-size:18px; border:hidden; background: none;"%>
     <% elsif Worker.find_by(email: current_owner.email)%>
-    <%= button_to "Delete", "/menus/#{menu.id}", method: "delete", class:"Delete_Not", disabled:"true"%>
-    <%end%>
+    <%= button_to '', "/menus/#{menu.id}", method: "delete", class:"fa fa-trash",style:" cursor: not-allowed;text-decoration: none; margin-left:30px;color: black; font-size:18px; border:hidden; background: none;",disabled:"true"%>
+     <%end%>
+    
       </section>
-   
+  
     </div>
   </div>
 

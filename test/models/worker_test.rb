@@ -1,8 +1,9 @@
 require "minitest/autorun"
-require_relative '../test_helper'
+# require_relative './worker.rb'
 
-class WorkerTest < ActiveSupport::TestCase
-    test "hi" do
-      assert true
+class TestWorker < Minitest::Test
+    def test_worker
+        worker = Worker.new
+        assert worker.save!
     end
 end

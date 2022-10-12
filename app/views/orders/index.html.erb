@@ -1,38 +1,4 @@
 <body> 
-<div class = "carts_card">
-<p class = "menu_style"><%= link_to "Menu", view_user_path, class:"BarComponentsRuby"%>
-  <%= link_to "My Orders", orders_path, class:"BarComponentsRuby"%>
-  <%= link_to "Cart", carts_path, class:"BarComponentsRuby"%>
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKGxujYqqoJ2wjE-cUDwfmfhjX-ls8t7TAcwcfgjd5LspLpQnT7-pXfP_pVapr9qF1kZQ&usqp=CAU" class = "cart_image" >
-  <% c=0%>
-  <% model_user(Cart).each do |cart|%>
-    <% cart.count%>
-    <%c=c+cart.count%>
-  <% end %>
-  <% if c!=0%>
-     <%= c%>
-  <% end %>
-  <input type = "image" class = "notification_image" src="https://icones.pro/wp-content/uploads/2022/02/icone-de-cloche-grise.png"  onclick="notificationToggle();">
-   <%= method_status("Delivered").count %>
-  <div class = "notification_action">
-   <div class = "NotificationToggle">
-   <% method_status("Delivered").each do |del|%>
-   <section class = "display_css">
-   <p>Order no: #<%= del.id %> was Delivered?</p>
-   <%= button_to "Yes", "/orders/#{del.id}", method: "put", class:"YesHeader"%>
-   </section>
-   <%end%>
-  </div>
-  </p>
-  <script>
-     function notificationToggle(){
-        const toggleMenu = document.querySelector('.NotificationToggle');
-        toggleMenu.classList.toggle('active')
-     }
-  </script>
-
-  <br>
-  <hr>
 <div class = "main_card" >
 <section class = "width">
   <p class = "SidebarComponents"> <%= link_to "All Orders", orders_path, class:"orders_sidebarcomponents"%></p>
@@ -45,17 +11,20 @@
 
     <div class = "main_card_orders">
      <br>
-      <section class = "parllel">
-        <p class = "OrderNo">Order Id: #<%= order.id %></p>
-        <p class = "name">Status: <%= order.status %></p>
-      </section>
-      <section class = "display">
-      <p class = "user_name"><%= current_user.name%> - </p> 
-      <p class = "mobile_no"><%= current_user.mobile_no %></p>
-      </section>
+     <table class = "orders_id">
+     <tr class = "orders_tr">
+     <th class = "orders_th_id">Order Id :</th>
+     <th class = "orders_th_id"><%= order.id %></th>
+     </tr>
+     <tr class = "orders_tr">
+     <th class = "orders_th_name"><%= current_user.name%> :</th>
+     <th class = "orders_th_name"><%= current_user.mobile_no %></th>
+     </tr>
+     </table>
+        <p class = "orders_status">Status: <%= order.status %></p>
       <% if order.status=="Delivered"%>
       <section class = "date_style">
-      <p class = "on"> Orderd on: </p>
+      <p class = "on"> Ordered on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
       <p class = "date"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
@@ -66,13 +35,13 @@
       </section>
       <% elsif order.status=="Pending" %>
       <section class = "date_style">
-      <p class = "on"> Orderd on: </p>
+      <p class = "on"> Ordered on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
       <p class = "date"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
       <% elsif order.status=="Cancelled"%>
       <section class = "date_style">
-      <p class = "on"> Orderd on: </p>
+      <p class = "on"> Ordered on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
       <p class = "date"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
@@ -88,7 +57,11 @@
       <p class = "date"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       <% time_diff=(order.updated_at - order.created_at) %>
       <% time_diff=(time_diff / 1.hour).round %>
-      <p class = "date">( <%= time_diff%> hours ago )</p>
+      <% if time_diff > 24 %>
+        <p class = "date">(<%= ((order.updated_at - order.created_at)/ 1.day).round%> days ago )</p>
+      <% else %>
+       <p class = "date">( <%= time_diff%> hours ago )</p>
+      <% end %>
       </section>
       <section class = "date_style">
       <p class = "on"> Updated on: </p>
@@ -96,20 +69,26 @@
       <p class = "date"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
       <% end %>
-      <p class = "items">Items: </p>
       <p class = "menu">
       <% cost=0 %>
+    <table class = "orders">
+    <tr class = "orders_tr">
+    <th class = "orders_th">Items</th>
+    <th class = "orders_th">Quantity</th>
+    <th class = "orders_th">Cost</th>
+    </tr>
       <% order.menu.split("+") do |o| %>
-       <br>
-       <br>
+       <tr class = "orders_tr">
         <% str= o.split("*")%>
-        <%= str[0]%>
-        &nbsp;&nbsp;&nbsp;&nbsp;<%= "X "+str[1]%>
+       <td class = "orders_td "> <%= str[0]%></td>
+        <td class = "orders_td "><%= str[1]%></td>
         <% cost=str[2].to_i+cost%>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= str[2]+" ₹"%>
+       <td class = "orders_td "><%= str[2]+" ₹"%></td>
+       </tr>
       <%end%>
       <br>
       </p>
+    </table>
       <p class = "Total_cost">Total: &nbsp;&nbsp;<%= cost.to_s+" ₹"%></p>
 </div>
 <% end %>

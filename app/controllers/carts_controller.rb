@@ -6,6 +6,7 @@ class CartsController < ApplicationController
     end
     
     def show
+     if Menu.find_by(id: params[:id]).present?
        menu = Menu.find(params[:id])
        cart_menuid = model_user(Cart).find_by(menu_id: menu.id)
         if cart_menuid.present?
@@ -16,14 +17,15 @@ class CartsController < ApplicationController
         end
         if cart.save!
             redirect_to view_user_path
-        end
-
+        end   
      end
+    end
 
     def remove
+        if Menu.find_by(id: params[:id]).present?
         menu = Menu.find(params[:id])
         cart_menuid = Cart.of_user(current_user).find_by(menu_id: menu.id)
-        if cart_menuid.present?
+          if cart_menuid.present?
            if cart_menuid.count >= 1
             cart_menuid.count = cart_menuid.count - 1
             cart_menuid.save!
@@ -32,8 +34,14 @@ class CartsController < ApplicationController
            if cart_menuid.count == 0
             cart_menuid.destroy 
            end 
-        else
+          else
             redirect_to view_user_path
-        end
+          end
+      end
+    end
+
+    def delete
+        cart_menuid = Cart.of_user(current_user).find_by(menu_id: params[:id])
+        cart_menuid.destroy 
     end
 end

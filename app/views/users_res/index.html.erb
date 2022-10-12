@@ -11,11 +11,16 @@
 <section class = "bar_style">
   <%= link_to "Customers", users_restaurant_path, class:"RubySidebar"%>
   <%= link_to "Workers", workers_path, class:"RubySidebar"%>
-  <% if Owner.find_by(email: current_owner.email)%>
-      <%= button_to "Add Worker", new_worker_path, method: "get", class:"AddNew"%>
+ <% if Owner.find_by(email: current_owner.email)%>
+  <section class = "myDIV">
+  <%= button_to " + ", new_worker_path, method: "get", class:"addnew"%>
+  </section>
+   <div class = "hide" >Add Worker</div>
   <% elsif Worker.find_by(email: current_owner.email)%>
-      <%= button_to "Add Worker", new_worker_path, method: "get", class:"AddNew_Not", disabled:"true"%>
-  <% end %>
+  <section class = "myDIV">
+  <%= button_to " + ", new_worker_path, method: "get", class:"addnew" , disabled:"true", style:"cursor:not-allowed;color: white;background-color: grey"%>
+  </section>
+   <% end %>
   </section>
   <br>
   <hr>

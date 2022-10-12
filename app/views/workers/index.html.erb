@@ -12,16 +12,21 @@
   <%= link_to "Customers", users_restaurant_path, class:"RubySidebar"%>
   <%= link_to "Workers", workers_path, class:"RubySidebar"%>
   <% if Owner.find_by(email: current_owner.email)%>
-      <%= button_to "Add Worker", new_worker_path, method: "get", class:"AddNew"%>
+  <section class = "myDIV">
+  <%= button_to " + ", new_worker_path, method: "get", class:"addnew"%>
+  </section>
+   <div class = "hide" >Add Worker</div>
   <% elsif Worker.find_by(email: current_owner.email)%>
-      <%= button_to "Add Worker", new_worker_path, method: "get", class:"AddNew_Not", disabled:"true"%>
-  <% end %>
+  <section class = "myDIV">
+  <%= button_to " + ", new_worker_path, method: "get", class:"addnew" , disabled:"true", style:"cursor:not-allowed;color: white;background-color: grey"%>
+  </section>
+   <% end %>
   </section>
   <br>
   <hr>
 <% Worker.cachemethod.each do |worker|%>
      <br>
-      <section class="display">
+      <section class ="display">
       <p class = "user_name">Name: <%= worker.name%> </p> 
       <p class = "user_name">Email Id: <%= worker.email%> </p>
       <p class = "user_name">Mobile No: <%= worker.mobile_no%>

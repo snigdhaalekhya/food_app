@@ -1,66 +1,59 @@
 <body>
-<div class = "carts_card">
- <p class = "menu_style">
-   <%= link_to "Menu", view_user_path, class:"BarComponentsRuby"%>
-  <%= link_to "My Orders", orders_path, class:"BarComponentsRuby"%>
-  <%= link_to "Cart", carts_path, class:"BarComponentsRuby"%>
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKGxujYqqoJ2wjE-cUDwfmfhjX-ls8t7TAcwcfgjd5LspLpQnT7-pXfP_pVapr9qF1kZQ&usqp=CAU" class = "cart_image" >
-   <% cart_totalcount = 0%>
-   <% model_user(Cart).cachemethod.each do |cart|%>    
-     <% cart_totalcount = cart_totalcount+cart.count%>
-   <% end %>
-   <% if cart_totalcount != 0%>
-    <%= cart_totalcount%>
-  <% end %>
-  <input type = "image" class = "notification_image" src = "https://icones.pro/wp-content/uploads/2022/02/icone-de-cloche-grise.png"  onclick="notificationToggle();">
-   <%= method_status("Delivered").count %>
-  <div class = "notification_action">
-   <div class = "NotificationToggle">
-   <% method_status("Delivered").each do |del|%>
-   <section class = "display_css">
-   <p>Order no: #<%= del.id %> was Delivered?</p>
-   <%= button_to "Yes", "/orders/#{del.id}", method: "put", class:"YesHeader"%>
-   </section>
-   <%end%>
-  </div>
-  </p>
-  <script>
-     function notificationToggle(){
-        const toggleMenu = document.querySelector('.NotificationToggle');
-        toggleMenu.classList.toggle('active')
-     }
-  </script>
-  <br>
-  <hr>
  <% cart_totalcount=0%>
 <div class = "main_card" class = "display_css">
 <section class = "card_cartsindex">
+<table>
+<br>
+<tr>
+    <th class = "carts_th">Items </th>
+    <th class = "carts_th" >Quantity</th>
+    <th class = "carts_th" >Cost</th>
+<tr>
 <% model_user(Cart).cachemethod.each do |cart|%>
-     <br>
-     <div class = "card_cartsindexusercount">
-      <p class = "name"><%= Menu.find(cart.menu_id).menu_name %> 
-      <div class = "display">         
-     <p class = "style"> Quantity: <%= cart.count %>
-     <% cart_totalcount=cart_totalcount+cart.count%>
-      </div>
-      </div>
-      <p class = "cost_carts"><%= c=cart.count*Menu.find(cart.menu_id).menu_cost %> ₹</p> 
-      <br>
-    <br>
+<tr>
+    <% if Menu.find_by(id: cart.menu_id).present?%>
+    <th class = "orders_th_name"><%= Menu.find(cart.menu_id).menu_name %> </th>
+    <th class = "orders_th_name" > <%= cart.count %></th>
+    <% cart_totalcount = cart_totalcount + cart.count%>
+     <th class = "orders_th_name" > <%= c = cart.count*Menu.find(cart.menu_id).menu_cost %> ₹</th>
+    <% else %>
+      <%= form_with(url: "/carts/#{cart.menu_id}/delete"  , method: "post")%>
+    <% end %>
+<tr>
 <%end%>
+
 <% cost=0%>
-<p class = "quantity">Total Quantity: <%= cart_totalcount%></p>
 <% model_user(Cart).cachemethod.each do |cart|%>
 <% cost=cost+(cart.count*Menu.find(cart.menu_id).menu_cost)%>
 <%end%>
-<br>
-<p class = "Total">Grand Total: <%= cost %> ₹</h1>
+<tr>
+    <th class = "carts_th_total">Total </th>
+    <th class = "carts_th_total" ><%= cart_totalcount%></th>
+    <th class = "carts_th_total" > <%= cost %> ₹</th>
+<tr>
+
+</table>
 </section>
 <section class = "card_cartsindexuser">
 <p class = "user_title"> User details</p>
-      <p class = "user_name">Name:  <%= current_user.name%> </p>
-      <p class = "user_name">Mobile Number:  <%= current_user.mobile_no %> </p>
-      <p class = "user_name">Address:  <%= current_user.address %> </p>
+<table >
+  <tr>
+    <th class = "orders_th_name">Name :</th>
+    <th class = "orders_th_name" ><%= current_user.name%></th>
+  <tr> 
+  <tr>
+    <th class = "orders_th_name">Mobile No :</th>
+    <th class = "orders_th_name"><%= current_user.mobile_no%></th>
+  <tr> 
+  <tr>
+    <th class = "orders_th_name">Email Id :</th>
+    <th class = "orders_th_name"><%= current_user.email%></th>
+  <tr> 
+  <tr>
+    <th class = "orders_th_name">Address :</th>
+    <th class = "orders_th_name"><%= current_user.address%></th>
+  <tr>  
+  <table>
       <% if cart_notempty %>
          <%= button_to "Place Order", orders_path, method: "post", class:"Order" %> 
       <% end %> 

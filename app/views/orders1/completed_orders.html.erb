@@ -13,38 +13,49 @@
   <%= link_to "Completed Orders", completed_orders_path, class:"BarComponentsRuby"%>
   </p>
   <br>
+  <br>
   <hr>
 <% orders_completed=Order.orders1cachecompleted.to_a%>
 <% orders_completed.each do |order|%>
     <div class = "main_card_orders">
      <br>
-     <p class = "OrderNo">Order Id: #<%= order.id %></p>
-      <section class= "parllel_name_status">
-      <p class = "user_name">Customer name: <%= User.find(order.user_id).name%> </p> 
-      <p class = "rightside_status"> Status: <%= order.status %></p>
-      </section>
+      <table class = "orders_id">
+     <tr class = "orders_tr">
+     <th class = "orders_th_id">Order Id :</th>
+     <th class = "orders_th_id"><%= order.id %></th>
+     </tr>
+     <tr class = "orders_tr">
+     <th class = "orders_th_name"><%= User.find(order.user_id).name%> :</th>
+     <th class = "orders_th_name"><%= User.find(order.user_id).mobile_no%></th>
+     </tr>
+     </table>
+     <p class = "rightside_status">Status: <%= order.status %></p>
       <section class = "date_style"> 
       <p class = "status-color"> Ordered on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
-      <p class = "date"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
+      <p class = "date">&nbsp;&nbsp;&nbsp;<%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
       <section class = "date_style">
       <p class = "status-color"> Delivered on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
       <p class = "date"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
-      <p class = "items">Items: </p>
       <p class = "menu">
-      
+    <table class = "orders">
+    <tr class = "orders_tr">
+    <th class = "orders_th">Items</th>
+    <th class = "orders_th">Quantity</th>
+    </tr>
       <% order.menu.split("+") do |o| %>
-       <br>
+       <tr class = "orders_tr">
         <% str= o.split("*")%>
-        <%= str[0]%>
-        &nbsp;&nbsp;&nbsp;&nbsp;<%= "X "+str[1]%>
-        
-        <%end %>
-      <br>
+       <td class = "orders_td "> <%= str[0]%></td>
+        <td class = "orders_td "><%= str[1]%></td>
+       </tr>
+      <%end%>
+      
       </p>
+    </table>
        <br>
      
 </div>
