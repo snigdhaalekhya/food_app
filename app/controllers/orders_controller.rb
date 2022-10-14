@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
 
     def create
         order = Order.order_create(current_user.id,method_menu,"Pending",1)
-            if order.save!
+            if order.save
                  redirect_to orders_path
                  # If order is placed owner receives mail with order,customer details
                  NotifierMailer.with(order: order).send_mail_order.deliver_later
@@ -15,6 +15,7 @@ class OrdersController < ApplicationController
                     cart.destroy
                 end
             end
+        
     end
   
     def active_orders

@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
 
         current_user_id = session[:current_user_id]
         if current_user_id.present?
+            User.increment_counter(:sign_in_count,current_user_id)
             @current_user = User.find(current_user_id)
         end
     end
@@ -30,8 +31,12 @@ class ApplicationController < ActionController::Base
         current_owner_id = session[:current_owner_id]
         if current_owner_id.present?
             if Owner.find_by(email: current_owner_id)
+                id = Owner.find_by(email: current_owner_id).id
+                Owner.increment_counter(:sign_in_count,id)
                 @current_owner = Owner.find_by(email: current_owner_id)
             elsif Worker.find_by(email: current_owner_id)
+                id = Worker.find_by(email: current_owner_id).id
+                Worker.increment_counter(:sign_in_count,id)
                 @current_owner = Worker.find_by(email: current_owner_id)
             end
         end

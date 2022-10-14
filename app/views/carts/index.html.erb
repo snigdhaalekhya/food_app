@@ -9,28 +9,25 @@
     <th class = "carts_th" >Quantity</th>
     <th class = "carts_th" >Cost</th>
 <tr>
+<% cost=0%>
 <% model_user(Cart).cachemethod.each do |cart|%>
 <tr>
     <% if Menu.find_by(id: cart.menu_id).present?%>
     <th class = "orders_th_name"><%= Menu.find(cart.menu_id).menu_name %> </th>
     <th class = "orders_th_name" > <%= cart.count %></th>
     <% cart_totalcount = cart_totalcount + cart.count%>
+    <% cost=cost+(cart.count*Menu.find(cart.menu_id).menu_cost)%>
      <th class = "orders_th_name" > <%= c = cart.count*Menu.find(cart.menu_id).menu_cost %> ₹</th>
     <% else %>
-      <%= form_with(url: "/carts/#{cart.menu_id}/delete"  , method: "post")%>
+      <% model_user(Cart).find_by(menu_id: cart.menu_id).destroy %>
     <% end %>
-<tr>
-<%end%>
-
-<% cost=0%>
-<% model_user(Cart).cachemethod.each do |cart|%>
-<% cost=cost+(cart.count*Menu.find(cart.menu_id).menu_cost)%>
-<%end%>
+</tr>
+<% end %>
 <tr>
     <th class = "carts_th_total">Total </th>
     <th class = "carts_th_total" ><%= cart_totalcount%></th>
     <th class = "carts_th_total" > <%= cost %> ₹</th>
-<tr>
+</tr>
 
 </table>
 </section>

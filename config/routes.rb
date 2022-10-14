@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
 
   get "/rough" => "reports#rough"
+  get "/rough1" => "reports#rough1"
   #for Customer side adding +,- items to cart
   get "/view_user" => "main#index"
       get"/view_user/category_wise" =>"main#category_wise"
@@ -25,7 +26,6 @@ Rails.application.routes.draw do
       #  post "/reports/customer_orders" => "reports#customer_orders"
    get "/" => "users#new"
   get "/carts/:id/remove"  => "carts#remove", as: :remove
-  post "/carts/:id/delete"  => "carts#delete", as: :delete
   resources :users
   resources :owners
   resources :menus

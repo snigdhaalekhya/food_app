@@ -39,9 +39,4 @@ class CartsController < ApplicationController
           end
       end
     end
-
-    def delete
-        cart_menuid = Cart.of_user(current_user).find_by(menu_id: params[:id])
-        cart_menuid.destroy 
-    end
 end

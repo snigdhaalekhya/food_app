@@ -49,13 +49,13 @@
       </section>
       <%end%>
       
-      <section class = "date_style"> 
+      <section class = "date_style_restaurant"> 
       <p class = "status-color"> Ordered on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
       <p class = "date"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
       <% if order.status!="Pending"%>
-      <section class = "date_style">
+      <section class = "date_style_restaurant">
       <p class = "status-color"> Updated on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
       <p class = "date"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>

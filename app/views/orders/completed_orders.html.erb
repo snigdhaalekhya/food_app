@@ -33,12 +33,12 @@
       <section class = "date_style">
       <p class = "on"> Ordered on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
-      <p class = "date"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
+      <p class = "date_created"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
       <section class = "date_style">
       <p class = "on"> Delivered on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
-      <p class = "date"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
+      <p class = "date_updated"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
       <p class = "menu">
       <% cost=0 %>

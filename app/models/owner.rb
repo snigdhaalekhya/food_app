@@ -5,7 +5,7 @@ PASSWORD_REQUIREMENTS = /\A
   (?=.*[A-Z])        # Must contain an upper case character
   (?=.*[[:^alnum:]]) # Must contain a symbol
 /x
-    validates :name, presence: true
+    validates :name, presence: true, length: {maximum: 18}
     validates :email, presence: true
     validates :address, presence: true
     validates :password, presence: true, format: PASSWORD_REQUIREMENTS

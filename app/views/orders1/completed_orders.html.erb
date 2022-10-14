@@ -8,6 +8,7 @@
   <p class = "SidebarComponents"><%= link_to "Reports", reports_restaurant_path, class:"SidebarComponentsRuby"%></p>
 </section>
 <section class = "style_card">
+ <br>
 <p class = "queue-css"><%= link_to "My Queue", orders_restaurant_path, class:"BarComponentsRuby"%>
   <%= link_to "All Orders", all_orders_path, class:"BarComponentsRuby"%>
   <%= link_to "Completed Orders", completed_orders_path, class:"BarComponentsRuby"%>
@@ -33,12 +34,12 @@
       <section class = "date_style"> 
       <p class = "status-color"> Ordered on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
-      <p class = "date">&nbsp;&nbsp;&nbsp;<%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
+      <p class = "date_created"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
       <section class = "date_style">
       <p class = "status-color"> Delivered on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
-      <p class = "date"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
+      <p class = "date_updated"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
       <p class = "menu">
     <table class = "orders">

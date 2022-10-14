@@ -3,7 +3,7 @@ body {
     max-width: 98%;
     height:auto;
     margin-left: 0px;
-    margin-top:10px;
+    margin-top:5px;
     margin-right:auto;
   }
 .NewUsers-title{
@@ -160,7 +160,7 @@ body {
 }
 .buttoncard{
     display: flex;
-    margin-top:15px;
+    margin-left:250px;
 
 } 
 .parllel{
@@ -186,7 +186,12 @@ body {
 .date_style{
     display:flex;
     margin-left:6.55%;
-    width:400px"
+    width:400px;
+}
+.date_style_restaurant{
+    display:flex;
+    margin-left:6.2%;
+    width:400px;
 }
 .date_style_large{
     display:flex;
@@ -195,7 +200,12 @@ body {
 }
 .on{
     color:rgb(1, 158, 0);
-    margin-top:3px"
+    margin-top:3px;
+}
+.update_on{
+    color:rgb(1, 158, 0);
+    margin-top:3px;
+    margin-left:5px;
 }
 .middle{
     font-family: sams-serif;

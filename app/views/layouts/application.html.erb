@@ -6,7 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %> 
     <%= javascript_importmap_tags %>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
@@ -14,21 +14,34 @@
 
   <body>
   <% if @current_user %>
-  <!--
- <div class = "card_profile">
-  <p class = "UserHeader"> Welcome <%= @current_user.name%>!</p>
-  </div>
--->
+     <% if @current_user.sign_in_count <=1 %>
+        <p class = "UserHeader"> Welcome <%= @current_user.name%>!</p>
+     <% end %>
+
 
   <div class = "action">
    <div class = "profile" onclick="menuToggle();">
    <img class = "image" src="https://media.istockphoto.com/vectors/user-member-vector-icon-for-ui-user-interface-or-profile-face-avatar-vector-id1130884625?k=20&m=1130884625&s=612x612&w=0&h=OITK5Otm_lRj7Cx8mBhm7NtLTEHvp6v3XnZFLZmuB9o=">
    </div>
    <div class = "MenuToggle">
-   <p class = "User_Name">Name: <%= @current_user.name%></p>
-   <p class = "User_Name">Mobile No: <%= @current_user.mobile_no%></p>
-   <p class = "User_Name">Email Id: <%= @current_user.email%></p>
-   <p class = "User_Name">Address: <%= @current_user.address%></p>
+   <table class = "users-table">
+  <tr>
+    <th class = "users-th">Name :</th>
+    <th class = "users-th"><%= @current_user.name%></th>
+  <tr> 
+  <tr>
+    <th class = "users-th">Mobile No :</th>
+    <th class = "users-th"><%= @current_user.mobile_no%></th>
+  <tr> 
+  <tr>
+    <th class = "users-th">Email Id :</th>
+    <th class = "users-th"><%= @current_user.email%></th>
+  <tr> 
+  <tr>
+    <th class = "users-th">Address :</th>
+    <th class = "users-th"><%= @current_user.address%></th>
+  <tr> 
+  </table>
    <%= button_to "Sign-out", destroy_session_path, method: "delete", class:"SignOut"%>
   </div>
   <script>
@@ -77,20 +90,17 @@
 
   <% end%>
 
-   <% if @current_owner %>
-   <!--
-   <div class = "card_profile">
-  <p class = "UserHeader"> Welcome <%= @current_owner.name%>!</p>
-  </div>
-  -->
+<% if @current_owner %>
+ <% if @current_owner.sign_in_count <= 1 %>
+      <p class = "UserHeader"> Welcome <%= @current_owner.name%>!</p>
+  <% end %>
+  
   <div class = "action">
    <div class = "profile" onclick="menuToggle();">
    <img class = "image" src="https://media.istockphoto.com/vectors/user-member-vector-icon-for-ui-user-interface-or-profile-face-avatar-vector-id1130884625?k=20&m=1130884625&s=612x612&w=0&h=OITK5Otm_lRj7Cx8mBhm7NtLTEHvp6v3XnZFLZmuB9o=">
    </div>
    <div class = "MenuToggle">
-   <p class = "User_Name">Name: <%= @current_owner.name%></p>
-   <p class = "User_Name">Email Id: <%= @current_owner.email%></p>
-   <p class = "User_Name">Address: <%= @current_owner.address%></p>
+   
    <%= button_to "Sign-out", destroy_session_res_path, method: "delete", class:"SignOut"%>
   </div>
   <script>
