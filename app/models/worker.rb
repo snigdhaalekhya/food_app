@@ -15,7 +15,7 @@ PASSWORD_REQUIREMENTS = /\A
     has_secure_password
 
 
-    def self.worker_create(name,mobile_no,email,password,address)
+    def self.worker_create(name , mobile_no , email , password , address)
          worker = Worker.new(
          name: name,
          mobile_no: mobile_no,

@@ -43,14 +43,6 @@
     margin-right:10%;
     margin-left:7%;
   }
-  .date_orders_active
-  {
-    font-size:16px;
-    margin-top:4px;
-    margin-right:3%;
-    margin-left:2.5%;
-    margin-bottom:10px;
-  }
   .date
   {
     font-size:16px;
@@ -59,27 +51,20 @@
     margin-left:14%;
     margin-bottom:10px;
   }
-  .date_orders1_all
+  .date_orders_res_all
   {
-    font-size:16px;
-    margin-top:4px;
-    margin-right:3%;
     margin-left:11%;
-    margin-bottom:10px;
+
   }
   .date_updated{
-    font-size:16px;
-    margin-top:4px;
-    margin-right:3%;
     margin-left:8%;
-    margin-bottom:10px;
   }
   .date_created{
-    font-size:16px;
-    margin-top:4px;
-    margin-right:3%;
     margin-left:10%;
-    margin-bottom:10px;
+  }
+  .date_orders_active
+  {
+    margin-left:6.9%;
   }
   .description{
     font-size:14px;
@@ -99,26 +84,6 @@
     padding:0;
     width:100%
   }
-  .carts_card{
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.8s;
-    margin-top: 0;
-    margin-left:40px;
-    margin-right:80px;
-    margin-bottom:3px;
-    padding:0;
-    width:98%
-  }
-  .main_displaycard{
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.8s;
-    margin-top: 0;
-    margin-left:20px;
-    margin-right:40px;
-    margin-bottom:3px;
-    padding:0;
-    width:100%
-  }
 
 .dropdown{
   padding: 6px 12px;
@@ -129,55 +94,23 @@
    border-radius: 4px;
    border: 1px solid transparent;
 }
-.AddMenu{
-    padding: 6px 12px;
+.Button{
+  padding: 6px 12px;
      font-size:14px;
      margin-left:350px;
      margin-top:20px;
      margin-right:10px;
      height:35px;
-     color: white;
-     background-color: green;
      border-radius: 4px;
      border: 1px solid transparent;
+     color: white;
+}
+.AddMenu{
+     background-color: green;
 }
 .AddMenu_Not{
   cursor: not-allowed;
-  padding: 6px 12px;
-  margin-left:350px;
-   font-size:14px;
-   margin-top:20px;
-   margin-right:10px;
-   height:35px;
-   color: white;
    background-color:#C0C0C0;
-   border-radius: 4px;
-   border: 1px solid transparent;
-}
-.AddNew{
-  padding: 6px 12px;
-   font-size:14px;
-   margin-left:800%;
-   margin-right:0%;
-   color: white;
-   height:auto;
-   width:100px;
-   background-color: green;
-   border-radius: 4px;
-   border: 1px solid transparent;
-}
-.AddNew_Not{
-   cursor: not-allowed;
-   padding: 6px 12px;
-   font-size:14px;
-   margin-left:800%;
-   margin-right:0%;
-   height:auto;
-   width:100px;
-   color: white;
-   background-color: #C0C0C0;
-   border-radius: 4px;
-   border: 1px solid transparent;
 }
 .Form-section-menu{
     margin-bottom: 20px;
@@ -196,37 +129,18 @@
     background-color :#F0F0F0;   
    }
 .form-input-csschanges{
-    font-size: 15px;
-    padding: 4px;
     width: 322px;
     height:70px;
-    font-display: top;
-    color:#888787;
-    border: 3px;
-    border-radius: 4px ;
-    border:0;
-    background-color :#F0F0F0;   
+    font-display: top;  
    }
 .form-input-css{
-    font-size: 15px;
-    padding: 4px;
     width:126px;
-    height:30px;
-    color:#888787;
-    border: 3px;
-    border-radius: 4px ;
-    border:0;
-    background-color :#F0F0F0;   
+    height:30px; 
    }
 .Form-input-menus{
-    font-size: 15px;
-    padding: 4px;
     width:100px;
     height:30px;
-    color:#888787;
-    border: 3px;
-    border-radius: 4px ;
-    border:0;
+    background-color :white;   
    }
 .submit-button{
     font-size: 18px;
@@ -238,29 +152,6 @@
     background-color: rgb(69, 156, 120);
     border-radius: 4px;
     border:0;
-}
-.Add{
-  padding: 6px 12px;
-   font-size:14px;
-   margin-left: 80%;
-   margin-top:20px;
-   height:35px;
-   width:60px;
-   color: white;
-   background-color: green;
-   border-radius: 4px;
-   border: 1px solid transparent;
-}
-.Added{
-  padding: 6px 12px;
-   font-size:14px;
-   margin-left: 80%;
-   margin-top:20px;
-   height:35px;
-   color: green;
-   background-color:#F0F0F0; ;
-   border-radius: 4px;
-   border: 1px solid transparent;
 }
 .card_cartsindex{
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
@@ -314,9 +205,6 @@
   }
   .user_name_reports
   {
-    font-size:20px;
-    margin-bottom:14px;
-    margin-left:7%;
     margin-top:15px;
   }
   .user_title
@@ -326,27 +214,21 @@
     color:#380c0c;
     margin-bottom:16px;
   }
-  .plus{
-    margin-left: 10%;
+  .buttons_plus_minus{
     background-color:green ;
     color:black;
     font-size:small;
-    margin-right:6px;
     width: 30px;
     height:30px;
     border-radius: 4px;
    border: 1px solid transparent;
+  }
+  .plus{
+    margin-left: 10%; 
+    margin-right:6px;
    }
    .minus{ 
-    background-color:green ;
-    color:black;
-    margin-left: 15px;
-    font-size:small;
-    width: 30px;
-    height:30px;
-    border-radius: 4px;
-   border: 1px solid transparent;
-     
+    margin-left: 15px;  
    }
    .main_card_orders {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -387,41 +269,6 @@
     margin-left:7%;
     padding-bottom:20px;
   }
-  .Update{
-     font-size:14px;
-     margin-right: 10px;
-     color: white;
-     background-color: green;
-     border-radius: 2px;
-     border: 1px solid transparent;
-}
-.Update_Not{
-     cursor: not-allowed;
-     margin-right: 10px;
-     color: white;
-     background-color: #C0C0C0;
-     border-radius: 2px;
-     border: 1px solid transparent;
-}
-.Show{
-  font-size:14px;
-  margin-right: 10px;
-  color: white;
-  background-color: green;
-  border-radius: 2px;
-  border: 1px solid transparent;
-}
-.Reports{
-  font-size:14px;
-  margin-right: 10px;
-  margin-left:15px;
-  color: white;
-  background-color: green;
-  border-radius: 4px;
-  width:75px;
-  height: calc(1.5em + 0.75rem + 2px);
-  border: 1px solid transparent;
-}
 .select{
   display: block;
   width: 20%;
@@ -440,111 +287,33 @@
   padding: 2px;
 }
 .select_reports{ 
-  display: block;
   width: 25%;
   margin-left:20px;
-  height: calc(1.5em + 0.75rem + 2px);
-  background-color: black;
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  font-family: Arial, Helvetica, sans-serif;
-  border-radius: 3px;
-  border: none;
-  background: #f1f1f1;
-  padding: 2px;
 }
 .status{
-  display: block;
   width: 45%;
   margin-top:20px;
   margin-left:25%;
-  height: calc(1.5em + 0.75rem + 2px);
-  background-color: black;
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  font-family: Arial, Helvetica, sans-serif;
-  border-radius: 3px;
-  border: none;
-  background: #f1f1f1;
-  padding: 2px;
 }
 .select_menus{
-  display: block;
   width: 50%;
   margin-left:600px;
   margin-top:20px;
-  height: calc(1.5em + 0.75rem + 2px);
-  background-color: black;
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  font-family: Arial, Helvetica, sans-serif;
-  border-radius: 3px;
-  border: none;
-  background: #f1f1f1;
-  padding: 2px;
 }
 .select_menus_users{
-  display: block;
   width: 55%;
   margin-left:700px;
   margin-top:20px;
-  height: calc(1.5em + 0.75rem + 2px);
-  background-color: black;
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  font-family: Arial, Helvetica, sans-serif;
-  border-radius: 3px;
-  border: none;
-  background: #f1f1f1;
-  padding: 2px;
 }
-.select_menus_category{
-  display: block;
+.select_menus_category{ 
   width: 30%;
   margin-left:1000px;
   margin-top:20px;
-  height: calc(1.5em + 0.75rem + 2px);
-  background-color: black;
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  font-family: Arial, Helvetica, sans-serif;
-  border-radius: 3px;
-  border: none;
-  background: #f1f1f1;
-  padding: 2px;
 }
 .select_menus_users_category{
-  display: block;
   width: 30%;
   margin-left:1150px;
   margin-top:20px;
-  height: calc(1.5em + 0.75rem + 2px);
-  background-color: black;
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  font-family: Arial, Helvetica, sans-serif;
-  border-radius: 3px;
-  border: none;
-  background: #f1f1f1;
-  padding: 2px;
 }
 .sam{
   margin-left: 45%
@@ -628,6 +397,24 @@
   color:#a40000;
   margin-bottom:14px;
 }
+.Reports{
+  font-size:14px;
+  margin-right: 10px;
+  margin-left:15px;
+  color: white;
+  background-color: green;
+  border-radius: 4px;
+  width:75px;
+  height: calc(1.5em + 0.75rem + 2px);
+  border: 1px solid transparent;
+}
+.orders {
+  border-collapse: collapse;
+  margin-left:90px;
+  margin-bottom:8px;
+  width:25%;
+  max-width:60%;
+}
 .orders_id {
   border-collapse: collapse;
   margin-left:90px;
@@ -687,13 +474,6 @@
   padding:3px;
   font-size:18px;
   color: #002266;
-}
-.orders {
-  border-collapse: collapse;
-  margin-left:90px;
-  margin-bottom:8px;
-  width:25%;
-  max-width:60%;
 }
 .orders_tr{
   font-size:18px;
@@ -791,8 +571,6 @@ tr:nth-child(even) {
 }
 .menu_image_users{
   width:330px;
-  height:150px;
-  margin-left:7%
 }
 .queue-css{
   margin-top:30px;
@@ -853,4 +631,20 @@ justify-content:space-between;
   display: block;
   margin-top:50px;
   color: red;
+}
+.Update{
+  font-size:14px;
+  margin-right: 10px;
+  color: white;
+  background-color: green;
+  border-radius: 2px;
+  border: 1px solid transparent;
+}
+.Update_Not{
+  cursor: not-allowed;
+  margin-right: 10px;
+  color: white;
+  background-color: #C0C0C0;
+  border-radius: 2px;
+  border: 1px solid transparent;
 }

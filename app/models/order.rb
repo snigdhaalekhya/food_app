@@ -1,10 +1,11 @@
 class Order < ApplicationRecord
+    paginates_per 10
     belongs_to :user
     def self.of_user(user)
         all.where(user_id: user.id)
     end
     
-    def self.order_create(id,menu,status,owner_id)
+    def self.order_create(id , menu , status , owner_id)
         order = Order.new(
         user_id: id,
         menu: menu,

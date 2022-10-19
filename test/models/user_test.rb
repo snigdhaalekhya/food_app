@@ -1,11 +1,11 @@
-require 'minitest/autorun'
+# require 'minitest/autorun'
 require "active_support"
 
 class UserTest < ActiveSupport::TestCase
-include User
+    include User
     test 'invalid - no campaign' do
         county = User.new(name: "snigdha")      
-        refute county.valid?, 'Campplay passed without a name'
+        assert county.valid?, 'Campplay passed without a name'
       end
 
 #   def test_notvalid

@@ -1,12 +1,12 @@
 <body> 
 <div class = "main_card" >
 <section class = "width">
-  <p class = "SidebarComponents"> <%= link_to "All Orders", orders_path, class:"orders_sidebarcomponents"%></p>
- <p class = "SidebarComponents"> <%= link_to "Active Orders", user_active_orders_path, class:"orders_sidebarcomponents"%></p>
-  <p class = "SidebarComponents"><%= link_to "Completed Orders", user_completed_orders_path, class:"orders_sidebarcomponents"%></p>
+  <p class = "SidebarComponents"> <%= link_to "All Orders", orders_path, class:"SidebarComponentsRestaurantSide orders_sidebarcomponents"%></p>
+ <p class = "SidebarComponents"> <%= link_to "Active Orders", user_active_orders_path, class:"SidebarComponentsRestaurantSide orders_sidebarcomponents"%></p>
+  <p class = "SidebarComponents"><%= link_to "Completed Orders", user_completed_orders_path, class:"SidebarComponentsRestaurantSide orders_sidebarcomponents"%></p>
 </section>
 <section class = "style_card">
-<% all_orders = model_user(Order).cachemethod.sort_by(&:updated_at).reverse%>
+<% all_orders = currentuser_model(Order).cachemethod.sort_by(&:updated_at).reverse%>
 <% all_orders.each do |order|%>
 
     <div class = "main_card_orders">
@@ -26,18 +26,18 @@
       <section class = "date_style">
       <p class = "on"> Ordered on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
-      <p class = "date_created"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
+      <p class = "date date_created"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
       <section class = "date_style">
       <p class = "on"> Delivered on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
-      <p class = "date_updated"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
+      <p class = "date date_updated"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
       <% elsif order.status=="Pending" %>
       <section class = "date_style">
       <p class = "on"> Ordered on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
-      <p class = "date_created"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
+      <p class = "date date_created"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
       <% elsif order.status=="Cancelled"%>
       <section class = "date_style">
@@ -51,10 +51,10 @@
       <p class = "date"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
       <% else %>
-      <section class = "date_style_large">
+      <section class = "date_style date_style_large">
       <p class = "on"> Ordered on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
-      <p class = "date_orders_active"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
+      <p class = "date date_orders_active"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       <% time_diff=(order.updated_at - order.created_at) %>
       <% time_diff=(time_diff / 1.hour).round %>
       <% if time_diff > 24 %>
@@ -66,7 +66,7 @@
       <section class = "date_style">
       <p class = "update_on"> Updated on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
-      <p class = "date_updated"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
+      <p class = "date date_updated"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
       <% end %>
       <p class = "menu">

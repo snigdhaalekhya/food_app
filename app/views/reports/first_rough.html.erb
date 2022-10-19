@@ -25,10 +25,10 @@ function closeNav() {
 
 <section id="mySidebar" class = "sidebar">
   <a href="javascript:void(0)" class = "closebtn" onclick = "closeNav()">×</a>
-  <p class = "SidebarComponents"> <%= link_to "Orders", orders_restaurant_path, class:"SidebarComponentsRuby"%></p>
- <p class = "SidebarComponents"> <%= link_to "Menu", menu_restaurant_path, class:"SidebarComponentsRuby"%></p>
-  <p class = "SidebarComponents"><%= link_to "Users", users_restaurant_path, class:"SidebarComponentsRuby"%></p>
-  <p class = "SidebarComponents"><%= link_to "Reports", reports_restaurant_path, class:"SidebarComponentsRuby"%></p>
+  <p class = "SidebarComponents"> <%= link_to "Orders", orders1_index_path, class:"SidebarComponentsRestaurantSide"%></p>
+ <p class = "SidebarComponents"> <%= link_to "Menu", menus_path, class:"SidebarComponentsRestaurantSide"%></p>
+  <p class = "SidebarComponents"><%= link_to "Users", show_customers_path, class:"SidebarComponentsRestaurantSide"%></p>
+  <p class = "SidebarComponents"><%= link_to "Reports", reports_path, class:"SidebarComponentsRestaurantSide"%></p>
 </section>
 
 <section id = "main">
@@ -36,11 +36,11 @@ function closeNav() {
   <button class = "openbtn" onclick = "openNav()">☰</button>  
   <p class = "h1_reports_style"> Customer Reports </p>
 </div>
-<%= form_with(url:"/reports_restaurant", method: "get", class:"style")  do |form| %>
+<%= form_with(url:"/reports", method: "get", class:"style")  do |form| %>
    <p class = "dropdown">
-   <%= form.select :name, User.all.map{ |t| t.name},{:prompt=>"Choose Customer name",:selected=>params[:name]},{class:"select_reports"}%>
-   <%= form.select :status, ["Pending","Cancelled", "Add to queue", "Preparing", "Delivered","Confirm Success"], {:prompt=>"Choose status", :selected => params[:status]},{class:"select_reports"} %>
-   <%= form.select :ordered, Order.all.map { |t| t.created_at.in_time_zone("Chennai").strftime("%b %d, %Y")}.uniq, {:prompt=>"Choose Ordered date", :selected => params[:ordered]},{class:"select_reports"} %> 
+   <%= form.select :name, User.all.map{ |t| t.name},{:prompt=>"Choose Customer name",:selected=>params[:name]},{class:"select select_reports"}%>
+   <%= form.select :status, ["Pending","Cancelled", "Add to queue", "Preparing", "Delivered","Confirm Success"], {:prompt=>"Choose status", :selected => params[:status]},{class:"select select_reports"} %>
+   <%= form.select :ordered, Order.all.map { |t| t.created_at.in_time_zone("Chennai").strftime("%b %d, %Y")}.uniq, {:prompt=>"Choose Ordered date", :selected => params[:ordered]},{class:"select select_reports"} %> 
    <%= form.submit "Reports", class:"Reports" %>
    </p>
 <% end %>

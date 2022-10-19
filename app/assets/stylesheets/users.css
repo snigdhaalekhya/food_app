@@ -107,14 +107,6 @@ body {
     height: auto;
 }
 .User_Image{
-    box-shadow: 0 6px 6px 2px rgba(249, 3, 3, 0.2);
-    box-sizing:auto;
-    border-radius: 10px;
-    width:700px;
-    margin-top:80px;
-    margin-bottom:100px;
-    margin-left: 20%;
-    height: auto;
     margin-right:28px"
 }
 .notification_image{
@@ -128,23 +120,6 @@ body {
     margin-top:75px;
     padding:0;
     font-size: 18px;
-}
-.Or{
-    margin-left:70%;
-    margin-bottom:3px;
-    color: #888787;
-}
-.Form-submitGoogle{
-    font-size: 14px;
-    padding: 8px;
-    width: 150px;
-    color: black;
-    margin-top: 19px;
-    margin-bottom:3px;
-    margin-left:30%;
-    background-color: #ECECEC;
-    border-radius: 6px ;
-    border:0;
 }
 .Title{
     color:Black;
@@ -189,14 +164,11 @@ body {
     width:400px;
 }
 .date_style_restaurant{
-    display:flex;
     margin-left:6.2%;
-    width:400px;
 }
 .date_style_large{
-    display:flex;
     margin-left:7%;
-    width:400px"
+    width:500px;
 }
 .on{
     color:rgb(1, 158, 0);

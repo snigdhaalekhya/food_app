@@ -1,15 +1,21 @@
 class SessionsController < ApplicationController 
     skip_before_action :ensure_user_logged_in
+    before_action :find_mobileno, only: [:create , :update_password]
 
     def create
-        user = User.find_by(mobile_no: params[:mobile_no])
-        if user && user.authenticate(params[:password]) 
+        user = find_mobileno
+        if user
+           if user && user.authenticate(params[:password]) 
             session[:current_user_id] = user.id
-            redirect_to view_user_path
-       else
-        flash[:error] = "Your login attempt was invalid. Please retry."
-        redirect_to new_sessions_path
-       end
+            redirect_to main_index_path
+           else
+            flash[:error] = "Your login attempt was invalid. Please retry."
+            redirect_to new_signin_user_path
+           end
+        else
+            flash[:error] = "User doesn't exist with this registered mobile number."
+            redirect_to new_signin_user_path
+        end
     end
     
 
@@ -21,7 +27,7 @@ class SessionsController < ApplicationController
     end
 
     def update_password
-        user = User.find_by(mobile_no: params[:mobile_no])
+        user = find_mobileno
         if user
             new_password = params[:password]
             confirm_password = params[:password_confirm]
@@ -31,8 +37,8 @@ class SessionsController < ApplicationController
                      redirect_to signin_users_update_password_path
                  else
                  user.password = params[:password]
-                 user.save!
-                 redirect_to new_sessions_path
+                 user.save
+                 redirect_to new_signin_user_path
                  end
             else
                 flash[:error] = "New password and Confirm password doesn't match"
@@ -48,5 +54,10 @@ class SessionsController < ApplicationController
         session[:current_user_id] = nil
         current_user = nil
         redirect_to new_user_path
+    end
+
+    private 
+    def find_mobileno
+      User.find_by(mobile_no: params[:mobile_no])
     end
 end

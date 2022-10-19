@@ -2,7 +2,7 @@
     font-size:30px;
     padding:15px;
 }
-.SidebarComponentsRuby{
+.SidebarComponentsRestaurantSide{
     text-decoration: none;
     color: green;
 }
@@ -12,13 +12,7 @@
     font-size: 25px;
     margin-left:40px;
 }
-.SidebarComponents3{
-    margin-top:30px;
-    margin-bottom:15px;
-    font-size: 25px;
-    margin-left:10px;
-}
-.BarComponentsRuby{
+.SideBarComponentsUsersSide{
     text-decoration: none;
     color: black;
     font-size:20px;
@@ -31,18 +25,12 @@
     margin-top:13px;
     margin-left:5px;
 }
-.SidebarComponentsRuby2{
-    color: black;
-    font-size:20px;
-    padding:10px;
-}
+
 .orders_sidebarcomponents{
-    text-decoration: none;
-    color: green;
     font-size:18px;
     padding:4px;
 }
-.RubySidebar{
+.Sidebar_Users{
     text-decoration: none;
     color: rgb(142, 0, 1);
     font-size:20px;
@@ -89,41 +77,20 @@
     border-color:  #E9E9E9 transparent;
     border: 1px transparent; 
 }
-.Delete{
-    background-color:#970200;
-    border-radius: 3px;
-    border: 1px solid transparent;
-    font-size: 14px;
-    color: white;
+.Delete{  
     margin-left:20px;
-    margin-bottom: 15px;
 }
 .Edit{
-    background-color:green;
-    border-radius: 3px;
-    border: 1px solid transparent;
-    font-size: 14px;
-    color: white;
-    margin-left: 130px;
     margin-bottom: 15px;
 }
 .Edit_Not{
     cursor: not-allowed;
     background-color:#C0C0C0;
-    border-radius: 3px;
-    border: 1px solid transparent;
-    font-size: 14px;
-    color: white;
     margin-left: 130px;
-    margin-bottom: 15px;
 }
 .Delete_Not{
     cursor: not-allowed;
     background-color:#C0C0C0;
-    border-radius: 3px;
-    border: 1px solid transparent;
-    font-size: 14px;
-    color: white;
     margin-left:20px;
 }
 

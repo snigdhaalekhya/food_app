@@ -1,17 +1,20 @@
 class MenusController < ApplicationController 
+  include MainHelper
    skip_before_action :ensure_user_logged_in  
    before_action :ensure_owner_logged_in
-  
-    def index   
+   before_action :find_id, only: [:edit , :update , :destroy]
+
+
+    def index 
     end
 
     def create
-        menu = Menu.menu_create(params[:menu_name],params[:menu_category],params[:menu_cost], params[:menu_description],params[:menu_image])
-            if menu.save!
-               redirect_to "/menu_restaurant"        
+        menu = Menu.menu_create(params[:menu_name] , params[:menu_category] , params[:menu_cost] , params[:menu_description] , params[:menu_image])
+            if menu.save
+               redirect_to MENU_ROOT        
             else
                flash[:error] = menu.errors.full_messages.join(", ")
-               redirect_to "/menus/new"
+               redirect_to new_menu_path
             end
     end
 
@@ -26,19 +29,23 @@ class MenusController < ApplicationController
 
 
     def edit
-      @menu_edit = Menu.find(params[:id])
+      @menu_edit = find_id
     end
 
     def update
-      menu = Menu.find(params[:id])
-      menu.update(menu_name: params[:menu][:menu_name], menu_description: params[:menu][:menu_description], menu_category: params[:menu][:menu_category], menu_cost: params[:menu][:menu_cost], menu_image: params[:menu][:menu_image] )
-      redirect_to "/menu_restaurant"
+      menu = find_id
+      menu.update(menu_name: params[:menu][:menu_name] , menu_description: params[:menu][:menu_description] , menu_category: params[:menu][:menu_category] , menu_cost: params[:menu][:menu_cost] , menu_image: params[:menu][:menu_image] )
+      redirect_to MENU_ROOT
     end
 
 
     def destroy
-        menu_delete = Menu.find(params[:id])
-        menu_delete.destroy
-        redirect_to "/menu_restaurant"
+        find_id.destroy
+        redirect_to MENU_ROOT
+    end
+
+    private 
+    def find_id
+     Menu.find(params[:id])
     end
 end

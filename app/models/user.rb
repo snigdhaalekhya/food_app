@@ -14,7 +14,7 @@ PASSWORD_REQUIREMENTS = /\A
      has_secure_password
      has_many :carts
 
-    def self.user_create(name,mobile_no,email,password,address)
+    def self.user_create(name , mobile_no , email , password , address)
       user = User.new(
       name: name,
       mobile_no: mobile_no,

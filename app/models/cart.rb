@@ -5,7 +5,7 @@ class Cart < ApplicationRecord
         all.where(user_id: user.id)
     end
   
-    def self.cart_create(id,menu_id,count)
+    def self.cart_create(id , menu_id , count)
       cart = Cart.new(
         user_id: id,
         menu_id: menu_id,

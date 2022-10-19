@@ -1,19 +1,19 @@
 <body> 
 <div class = "main_card">
 <section class = "width">
-  <p class = "SidebarComponents"> <%= link_to "All Orders", orders_path, class:"orders_sidebarcomponents"%></p>
- <p class = "SidebarComponents"> <%= link_to "Active Orders", user_active_orders_path, class:"orders_sidebarcomponents"%></p>
-  <p class = "SidebarComponents"><%= link_to "Completed Orders", user_completed_orders_path, class:"orders_sidebarcomponents"%></p>
+  <p class = "SidebarComponents"> <%= link_to "All Orders", orders_path, class:"SidebarComponentsRestaurantSide orders_sidebarcomponents"%></p>
+ <p class = "SidebarComponents"> <%= link_to "Active Orders", user_active_orders_path, class:"SidebarComponentsRestaurantSide orders_sidebarcomponents"%></p>
+  <p class = "SidebarComponents"><%= link_to "Completed Orders", user_completed_orders_path, class:"SidebarComponentsRestaurantSide orders_sidebarcomponents"%></p>
 </section>
 <section class = "style_card">
 <%=form_with(url:"/user_completed_orders"  , method: "get")  do |form| %>
-   <%= form.select :status_almost, ["Delivered", "Confirm Success"],{:prompt=>"Choose status",:selected=>params[:status_almost]},{class:"status",:onchange=>"this.form.submit()"}%>
+   <%= form.select :status_almost, ["Delivered", "Confirm Success"],{:prompt=>"Choose status",:selected=>params[:status_almost]},{class:"select status",:onchange=>"this.form.submit()"}%>
 <% end %>
 <% if params[:status_almost].blank?%>
   <% orders_completed = method_completed_orders.cachemethod.sort_by(&:updated_at).reverse%>
 <% else %>
-   <% orders_completed = model_user(Order).where(status: params[:status_almost])%>
-   <% orders_completed = model_user_reverse(orders_completed) %>
+   <% orders_completed = currentuser_model(Order).where(status: params[:status_almost])%>
+   <% orders_completed = currentuser_model_reverse(orders_completed) %>
    <% orders_completed = Order.cache(orders_completed)%>
 <% end %>
 <% orders_completed.each do |order|%>
@@ -33,12 +33,12 @@
       <section class = "date_style">
       <p class = "on"> Ordered on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
-      <p class = "date_created"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
+      <p class = "date date_created"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
       <section class = "date_style">
       <p class = "on"> Delivered on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
-      <p class = "date_updated"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
+      <p class = "date date_updated"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
       <p class = "menu">
       <% cost=0 %>

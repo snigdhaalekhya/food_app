@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
     before_action :ensure_user_logged_in
+    VALUE = 1
     
     def ensure_user_logged_in
         unless current_user
@@ -15,6 +16,7 @@ class ApplicationController < ActionController::Base
             User.increment_counter(:sign_in_count,current_user_id)
             @current_user = User.find(current_user_id)
         end
+       
     end
 
    
@@ -30,17 +32,21 @@ class ApplicationController < ActionController::Base
 
         current_owner_id = session[:current_owner_id]
         if current_owner_id.present?
-            if Owner.find_by(email: current_owner_id)
-                id = Owner.find_by(email: current_owner_id).id
-                Owner.increment_counter(:sign_in_count,id)
-                @current_owner = Owner.find_by(email: current_owner_id)
-            elsif Worker.find_by(email: current_owner_id)
-                id = Worker.find_by(email: current_owner_id).id
-                Worker.increment_counter(:sign_in_count,id)
-                @current_owner = Worker.find_by(email: current_owner_id)
-            end
-        end
+            check
+            @model.increment_counter(:sign_in_count,current_owner_id)
+            @current_owner = check
+         end
     end
     
-    
+        
+    define_method "check"  do
+          [Owner, Worker].each do |model|
+               if model.find_by(email: session[:current_owner_id]).present?
+                  current = model.find_by(email: session[:current_owner_id])
+                  @model = model
+                  return current
+               end
+          end
+    end
+   
 end

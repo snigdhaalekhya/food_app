@@ -3,11 +3,11 @@
 <div class = "main_card">
 <section>
 <p class = "Title"> Customers </p>
-<p class = "Text_rightedge"> <%= link_to "Staff login", new_sessions_res_path , class:"TextStylePassword"%></p>
+<p class = "Text_rightedge"> <%= link_to "Staff login", new_signin_restaurant_path , class:"TextStylePassword"%></p>
 <p class = "NewUsers-title"> Welcome back! </p>
 <p class = "NewUsers-Undertitle">Please sign in to continue</p>
 <section class = "UserNew">
-<%= form_with url: sessions_path do |form| %>
+<%= form_with url: signin_users_path do |form| %>
 <div class = "Form-section">
 <section class = "display_css">
 <p class = "FormInput-label"> Mobile Number<section class = "mandatory">*</section> </p>

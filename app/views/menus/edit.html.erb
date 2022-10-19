@@ -17,13 +17,13 @@
  <section class = "display">
 <p class = "FormInput-label"> Menu_Category<section class = "mandatory">*</section> </p>
 </section>
- <p class =  "Form-input-menus"><%= form.select :menu_category, ["Breakfast", "Lunch", "Snacks", "Dinner"], class:"dropdown_menu",  placeholder: "Select category"%></p>
+ <p class =  "form-input Form-input-menus"><%= form.select :menu_category, ["Breakfast", "Lunch", "Snacks", "Dinner"], class:"dropdown_menu",  placeholder: "Select category"%></p>
  </div>
  <div class = "Form-section-menu">
  <section class = "display">
 <p class = "FormInput-label"> Menu Cost<section class = "mandatory">*</section> </p>
 </section>
- <%= form.text_field :menu_cost, class: "form-input-css", placeholder: "Enter cost", data: { numeric: true }%>
+ <%= form.text_field :menu_cost, class: "form-input form-input-css", placeholder: "Enter cost", data: { numeric: true }%>
  </div>
  </section>
 
@@ -31,14 +31,14 @@
  <section class = "display">
 <p class = "FormInput-label"> Menu Description<section class = "mandatory">*</section> </p>
 </section>
- <%= form.text_field :menu_description, class: "form-input-csschanges", placeholder: "Enter description"%>
+ <%= form.text_field :menu_description, class: "form-input form-input-csschanges", placeholder: "Enter description"%>
  </div>
  
  <div class = "Form-section-menu">
  <section class = "display">
 <p class = "FormInput-label"> Menu Image<section class = "mandatory">*</section> </p>
 </section>
- <%= form.text_field :menu_image, class: "form-input-csschanges", placeholder: "Add/Edit item image"%>
+ <%= form.text_field :menu_image, class: "form-input form-input-csschanges", placeholder: "Add/Edit item image"%>
  </div>
 
  <div class = "Form-section-menu">

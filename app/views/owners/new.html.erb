@@ -3,7 +3,7 @@
 <div class = "main_card">
 <section>
 <p class = "Title"> Restaurant_Owner </p>
-<p class = "Text_rightedge"> <%= link_to "Customer login", new_sessions_path , class:"TextStylePassword"%></p>
+<p class = "Text_rightedge"> <%= link_to "Customer login", new_signin_user_path , class:"TextStylePassword"%></p>
 <p class = "NewUsers-title"> Create Account </p>
 <p class = "NewUsers-Undertitle">This helps you to manage your orders and preferences better</p> 
 <section class = "UserNew">
@@ -38,7 +38,7 @@
  </div>
  
  <% end%>
- <p class = "Text" > Already a user?<%= link_to "Sign In", new_sessions_res_path, class:"TextStyle"%></p>
+ <p class = "Text" > Already a user?<%= link_to "Sign In", new_signin_restaurant_path, class:"TextStyle"%></p>
  </section>
 </section>
 <section class = "Image"> 

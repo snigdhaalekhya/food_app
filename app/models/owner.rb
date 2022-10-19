@@ -13,7 +13,7 @@ PASSWORD_REQUIREMENTS = /\A
      has_secure_password
      has_many :menus
     
-    def self.owner_create(name,email,password,address)
+    def self.owner_create(name , email , password , address)
        owner = Owner.new(
         name: name,
         email: email,

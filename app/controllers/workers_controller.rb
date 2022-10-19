@@ -6,26 +6,35 @@ class WorkersController < ApplicationController
    end
  
    def create
-      worker = Worker.find_by(email: params[:email])
+      worker = findby_params(email: params[:email])
       if worker
          flash[:error] = "This email is already registered. Please retry."
          redirect_to new_worker_path 
-      elsif Worker.find_by(mobile_no: params[:mobile_no])
+      elsif findby_params(mobile_no: params[:mobile_no])
          flash[:error] = "This mobile no is already registered. Please retry."
          redirect_to new_worker_path 
       else
-          worker = Worker.worker_create(params[:name],params[:mobile_no], params[:email],params[:password],params[:address])
+          worker = Worker.worker_create(params[:name] , params[:mobile_no] , params[:email] , params[:password] , params[:address])
           session[:current_worker_id] = worker.id
             if worker.save
                redirect_to workers_path
             else
                 flash[:error] = worker.errors.full_messages.join(", ")
-                redirect_to "/workers/new"
+                redirect_to new_worker_path
             end
       end
    end
  
    def new
    end
+
+   def show_customers
+   end
    
+
+   private 
+    def findby_params(params = {})
+        Worker.find_by(params)
+    end
+
  end
