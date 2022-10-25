@@ -1,11 +1,14 @@
 <body> 
+<% if  @check_firstlogin_owner %>
+<p class = "UserHeader"> Welcome <%= current_owner.name%>!</p>
+<% end %> 
   <div class = "card">
 <div class = "main_card" >
 <section>
-  <p class = "SidebarComponents"> <%= link_to "Orders", orders1_index_path, class:"SidebarComponentsRestaurantSide"%></p>
- <p class = "SidebarComponents"> <%= link_to "Menu", menus_path, class:"SidebarComponentsRestaurantSide"%></p>
-  <p class = "SidebarComponents"><%= link_to "Users", show_customers_path, class:"SidebarComponentsRestaurantSide"%></p>
-  <p class = "SidebarComponents"><%= link_to "Reports", reports_path, class:"SidebarComponentsRestaurantSide"%></p>
+  <p class = "SidebarComponents"> <%= link_to "Orders", orders1_index_path, class:"RestaurantSideBarComponents"%></p>
+ <p class = "SidebarComponents"> <%= link_to "Menu", menus_path, class:"RestaurantSideBarComponents"%></p>
+  <p class = "SidebarComponents"><%= link_to "Users", show_customers_path, class:"RestaurantSideBarComponents"%></p>
+  <p class = "SidebarComponents"><%= link_to "Reports", reports_path, class:"RestaurantSideBarComponents"%></p>
 </section>
 
 <section class = "style_card">
@@ -28,19 +31,20 @@
      <th class = "orders_th_id"><%= order.id %></th>
      </tr>
      <tr class = "orders_tr">
-     <th class = "orders_th_name"><%= User.find(order.user_id).name%> :</th>
-     <th class = "orders_th_name"><%= User.find(order.user_id).mobile_no%></th>
+     <% user = User.find(order.user_id)%>
+     <th class = "orders_th_name"><%= user.name%> :</th>
+     <th class = "orders_th_name"><%= user.mobile_no%></th>
      </tr>
      </table>
 
       <section class = "rightside_status">
         <%= form_with(url: "/orders1/#{order.id}"  , method: "put") do |form| %> 
-       <% if order.status!="Pending" %>
+       <% if order.status != AllConstants::PENDING %>
            <% status=order.status%>
       <% else %>
-          <% status="Pending"%>
+          <% status = AllConstants::PENDING %>
        <% end %>
-         <%= form.select :status, options_for_select(["Pending","Cancelled", "Add to queue", "Preparing", "Delivered"],status)%>
+         <%= form.select :status, options_for_select(AllConstants::STATUS,status)%>
         <% if Owner.find_by(email: current_owner.email)%>
         <%= form.submit "Update",{class: "Update"} %>
         <% elsif Worker.find_by(email: current_owner.email)%>
@@ -54,7 +58,7 @@
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
       <p class = "date"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
-      <% if order.status!="Pending"%>
+      <% if order.status != AllConstants::PENDING %>
       <section class = "date_style date_style_restaurant">
       <p class = "status-color"> Updated on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">

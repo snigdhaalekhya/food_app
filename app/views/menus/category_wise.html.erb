@@ -2,16 +2,16 @@
 <div class = "card">
 <div class = "main_card">
 <section>
-  <p class = "SidebarComponents"> <%= link_to "Orders", orders1_index_path, class:"SidebarComponentsRestaurantSide"%></p>
- <p class = "SidebarComponents"> <%= link_to "Menu", menus_path, class:"SidebarComponentsRestaurantSide"%></p>
-  <p class = "SidebarComponents"><%= link_to "Users", show_customers_path, class:"SidebarComponentsRestaurantSide"%></p>
-  <p class = "SidebarComponents"><%= link_to "Reports", reports_path, class:"SidebarComponentsRestaurantSide"%></p>
+  <p class = "SidebarComponents"> <%= link_to "Orders", orders1_index_path, class:"RestaurantSideBarComponents"%></p>
+ <p class = "SidebarComponents"> <%= link_to "Menu", menus_path, class:"RestaurantSideBarComponents"%></p>
+  <p class = "SidebarComponents"><%= link_to "Users", show_customers_path, class:"RestaurantSideBarComponents"%></p>
+  <p class = "SidebarComponents"><%= link_to "Reports", reports_path, class:"RestaurantSideBarComponents"%></p>
 </section>
 <section class = "style_card">
 <h1 class = "h1_style"">
- <%= @category.to_s %> Items </h1>
+ <%= @category%> Items </h1>
  <%=form_with(url:"/menus/category_wise"  , method: "get")  do |form| %>
-   <%= form.select :menu_category, ["Breakfast", "Lunch", "Snacks", "Dinner"],{:prompt=>"Choose category",},{class:"select select_menus_category",:onchange=>"this.form.submit()"}%>
+   <%= form.select :menu_category, AllConstants::CATEGORY,{:prompt=>"Choose category",},{class:"select select_menus_category",:onchange=>"this.form.submit()"}%>
 <% end %>
 <% Menu.cache(@menus_category).each do |menu|%>
   <div class = "column">
@@ -21,20 +21,20 @@
       <p class = "name"><%= menu.menu_name %></p>
       <p class = "description"><%= menu.menu_description %></p>
       <p class = "cost"><%= menu.menu_cost%> ₹</p>
-      <br>
-      <br>
+
       <section class = "display_css">
-    <% if Owner.find_by(email: current_owner.email)%>
-      <%= button_to "Edit", "/menus/#{menu.id}/edit", method: "get", class:"SignOut Edit"%>
+     <% if Owner.find_by(email:current_owner.email)%> 
+      <%= button_to '', "/menus/#{menu.id}/edit", method: "get", class:"fas fa-edit",style:"text-decoration: none; margin-left:230px;color: green; font-size:18px;margin-bottom:20px; border:hidden; background: none;"%>
     <% elsif Worker.find_by(email: current_owner.email)%>
-       <%= button_to "Edit", "/menus/#{menu.id}/edit", method: "get", class:"SignOut Edit_Not", disabled:"true"%>
+    <%= button_to '', "/menus/#{menu.id}/edit", method: "get", class:"fas fa-edit",style:" cursor: not-allowed;text-decoration: none; margin-left:230px;color: black; font-size:18px;margin-bottom:20px; border:hidden; background: none;",disabled:"true"%>
     <%end%>
+
+    <% if Owner.find_by(email: current_owner.email)%>
+     <%= button_to '', "/menus/#{menu.id}", method: "delete", class:"fa fa-trash",style:"text-decoration: none; margin-left:30px;color: red; font-size:18px; border:hidden; background: none;"%>
+    <% elsif Worker.find_by(email: current_owner.email)%>
+    <%= button_to '', "/menus/#{menu.id}", method: "delete", class:"fa fa-trash",style:" cursor: not-allowed;text-decoration: none; margin-left:30px;color: black; font-size:18px; border:hidden; background: none;",disabled:"true"%>
+     <%end%>
     
-    <% if Owner.find_by(email: current_owner.email)%>
-    <%= button_to " Delete", "/menus/#{menu.id}", method: "delete", class:"SignOut Delete"%>
-    <% elsif Worker.find_by(email: current_owner.email)%>
-    <%= button_to "Delete", "/menus/#{menu.id}", method: "delete", class:"SignOut Delete_Not", disabled:"true"%>
-    <%end%>
       </section>
     </div>
   </div>

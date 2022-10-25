@@ -79,7 +79,7 @@ end
 # end
 
 group :test do
-  gem "minitest", "~> 5.13.0"
+  gem "minitest-rails"
   gem 'simplecov', require: true
 end
 

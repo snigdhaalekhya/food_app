@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
     end
 
     def create
-        order = Order.order_create(current_user.id , menu_details , "Pending" , VALUE)
+        order = Order.new(user_id:current_user.id , menu:menu_details , status:"Pending" , owner_id:AllConstants::VALUE )
             if order.save
                  redirect_to orders_path
                  # If order is placed owner receives mail with order,customer details

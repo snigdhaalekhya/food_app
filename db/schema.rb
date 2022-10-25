@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_13_082106) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_21_092840) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -75,7 +75,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_13_082106) do
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "sign_in_count"
   end
 
   create_table "products", charset: "utf8", force: :cascade do |t|
@@ -93,7 +92,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_13_082106) do
     t.string "password_digest"
     t.string "address"
     t.string "email"
-    t.integer "sign_in_count"
   end
 
   create_table "workers", charset: "utf8", force: :cascade do |t|
@@ -105,7 +103,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_13_082106) do
     t.datetime "updated_at", null: false
     t.bigint "owner_id"
     t.bigint "mobile_no"
-    t.integer "sign_in_count"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

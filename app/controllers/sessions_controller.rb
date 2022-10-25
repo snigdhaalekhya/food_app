@@ -3,20 +3,26 @@ class SessionsController < ApplicationController
     before_action :find_mobileno, only: [:create , :update_password]
 
     def create
+        if params[:mobile_no].blank? || params[:password].blank?
+            flash[:error] = "Please fill all the required fields"
+             redirect_to new_signin_user_path
+        else
         user = find_mobileno
         if user
-           if user && user.authenticate(params[:password]) 
-            session[:current_user_id] = user.id
-            redirect_to main_index_path
-           else
-            flash[:error] = "Your login attempt was invalid. Please retry."
-            redirect_to new_signin_user_path
-           end
+              if user && user.authenticate(params[:password]) 
+                  session[:current_user_id] = user.id
+                  session[:bool_user] = false
+                  redirect_to main_index_path
+              else
+                    flash[:error] = "Your login attempt was invalid. Please retry."
+                    redirect_to new_signin_user_path
+               end
         else
             flash[:error] = "User doesn't exist with this registered mobile number."
             redirect_to new_signin_user_path
         end
     end
+end
     
 
     def new

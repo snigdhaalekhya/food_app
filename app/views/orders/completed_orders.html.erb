@@ -1,13 +1,13 @@
 <body> 
 <div class = "main_card">
 <section class = "width">
-  <p class = "SidebarComponents"> <%= link_to "All Orders", orders_path, class:"SidebarComponentsRestaurantSide orders_sidebarcomponents"%></p>
- <p class = "SidebarComponents"> <%= link_to "Active Orders", user_active_orders_path, class:"SidebarComponentsRestaurantSide orders_sidebarcomponents"%></p>
-  <p class = "SidebarComponents"><%= link_to "Completed Orders", user_completed_orders_path, class:"SidebarComponentsRestaurantSide orders_sidebarcomponents"%></p>
+  <p class = "SidebarComponents"> <%= link_to "All Orders", orders_path, class:"RestaurantSideBarComponents orders_sidebarcomponents"%></p>
+ <p class = "SidebarComponents"> <%= link_to "Active Orders", user_active_orders_path, class:"RestaurantSideBarComponents orders_sidebarcomponents"%></p>
+  <p class = "SidebarComponents"><%= link_to "Completed Orders", user_completed_orders_path, class:"RestaurantSideBarComponents orders_sidebarcomponents"%></p>
 </section>
 <section class = "style_card">
 <%=form_with(url:"/user_completed_orders"  , method: "get")  do |form| %>
-   <%= form.select :status_almost, ["Delivered", "Confirm Success"],{:prompt=>"Choose status",:selected=>params[:status_almost]},{class:"select status",:onchange=>"this.form.submit()"}%>
+   <%= form.select :status_almost, AllConstants::COMPLETED_ORDERS,{:prompt=>"Choose status",:selected=>params[:status_almost]},{class:"select status",:onchange=>"this.form.submit()"}%>
 <% end %>
 <% if params[:status_almost].blank?%>
   <% orders_completed = method_completed_orders.cachemethod.sort_by(&:updated_at).reverse%>
@@ -41,7 +41,6 @@
       <p class = "date date_updated"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
       <p class = "menu">
-      <% cost=0 %>
     <table class = "orders">
     <tr class = "orders_tr">
     <th class = "orders_th">Items</th>
@@ -53,14 +52,13 @@
         <% str= o.split("*")%>
        <td class = "orders_td "> <%= str[0]%></td>
         <td class = "orders_td "><%= str[1]%></td>
-        <% cost=str[2].to_i+cost%>
        <td class = "orders_td "><%= str[2]+" ₹"%></td>
        </tr>
       <%end%>
       <br>
       </p>
     </table>
-      <p class = "Total_cost">Total: &nbsp;&nbsp;<%= cost.to_s+" ₹"%></p>
+      <p class = "Total_cost">Total: &nbsp;&nbsp;<%= total_cost(order).to_s+" ₹"%></p>
 </div>
 
 <% end %>

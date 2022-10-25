@@ -2,17 +2,17 @@
 <div class = "card">
 <div class = "main_card" >
 <section>
-  <p class = "SidebarComponents"> <%= link_to "Orders", orders1_index_path, class:"SidebarComponentsRestaurantSide"%></p>
- <p class = "SidebarComponents"> <%= link_to "Menu", menus_path, class:"SidebarComponentsRestaurantSide"%></p>
-  <p class = "SidebarComponents"><%= link_to "Users", show_customers_path, class:"SidebarComponentsRestaurantSide"%></p>
-  <p class = "SidebarComponents"><%= link_to "Reports", reports_path, class:"SidebarComponentsRestaurantSide"%></p>
+  <p class = "SidebarComponents"> <%= link_to "Orders", orders1_index_path, class:"RestaurantSideBarComponents"%></p>
+ <p class = "SidebarComponents"> <%= link_to "Menu", menus_path, class:"RestaurantSideBarComponents"%></p>
+  <p class = "SidebarComponents"><%= link_to "Users", show_customers_path, class:"RestaurantSideBarComponents"%></p>
+  <p class = "SidebarComponents"><%= link_to "Reports", reports_path, class:"RestaurantSideBarComponents"%></p>
 </section>
 <section class = "style_card_reports">
 <h1 class = "h1_reports_style"> Customer Reports </h1>
 <%= form_with(url:"/reports", method: "get", class:"style")  do |form| %>
    <p class = "dropdown">
    <%= form.select :name, User.all.map{ |t| t.name},{:prompt=>"Choose Customer name",:selected=>params[:name]},{class:"select select_reports"}%>
-   <%= form.select :status, ["Pending","Cancelled", "Add to queue", "Preparing", "Delivered","Confirm Success"], {:prompt=>"Choose status", :selected => params[:status]},{class:"select select_reports"} %>
+   <%= form.select :status, AllConstants::ALL_STATUS, {:prompt=>"Choose status", :selected => params[:status]},{class:"select select_reports"} %>
    <%= form.select :ordered, Order.all.map { |t| t.created_at.in_time_zone("Chennai").strftime("%b %d, %Y")}.uniq, {:prompt=>"Choose Ordered date", :selected => params[:ordered]},{class:"select select_reports"} %> 
    <%= form.submit "Reports", class:"Reports" %>
    </p>

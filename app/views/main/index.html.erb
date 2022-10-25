@@ -1,7 +1,10 @@
 <body> 
+<% if  @check_firstlogin_user %>
+<p class = "UserHeader"> Welcome <%= current_user.name%>!</p>
+<% end %> 
 <section class = "display">
 <%=form_with(url:"/view_user/category_wise"  , method: "get")  do |form| %>
-   <%= form.select :menu_category, ["Breakfast", "Lunch", "Snacks", "Dinner"],{:prompt=>"Choose category",},{class:"select select_menus_users",:onchange=>"this.form.submit()"}%>
+   <%= form.select :menu_category, AllConstants::CATEGORY ,{:prompt=>"Choose category",},{class:"select select_menus_users",:onchange=>"this.form.submit()"}%>
 <% end %>
 
   <%= form_tag(main_index_path, method:"get") do%>
@@ -27,7 +30,7 @@
       <% end %>
      
        <section class = "count_show">
-         <% carts_menuid = currentuser_model(Cart).where(menu_id: menu.id)%>
+       <% carts_menuid = currentuser_model(Cart).where(menu_id: menu.id)%>
          <% carts_menuid.each do |cart|%>
          <%= cart.count%>   
          <% end%>

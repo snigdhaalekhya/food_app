@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
     before_action :ensure_user_logged_in
-    VALUE = 1
-    
+
     def ensure_user_logged_in
         unless current_user
             redirect_to "/"
@@ -12,11 +11,8 @@ class ApplicationController < ActionController::Base
         return @current_user if @current_user
 
         current_user_id = session[:current_user_id]
-        if current_user_id.present?
-            User.increment_counter(:sign_in_count,current_user_id)
-            @current_user = User.find(current_user_id)
-        end
-       
+        @check_firstlogin_user = session[:bool_user] 
+        @current_user = User.find(current_user_id) if current_user_id.present?
     end
 
    
@@ -31,11 +27,8 @@ class ApplicationController < ActionController::Base
         return @current_owner if @current_owner
 
         current_owner_id = session[:current_owner_id]
-        if current_owner_id.present?
-            check
-            @model.increment_counter(:sign_in_count,current_owner_id)
-            @current_owner = check
-         end
+        @check_firstlogin_owner = session[:bool_owner] 
+        @current_owner = check if current_owner_id.present?
     end
     
         
@@ -47,6 +40,11 @@ class ApplicationController < ActionController::Base
                   return current
                end
           end
+    end
+
+    def category
+        @category = params[:menu_category]
+        @menus_category = Menu.where(menu_category: @category) 
     end
    
 end

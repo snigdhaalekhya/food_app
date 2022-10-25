@@ -1,5 +1,4 @@
 module MainHelper
-    MENU_ROOT = "/menus"
 
     def currentuser_model(model)
       model.of_user(current_user)
@@ -34,11 +33,30 @@ module MainHelper
     end
 
     def method_active_orders
-        currentuser_model(Order).where.not(status: ["Delivered", "Confirm Success","Cancelled"])           
+        currentuser_model(Order).where.not(status: AllConstants::ACTIVE_ORDERS )           
     end
 
     def method_completed_orders
-        currentuser_model(Order).where(status: ["Delivered", "Confirm Success"])
+        currentuser_model(Order).where(status: AllConstants::COMPLETED_ORDERS)
     end
 
+    def total_cart_count
+        cart_totalcount = 0
+        currentuser_model(Cart).each do |cart|
+            cart_totalcount = cart_totalcount + cart.count
+        end
+        return cart_totalcount
+    end
+
+    def total_cost(parameter)
+     total_cost = 0
+      parameter.menu.split("+") do |o|
+        str = o.split("*")
+        total_cost = str[2].to_i + total_cost
+      end
+      return total_cost.to_s
+    end
 end 
+
+
+    

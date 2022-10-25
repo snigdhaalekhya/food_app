@@ -1,7 +1,7 @@
 <body class = "middle">
 <div class = "displaycard">
-<section class = "UserNew">
-<%= form_for Menu.cache1(@menu_edit) do |form| %>
+<section>
+<%= form_for Menu.cache_modelrecords(@menu_edit) do |form| %>
 <br>
 <br>
 
@@ -17,7 +17,7 @@
  <section class = "display">
 <p class = "FormInput-label"> Menu_Category<section class = "mandatory">*</section> </p>
 </section>
- <p class =  "form-input Form-input-menus"><%= form.select :menu_category, ["Breakfast", "Lunch", "Snacks", "Dinner"], class:"dropdown_menu",  placeholder: "Select category"%></p>
+ <p class =  "form-input Form-input-menus"><%= form.select :menu_category, AllConstants::CATEGORY, class:"dropdown_menu",  placeholder: "Select category"%></p>
  </div>
  <div class = "Form-section-menu">
  <section class = "display">

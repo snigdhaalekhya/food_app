@@ -2,40 +2,40 @@ class CartsController < ApplicationController
   before_action :find_menuid, only: [:show, :remove]
   include MainHelper
 
-
     def index      
     end
     
     def show
        cart_menuid = find_cartmenuid
-        if cart_menuid.present?
-            cart = find_cartmenuid 
-            cart.count = cart.count + 1
+        if cart_menuid.present? 
+            cart_menuid.count = cart_menuid.count + 1
         else
-            cart = Cart.cart_create(current_user.id , find_menuid.id , VALUE)
+            cart_menuid = Cart.new(user_id:current_user.id , menu_id:find_menuid.id , count:AllConstants::VALUE)
         end
-        if cart.save
+        if cart_menuid.save
             redirect_to main_index_path
         end   
     end
 
     def remove
-        cart_menuid = find_cartmenuid
-          if cart_menuid.present?
-           if cart_menuid.count >= 1
-            cart_menuid.count = cart_menuid.count - 1
-            if cart_menuid.count == 0
-              cart_menuid.destroy 
-             end 
-            cart_menuid.save
-           end
-            redirect_to main_index_path
-          end
-      end
+      cart_menuid = find_cartmenuid
+      if cart_menuid.present?
+        if cart_menuid.count >= 1	           
+         cart_menuid.count = cart_menuid.count - 1	 
+            if cart_menuid.count == 0	          
+              cart_menuid.destroy 	            
+            end           
+         cart_menuid.save	           
+         redirect_to main_index_path 	            
+        end	                     
+      else	         
+         redirect_to main_index_path	           
+      end	     
+    end
 
       private
       def find_menuid
-        menu = Menu.find(params[:id])
+        Menu.find(params[:id])
       end
 
       def find_cartmenuid

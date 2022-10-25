@@ -9,15 +9,15 @@ class OwnersController < ApplicationController
 
     def create
      owner = findby_params(email: params[:email])
-     owner = Owner.owner_create(params[:name] , params[:email] , params[:password] , params[:address])       
-     if owner
+      if owner
          flash[:error]="This email is already registered. Please retry."
          redirect_to new_owner_path 
-     else
-         
-          session[:current_owner_id] = owner.email
+     else   
+          owner=Owner.new(name: params[:name] , email: params[:email] , password: params[:password] ,  address: params[:address])   
            if owner.save
-              redirect_to new_user_path
+              session[:current_owner_id] = owner.email
+              session[:bool_owner] = true
+              redirect_to orders1_index_path
             else
                flash[:error] = owner.errors.full_messages.join(", ")
                redirect_to new_owner_path

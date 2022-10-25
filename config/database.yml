@@ -18,14 +18,16 @@ development:
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
+# Do not set this db to
+#  the same as development or production.
 test:
-  <<: *default
-  host: localhost
-  user: root
-  password: changeme
-  database: test_food_db
+  test:
+    <<: *default
+    host: localhost
+    user: root
+    password: changeme
+    database: test_food_db
 
-production:
-  <<: *default
-  database: prod_food_db
+# production:
+#   <<: *default
+#   database: prod_food_db

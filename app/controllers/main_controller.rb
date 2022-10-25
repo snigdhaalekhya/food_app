@@ -1,5 +1,5 @@
 class MainController < ApplicationController
-    
+    before_action :category, only: [:category_wise]
     def index
         if !params[:search].blank?
             @results = Menu.search(params[:search])     
@@ -7,6 +7,6 @@ class MainController < ApplicationController
     end
 
     def category_wise
-        @menus_category = Menu.where(menu_category: params[:menu_category])
+       category
     end 
 end

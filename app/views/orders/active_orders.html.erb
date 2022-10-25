@@ -1,9 +1,9 @@
 <body> 
 <div class = "main_card">
 <section class = "width">
-  <p class = "SidebarComponents"> <%= link_to "All Orders", orders_path, class:" SidebarComponentsRestaurantSide orders_sidebarcomponents"%></p>
- <p class = "SidebarComponents"> <%= link_to "Active Orders", user_active_orders_path, class:"SidebarComponentsRestaurantSide orders_sidebarcomponents"%></p>
-  <p class = "SidebarComponents"><%= link_to "Completed Orders", user_completed_orders_path, class:"SidebarComponentsRestaurantSide orders_sidebarcomponents"%></p>
+  <p class = "SidebarComponents"> <%= link_to "All Orders", orders_path, class:" RestaurantSideBarComponents orders_sidebarcomponents"%></p>
+ <p class = "SidebarComponents"> <%= link_to "Active Orders", user_active_orders_path, class:"RestaurantSideBarComponents orders_sidebarcomponents"%></p>
+  <p class = "SidebarComponents"><%= link_to "Completed Orders", user_completed_orders_path, class:"RestaurantSideBarComponents orders_sidebarcomponents"%></p>
 </section>
 <section class = "style_card">
 <% active_orders = method_active_orders.cachemethod.sort_by(&:updated_at).reverse%>
@@ -22,7 +22,7 @@
      </tr>
      </table>
      <p class = "orders_status">Status: <%= order.status %></p>
-      <% if order.status=="Pending"%>
+      <% if order.status == AllConstants::PENDING %>
       <section class = "date_style">
       <p class = "on"> Ordered on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
@@ -33,8 +33,8 @@
       <p class = "on"> Ordered on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
       <p class = "date date_orders_active"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
-     <% time_diff=(order.updated_at - order.created_at) %>
-      <% time_diff=(time_diff / 1.hour).round %>
+     <% time_diff = (order.updated_at - order.created_at) %>
+      <% time_diff = (time_diff / 1.hour).round %>
       <% if time_diff > 24 %>
         <p class = "">(<%= ((order.updated_at - order.created_at)/ 1.day).round%> days ago )</p>
       <% else %>
@@ -48,7 +48,6 @@
       </section>
       <% end %>
       <p class = "menu">
-      <% cost=0 %>
     <table class = "orders">
     <tr class = "orders_tr">
     <th class = "orders_th">Items</th>
@@ -60,14 +59,13 @@
         <% str= o.split("*")%>
        <td class = "orders_td "> <%= str[0]%></td>
         <td class = "orders_td "><%= str[1]%></td>
-        <% cost=str[2].to_i+cost%>
        <td class = "orders_td "><%= str[2]+" ₹"%></td>
        </tr>
       <%end%>
       <br>
       </p>
     </table>
-      <p class = "Total_cost">Total: &nbsp;&nbsp;<%= cost.to_s+" ₹"%></p>
+      <p class = "Total_cost">Total: &nbsp;&nbsp;<%= total_cost(order)+" ₹"%></p>
 </div>
 
 <% end %>

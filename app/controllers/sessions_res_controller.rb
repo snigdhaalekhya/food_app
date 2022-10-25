@@ -11,6 +11,7 @@ class SessionsResController < ApplicationController
         owner = identify
         if  identity && owner && owner.authenticate(params[:password]) 
           session[:current_owner_id] = owner.email
+          session[:bool_owner] = false
           redirect_to orders1_index_path
         else
           flash[:error] = "Your login attempt was invalid. Please retry."

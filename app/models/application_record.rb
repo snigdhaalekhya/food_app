@@ -10,7 +10,7 @@
             Rails.cache.fetch('model') {model.to_a}
         end  
 
-        def self.cache1(model)
+        def self.cache_modelrecords(model)
             Rails.cache.fetch('model') {model}
        end
 end

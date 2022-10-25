@@ -14,9 +14,10 @@ class WorkersController < ApplicationController
          flash[:error] = "This mobile no is already registered. Please retry."
          redirect_to new_worker_path 
       else
-          worker = Worker.worker_create(params[:name] , params[:mobile_no] , params[:email] , params[:password] , params[:address])
-          session[:current_worker_id] = worker.id
+          worker = Worker.new(name:params[:name] , mobile_no:params[:mobile_no] , email:params[:email] , password:params[:password] , address:params[:address])
             if worker.save
+               # session[:current_owner_id] = worker.email
+               # session[:bool_owner] = true
                redirect_to workers_path
             else
                 flash[:error] = worker.errors.full_messages.join(", ")

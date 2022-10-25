@@ -2,22 +2,13 @@
 <html>
   <head>
     <title>FoodApp</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %> 
-    <%= javascript_importmap_tags %>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
   </head>
 
   <body>
   <% if @current_user %>
-     <% if @current_user.sign_in_count <=1 %>
-        <p class = "UserHeader"> Welcome <%= @current_user.name%>!</p>
-     <% end %>
-
 
   <div class = "action">
    <div class = "profile" onclick="menuToggle();">
@@ -60,13 +51,12 @@
   <%= link_to "My Orders", orders_path, class:"SideBarComponentsUsersSide"%>
   <%= link_to "Cart", carts_path, class:"CartComponent"%>
   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKGxujYqqoJ2wjE-cUDwfmfhjX-ls8t7TAcwcfgjd5LspLpQnT7-pXfP_pVapr9qF1kZQ&usqp=CAU" class = "cart_image" > 
-   <% c = 0%>
-  <% currentuser_model(Cart).each do |cart|%>
-    <%c = c+cart.count%>
+   <% cart_notification_count = 0%>
+  
+  <% if total_cart_count != 0 %>
+  <%= tag.span total_cart_count, class: "notification_color"%>
   <% end %>
-  <% if c!=0%>
-  <%= tag.span c, class: "notification_color"%>
-  <% end %>
+  
   <input type = "image" class = "notification_image" src="https://icones.pro/wp-content/uploads/2022/02/icone-de-cloche-grise.png"  onclick = "notificationToggle();">
    <%= tag.span  method_status("Delivered").count, {class:"notification_color"}%>
   <div class = "notification_action">
@@ -91,9 +81,6 @@
   <% end%>
 
 <% if @current_owner %>
- <% if @current_owner.sign_in_count <= 1 %>
-      <p class = "UserHeader"> Welcome <%= @current_owner.name%>!</p>
-  <% end %>
   <div class = "action">
    <div class = "profile" onclick="menuToggle();">
    <img class = "image" src="https://media.istockphoto.com/vectors/user-member-vector-icon-for-ui-user-interface-or-profile-face-avatar-vector-id1130884625?k=20&m=1130884625&s=612x612&w=0&h=OITK5Otm_lRj7Cx8mBhm7NtLTEHvp6v3XnZFLZmuB9o=">

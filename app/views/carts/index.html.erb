@@ -1,5 +1,4 @@
 <body>
- <% cart_totalcount=0%>
 <div class = "main_card" class = "display_css">
 <section class = "card_cartsindex">
 <table>
@@ -9,13 +8,12 @@
     <th class = "carts_th" >Quantity</th>
     <th class = "carts_th" >Cost</th>
 <tr>
-<% cost=0%>
+<% cost = 0%>
 <% currentuser_model(Cart).cachemethod.each do |cart|%>
 <tr>
-    <% if Menu.find_by(id: cart.menu_id).present?%>
+    <% if Menu.find(cart.menu_id).present?%>
     <th class = "orders_th_name"><%= Menu.find(cart.menu_id).menu_name %> </th>
     <th class = "orders_th_name" > <%= cart.count %></th>
-    <% cart_totalcount = cart_totalcount + cart.count%>
     <% cost=cost+(cart.count*Menu.find(cart.menu_id).menu_cost)%>
      <th class = "orders_th_name" > <%= c = cart.count*Menu.find(cart.menu_id).menu_cost %> ₹</th>
     <% else %>
@@ -25,7 +23,7 @@
 <% end %>
 <tr>
     <th class = "carts_th_total">Total </th>
-    <th class = "carts_th_total" ><%= cart_totalcount%></th>
+    <th class = "carts_th_total" ><%= total_cart_count%></th>
     <th class = "carts_th_total" > <%= cost %> ₹</th>
 </tr>
 
