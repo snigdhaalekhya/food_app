@@ -1,15 +1,15 @@
 class SessionsResController < ApplicationController 
     skip_before_action :ensure_user_logged_in
-    before_action :identify, only: [:create, :update_password]
-    
+   
     def new
     end
     
     def create
+      # debugger
       identity = params[:identity]
-      if identity
-        owner = identify
-        if  identity && owner && owner.authenticate(params[:password]) 
+      if !identity.blank?
+        owner = method_identify
+        if  owner && owner.authenticate(params[:password]) 
           session[:current_owner_id] = owner.email
           session[:bool_owner] = false
           redirect_to orders1_index_path
@@ -32,7 +32,7 @@ class SessionsResController < ApplicationController
     def update_password
       identity = params[:identity]
       if identity
-        owner = identify
+        owner = method_identify
           if owner
             new_password = params[:password]
             confirm_password = params[:password_confirm]
@@ -67,7 +67,7 @@ class SessionsResController < ApplicationController
     end
 
     private
-    def identify
+    def method_identify
       identity = params[:identity]
         if identity == "Owner"
           owner = Owner.find_by(email: params[:email])

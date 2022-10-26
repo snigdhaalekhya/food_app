@@ -6,6 +6,7 @@ class WorkersController < ApplicationController
    end
  
    def create
+      debugger
       worker = findby_params(email: params[:email])
       if worker
          flash[:error] = "This email is already registered. Please retry."
@@ -16,8 +17,6 @@ class WorkersController < ApplicationController
       else
           worker = Worker.new(name:params[:name] , mobile_no:params[:mobile_no] , email:params[:email] , password:params[:password] , address:params[:address])
             if worker.save
-               # session[:current_owner_id] = worker.email
-               # session[:bool_owner] = true
                redirect_to workers_path
             else
                 flash[:error] = worker.errors.full_messages.join(", ")

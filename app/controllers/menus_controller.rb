@@ -3,7 +3,6 @@ class MenusController < ApplicationController
 
    skip_before_action :ensure_user_logged_in  
    before_action :ensure_owner_logged_in
-   before_action :find_id, only: [:edit , :update , :destroy]
    before_action :category, only: [:category_wise]
 
 
@@ -34,8 +33,8 @@ class MenusController < ApplicationController
     end
 
     def update
-      menu = find_id
-      menu.update(menu_name: params[:menu][:menu_name] , menu_description: params[:menu][:menu_description] , menu_category: params[:menu][:menu_category] , menu_cost: params[:menu][:menu_cost] , menu_image: params[:menu][:menu_image] )
+      @menu = Menu.where(id: params[:id])
+      @menu.update(menu_name: params[:menu][:menu_name], menu_description: params[:menu][:menu_description], menu_category: params[:menu][:menu_category], menu_cost: params[:menu][:menu_cost], menu_image: params[:menu][:menu_image] )
       redirect_to AllConstants::MENU_ROOT
     end
 

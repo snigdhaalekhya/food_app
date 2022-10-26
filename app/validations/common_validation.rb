@@ -10,7 +10,7 @@ module CommonValidation
         validates :name, presence: true, length: {maximum: 18}
         validates :email, presence: true
         validates :address, presence: true
-        validates :password, presence: true, format: CommonValidation::PASSWORD_REQUIREMENTS
+        validates :password, presence: true, format: PASSWORD_REQUIREMENTS
     
          has_secure_password
     end

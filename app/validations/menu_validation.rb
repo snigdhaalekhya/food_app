@@ -2,7 +2,7 @@ module MenuValidation
   extend ActiveSupport::Concern
   included do
     MENU_NAME = /\A
-       ^[a-zA-Z]*$
+       ^[a-zA-Z ]*$
        /x 
      validates :menu_name, presence: true, length: {maximum: 18}, format: MENU_NAME
      validates :menu_category, presence: true

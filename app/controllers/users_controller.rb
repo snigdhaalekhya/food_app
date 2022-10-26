@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     end
 
     def create
+    #  debugger
      user = findby_params(mobile_no: params[:mobile_no])
      if user
          flash[:error] = "This mobile number is already registered. Please retry."

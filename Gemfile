@@ -84,3 +84,5 @@ group :test do
 end
 
 gem 'kaminari'
+
+gem 'rack-test', group: :test

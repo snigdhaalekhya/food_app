@@ -1,16 +1,17 @@
 class CartsController < ApplicationController 
-  before_action :find_menuid, only: [:show, :remove]
+  # before_action :find_menuid, only: [:show, :remove]
   include MainHelper
 
     def index      
     end
     
     def show
+      #  debugger
        cart_menuid = find_cartmenuid
         if cart_menuid.present? 
             cart_menuid.count = cart_menuid.count + 1
         else
-            cart_menuid = Cart.new(user_id:current_user.id , menu_id:find_menuid.id , count:AllConstants::VALUE)
+            cart_menuid = Cart.new(user_id:current_user.id , menu_id:find_menuid.id , count:AllConstants::VALUE , owner_id: AllConstants::VALUE)
         end
         if cart_menuid.save
             redirect_to main_index_path
