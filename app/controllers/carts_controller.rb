@@ -6,9 +6,9 @@ class CartsController < ApplicationController
     end
     
     def show
-      #  debugger
+      # debugger
        cart_menuid = find_cartmenuid
-        if cart_menuid.present? 
+        if cart_menuid.present?
             cart_menuid.count = cart_menuid.count + 1
         else
             cart_menuid = Cart.new(user_id:current_user.id , menu_id:find_menuid.id , count:AllConstants::VALUE , owner_id: AllConstants::VALUE)
@@ -19,6 +19,7 @@ class CartsController < ApplicationController
     end
 
     def remove
+      # debugger
       cart_menuid = find_cartmenuid
       if cart_menuid.present?
         if cart_menuid.count >= 1	           
@@ -40,6 +41,7 @@ class CartsController < ApplicationController
       end
 
       def find_cartmenuid
+        # debugger
         currentuser_model(Cart).find_by(menu_id: find_menuid.id)
       end
 end

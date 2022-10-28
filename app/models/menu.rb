@@ -2,7 +2,7 @@ class Menu < ApplicationRecord
     include MenuValidation
 
     def self.search(search)
-        where(["menu_name LIKE?","%#{search}%"]).uniq
+        all.where(["menu_name LIKE?","%#{search}%"])
     end
     
 end

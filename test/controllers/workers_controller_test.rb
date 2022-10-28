@@ -21,21 +21,50 @@ class WorkersControllerTest < ActiveSupport::TestCase
 
   def test_worker_create
     value = {name: "name", mobile_no: 1234567890, email:"email@email", password: "Abcdef@1", address:"worker"}
-    post "/workers", value
-    puts "success"
+    response = post "/workers", value
+    #assert_equal(response.header["Location"],"http://example.org/workers")
+    assert_equal(response.status,302)
+  end
+
+  def test_worker_create_notsuccess_without_tendigit_mobileno
+    value = {name: "name", mobile_no: 1234567, email:"email@email", password: "Abcdef@1", address:"worker"}
+    response = post "/workers", value
+    #assert_equal(response.header["Location"],"http://example.org/workers")
+    assert_equal(response.status,302)
+  end
+
+  def test_worker_createnotsuccess_withoutemail
+    value = {name: "name", mobile_no: 1234567890, email:"", password: "Abcdef@1", address:"worker"}
+    response = post "/workers", value
+    #assert_equal(response.header["Location"],"http://example.org/workers")
+    assert_equal(response.status,302)
+  end
+
+  def test_worker_createnotsuccess_without_notfollowed_passwordrules
+    value = {name: "name", mobile_no: 1234567890, email:"email@email", password: "Abcdef", address:"worker"}
+    response = post "/workers", value
+    #assert_equal(response.header["Location"],"http://example.org/workers")
+    assert_equal(response.status,302)
+  end
+  
+  def test_worker_createnotsuccess_without_allrequiredfields
+    value = {name: "", mobile_no:"" , email:"", password: "", address:""}
+    response = post "/workers", value
+    #assert_equal(response.header["Location"],"http://example.org/workers")
+    assert_equal(response.status,302)
   end
 
   def test_worker_email_check
     field_value = {email: @worker.email }
-    post "/users", field_value 
-    puts "This email is already registered. Please retry."
-    # assert_redirected_to new_user_path
+    response = post "/workers", field_value 
+    #assert_equal(response.header["Location"],"http://example.org/workers/new")
+    assert_equal(response.status,302)
   end
 
   def test_worker_mobileno_check
     field_value = {mobile_no: @worker.mobile_no }
-    post "/users", field_value 
-    puts "This mobile no is already registered. Please retry."
-    # assert_redirected_to new_user_path
+    response = post "/workers", field_value 
+    #assert_equal(response.header["Location"],"http://example.org/workers/new")
+    assert_equal(response.status,302)
   end
 end

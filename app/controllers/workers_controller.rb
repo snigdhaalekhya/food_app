@@ -6,7 +6,7 @@ class WorkersController < ApplicationController
    end
  
    def create
-      debugger
+      # debugger
       worker = findby_params(email: params[:email])
       if worker
          flash[:error] = "This email is already registered. Please retry."

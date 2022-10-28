@@ -7,11 +7,12 @@ class OrdersResController < ApplicationController
 
 
     def update
+        # debugger
         order_id = Order.find(params[:id])
         order_id.status = params[:status]
         if order_id.save
            NotifierMailer.with(order: order_id).send_mail_status.deliver_now
-            redirect_to orders1_index_path
+           redirect_to orders1_index_path
         end
     end
      

@@ -43,6 +43,7 @@ class ApplicationController < ActionController::Base
     end
 
     def category
+        # debugger
         @category = params[:menu_category]
         @menus_category = Menu.where(menu_category: @category) 
     end

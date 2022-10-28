@@ -58,6 +58,7 @@ end
     end 
 
     def destroy
+        # debugger
         session[:current_user_id] = nil
         current_user = nil
         redirect_to new_user_path

@@ -10,6 +10,7 @@ class MenusController < ApplicationController
     end
 
     def create
+      #  debugger
            menu = Menu.new(menu_name:params[:menu_name] , menu_category:params[:menu_category] , menu_cost:params[:menu_cost] , menu_description:params[:menu_description] , menu_image: params[:menu_image] )    
             if menu.save
                redirect_to AllConstants::MENU_ROOT       
@@ -29,17 +30,20 @@ class MenusController < ApplicationController
 
 
     def edit
+      # debugger
       @menu_edit = find_id
     end
 
     def update
-      @menu = Menu.where(id: params[:id])
-      @menu.update(menu_name: params[:menu][:menu_name], menu_description: params[:menu][:menu_description], menu_category: params[:menu][:menu_category], menu_cost: params[:menu][:menu_cost], menu_image: params[:menu][:menu_image] )
+      # debugger
+      menu = find_id
+      menu.update(menu_name: params[:menu][:menu_name], menu_description: params[:menu][:menu_description], menu_category: params[:menu][:menu_category], menu_cost: params[:menu][:menu_cost], menu_image: params[:menu][:menu_image] )
       redirect_to AllConstants::MENU_ROOT
     end
 
 
     def destroy
+        # debugger
         find_id.destroy
         redirect_to AllConstants::MENU_ROOT
     end

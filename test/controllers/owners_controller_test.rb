@@ -2,7 +2,7 @@ require_relative '../test_helper'
 require "action_controller/railtie"
 
 class OwnersControllerTest < ActiveSupport::TestCase
-
+ include ActionDispatch::Assertions
   def setup
     super
     before_all
@@ -15,18 +15,35 @@ class OwnersControllerTest < ActiveSupport::TestCase
   end
 
   def test_owner_create
-    value = {name: "name", email:"email@email", password: "Abcdef@1", address:"worker"}
-    post "/owners", value
-    # puts "success"
-    assert_redirected_to "/orders1"
+     value = {name: "name", email:"email@email", password: "Abcdef@1", address:"address"}
+     response =  post "/owners", value
+     #assert_equal(response.header["Location"],"http://example.org/orders1")
+     assert_equal(response.status,302)
+  end
+
+  def test_owner_create_notsuccess_withoutemail
+    value  = { name: "name" , email: "" , password:"Abcdef@1" , address:"address"}
+    response = post  "/owners", value
+    assert_equal(response.status,302)
+  end
+
+  def test_owner_create_notsuccess_without_notfollowed_passwordrules
+    value  = { name: "name" ,email: "email1@email1" , password:"Abcdefghi" , address:"address"}
+    response = post  "/owners", value
+    assert_equal(response.status,302)
+  end
+
+  def test_owner_create_notsuccess_without_allrequiredfields
+    value  = { name: "" ,  email: "" , password:"" , address:""}
+    response = post  "/owners", value
+    assert_equal(response.status,302)
   end
 
   def test_owner_email_check
-    field_value = {email: @owner.email }
-    post "/owners", field_value 
-    # puts "This email is already registered. Please retry."
-    assert_equal "This email is already registered. Please retry.", flash[:error]
-    assert_redirected_to "/owners/new"
+    value = {email: @owner.email }
+    response = post "/owners", value 
+    #assert_equal(response.header["Location"],"http://example.org/owners/new")
+    assert_equal(response.status,302)
   end
 
 end

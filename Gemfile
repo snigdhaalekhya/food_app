@@ -70,13 +70,13 @@ group :development do
   # gem "spring"
 end
  
-# group :test do
+ group :test do
 #   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
 #   gem "capybara"
-#   gem 'poltergeist'
+   gem 'poltergeist'
 #   # gem "selenium-webdriver"
 #   gem "webdrivers"
-# end
+ end
 
 group :test do
   gem "minitest-rails"
@@ -86,3 +86,5 @@ end
 gem 'kaminari'
 
 gem 'rack-test', group: :test
+# gem 'assert', group: :test
+gem 'assert-rails', group: :test

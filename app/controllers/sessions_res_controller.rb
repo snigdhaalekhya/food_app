@@ -2,6 +2,7 @@ class SessionsResController < ApplicationController
     skip_before_action :ensure_user_logged_in
    
     def new
+      # debugger
     end
     
     def create
@@ -30,8 +31,9 @@ class SessionsResController < ApplicationController
     end
 
     def update_password
+      # debugger
       identity = params[:identity]
-      if identity
+      if !identity.blank?
         owner = method_identify
           if owner
             new_password = params[:password]
