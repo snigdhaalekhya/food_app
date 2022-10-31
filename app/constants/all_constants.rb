@@ -1,15 +1,16 @@
 module AllConstants
     MENU_ROOT = "/menus"
     VALUE = 1
-    CATEGORY = ["Breakfast", "Lunch", "Snacks", "Dinner"]
-    STATUS = ["Pending","Cancelled", "Add to queue", "Preparing", "Delivered"]
-    ALL_STATUS = ["Pending","Cancelled", "Add to queue", "Preparing", "Delivered","Confirm Success"]
-    ACTIVE_ORDERS = ["Delivered", "Confirm Success","Cancelled"]
-    COMPLETED_ORDERS =  ["Delivered", "Confirm Success"]
+    CATEGORY = %w(Breakfast Lunch Snacks Dinner)
+    STATUS = %w(Pending Cancelled Add\ to\ queue Preparing Delivered)
+    ALL_STATUS = %w(Pending Cancelled Add\ to\ queue Preparing Delivered Confirm\ Success)
+    ACTIVE_ORDERS = %w(Delivered Confirm\ Success Cancelled)
+    COMPLETED_ORDERS = %w(Delivered Confirm\ Success)
     PENDING = "Pending"
     DELIVERED = "Delivered"
     PREPARING = "Preparing"
     CANCELLED = "Cancelled"
-    ADD_To_QUEUE = "Add to queue"
-
+    CONFIRM_SUCCESS = "Confirm Success"
+    ADD_TO_QUEUE = "Add to queue"
+    IMAGE = "https://media.istockphoto.com/photos/chicken-biriyani-picture-id1345624336?k=20&m=1345624336&s=612x612&w=0&h=0TSxrGelLdgZnvhZlfIcOq07y03Ioym4hRZOivZeXfI="
 end

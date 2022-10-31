@@ -1,12 +1,7 @@
 class OwnersController < ApplicationController
     skip_before_action :ensure_user_logged_in
 
-
-    def new
-    end
-
     def create
-    #  debugger
      owner = findby_params(email: params[:email])
       if owner
          flash[:error]="This email is already registered. Please retry."

@@ -50,30 +50,30 @@ function closeNav() {
 <% else %>
 <% if params[:name] && params[:status].blank?&& params[:ordered].blank?%>
   <% customer_id = User.find_by(name: params[:name]).id %>
-  <% customer_orders=Order.where(user_id: customer_id).to_a %>
+  <% customer_orders = Order.where(user_id: customer_id).to_a %>
 
 <% elsif params[:status]&& params[:name].blank? && params[:ordered].blank? %>
   <% customer_orders=Order.where(status: params[:status]).to_a %>
   
 <% elsif params[:ordered]&& params[:name].blank?&& params[:status].blank?%>
-  <% customer_orders=Order.where(created_at: Date.parse(params[:ordered].to_s).beginning_of_day..Date.parse(params[:ordered].to_s).end_of_day).to_a %>
-
+<% customer_orders = Order.where(created_at: params[:ordered].to_s.to_date) %>
+ 
 <% elsif params[:name]&& params[:status] && params[:ordered].blank? %>
   <% customer_id = User.find_by(name: params[:name]).id %>
-   <% customer_orders=Order.where(user_id: customer_id).and(Order.where(status: params[:status])) %> 
+   <% customer_orders = Order.where(user_id: customer_id).and(Order.where(status: params[:status])) %> 
 
 <% elsif params[:name]&& params[:ordered] && params[:status].blank? %>
 <% customer_id = User.find_by(name: params[:name]).id %>
-<% customer_orders=Order.where(user_id: customer_id).and(Order.where(created_at: Date.parse(params[:ordered].to_s).beginning_of_day..Date.parse(params[:ordered].to_s).end_of_day)) %>
+<% customer_orders = Order.where(user_id: customer_id).and(Order.where(created_at: params[:ordered].to_s.to_date)) %>
 
 <% elsif params[:status]&& params[:ordered] && params[:name].blank? %>
-<% customer_orders=Order.where(status: params[:status]).and(Order.where(created_at: Date.parse(params[:ordered].to_s).beginning_of_day..Date.parse(params[:ordered].to_s).end_of_day)) %>
+<% customer_orders = Order.where(status: params[:status]).and(Order.where(created_at: params[:ordered].to_s.to_date)) %>
 
 <% elsif params[:name]&& params[:status] && params[:ordered] %>
 <% customer_id = User.find_by(name: params[:name]).id %>
-<% customer=Order.where(user_id: customer_id).and(Order.where(created_at: Date.parse(params[:ordered].to_s).beginning_of_day..Date.parse(params[:ordered].to_s).end_of_day)) %>
+<% customer = Order.where(user_id: customer_id).and(Order.where(created_at: params[:ordered].to_s.to_date)) %>
 <% customer.to_a %>
-<% customer_orders=Order.where(status: params[:status]).and(customer)%>
+<% customer_orders = Order.where(status: params[:status]).and(customer)%>
 
 <% end %>
 <% end %>

@@ -14,8 +14,10 @@
   <% end %>
   
 </section>
-<% if params[:search].blank? %>
-<% Menu.cachemethod.each do |menu|%>
+<% if !params[:search].blank? && @result_count<=0 %>
+   <p>Oops no records found!! <p>
+<% else %>
+<% @results.cachemethod.each do |menu|%>
 <div class = "row">
   <div class = "column">
     <div class = "displaycard">
@@ -43,42 +45,8 @@
       <br>
     </div>
   </div>
-
-<%end%>
-<% elsif @results.count>0%>
-       <% @results.each do |result| %>
-       <div class = "row">
-  <div class = "column">
-    <div class = "displaycard">
-     <br>
-     <img src="<%= result.menu_image%>" class = "menu_image menu_image_users">
-      <p class = "name"><%= result.menu_name %></p>
-      <p class = "description"><%= result.menu_description %></p>
-      <p class = "cost"><%= result.menu_cost%> ₹</p>
-      <div class = "buttoncard" >
-      <%= form_with(url: "/carts/#{result.id}"  , method: "get") do %>
-         <input type = "submit" value = "+" class = "buttons_plus_minus plus" name="Add" id = "Add"  >     
-      <% end %>
-     
-       <section class = "count_show">
-         <% carts_menuid = currentuser_model(Cart).where(menu_id: result.id)%>
-         <% carts_menuid.each do |cart|%>
-         <%= tag.span cart.count, class:"count_show"%>   
-         <% end%>
-      </section>
-
-      <%= form_with(url: "/carts/#{result.id}/remove"  , method: "get") do %>
-         <input type = "submit" value = "-" class = "buttons_plus_minus minus" name = "Add" id = "Subtract"  > 
-      <% end%>
-      </div>
-      <br>
-    </div>
-  </div>
-       <% end %>
-<% else %>
-<p> Oops not found! </p>
-<% end %>
-
+  <% end %>
+  <% end %>
 </section>
 </div>
 </body>

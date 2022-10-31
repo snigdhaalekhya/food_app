@@ -16,7 +16,7 @@
   <br>
   <br>
   <hr>
-<% orders_completed=Order.orders1cachecompleted.to_a%>
+<% orders_completed=Order.cache(Order.where(status: AllConstants::DELIVERED)).to_a%>
 <% orders_completed.each do |order|%>
     <div class = "main_card_orders">
      <br>

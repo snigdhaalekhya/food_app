@@ -81,6 +81,9 @@ end
 group :test do
   gem "minitest-rails"
   gem 'simplecov', require: true
+  gem 'faker'
+  gem 'rubocop-faker'
+  gem 'factory_girl_rails'
 end
 
 gem 'kaminari'

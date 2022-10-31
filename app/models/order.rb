@@ -5,12 +5,4 @@ class Order < ApplicationRecord
         all.where(user_id: current_user.id)
     end
   
-    def self.orders1cache
-      Rails.cache.fetch("") {Order.where.not(status: AllConstants::ACTIVE_ORDERS)}
-    end
-    
-    def self.orders1cachecompleted
-      Rails.cache.fetch("") {Order.where(status: AllConstants::DELIVERED)}
-    end
-
 end

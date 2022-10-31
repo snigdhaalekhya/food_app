@@ -25,15 +25,7 @@ class SessionsController < ApplicationController
 end
     
 
-    def new
-    end
-
-
-    def update_password_view
-    end
-
     def update_password
-        # debugger
         if params[:mobile_no].blank? || params[:password].blank? || params[:password_confirm].blank?
                 flash[:error]="Please fill all the required fields."
                 redirect_to signin_users_update_password_path

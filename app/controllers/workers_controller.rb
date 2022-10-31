@@ -2,11 +2,7 @@ class WorkersController < ApplicationController
     skip_before_action :ensure_user_logged_in  
     before_action :ensure_owner_logged_in
  
-   def index  
-   end
- 
    def create
-      # debugger
       worker = findby_params(email: params[:email])
       if worker
          flash[:error] = "This email is already registered. Please retry."
@@ -25,12 +21,6 @@ class WorkersController < ApplicationController
       end
    end
  
-   def new
-   end
-
-   def show_customers
-   end
-   
 
    private 
     def findby_params(params = {})

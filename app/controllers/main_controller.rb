@@ -1,13 +1,14 @@
 class MainController < ApplicationController
-    before_action :category, only: [:category_wise]
+    before_action :menuwise_category, only: [:category_wise]
     def index
-        # debugger
         if !params[:search].blank?
-            @results = Menu.search(params[:search])     
+            @result_count =  Menu.search(params[:search]).count
+            if @result_count > 0  
+                @results = Menu.search(params[:search]) 
+            end 
+        elsif
+            @results = Menu.all
         end
     end
-
-    def category_wise
-       category
-    end 
+    
 end

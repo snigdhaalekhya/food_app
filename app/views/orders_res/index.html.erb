@@ -20,8 +20,7 @@
   <br>
   <br>
   <hr>
-  <%# <% @orders_queue=Order.where.not(status: "Delivered").and (Order.where.not(status: "Cancelled"))%>
-<% orders_queue = Order.orders1cache.to_a%>
+<% orders_queue = Order.cache(Order.where.not(status: AllConstants::ACTIVE_ORDERS))%>
 <% orders_queue.each do |order|%>
     <div class = "main_card_orders">
      <br>

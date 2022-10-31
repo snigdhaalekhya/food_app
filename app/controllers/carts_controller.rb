@@ -1,12 +1,7 @@
 class CartsController < ApplicationController 
-  # before_action :find_menuid, only: [:show, :remove]
   include MainHelper
 
-    def index      
-    end
-    
     def show
-      # debugger
        cart_menuid = find_cartmenuid
         if cart_menuid.present?
             cart_menuid.count = cart_menuid.count + 1
@@ -19,7 +14,6 @@ class CartsController < ApplicationController
     end
 
     def remove
-      # debugger
       cart_menuid = find_cartmenuid
       if cart_menuid.present?
         if cart_menuid.count >= 1	           
@@ -41,7 +35,6 @@ class CartsController < ApplicationController
       end
 
       def find_cartmenuid
-        # debugger
         currentuser_model(Cart).find_by(menu_id: find_menuid.id)
       end
 end

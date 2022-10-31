@@ -1,11 +1,7 @@
 class UsersController < ApplicationController
     skip_before_action :ensure_user_logged_in
     
-    def new
-    end
-
     def create
-    #  debugger
      user = findby_params(mobile_no: params[:mobile_no])
      if user
          flash[:error] = "This mobile number is already registered. Please retry."

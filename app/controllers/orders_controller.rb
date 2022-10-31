@@ -1,11 +1,7 @@
 class OrdersController < ApplicationController 
     include MainHelper
-    
-    def index
-    end
-
+   
     def create
-        #debugger
         order = Order.new(user_id:current_user.id , menu:menu_details , status:AllConstants::PENDING , owner_id:AllConstants::VALUE )
             if order.save
                  # If order is placed owner receives mail with order,customer details
@@ -18,14 +14,8 @@ class OrdersController < ApplicationController
             end     
     end
   
-    def active_orders
-    end
-
-     def completed_orders
-     end
-
+   
      def update
-        # debugger
         order_id = Order.find(params[:id])
         order_id.status = "Confirm Success"
         if order_id.save
