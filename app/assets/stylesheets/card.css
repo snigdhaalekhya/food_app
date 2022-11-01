@@ -43,6 +43,9 @@
     margin-right:10%;
     margin-left:7%;
   }
+  .time_diff{
+    margin-top:2px;
+  }
   .date
   {
     font-size:16px;
@@ -51,15 +54,11 @@
     margin-left:14%;
     margin-bottom:10px;
   }
-  .date_orders_res_all > .date
-  {
-    margin-left:11%;
-  }
-  /* .date_orders_res_all > .date
+  .date_orders_res_all 
   {
     margin-left:11%;
 
-  } */
+  }
   .date_updated{
     margin-left:8%;
   }
@@ -89,15 +88,6 @@
     width:100%
   }
 
-.dropdown{
-  padding: 6px 12px;
-   font-size:14px;
-   margin-top:20px;
-   height:40px;
-   color: white;
-   border-radius: 4px;
-   border: 1px solid transparent;
-}
 .Button{
   padding: 6px 12px;
      font-size:14px;
@@ -108,10 +98,10 @@
      border-radius: 4px;
      border: 1px solid transparent;
      color: white;
-     /* .abc{
-
-      box-shadow: border: ;;
-     } */
+}
+.dropdown{
+  margin-left:0px;
+  height:40px;
 }
 .AddMenu{
      background-color: green;
@@ -533,16 +523,6 @@ table {
   color: #890000;
   font-size:20px;
 }
-/* td, th {
-  border: 1px solid #EEEEEE;
-  text-align: center;
-  padding: 14px;
-  font-size:20px;
-}
-
-tr:nth-child(even) {
-  background-color: #EEEEEE;
-} */
 .menu_style{
   margin-left: 74.5%;
   margin-top:30px;
@@ -653,9 +633,5 @@ justify-content:space-between;
 }
 .Update_Not{
   cursor: not-allowed;
-  margin-right: 10px;
-  color: white;
   background-color: #C0C0C0;
-  border-radius: 2px;
-  border: 1px solid transparent;
 }

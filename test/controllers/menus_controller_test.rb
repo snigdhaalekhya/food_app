@@ -63,13 +63,14 @@ class MenusControllerTest < ActiveSupport::TestCase
     end
 
     def test_update_name
-        response = put "/menus/#{@menu.id}",field_value = { menu: { menu_name:"mm"}}
+        response = put "/menus/#{@menu.id}",field_value = { menu: { menu_name:"mm",menu_cost:200, menu_description: @menu.menu_description, menu_image: @menu.menu_image , menu_category: @menu.menu_category}}
+ 
         assert_equal(Menu.last.menu_name, field_value[:menu][:menu_name])
         assert_equal(response.status,302)
     end
 
     def test_update_category
-        response = put "/menus/#{@menu.id}", field_value = {menu: { menu_name:@menu.menu_name, menu_cost:@menu.menu_cost, menu_description: @menu.menu_description, menu_image: @menu.menu_image , menu_category: "Lunch"}}
+        response = patch "/menus/#{@menu.id}", field_value = {menu: { menu_name:@menu.menu_name, menu_cost:@menu.menu_cost, menu_description: @menu.menu_description, menu_image: @menu.menu_image , menu_category: "Lunch"}}
         assert_equal(Menu.last.menu_category, field_value[:menu][:menu_category])
         assert_equal(response.status,302)
     end

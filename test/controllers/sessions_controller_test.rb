@@ -71,7 +71,7 @@ class SessionsControllerTest < ActiveSupport::TestCase
   end
   
   def test_session_destroy
-    response = delete "signout_users"
+    response = delete "button_property SignOut_users"
     assert_equal(response.status,302)
   end
 end

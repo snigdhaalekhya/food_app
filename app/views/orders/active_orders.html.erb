@@ -36,13 +36,13 @@
      <% time_diff = (order.updated_at - order.created_at) %>
       <% time_diff = (time_diff / 1.hour).round %>
       <% if time_diff > 24 %>
-        <p class = "">(<%= ((order.updated_at - order.created_at)/ 1.day).round%> days ago )</p>
+        <p class = "time_diff">(<%= ((order.updated_at - order.created_at)/ 1.day).round%> days ago )</p>
       <% else %>
-       <p class = "">( <%= time_diff%> hours ago )</p>
+       <p class = "time_diff">( <%= time_diff%> hours ago )</p>
       <% end %>
       </section>
       <section class = "date_style">
-      <p class = "update_on"> Updated on: </p>
+      <p class = "on update_on"> Updated on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
       <p class = "date date_updated"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>

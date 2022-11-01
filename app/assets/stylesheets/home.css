@@ -19,9 +19,7 @@
     padding:12px;
 }
 .CartComponent{
-    text-decoration: none;
-    color: black;
-    font-size:20px;
+    padding:0px;
     margin-top:13px;
     margin-left:5px;
 }
@@ -45,23 +43,20 @@
 .User_Name{
     margin-bottom:4px;
 }
-.SignOut{
-    background-color:#970200;
+.button_property{
     border-radius: 3px;
     border: 1px solid transparent;
-    font-size: 14px;
+     font-size: 14px;
+     color: white;
+}
+.SignOut{
+    background-color:#970200;
     margin-top:5px;
     margin-left:2px;
-    color: white;
-    margin-bottom: 15px;
-   
+    margin-bottom: 15px; 
 }
 .YesHeader{
     background-color:green;
-    border-radius: 3px;
-   border: 1px solid transparent;
-    font-size: 14px;
-    color: white;
     margin-left:10px;
     margin-bottom:5px;
 }
@@ -83,17 +78,10 @@
 .Edit{
     margin-bottom: 15px;
 }
-.Edit_Not{
-    cursor: not-allowed;
-    background-color:#C0C0C0;
-    margin-left: 130px;
-}
-.Delete_Not{
-    cursor: not-allowed;
-    background-color:#C0C0C0;
-    margin-left:20px;
-}
-
+.buttoncard{
+    display: flex;
+    margin-left:250px;
+} 
 .sidebar {
     height: 100%;
     width: 0;

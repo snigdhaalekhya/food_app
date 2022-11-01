@@ -47,7 +47,7 @@
         <% if Owner.find_by(email: current_owner.email)%>
         <%= form.submit "Update",{class: "Update"} %>
         <% elsif Worker.find_by(email: current_owner.email)%>
-        <%= form.submit "Update",class: "Update_Not", disabled: "true" %>
+        <%= form.submit "Update",class: "Update Update_Not", disabled: "true" %>
         <% end %>
       </section>
       <%end%>
