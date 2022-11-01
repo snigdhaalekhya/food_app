@@ -37,7 +37,7 @@ module MainHelper
     end
 
     def method_completed_orders
-        currentuser_model(Order).where(status: AllConstants::COMPLETED_ORDERS)
+       currentuser_model(Order).where(status: AllConstants::COMPLETED_ORDERS)
     end
 
     def total_cart_count

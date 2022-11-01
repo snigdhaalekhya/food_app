@@ -112,6 +112,9 @@ body {
     width: 35px ;
     height: 35px
 }
+.notification_image:hover{
+    color: rgb(142, 0, 1);
+}
 .Flash-error{
     color: darkred;
     margin-top:75px;

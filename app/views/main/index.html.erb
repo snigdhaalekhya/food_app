@@ -32,7 +32,7 @@
       <% end %>
      
        <section class = "count_show">
-       <% carts_menuid = currentuser_model(Cart).where(menu_id: menu.id)%>
+       <% carts_menuid =currentuser_model(Cart).select{|s| s.menu_id == menu.id }%>
          <% carts_menuid.each do |cart|%>
          <%= cart.count%>   
          <% end%>

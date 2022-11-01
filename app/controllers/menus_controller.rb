@@ -23,24 +23,13 @@ class MenusController < ApplicationController
 
     def update 
       menu = find_id
-      arr1 = %w(menu.menu_name menu.menu_description menu.menu_category menu.menu_cost menu.menu_image)
-      arr2 = %w(params[:menu][:menu_name] params[:menu][:menu_description] params[:menu][:menu_category] params[:menu][:menu_cost]  params[:menu][:menu_image])
-      for i in 0..arr1.length
-        if arr1[i] != arr2[i]
-          case i
-          when 0
-            menu.update(menu_name: params[:menu][:menu_name])
-          when 1
-            menu.update(menu_description: params[:menu][:menu_description])
-          when 2
-            menu.update(menu_category: params[:menu][:menu_category])
-          when 3
-            menu.update(menu_cost: params[:menu][:menu_cost])
-          when 4
-            menu.update(menu_image:  params[:menu][:menu_image])
-          end
-        end 
-      end 
+      html_field = {menu_name:  params[:menu][:menu_name], menu_description: params[:menu][:menu_description], menu_category: params[:menu][:menu_category], menu_cost: params[:menu][:menu_cost], menu_image:  params[:menu][:menu_image] }
+      db_field = {menu_name: menu.menu_name, menu_description: menu.menu_description, menu_category:menu.menu_category, menu_cost: menu.menu_cost, menu_image: menu.menu_image}
+      html_field.each do |key,value|
+        if  value != db_field[key]
+          menu.update(key => value)
+        end
+      end
       redirect_to AllConstants::MENU_ROOT
     end
 

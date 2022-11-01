@@ -43,7 +43,6 @@ class ApplicationController < ActionController::Base
     end
 
     def menuwise_category
-        # debugger
         @category = params[:menu_category]
         if  Menu.find_by(menu_category: @category).present?
             @menus_category = Menu.where(menu_category: @category)
