@@ -1,7 +1,7 @@
 module MainHelper
 
     def currentuser_model(model)
-      model.of_user(current_user)
+         model.where(user_id: current_user.id)
     end 
 
     def currentuser_model_reverse(model)
