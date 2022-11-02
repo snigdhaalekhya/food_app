@@ -74,8 +74,7 @@ end
 #   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
 #   gem "capybara"
    gem 'poltergeist'
-#   # gem "selenium-webdriver"
-#   gem "webdrivers"
+
  end
 
 group :test do
@@ -87,10 +86,7 @@ group :test do
 end
 
  gem 'kaminari'
-# gem 'kaminari', :git => 'https://github.com/kaminari/kaminari'
-gem 'open-uri'
-gem 'web-app-theme'
 
 gem 'rack-test', group: :test
-# gem 'assert', group: :test
+
 gem 'assert-rails', group: :test
