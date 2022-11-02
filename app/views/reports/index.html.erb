@@ -23,6 +23,7 @@ function closeNav() {
 <meta name = "viewport" content = "width=device-width, initial-scale=1">
 <section class = "style_card">
 
+<section id = "main">
 <section id="mySidebar" class = "sidebar">
   <a href="javascript:void(0)" class = "closebtn" onclick = "closeNav()">×</a>
   <p class = "SidebarComponents"> <%= link_to "Orders", orders1_index_path, class:"RestaurantSideBarComponents"%></p>
@@ -31,11 +32,12 @@ function closeNav() {
   <p class = "SidebarComponents"><%= link_to "Reports", reports_path, class:"RestaurantSideBarComponents"%></p>
 </section>
 
-<section id = "main">
 <div class = "display" >
   <button class = "openbtn" onclick = "openNav()">☰</button>  
   <p class = "h1_reports_style"> Customer Reports </p>
 </div>
+<br>
+<br>
 <%= form_with(url:"/reports", method: "get", class:"style")  do |form| %>
    <p class = "dropdown">
    <%= form.select :name, User.all.map{ |t| t.name},{:prompt=>"Choose Customer name",:selected=>params[:name]},{class:"select select_reports"}%>
@@ -79,7 +81,9 @@ function closeNav() {
 <% end %>
 
 <% @customer_orders = customer_orders.page(params[:page])%>
+<br>
 <%= paginate @customer_orders%>
+<br>
 <br>
 <table>
 <thead>

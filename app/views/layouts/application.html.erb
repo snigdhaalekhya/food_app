@@ -47,7 +47,8 @@
   <div class = "main_card">
 <section class = "style_card">
  <p class = "menu_style">
-   <%= link_to "Menu", main_index_path, class:"SideBarComponentsUsersSide"%>
+<img class = "order_now_image" src = "https://cdn.w600.comps.canstockphoto.com/order-now-clip-art_csp22578022.jpg">
+   <%= link_to "Menu", main_index_path, class:"SideBarComponentsUsersSide", style: "margin-left:1200px;"%>
   <%= link_to "My Orders", orders_path, class:"SideBarComponentsUsersSide"%>
   <%= link_to "Cart", carts_path, class:"SideBarComponentsUsersSide CartComponent"%>
   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKGxujYqqoJ2wjE-cUDwfmfhjX-ls8t7TAcwcfgjd5LspLpQnT7-pXfP_pVapr9qF1kZQ&usqp=CAU" class = "cart_image" > 
@@ -71,10 +72,6 @@
   </p>
   <script>
      function notificationToggle(){
-        const toggleMenu = document.querySelector('.NotificationToggle');
-        toggleMenu.classList.toggle('active')
-     }
-     function (){
         const toggleMenu = document.querySelector('.NotificationToggle');
         toggleMenu.classList.toggle('active')
      }

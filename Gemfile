@@ -86,7 +86,10 @@ group :test do
   gem 'factory_girl_rails'
 end
 
-gem 'kaminari'
+ gem 'kaminari'
+# gem 'kaminari', :git => 'https://github.com/kaminari/kaminari'
+gem 'open-uri'
+gem 'web-app-theme'
 
 gem 'rack-test', group: :test
 # gem 'assert', group: :test

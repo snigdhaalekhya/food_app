@@ -100,7 +100,7 @@
      color: white;
 }
 .dropdown{
-  margin-left:0px;
+  margin-left:60px;
   height:40px;
 }
 .AddMenu{
@@ -524,7 +524,7 @@ table {
   font-size:20px;
 }
 .menu_style{
-  margin-left: 74.5%;
+  margin-left: 60px;
   margin-top:30px;
   display:inline-flex;
 }
@@ -565,8 +565,8 @@ table {
 }
 .queue-css{
   margin-top:30px;
-  margin-left:20px;
-  display:inline-flex"
+  margin-left:1000px;
+  display:inline-flex;
 }
 .status-color{
   color:rgb(1, 158, 0);
@@ -585,6 +585,8 @@ justify-content:space-between;
   margin-top:20px;
   margin-left:45%;
   font-size:22px;
+  color: #FF6666;
+  text-shadow: 0.5px 0.5px;
 }
 .style_card_reports{
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -635,3 +637,31 @@ justify-content:space-between;
   cursor: not-allowed;
   background-color: #C0C0C0;
 }
+.order_now_image{
+  width:50px;
+  height:50px;
+}
+nav{
+  display: inline-block;
+  border: 2px solid blue;
+  margin:0 auto;
+}
+.page {
+  margin-left: 20px;
+}
+.next{
+  margin-left: 20px;
+}
+span a{
+  text-decoration: none;
+  color:#FF007F;
+  font-size: 19px;
+}
+span.page.current{
+  text-decoration: none;
+  color:black;
+  text-shadow: 0.75px 1px;
+  font-size: 19px;
+}
+
+
