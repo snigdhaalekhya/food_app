@@ -28,11 +28,11 @@ class ApplicationController < ActionController::Base
 
         current_owner_id = session[:current_owner_id]
         @check_firstlogin_owner = session[:bool_owner] 
-        @current_owner = check if current_owner_id.present?
+        @current_owner = check_owner_identity if current_owner_id.present?
     end
     
         
-    define_method "check"  do
+    define_method "check_owner_identity"  do
           [Owner, Worker].each do |model|
                if model.find_by(email: session[:current_owner_id]).present?
                   current = model.find_by(email: session[:current_owner_id])

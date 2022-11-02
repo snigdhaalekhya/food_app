@@ -10,10 +10,10 @@
    <%= form.select :status_almost, AllConstants::COMPLETED_ORDERS,{:prompt=>"Choose status",:selected=>params[:status_almost]},{class:"select status",:onchange=>"this.form.submit()"}%>
 <% end %>
 <% if params[:status_almost].blank?%>
-  <% orders_completed = method_completed_orders.cachemethod.sort_by(&:updated_at).reverse %> 
+  <% orders_completed = users_completed_orders.cachemethod.sort_by(&:updated_at).reverse %> 
 <% else %>
    <% orders_completed = currentuser_model(Order).where(status: params[:status_almost])%>
-   <% orders_completed = currentuser_model_reverse(orders_completed) %>
+   <% orders_completed = currentuser_model_reverse_order(orders_completed) %>
    <% orders_completed = Order.cache(orders_completed)%>
 <% end %>
 <% orders_completed.each do |order|%>

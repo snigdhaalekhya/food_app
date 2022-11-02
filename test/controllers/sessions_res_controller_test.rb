@@ -100,7 +100,7 @@ class SessionsResControllerTest < ActiveSupport::TestCase
   end
 
   def test_session_destroy
-    response = delete "button_property SignOut_restaurant"
+    response = delete "/signout_restaurant"
     assert_equal(response.status,302)
   end
 end

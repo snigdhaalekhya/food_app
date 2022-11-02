@@ -21,12 +21,10 @@ class CartsController < ApplicationController
             if cart_menuid.count == 0	          
               cart_menuid.destroy 	            
             end           
-         cart_menuid.save	           
-         redirect_to main_index_path 	            
-        end	                     
-      else	         
-         redirect_to main_index_path	           
-      end	     
+         cart_menuid.save	           	            
+        end	                                
+      end	   
+      redirect_to main_index_path  
     end
 
       private

@@ -19,11 +19,11 @@ Rails.application.routes.draw do
 
   get"/signin_users/update_password" =>"sessions#update_password_view"
   post"/signin_users/update_password" =>"sessions#update_password"
-  delete "/button_property SignOut_users" => "sessions#destroy", as: :destroy_session
+  delete "/signout_users" => "sessions#destroy", as: :destroy_session
 
   get"/signin_restaurant/update_password" =>"sessions_res#update_password_view"
   post"/signin_restaurant/update_password" =>"sessions_res#update_password"
-  delete "/button_property SignOut_restaurant" => "sessions_res#destroy", as: :destroy_session_res
+  delete "/signout_restaurant" => "sessions_res#destroy", as: :destroy_session_res
 
   get"/view_user/category_wise" =>"main#category_wise"
 

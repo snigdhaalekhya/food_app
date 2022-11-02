@@ -4,7 +4,7 @@ module MainHelper
          model.where(user_id: current_user.id)
     end 
 
-    def currentuser_model_reverse(model)
+    def currentuser_model_reverse_order(model)
       currentuser_model(model).sort_by(&:updated_at).reverse
     end
 
@@ -32,11 +32,11 @@ module MainHelper
         menu.chop
     end
 
-    def method_active_orders
+    def users_active_orders
         currentuser_model(Order).where.not(status: AllConstants::ACTIVE_ORDERS )           
     end
 
-    def method_completed_orders
+    def users_completed_orders
        currentuser_model(Order).where(status: AllConstants::COMPLETED_ORDERS)
     end
 
