@@ -10,14 +10,14 @@ class OwnersControllerTest < ActiveSupport::TestCase
 
 
   def test_owner_creation
-     value = {name: Faker::Name.name[1..18], email:Faker::Internet.email, password: "Abcdef@1", address:Faker::Lorem.paragraph}
+     value = {name: Faker::Name.name[1..18], email:Faker::Internet.email, password: @owner.password, address:Faker::Lorem.paragraph}
      response =  post "/owners", value
      assert_equal(Owner.last.email, value[:email])
      assert_equal(response.status,302)
   end
 
   def test_owner_creation_notsuccess_withoutemail
-    value  = { name:Faker::Name.name[1..18] , email: "" , password:"Abcdef@1" , address:Faker::Lorem.paragraph}
+    value  = { name:Faker::Name.name[1..18] , email: "" , password:@owner.password , address:Faker::Lorem.paragraph}
     response = post  "/owners", value
     assert_equal(response.status,302)
   end

@@ -213,6 +213,26 @@
   {
     margin-top:15px;
   }
+  .user_details
+  {
+    font-size:18px;
+    margin-top:5px;
+  }
+  .order_details_text{
+    margin-left:5.5%;
+    margin-bottom:10px;
+    font-size:18px;
+    color:#21618C ;
+  }
+  .user_details_text{
+    margin-left:0%; 
+  }
+  .size{
+    width:30%;
+  }
+  .color{
+    color: #8E44AD ;
+  }
   .user_title
   {
     margin-left:50%;
@@ -249,8 +269,7 @@
   .OrderNo{
     font-size:18px;
     color:grey;
-    /* margin-bottom:14px; */
-    margin-left:7%;
+    margin-left:5.5%;
   }
   .mobile_no{
     font-size:14px;
@@ -272,7 +291,7 @@
     font-size:20px;
     color: #F73B0C;
     margin-top:10px;
-    margin-left:7%;
+    margin-left:5.5%;
     padding-bottom:20px;
   }
 .select{
@@ -302,10 +321,10 @@
   width: 11%;
   margin-left:20px;
 }
-.status{
-  width: 45%;
+.select_status{
+  width: 10%;
   margin-top:20px;
-  margin-left:25%;
+  margin-left:86.5%;
 }
 .select_menus{
   width: 30%;

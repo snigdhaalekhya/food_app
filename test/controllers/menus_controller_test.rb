@@ -15,20 +15,20 @@ class MenusControllerTest < ActiveSupport::TestCase
     end
 
     def test_menu_creation_success
-        field_value ={ menu_name: "Menuname", menu_cost: 10, menu_description:Faker::Lorem.paragraph, menu_image:AllConstants::IMAGE, menu_category: AllConstants::CATEGORY[0]}
+        field_value ={ menu_name: "Menuname", menu_cost: Faker::Number.number[4], menu_description:Faker::Lorem.paragraph, menu_image:AllConstants::IMAGE, menu_category: AllConstants::CATEGORY[0]}
         response = post "/menus", field_value
         assert_equal(Menu.last.menu_name, field_value[:menu_name])
         assert_equal(response.status, 302) 
     end
 
     def test_menu_creation_notsuccess
-        field_value ={ menu_name: "menu_name", menu_cost: 10, menu_description:Faker::Lorem.paragraph, menu_image:AllConstants::IMAGE, menu_category: AllConstants::CATEGORY[0]}
+        field_value ={ menu_name: "menu_name", menu_cost: Faker::Number.number[4], menu_description:Faker::Lorem.paragraph, menu_image:AllConstants::IMAGE, menu_category: AllConstants::CATEGORY[0]}
         response = post "/menus", field_value
         assert_equal(response.status, 302)
     end
 
     def test_menu_creation_gt18_notsuccess
-        field_value ={ menu_name: "menunamehkfsnldfmsdbnscnlncslkdnl", menu_cost: 10, menu_description:Faker::Lorem.paragraph, menu_image:AllConstants::IMAGE, menu_category: AllConstants::CATEGORY[0]}
+        field_value ={ menu_name: Faker::Name.name, menu_cost: Faker::Number.number[4], menu_description:Faker::Lorem.paragraph, menu_image:AllConstants::IMAGE, menu_category: AllConstants::CATEGORY[0]}
         response = post "/menus", field_value
         assert_equal(response.status, 302)
     end
@@ -40,7 +40,7 @@ class MenusControllerTest < ActiveSupport::TestCase
     end
 
     def test_menu_creation_notsuccess_without_name
-        field_value ={ menu_name: "", menu_cost: 10, menu_description:Faker::Lorem.paragraph, menu_image:AllConstants::IMAGE, menu_category: AllConstants::CATEGORY[0]}
+        field_value ={ menu_name: "", menu_cost: Faker::Number.number[4], menu_description:Faker::Lorem.paragraph, menu_image:AllConstants::IMAGE, menu_category: AllConstants::CATEGORY[0]}
         response = post "/menus", field_value
         assert_equal(response.status, 302)
     end
@@ -84,6 +84,11 @@ class MenusControllerTest < ActiveSupport::TestCase
     def test_update_image
         response = put "/menus/#{@menu.id}",field_value = { menu: { menu_name:@menu.menu_name, menu_cost:@menu.menu_cost, menu_description: @menu.menu_description, menu_image:"https://i.timesnowhindi.com/stories/Egg-bonda.jpg" , menu_category:@menu.menu_category}}
         assert_equal(Menu.last.menu_image, field_value[:menu][:menu_image])
+        assert_equal(response.status,302)
+    end
+
+    def test_update_fail
+        response = put "/menus/#{@menu.id}",field_value = { menu: { menu_name:Faker::Name.name[19], menu_cost:@menu.menu_cost, menu_description: @menu.menu_description, menu_image: @menu.menu_image , menu_category:@menu.menu_category}}
         assert_equal(response.status,302)
     end
 

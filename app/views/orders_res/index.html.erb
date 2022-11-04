@@ -24,21 +24,42 @@
   <hr>
 <% orders_queue = Order.cache(Order.where.not(status: AllConstants::ACTIVE_ORDERS))%>
 <% orders_queue.each do |order|%>
-    <div class = "main_card_orders">
-     <br>
-      <table class = "orders_id">
-     <tr class = "orders_tr">
-     <th class = "orders_th_id">Order Id :</th>
-     <th class = "orders_th_id"><%= order.id %></th>
-     </tr>
-     <tr class = "orders_tr">
-     <% user = User.find(order.user_id)%>
-     <th class = "orders_th_name"><%= user.name%> :</th>
-     <th class = "orders_th_name"><%= user.mobile_no%></th>
-     </tr>
-     </table>
+    
+      <div class = "main_card_orders">
+    <br>
+      <br>
+     <section class = "display" >
+     <section class = "left_right_division">
+     <p class = "order_details_text">Order Details</p>
+      <p class="OrderNo">Order Id &nbsp; #<%= order.id %></p>
+      <p class = "menu">
+      <table class = "order">
+        <tr class = "orders_tr">
+             <th class = "orders_th">Items</th>
+             <th class = "orders_th">Quantity</th>
+        </tr>
+         <% order.menu.split("+") do |o| %>
+        <tr class = "orders_tr">
+        <% str= o.split("*")%>
+            <td class = "orders_td "> <%= str[0]%></td>
+            <td class = "orders_td "><%= str[1]%></td>     
+        </tr>
+        <%end%>
+      <br>
+      </p>
+    </table>
+      </section>
+      <section class = "size">
+      <p class = "order_details_text user_details_text"> Customer Details </p>
+      <% user = User.find(order.user_id)%>
+      <p class="user_details">Name: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= user.name%></p>
+       <p class="user_details">MobileNo: &nbsp;<%= user.mobile_no%></p>
+      </section>
 
-      <section class = "rightside_status">
+     
+     <section>
+        <br> 
+        <section class = "status" >
         <%= form_with(url: "/orders1/#{order.id}"  , method: "put") do |form| %> 
        <% if order.status != AllConstants::PENDING %>
            <% status=order.status%>
@@ -54,39 +75,25 @@
       </section>
       <%end%>
       
-      <section class = "date_style date_style_restaurant"> 
-      <p class = "status-color"> Ordered on: </p>
+      <section class = "date_style "> 
+      <p class = "on"> Ordered on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
       <p class = "date"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
       <% if order.status != AllConstants::PENDING %>
-      <section class = "date_style date_style_restaurant">
-      <p class = "status-color"> Updated on: </p>
+      <section class = "date_style ">
+      <p class = "on"> Updated on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
       <p class = "date"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
       <% end %>
-       <p class = "menu">
-    <table class = "orders">
-    <tr class = "orders_tr">
-    <th class = "orders_th">Items</th>
-    <th class = "orders_th">Quantity</th>
-    </tr>
-      <% order.menu.split("+") do |o| %>
-       <tr class = "orders_tr">
-        <% str= o.split("*")%>
-       <td class = "orders_td "> <%= str[0]%></td>
-        <td class = "orders_td "><%= str[1]%></td>
-       </tr>
-      <%end%>
-      
-      </p>
-    </table>
+      </section>
+</section> 
        <br>
        
 </div>
 <% end%>
 </section>
 </div>
-</div>
+
 </body>

@@ -176,6 +176,12 @@ body {
 .update_on{
     margin-left:5px;
 }
+.left_right_division{
+  width:50%;
+}
+.left_right_division1{
+    width:40%;
+  }
 .middle{
     font-family: sams-serif;
     max-width: 98%;
@@ -192,3 +198,8 @@ body {
     margin-left:1%;
     color: red;
   }
+  .status{
+    margin-left:300px;
+    font-size:18px;
+    margin-bottom:10px;
+ }

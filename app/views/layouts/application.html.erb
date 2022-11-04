@@ -41,15 +41,18 @@
         const show = toggleMenu.classList.toggle('active');
         const category_mainpage = document.querySelector(".select_menus_users");
         const category = document.querySelector(".select_menus_users_category");
+        const status = document.querySelector(".select_status");
          if(show)
          {
             if(category_mainpage!= null)category_mainpage.style.display = "none";
+            if(status!=null) status.style.display = "none";
             category.style.display = "none";
 
          }
          else
          {
             if(category_mainpage!= null) category_mainpage.style.display = "block";
+            if(status!=null) status.style.display = "block";
             category.style.display = "block";
          }
      }
@@ -96,16 +99,19 @@
         const category_mainpage = document.querySelector(".select_menus_users");
         const category = document.querySelector(".select_menus_users_category");
         const search = document.querySelector(".searchmenu");
+        const status = document.querySelector(".select_status");
          if(show)
          {
             if(category_mainpage!= null) category_mainpage.style.display = "none";
             if(search!=null) search.style.display = "none";
+            if(status!=null) status.style.display = "none";
             category.style.display = "none";
          }
          else
          {
            if(category_mainpage!= null) category_mainpage.style.display = "block";
             if(search!=null) search.style.display = "block";
+            if(status!=null) status.style.display = "block";
             category.style.display = "block";
          }
      }

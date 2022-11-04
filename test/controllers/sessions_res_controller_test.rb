@@ -34,7 +34,7 @@ class SessionsResControllerTest < ActiveSupport::TestCase
   end
 
   def test_signin_creation_notsuccess1
-    value = {identity: "Worker", email: @worker.email, password: "Bbcdef@1"}
+    value = {identity: "Worker", email: @worker.email, password: Faker::Internet.password(min_length: 8,  mix_case: true, special_characters: true)+ Faker::Internet.password}
     response = post "/signin_restaurant", value
     assert_equal(response.status,302)
   end
@@ -46,13 +46,13 @@ class SessionsResControllerTest < ActiveSupport::TestCase
   end
 
   def test_signin_creation_notsuccess3
-    value = {identity: "Worker", email: @owner.email, password: "Bbcdef@1"}
+    value = {identity: "Worker", email: @owner.email, password: Faker::Internet.password(min_length: 8,  mix_case: true, special_characters: true)+ Faker::Internet.password}
     response = post "/signin_restaurant", value
     assert_equal(response.status,302)
   end
 
   def test_signin_creation_notsuccess4
-    value = {identity: "Owner", email: @owner.email, password: "Bbcdef@1"}
+    value = {identity: "Owner", email: @owner.email, password: Faker::Internet.password(min_length: 8,  mix_case: true, special_characters: true)+ Faker::Internet.password}
     response = post "/signin_restaurant", value
     assert_equal(response.status,302)
   end
@@ -64,7 +64,7 @@ class SessionsResControllerTest < ActiveSupport::TestCase
   end
 
   def test_signin_creation_notsuccess6
-    value = {identity: "Owner", email: @worker.email, password: "Bbcdef@1"}
+    value = {identity: "Owner", email: @worker.email, password: Faker::Internet.password(min_length: 8,  mix_case: true, special_characters: true)+ Faker::Internet.password}
     response = post "/signin_restaurant", value
     assert_equal(response.status,302)
   end
@@ -82,7 +82,7 @@ class SessionsResControllerTest < ActiveSupport::TestCase
   end
 
   def test_password_equal_notblank
-    value = {identity: "Owner", email: @owner.email, password: "Bbcdef@1", password_confirm: "Bbcdef@1"}
+    value = {identity: "Owner", email: @owner.email, password: Faker::Internet.password(min_length: 8,  mix_case: true, special_characters: true)+ Faker::Internet.password, password_confirm:Faker::Internet.password(min_length: 8,  mix_case: true, special_characters: true)+ Faker::Internet.password}
     response = post "/signin_restaurant/update_password", value
     assert_equal(response.status,302)
   end

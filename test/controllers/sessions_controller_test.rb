@@ -59,13 +59,13 @@ class SessionsControllerTest < ActiveSupport::TestCase
   end
 
   def test_password_doesnotmatch 
-    field_value = { mobile_no: @user.mobile_no, password: @user.password, password_confirm:"Bbcdef@1" }
+    field_value = { mobile_no: @user.mobile_no, password: @user.password, password_confirm:Faker::Internet.password(min_length: 8,  mix_case: true, special_characters: true)+ Faker::Internet.password }
     response = post "/signin_users/update_password", field_value
     assert_equal(response.status,302)
   end
 
   def test_password_success
-    field_value = { mobile_no: @user.mobile_no, password: "Bbcdef@1", password_confirm:"Bbcdef@1" }
+    field_value = { mobile_no: @user.mobile_no, password: "Bbcdef@1", password_confirm:Faker::Internet.password(min_length: 8,  mix_case: true, special_characters: true)+ Faker::Internet.password }
     response = post "/signin_users/update_password", field_value
     assert_equal(response.status,302)
   end

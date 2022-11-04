@@ -7,7 +7,7 @@
 </section>
 <section class = "style_card">
 <%=form_with(url:"/user_completed_orders"  , method: "get")  do |form| %>
-   <%= form.select :status_almost, AllConstants::COMPLETED_ORDERS,{:prompt=>"Choose status",:selected=>params[:status_almost]},{class:"select status",:onchange=>"this.form.submit()"}%>
+   <%= form.select :status_almost, AllConstants::COMPLETED_ORDERS,{:prompt=>"Choose status",:selected=>params[:status_almost]},{class:"select select_status",:onchange=>"this.form.submit()"}%>
 <% end %>
 <% if params[:status_almost].blank?%>
   <% orders_completed = users_completed_orders.cachemethod.sort_by(&:updated_at).reverse %> 
@@ -19,48 +19,50 @@
 <% orders_completed.each do |order|%>
     <div class = "main_card_orders">
      <br>
-      <table class = "orders_id">
-     <tr class = "orders_tr">
-     <th class = "orders_th_id">Order Id :</th>
-     <th class = "orders_th_id"><%= order.id %></th>
-     </tr>
-     <tr class = "orders_tr">
-     <th class = "orders_th_name"><%= current_user.name%> :</th>
-     <th class = "orders_th_name"><%= current_user.mobile_no %></th>
-     </tr>
-     </table>
-     <p class = "orders_status">Status: <%= order.status %></p>
+      
+       <br>
+     <section class = "display" >
+     <section class = "left_right_division">
+      <p class="OrderNo">Order Id &nbsp; #<%= order.id %></p>
+      <p class = "menu">
+      <table class = "order">
+        <tr class = "orders_tr">
+             <th class = "orders_th">Items</th>
+             <th class = "orders_th">Quantity</th>
+             <th class = "orders_th">Cost(₹)</th>
+        </tr>
+         <% order.menu.split("+") do |o| %>
+        <tr class = "orders_tr">
+        <% str= o.split("*")%>
+            <td class = "orders_td "> <%= str[0]%></td>
+            <td class = "orders_td "><%= str[1]%></td>
+            <td class = "orders_td "><%= str[2]%></td>
+        </tr>
+        <%end%>
+      <br>
+      </p>
+    </table>
+      <p class = "Total_cost">Total: &nbsp;&nbsp;<%= total_cost(order).to_s+" ₹"%></p>
+      </section>
+
+      <section>
+      <p class = "status">Status: <%= order.status %></p>
+
       <section class = "date_style">
       <p class = "on"> Ordered on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
       <p class = "date date_created"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
+
       <section class = "date_style">
       <p class = "on"> Delivered on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
       <p class = "date date_updated"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
-      <p class = "menu">
-    <table class = "orders">
-    <tr class = "orders_tr">
-    <th class = "orders_th">Items</th>
-    <th class = "orders_th">Quantity</th>
-    <th class = "orders_th">Cost</th>
-    </tr>
-      <% order.menu.split("+") do |o| %>
-       <tr class = "orders_tr">
-        <% str= o.split("*")%>
-       <td class = "orders_td "> <%= str[0]%></td>
-        <td class = "orders_td "><%= str[1]%></td>
-       <td class = "orders_td "><%= str[2]+" ₹"%></td>
-       </tr>
-      <%end%>
-      <br>
-      </p>
-    </table>
-      <p class = "Total_cost">Total: &nbsp;&nbsp;<%= total_cost(order).to_s+" ₹"%></p>
-</div>
 
-<% end %>
 </section>
-      
+</section>
+</div>
+<% end %>
+</div>
+</body>

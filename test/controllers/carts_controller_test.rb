@@ -14,7 +14,7 @@ class CartsControllerTest < ActiveSupport::TestCase
     
      def test_cart_count_updation_for_exisiting
         Cart.all.destroy_all
-        cart_existed = Cart.new({user_id: @user.id  , menu_id: @menu.id , count: 1 , owner_id: 1})
+        cart_existed = Cart.new({user_id: @user.id  , menu_id: @menu.id , count: AllConstants::VALUE , owner_id: AllConstants::VALUE})
         cart_existed.save
         response = get "/carts/#{@menu.id}" 
         assert_equal(Cart.last.count,cart_existed.count + 1 )

@@ -1,7 +1,7 @@
 FactoryGirl.define do
     factory :menu do
       menu_name 'Menuname'
-      menu_cost 20
+      menu_cost Faker::Number.number[4]
       menu_description Faker::Lorem.paragraph
       menu_image AllConstants::IMAGE
       menu_category AllConstants::CATEGORY[0]

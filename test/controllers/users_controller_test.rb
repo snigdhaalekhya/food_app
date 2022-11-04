@@ -8,20 +8,20 @@ class UsersControllerTest < ActiveSupport::TestCase
   end
 
   def test_user_creation
-    field_value  = { name: Faker::Name.name[1..18] , mobile_no: Faker::Number.number(digits: 10) , email: Faker::Internet.email , password:"Abcdef@1" , address:Faker::Lorem.paragraph}
+    field_value  = { name: Faker::Name.name[1..18] , mobile_no: Faker::Number.number(digits: 10) , email: Faker::Internet.email , password:@user.password , address:Faker::Lorem.paragraph}
     response = post "/users", field_value
     assert_equal(User.last.email, field_value[:email])
     assert_equal(response.status,302)
   end
 
   def test_user_creation_notsuccess_without_tendigit_mobileno
-    field_value  = { name: Faker::Name.name[1..18] , mobile_no: 1234567 , email: Faker::Internet.email , password:"Abcdef@1" , address:Faker::Lorem.paragraph}
+    field_value  = { name: Faker::Name.name[1..18] , mobile_no: 1234567 , email: Faker::Internet.email , password:@user.password , address:Faker::Lorem.paragraph}
     response = post "/users", field_value
     assert_equal(response.status,302)
   end
 
   def test_user_creation_notsuccess_withoutemail
-    field_value  = { name:Faker::Name.name[1..18] , mobile_no: Faker::Number.number(digits: 10) , email: "" , password:"Abcdef@1" , address:Faker::Lorem.paragraph}
+    field_value  = { name:Faker::Name.name[1..18] , mobile_no: Faker::Number.number(digits: 10) , email: "" , password:@user.password , address:Faker::Lorem.paragraph}
     response = post "/users", field_value
     assert_equal(response.status,302)
   end

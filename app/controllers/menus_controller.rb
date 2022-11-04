@@ -28,9 +28,16 @@ class MenusController < ApplicationController
       html_field.each do |key,value|
         if  value != db_field[key]
           menu.update(key => value)
+          if !menu.update(key => value)
+            flash[:error] = menu.errors.full_messages.join(", ")
+          end
         end
       end
-      redirect_to AllConstants::MENU_ROOT
+      if flash[:error].present?
+        redirect_to edit_menu_path 
+      else
+        redirect_to AllConstants::MENU_ROOT  
+      end
     end
 
 

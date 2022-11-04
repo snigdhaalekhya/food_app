@@ -1,29 +1,28 @@
 class NotifierMailer < ApplicationMailer
-    # If order is placed owner receives mail with order,customer details
+    # If order is placed owner receives mail with order,customer all_details
     def send_mail_order
-     common
+     all_details
       mail(from: "ammualekhya6@gmail.com",to: @owner_mail, subject: "New order placed by #{@user_name}",
         body: "New order placed by the customer with Order Id: #{ @order_id}\nCustomer name: #{@user_name}\nCustomer Mobile number: #{@user_mobileno}\nCustomer Address: #{@user_address}\nItems placed order: #{menu_items}\nTotal cost: #{total_cost}")
     end
 
     #If order status is updated send mail to customer
     def send_mail_status
-      common
+      all_details
       mail(from: "ammualekhya6@gmail.com",to: @user_mail, subject: "Status for the Order ##{@order_id} placed from restaurant",
         body: "Order status for  Order Id: #{ @order_id}\nCustomer name: #{@user_name}\nCustomer Mobile number: #{@user_mobileno}\nCustomer Address: #{@user_address}\nOrder status Update: #{@status}\n#{menu_items}\nTotal cost: #{total_cost}")
     end
 
     #If order has not been delivered successfully
     def send_mail_notsuccess
-      common
+      all_details
       mail(from: @owner_mail,to: @user_mail, subject: "Status for the Order ##{@order_id} placed from restaurant",
         body: "#{params[:reason]}")
-        #body: "Order status for  Order Id: #{ @order_id}\nCustomer name: #{@user_name}\nCustomer Mobile number: #{@user_mobileno}\nCustomer Address: #{@user_address}\nOrder status Update: #{@status}\n#{menu_items}\nTotal cost: #{total_cost}")
     end
 
 
-    
-    def common
+    private
+    def all_details
      order = params[:order]
      @order_id = order.id
      @order=order.user_id
@@ -40,16 +39,16 @@ class NotifierMailer < ApplicationMailer
 
     def menu_items
        @cost = 0 
-       order_details = ""
+       order_all_details = ""
        @menu.split("+") do |o| 
          str= o.split("*")
          @cost = @cost + str[2].to_i
-         order_details = order_details+"#{str[0]}  X #{str[1]} = #{str[2]} ₹\n"
+         order_all_details = order_all_details + "#{str[0]}  X #{str[1]} = #{str[2]} ₹\n"
        end 
-         return  order_details
+         return  order_all_details
     end
 
     def total_cost
-        return @cost.to_s + " ₹"
+        return @cost.to_s + AllConstants::COST
     end
 end

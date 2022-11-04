@@ -13,7 +13,7 @@
      <br>
      <br>
      <section class = "display" >
-     <section style= "width:50%">
+     <section class = "left_right_division">
       <p class="OrderNo">Order Id &nbsp; #<%= order.id %></p>
       <p class = "menu">
       <table class = "order">
@@ -35,7 +35,7 @@
     </table>
       <p class = "Total_cost">Total: &nbsp;&nbsp;<%= total_cost(order).to_s+" ₹"%></p>
       </section>
-<section class = "css1">
+<section>
 <p class = "status">Status: <%= order.status %></p>
 <% if order.status == AllConstants::DELIVERED%>
       <section class = "date_style">
@@ -80,7 +80,7 @@
       <% end %>
       
       <section class = "date_style">
-      <p class = "on update_on"> Updated on: </p>
+      <p class = "on"> Updated on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
       <p class = "date date_updated"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>

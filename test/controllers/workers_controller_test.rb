@@ -13,20 +13,20 @@ class WorkersControllerTest < ActiveSupport::TestCase
   end
 
   def test_worker_create
-    value = {name:  Faker::Name.name[1..18], mobile_no: Faker::Number.number(digits: 10), email:Faker::Internet.email, password: "Abcdef@1", address:Faker::Lorem.paragraph}
+    value = {name:  Faker::Name.name[1..18], mobile_no: Faker::Number.number(digits: 10), email:Faker::Internet.email, password: @worker.password, address:Faker::Lorem.paragraph}
     response = post "/workers", value
     assert_equal(Worker.last.name, value[:name])
     assert_equal(response.status,302)
   end
 
   def test_worker_create_notsuccess_without_tendigit_mobileno
-    value = {name:  Faker::Name.name[1..18], mobile_no: 1234567, email:Faker::Internet.email, password: "Abcdef@1", address:Faker::Lorem.paragraph}
+    value = {name:  Faker::Name.name[1..18], mobile_no: 1234567, email:Faker::Internet.email, password: @worker.password, address:Faker::Lorem.paragraph}
     response = post "/workers", value
     assert_equal(response.status,302)
   end
 
   def test_worker_createnotsuccess_withoutemail
-    value = {name:  Faker::Name.name[1..18], mobile_no: Faker::Number.number(digits: 10), email:"", password: "Abcdef@1", address:Faker::Lorem.paragraph}
+    value = {name:  Faker::Name.name[1..18], mobile_no: Faker::Number.number(digits: 10), email:"", password: @worker.password, address:Faker::Lorem.paragraph}
     response = post "/workers", value
     assert_equal(response.status,302)
   end

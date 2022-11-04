@@ -26,8 +26,8 @@ module MainHelper
             menu_id = cart.menu_id 
             menu_name = Menu.find(cart.menu_id).menu_name
             count = cart.count
-            cost = cart.count*Menu.find(cart.menu_id).menu_cost 
-            menu = menu+menu_name+"*"+count.to_s+"*"+cost.to_s+"+"
+            cost = cart.count * Menu.find(cart.menu_id).menu_cost 
+            menu = menu+menu_name + "*" + count.to_s + "*" + cost.to_s + "+"
         end
         menu.chop
     end
