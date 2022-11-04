@@ -16,10 +16,19 @@ class OrdersController < ApplicationController
   
    
      def update
+       update_status(AllConstants::CONFIRM_SUCCESS)
+     end 
+
+     def updateto_not_delivered
+        update_status(AllConstants::NOT_DELIVERED)
+     end 
+
+     private
+     def update_status(status)
         order_id = Order.find(params[:id])
-        order_id.status = "Confirm Success"
+        order_id.status = status
         if order_id.save
             redirect_to main_index_path
         end
-     end 
+     end
 end

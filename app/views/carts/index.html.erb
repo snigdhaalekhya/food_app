@@ -1,5 +1,8 @@
 <body>
-<div class = "main_card" class = "display_css">
+<div class = "main_card">
+<div>
+<img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjZ7COuI02M3UjwL7kT2wR2epRNFO7tCkcsIUlsvjS5SEi-WRNRq96ywvUI7Rde7AvNiw&usqp=CAU" class = "place_order_image">
+</div>
 <section class = "card_cartsindex">
 <table>
 <br>
@@ -23,36 +26,13 @@
 <% end %>
 <tr>
     <th class = "carts_th_total">Total </th>
-    <th class = "carts_th_total" ><%= total_cart_count%></th>
-    <th class = "carts_th_total" > <%= cost %> ₹</th>
+    <th class = "carts_th_total cost_color" ><%= total_cart_count%></th>
+    <th class = "carts_th_total cost_color" > <%= cost %> ₹</th>
 </tr>
-
 </table>
-</section>
-<section class = "card_cartsindexuser">
-<p class = "user_title"> User details</p>
-<table >
-  <tr>
-    <th class = "orders_th_name">Name :</th>
-    <th class = "orders_th_name" ><%= current_user.name%></th>
-  <tr> 
-  <tr>
-    <th class = "orders_th_name">Mobile No :</th>
-    <th class = "orders_th_name"><%= current_user.mobile_no%></th>
-  <tr> 
-  <tr>
-    <th class = "orders_th_name">Email Id :</th>
-    <th class = "orders_th_name"><%= current_user.email%></th>
-  <tr> 
-  <tr>
-    <th class = "orders_th_name">Address :</th>
-    <th class = "orders_th_name"><%= current_user.address%></th>
-  <tr>  
-  <table>
-      <% if cart_notempty %>
+<% if cart_notempty %>
          <%= button_to "Place Order", orders_path, method: "post", class:"Order" %> 
-      <% end %> 
-</section>
+<% end %> 
 </div>
 </div>
 </body>

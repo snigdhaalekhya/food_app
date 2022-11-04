@@ -37,4 +37,12 @@ class OrdersControllerTest < ActiveSupport::TestCase
         assert_equal(Order.last.status, AllConstants::CONFIRM_SUCCESS)
         assert_equal(response.status,302)
     end
+
+    def test_orderstatus_update_if_notdelivered
+        Order.all.destroy_all
+        order = FactoryGirl.create(:order, status:AllConstants::DELIVERED)
+        response = put "/orders/#{order.id}/updateto_not_delivered"
+        assert_equal(Order.last.status, AllConstants::NOT_DELIVERED)
+        assert_equal(response.status,302)
+    end
 end

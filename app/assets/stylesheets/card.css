@@ -28,8 +28,7 @@
       padding:10px;
     }
   }
-  
-  /* Style the counter cards */
+
   .displaycard {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius:8px;
@@ -45,6 +44,8 @@
   }
   .time_diff{
     margin-top:2px;
+    margin-left:62.5%;
+    margin-bottom:10px; 
   }
   .date
   {
@@ -91,32 +92,32 @@
 .Button{
   padding: 6px 12px;
      font-size:14px;
-     margin-left:350px;
-     margin-top:20px;
+     margin-left:200px;
+     margin-top:30px;
      margin-right:10px;
      height:35px;
      border-radius: 4px;
      border: 1px solid transparent;
      color: white;
 }
-.dropdown{
-  margin-left:60px;
-  height:40px;
-}
+
 .AddMenu{
      background-color: green;
 }
 .AddMenu_Not{
   cursor: not-allowed;
-   background-color:#C0C0C0;
+  background-color:#C0C0C0;
 }
 .Form-section-menu{
     margin-bottom: 20px;
     margin-left: 24%;
     margin-top:30px;
 }
-.Form-section-worker{
-
+.Reason{
+  margin-left: 10px;
+  margin-top:10px;
+  margin-bottom: 10px;
+  width:100%
 }
 .form-input{
     font-size: 15px;
@@ -138,6 +139,10 @@
     width:126px;
     height:30px; 
    }
+.form-input-reason{
+   width:280px; 
+  background-color :white; 
+}
 .Form-input-menus{
     width:100px;
     height:30px;
@@ -155,14 +160,14 @@
     border:0;
 }
 .card_cartsindex{
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2); */
   border-radius:8px;
   text-align: left;
   width:800px;
   padding:10px;
-  margin-left:25px;
+  margin-left:200px; 
   margin-bottom:25px;
-  background-color: #d9d8d8;
+  background-color: #F7F7F7;
 }
 .cost_carts{
   font-size:18px;
@@ -195,7 +200,7 @@
   margin-bottom:50px;
   background-color: rgb(69, 156, 120);
   border-radius: 4px;
-  margin-left: 50px;
+  margin-left: 230px;
   border:0;
 }
 .user_name
@@ -244,7 +249,7 @@
   .OrderNo{
     font-size:18px;
     color:grey;
-    margin-bottom:14px;
+    /* margin-bottom:14px; */
     margin-left:7%;
   }
   .mobile_no{
@@ -266,13 +271,14 @@
   .Total_cost{
     font-size:20px;
     color: #F73B0C;
-    margin-top:20px;
+    margin-top:10px;
     margin-left:7%;
     padding-bottom:20px;
   }
 .select{
   display: block;
   width: 20%;
+  height:30px;
   margin-left:10px;
   height: calc(1.5em + 0.75rem + 2px);
   background-color: black;
@@ -286,9 +292,14 @@
   border: none;
   background: #f1f1f1;
   padding: 2px;
+  margin-top:20px;
 }
 .select_reports{ 
-  width: 25%;
+  width: 11%;
+  margin-left:20px;
+}
+.select_reports{ 
+  width: 11%;
   margin-left:20px;
 }
 .status{
@@ -297,23 +308,21 @@
   margin-left:25%;
 }
 .select_menus{
-  width: 50%;
-  margin-left:600px;
-  margin-top:20px;
+  width: 30%;
+  margin-left:850px;
+  margin-top:30px;
 }
 .select_menus_users{
-  width: 55%;
-  margin-left:700px;
-  margin-top:20px;
+  width: 25%;
+  margin-left:770px; 
 }
 .select_menus_category{ 
-  width: 30%;
-  margin-left:1000px;
-  margin-top:20px;
+  width: 10%;
+  margin-left:1350px;
 }
 .select_menus_users_category{
-  width: 30%;
-  margin-left:1150px;
+  width: 12%;
+  margin-left:1480px;
   margin-top:20px;
 }
 .sam{
@@ -333,8 +342,8 @@
    cursor: pointer;
 }
 .action .profile img{
-  position: absolute;
-  top:65px;
+   position: absolute;
+   top:63px;
    right: 55px;
    width:50px;
    height:50px;
@@ -366,12 +375,11 @@
   color: black;
   line-height: 1.2em; 
 }
-.notification_action{
-    
-}
+
 .notification_action .NotificationToggle{
  position: absolute;
  left:76%;
+ top:13%;
  padding: 10px 20px;
  background :#E9E9E9;
  box-sizing : 0 2px 2px #E9E9E9;
@@ -383,7 +391,7 @@
 .notification_action .NotificationToggle.active{
   visibility: visible;
   opacity: 1;
-  width:18.5%;
+  width:18.5%; 
 }
 
 .notification_action .NotificationToggle p{
@@ -392,6 +400,20 @@
  font-size: 18px;
  color: black;
  line-height: 1.2em; 
+}
+
+.notification_action .profile_res img{
+  position: absolute;
+  top:72px;
+  right: 140px;
+  width:35px;
+  height:35px;
+  object-fit: cover;
+}
+.notification_action  .notification_color{
+  position:absolute;
+  top:65px;
+  margin-left:1645px;
 }
 .note{
   font-size:13px;
@@ -406,8 +428,15 @@
   background-color: green;
   border-radius: 4px;
   width:75px;
+  margin-top:20px;
   height: calc(1.5em + 0.75rem + 2px);
   border: 1px solid transparent;
+}
+.order {
+  border-collapse: collapse;
+  margin-left:5%;
+  margin-bottom:8px;
+  max-width:70%;
 }
 .orders {
   border-collapse: collapse;
@@ -459,9 +488,9 @@
     display: inline-flex;
 }
 .orders_status{
-  display: flex-end;
-  margin-left: 1200px;
+   margin-left: 1000px; 
   font-size:18px;
+  margin-bottom:20px;
 }
 .users-table {
   border-collapse: collapse;
@@ -487,9 +516,10 @@
 .orders_th {
   text-align: left;
   font-size:18px;
-  padding:6px;
+  padding:8px;
   color: #890000;
 }
+
 .carts_tr {
   margin-top:30px;
   text-align: left;
@@ -508,6 +538,9 @@
   font-size:20px;
   padding:6px;
   color: #890000;
+}
+.cost_color{
+  color: #0559d7;
 }
 table {
   margin-top:20px;
@@ -545,8 +578,8 @@ table {
   margin-top:4px;
   margin-left:8px;
 }
-.h1_style{
- margin-top:20px;
+.category_name{
+ margin-top:40px;
  margin-left:40%;
  font-size:20px;
  color:rgb(117, 0, 0);
@@ -564,7 +597,7 @@ table {
   width:330px;
 }
 .queue-css{
-  margin-top:30px;
+  margin-top:20px;
   margin-left:1000px;
   display:inline-flex;
 }
@@ -618,7 +651,7 @@ justify-content:space-between;
   display: none;
 }
  .myDIV{
-  margin-left:1200px;
+  margin-left:1130px;
  }   
 .myDIV:hover + .hide {
   display: block;
@@ -662,6 +695,13 @@ span.page.current{
   color:black;
   text-shadow: 0.75px 1px;
   font-size: 19px;
+}
+.place_order_image{
+  margin-left: 200px;
+  margin-right:0px;
+}
+.css{
+  margin-left:800px;
 }
 
 

@@ -14,8 +14,16 @@ Rails.application.routes.draw do
   resources :carts , controller: 'carts', :only => [:index,:show] 
   resources :workers , controller: 'workers', :only => [:index,:create,:new] 
   resources :reports , controller: 'reports', :only => [:index] 
-  resources :orders , controller: 'orders', :only => [:index,:create,:update] 
-  resources :orders1 , controller: 'orders_res', :only => [:index,:update] 
+  resources :orders , controller: 'orders', :only => [:index,:create,:update] do
+    member do
+     put 'updateto_not_delivered'
+    end
+  end
+  resources :orders1 , controller: 'orders_res', :only => [:index,:update] do
+    member do
+      post 'send_mail'
+     end
+  end
 
   get"/signin_users/update_password" =>"sessions#update_password_view"
   post"/signin_users/update_password" =>"sessions#update_password"

@@ -3,15 +3,16 @@
 <p class = "UserHeader"> Welcome <%= current_user.name%>!</p>
 <% end %> 
 <section class = "display">
-<%=form_with(url:"/view_user/category_wise"  , method: "get")  do |form| %>
-   <%= form.select :menu_category, AllConstants::CATEGORY ,{:prompt=>"Choose category",},{class:"select select_menus_users",:onchange=>"this.form.submit()"}%>
-<% end %>
 
-  <%= form_tag(main_index_path, method:"get") do%>
+<%= form_tag(main_index_path, method:"get") do%>
     <section class = "SearchMenu">
      <%= search_field_tag :search, params[:search], placeholder: "Search menu",class:"searchmenu"%>
     </section>
   <% end %>
+  
+<%=form_with(url:"/view_user/category_wise"  , method: "get")  do |form| %>
+   <%= form.select :menu_category, AllConstants::CATEGORY ,{:prompt=>"Choose category",},{class:"select select_menus_users",:onchange=>"this.form.submit()"}%>
+<% end %>
   
 </section>
 <% if !params[:search].blank? && @result_count<=0 %>

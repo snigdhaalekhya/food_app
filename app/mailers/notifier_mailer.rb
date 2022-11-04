@@ -13,6 +13,14 @@ class NotifierMailer < ApplicationMailer
         body: "Order status for  Order Id: #{ @order_id}\nCustomer name: #{@user_name}\nCustomer Mobile number: #{@user_mobileno}\nCustomer Address: #{@user_address}\nOrder status Update: #{@status}\n#{menu_items}\nTotal cost: #{total_cost}")
     end
 
+    #If order has not been delivered successfully
+    def send_mail_notsuccess
+      common
+      mail(from: @owner_mail,to: @user_mail, subject: "Status for the Order ##{@order_id} placed from restaurant",
+        body: "#{params[:reason]}")
+        #body: "Order status for  Order Id: #{ @order_id}\nCustomer name: #{@user_name}\nCustomer Mobile number: #{@user_mobileno}\nCustomer Address: #{@user_address}\nOrder status Update: #{@status}\n#{menu_items}\nTotal cost: #{total_cost}")
+    end
+
 
     
     def common

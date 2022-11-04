@@ -2,7 +2,7 @@
 <div class = "main_card" >
 <section class = "width">
   <p class = "SidebarComponents"> <%= link_to "All Orders", orders_path, class:"RestaurantSideBarComponents orders_sidebarcomponents"%></p>
- <p class = "SidebarComponents"> <%= link_to "Active Orders", user_active_orders_path, class:"RestaurantSideBarComponents orders_sidebarcomponents"%></p>
+  <p class = "SidebarComponents"> <%= link_to "Active Orders", user_active_orders_path, class:"RestaurantSideBarComponents orders_sidebarcomponents"%></p>
   <p class = "SidebarComponents"><%= link_to "Completed Orders", user_completed_orders_path, class:"RestaurantSideBarComponents orders_sidebarcomponents"%></p>
 </section>
 <section class = "style_card">
@@ -11,18 +11,33 @@
 
     <div class = "main_card_orders">
      <br>
-     <table class = "orders_id">
-     <tr class = "orders_tr">
-     <th class = "orders_th_id">Order Id :</th>
-     <th class = "orders_th_id"><%= order.id %></th>
-     </tr>
-     <tr class = "orders_tr">
-     <th class = "orders_th_name"><%= current_user.name%> :</th>
-     <th class = "orders_th_name"><%= current_user.mobile_no %></th>
-     </tr>
-     </table>
-        <p class = "orders_status">Status: <%= order.status %></p>
-      <% if order.status == AllConstants::DELIVERED%>
+     <br>
+     <section class = "display" >
+     <section style= "width:50%">
+      <p class="OrderNo">Order Id &nbsp; #<%= order.id %></p>
+      <p class = "menu">
+      <table class = "order">
+        <tr class = "orders_tr">
+             <th class = "orders_th">Items</th>
+             <th class = "orders_th">Quantity</th>
+             <th class = "orders_th">Cost(₹)</th>
+        </tr>
+         <% order.menu.split("+") do |o| %>
+        <tr class = "orders_tr">
+        <% str= o.split("*")%>
+            <td class = "orders_td "> <%= str[0]%></td>
+            <td class = "orders_td "><%= str[1]%></td>
+            <td class = "orders_td "><%= str[2]%></td>
+        </tr>
+        <%end%>
+      <br>
+      </p>
+    </table>
+      <p class = "Total_cost">Total: &nbsp;&nbsp;<%= total_cost(order).to_s+" ₹"%></p>
+      </section>
+<section class = "css1">
+<p class = "status">Status: <%= order.status %></p>
+<% if order.status == AllConstants::DELIVERED%>
       <section class = "date_style">
       <p class = "on"> Ordered on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
@@ -51,10 +66,11 @@
       <p class = "date"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
       <% else %>
-      <section class = "date_style date_style_large">
+      <section class = "date_style">
       <p class = "on"> Ordered on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
       <p class = "date date_orders_active"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
+      </section>
       <% time_diff = (order.updated_at - order.created_at) %>
       <% time_diff = (time_diff / 1.hour).round %>
       <% if time_diff > 24 %>
@@ -62,34 +78,20 @@
       <% else %>
        <p class = "time_diff">( <%= time_diff%> hours ago )</p>
       <% end %>
-      </section>
+      
       <section class = "date_style">
       <p class = "on update_on"> Updated on: </p>
       <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
       <p class = "date date_updated"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
       </section>
       <% end %>
-      <p class = "menu">
-    <table class = "orders">
-    <tr class = "orders_tr">
-    <th class = "orders_th">Items</th>
-    <th class = "orders_th">Quantity</th>
-    <th class = "orders_th">Cost</th>
-    </tr>
-      <% order.menu.split("+") do |o| %>
-       <tr class = "orders_tr">
-        <% str= o.split("*")%>
-       <td class = "orders_td "> <%= str[0]%></td>
-        <td class = "orders_td "><%= str[1]%></td>
-       <td class = "orders_td "><%= str[2]+" ₹"%></td>
-       </tr>
-      <%end%>
-      <br>
-      </p>
-    </table>
-      <p class = "Total_cost">Total: &nbsp;&nbsp;<%= total_cost(order).to_s+" ₹"%></p>
-</div>
-<% end %>
 
 </section>
+</section>
+</div>
+<% end %>
+</div>
+</body>
+
+
       

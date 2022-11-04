@@ -37,12 +37,12 @@ function closeNav() {
   <p class = "h1_reports_style"> Customer Reports </p>
 </div>
 <br>
-<br>
+<hr>
 <%= form_with(url:"/reports", method: "get", class:"style")  do |form| %>
-   <p class = "dropdown">
-   <%= form.select :name, User.all.map{ |t| t.name},{:prompt=>"Choose Customer name",:selected=>params[:name]},{class:"select select_reports"}%>
-   <%= form.select :status, AllConstants::ALL_STATUS, {:prompt=>"Choose status", :selected => params[:status]},{class:"select select_reports"} %>
-   <%= form.select :ordered, Order.all.map { |t| t.created_at.in_time_zone("Chennai").strftime("%b %d, %Y")}.uniq, {:prompt=>"Choose Ordered date", :selected => params[:ordered]},{class:"select select_reports"} %> 
+   <p class = "display">
+   <%= form.select :name, User.all.map{ |t| t.name},{:prompt=>"Choose Customer name",:selected=>params[:name]},{class:"select select_reports",style:"margin-left:850px",id:"name"}%>
+   <%= form.select :status, AllConstants::ALL_STATUS, {:prompt=>"Choose status", :selected => params[:status]},{class:"select select_reports",id:"status"} %>
+   <%= form.select :ordered, Order.all.map { |t| t.created_at.in_time_zone("Chennai").strftime("%b %d, %Y")}.uniq, {:prompt=>"Choose Ordered date", :selected => params[:ordered]},{class:"select select_reports",id:"date"} %> 
    <%= form.submit "Reports", class:"Reports" %>
    </p>
 <% end %>
@@ -108,7 +108,7 @@ function closeNav() {
     <td><%= report.created_at.in_time_zone("Chennai").strftime("%b %d, %Y") %></td>
     <td class = "user_name"><%= report.status %></td>
     <%if report.status == "Delivered" %>
-      <td class = "user_name"><%= report.status %></td>
+      <td class = "user_name"><%= report.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y") %></td>
     <% else %>
        <td class = "user_name"></td>
     <% end %>

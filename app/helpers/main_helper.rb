@@ -56,6 +56,10 @@ module MainHelper
       end
       return total_cost.to_s
     end
+
+    def status_not_delivered
+        Order.where(status: "Not Delivered")
+    end
 end 
 
 

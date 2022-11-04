@@ -3,12 +3,26 @@ class OrdersResController < ApplicationController
     before_action :ensure_owner_logged_in
 
     def update
-        order_id = Order.find(params[:id])
+        order_id = find_by_id
         order_id.status = params[:status]
         if order_id.save
            NotifierMailer.with(order: order_id).send_mail_status.deliver_now
            redirect_to orders1_index_path
         end
+    end
+
+    def send_mail
+        order_id = find_by_id
+        if !params[:reason].blank?
+           NotifierMailer.with(order: order_id,reason: params[:reason]).send_mail_notsuccess.deliver_now
+           order_id.update(status: AllConstants::REMOVE)
+        end
+           redirect_to orders1_index_path
+    end
+
+    private
+    def find_by_id
+        Order.find(params[:id])
     end
     
 end

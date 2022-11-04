@@ -8,8 +8,10 @@
   <p class = "SidebarComponents"><%= link_to "Reports", reports_path, class:"RestaurantSideBarComponents"%></p>
 </section>
 <section class = "style_card">
-<h1 class = "h1_style"">
+<h1 class = "category_name">
  <%= @category%> Items </h1>
+ <br>
+ <hr>
  <%=form_with(url:"/menus/category_wise"  , method: "get")  do |form| %>
    <%= form.select :menu_category, AllConstants::CATEGORY,{:prompt=>"Choose category",},{class:"select select_menus_category",:onchange=>"this.form.submit()"}%>
 <% end %>
