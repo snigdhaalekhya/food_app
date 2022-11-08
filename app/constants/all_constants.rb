@@ -15,6 +15,8 @@ module AllConstants
     NOT_DELIVERED = "Not Delivered"
     REMOVE = "Remove"
     COST = " ₹"
-    QUANTITY  ="X"
+    QUANTITY  = "X"
+    ASSIGN = "="
+    MAIL = 'ammualekhya6@gmail.com'
     IMAGE = "https://media.istockphoto.com/photos/chicken-biriyani-picture-id1345624336?k=20&m=1345624336&s=612x612&w=0&h=0TSxrGelLdgZnvhZlfIcOq07y03Ioym4hRZOivZeXfI="
 end

@@ -8,7 +8,7 @@ class CartsControllerTest < ActiveSupport::TestCase
         @user = FactoryGirl.create(:user)
         Menu.all.destroy_all
         @menu = FactoryGirl.create(:menu)
-        value = { mobile_no: @user.mobile_no , password:@user.password }
+        value = { mobile_no: @user.mobile_no , password: @user.password }
         post  "/signin_users" , value
     end
     
@@ -29,7 +29,7 @@ class CartsControllerTest < ActiveSupport::TestCase
 
      def test_remove_cart_for_alreadyexisted_count_gt1
          Cart.all.destroy_all
-         cart_existed = FactoryGirl.create(:cart,user_id: @user.id  , menu_id: @menu.id , count: 2 )
+         cart_existed = FactoryGirl.create(:cart, user_id: @user.id  , menu_id: @menu.id , count: 2 )
          response = get "/carts/#{@menu.id}/remove" 
          assert_equal(Cart.last.count,cart_existed.count - 1 )
          assert_equal(response.status, 302)
@@ -37,7 +37,7 @@ class CartsControllerTest < ActiveSupport::TestCase
 
      def test_remove_cart_for_alreadyexisted_count_eq1
        Cart.all.destroy_all
-       cart_existed =  cart_existed = FactoryGirl.create(:cart,user_id: @user.id  , menu_id: @menu.id )
+       cart_existed = FactoryGirl.create(:cart, user_id: @user.id  , menu_id: @menu.id )
        response = get "/carts/#{@menu.id}/remove" 
        assert_equal(response.status, 302)
    end
