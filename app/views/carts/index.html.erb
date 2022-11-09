@@ -11,8 +11,8 @@
     <th class = "carts_th" >Quantity</th>
     <th class = "carts_th" >Cost</th>
 <tr>
-<% cost = 0%>
-<% currentuser_model(Cart).cachemethod.each do |cart|%>
+<% cost = 0 %>
+<% currentuser_records(Cart).cachemethod.each do |cart|%>
 <tr>
     <% if Menu.find(cart.menu_id).present?%>
     <th class = "orders_th_name"><%= Menu.find(cart.menu_id).menu_name %> </th>
@@ -20,7 +20,7 @@
     <% cost=cost+(cart.count*Menu.find(cart.menu_id).menu_cost)%>
      <th class = "orders_th_name" > <%= c = cart.count*Menu.find(cart.menu_id).menu_cost %> ₹</th>
     <% else %>
-      <% currentuser_model(Cart).find_by(menu_id: cart.menu_id).destroy %>
+      <% currentuser_records(Cart).find_by(menu_id: cart.menu_id).destroy %>
     <% end %>
 </tr>
 <% end %>

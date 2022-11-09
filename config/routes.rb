@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  
-  get "/rough" => "reports#rough"
-  get "/rough1" => "reports#rough1"
-  
   get "/" => "users#new"
 
   resources :users , controller: 'users', :only => [:new, :create] 
@@ -48,6 +44,3 @@ Rails.application.routes.draw do
   get "/completed_orders" => "orders_res#completed_orders"
 
 end
-
-
-

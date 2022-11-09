@@ -6,7 +6,7 @@
   <p class = "SidebarComponents"><%= link_to "Completed Orders", user_completed_orders_path, class: "RestaurantSideBarComponents orders_sidebarcomponents"%></p>
 </section>
 <section class = "style_card">
-<% all_orders = currentuser_model(Order).cachemethod.sort_by(&:updated_at).reverse%>
+<% all_orders = currentuser_records(Order).cachemethod.sort_by(&:updated_at).reverse%>
 <% all_orders.each do |order|%>
 
     <div class = "main_card_orders">

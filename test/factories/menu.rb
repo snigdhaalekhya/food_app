@@ -5,7 +5,7 @@ FactoryGirl.define do
       menu_description Faker::Lorem.paragraph
       menu_image AllConstants::IMAGE
       menu_category AllConstants::CATEGORY[0]
-      owner_id AllConstants::VALUE
+      owner_id AllConstants::ID_OR_COUNT
     end
   end
   

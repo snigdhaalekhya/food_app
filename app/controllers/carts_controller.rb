@@ -6,7 +6,7 @@ class CartsController < ApplicationController
         if cart_menuid.present?
             cart_menuid.count = cart_menuid.count + 1
         else
-            cart_menuid = Cart.new(user_id: current_user.id, menu_id: find_menuid.id, count: AllConstants::VALUE, owner_id: AllConstants::VALUE)
+            cart_menuid = Cart.new(user_id: current_user.id, menu_id: find_menuid.id, count: AllConstants::ID_OR_COUNT, owner_id: AllConstants::ID_OR_COUNT)
         end
         if cart_menuid.save
             redirect_to main_index_path
@@ -33,7 +33,7 @@ class CartsController < ApplicationController
     end
 
     def find_cartmenuid
-       currentuser_model(Cart).find_by(menu_id: find_menuid.id)
+       currentuser_records(Cart).find_by(menu_id: find_menuid.id)
     end
 
 end

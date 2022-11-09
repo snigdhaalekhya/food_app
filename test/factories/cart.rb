@@ -1,7 +1,7 @@
 FactoryGirl.define do
     factory :cart do
-      count  AllConstants::VALUE
-      owner_id AllConstants::VALUE
+      count  AllConstants::ID_OR_COUNT
+      owner_id AllConstants::ID_OR_COUNT
     end
   end
   

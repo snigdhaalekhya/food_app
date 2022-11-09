@@ -1,6 +1,6 @@
 module AllConstants
     MENU_ROOT = "/menus"
-    VALUE = 1
+    ID_OR_COUNT = 1
     COUNT = 2
     CATEGORY = %w(Breakfast Lunch Snacks Dinner)
     STATUS = %w(Pending Cancelled Add\ to\ queue Preparing Delivered)

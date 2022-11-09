@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController 
     skip_before_action :ensure_user_logged_in
-    before_action :find_mobileno, only: [:create , :update_password]
+    before_action :find_mobileno, only: [:create, :update_password]
 
     def create
         if params[:mobile_no].blank? || params[:password].blank?

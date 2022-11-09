@@ -48,14 +48,14 @@ class UsersControllerTest < ActiveSupport::TestCase
   def test_user_mobileno_check_present_in_db
    field_value = {mobile_no: @user.mobile_no }
    response = post "/users", field_value
-   assert_equal(User.last.mobile_no , field_value[:mobile_no])
+   assert_equal(User.last.mobile_no, field_value[:mobile_no])
    assert_equal(response.status, 302)
   end
 
   def test_user_email_check_present_in_db
     field_value = {email: @user.email }
     response = post "/users", field_value 
-    assert_equal(User.last.email , field_value[:email])
+    assert_equal(User.last.email, field_value[:email])
     assert_equal(response.status, 302)
   end
 

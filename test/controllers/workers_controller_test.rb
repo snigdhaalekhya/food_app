@@ -53,14 +53,14 @@ class WorkersControllerTest < ActiveSupport::TestCase
   def test_worker_email_check_present_in_db
     field_value = {email: @worker.email }
     response = post "/workers", field_value 
-    assert_equal(Worker.last.email , field_value[:email])
+    assert_equal(Worker.last.email, field_value[:email])
     assert_equal(response.status, 302)
   end
 
   def test_worker_mobileno_check_present_in_db
     field_value = {mobile_no: @worker.mobile_no }
     response = post "/workers", field_value 
-    assert_equal(Worker.last.mobile_no , field_value[:mobile_no])
+    assert_equal(Worker.last.mobile_no, field_value[:mobile_no])
     assert_equal(response.status, 302)
   end
 

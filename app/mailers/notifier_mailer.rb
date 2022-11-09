@@ -1,20 +1,20 @@
 class NotifierMailer < ApplicationMailer
     # If order is placed owner receives mail with order,customer all_details
-    def send_mail_order
+    def send_mail_to_owner
       construct_email_params
       mail(from: "ammualekhya6@gmail.com", to: @owner_mail, subject: "New order placed by #{@user_name}",
         body: "New order placed by the customer with Order Id: #{ @order_id}\nCustomer name: #{@user_name}\nCustomer Mobile number: #{@user_mobileno}\nCustomer Address: #{@user_address}\nItems placed order: #{menu_items}\nTotal cost: #{total_cost}")
     end
 
     #If order status is updated send mail to customer
-    def send_mail_status
+    def send_mail_to_user_for_status_update
       construct_email_params
       mail(from: "ammualekhya6@gmail.com", to: @user_mail, subject: "Status for the Order ##{@order_id} placed from restaurant",
         body: "Order status for  Order Id: #{ @order_id}\nCustomer name: #{@user_name}\nCustomer Mobile number: #{@user_mobileno}\nCustomer Address: #{@user_address}\nOrder status Update: #{@status}\n#{menu_items}\nTotal cost: #{total_cost}")
     end
 
     #If order has not been delivered successfully
-    def send_mail_notsuccess
+    def send_mail_to_user_with_apology_message
       construct_email_params
       mail(from: @owner_mail, to: @user_mail, subject: "Status for the Order ##{@order_id} placed from restaurant",
         body: "#{params[:reason]}")
