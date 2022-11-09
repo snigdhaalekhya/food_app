@@ -4,7 +4,7 @@ class SessionsResController < ApplicationController
     def create
       identity = params[:identity]
       if !identity.blank?
-        owner = method_identify
+        owner = identify_owner_type
         if  owner && owner.authenticate(params[:password]) 
           session[:current_owner_id] = owner.email
           session[:bool_owner] = false
@@ -23,7 +23,7 @@ class SessionsResController < ApplicationController
     def update_password
       identity = params[:identity]
       if !identity.blank?
-        owner = method_identify
+        owner = identify_owner_type
           if owner
             new_password = params[:password]
             confirm_password = params[:password_confirm]
@@ -58,7 +58,7 @@ class SessionsResController < ApplicationController
     end
 
     private
-    def method_identify
+    def identify_owner_type
       identity = params[:identity]
         if identity == "Owner"
           owner = Owner.find_by(email: params[:email])

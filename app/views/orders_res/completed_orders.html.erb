@@ -3,21 +3,21 @@
 <div class = "main_card">
 <section>
 <img class = "delicious" src = "https://thumbs.dreamstime.com/b/restaurant-cafe-bistro-cooking-chef-logo-design-template-restaurant-cafe-bistro-cooking-chef-logo-design-113852274.jpg"  >
-  <p class = "SidebarComponents"> <%= link_to "Orders", orders1_index_path, class:"RestaurantSideBarComponents"%></p>
- <p class = "SidebarComponents"> <%= link_to "Menu", menus_path, class:"RestaurantSideBarComponents"%></p>
-  <p class = "SidebarComponents"><%= link_to "Users", show_customers_path, class:"RestaurantSideBarComponents"%></p>
-  <p class = "SidebarComponents"><%= link_to "Reports", reports_path, class:"RestaurantSideBarComponents"%></p>
+  <p class = "SidebarComponents"> <%= link_to "Orders", orders1_index_path, class: "RestaurantSideBarComponents"%></p>
+ <p class = "SidebarComponents"> <%= link_to "Menu", menus_path, class: "RestaurantSideBarComponents"%></p>
+  <p class = "SidebarComponents"><%= link_to "Users", show_customers_path, class: "RestaurantSideBarComponents"%></p>
+  <p class = "SidebarComponents"><%= link_to "Reports", reports_path, class: "RestaurantSideBarComponents"%></p>
 </section>
 <section class = "style_card">
  <br>
-<p class = "queue-css"><%= link_to "My Queue", orders1_index_path, class:"SideBarComponentsUsersSide"%>
-  <%= link_to "All Orders", all_orders_path, class:"SideBarComponentsUsersSide"%>
-  <%= link_to "Completed Orders", completed_orders_path, class:"SideBarComponentsUsersSide"%>
+<p class = "queue-css"><%= link_to "My Queue", orders1_index_path, class: "SideBarComponentsUsersSide"%>
+  <%= link_to "All Orders", all_orders_path, class: "SideBarComponentsUsersSide"%>
+  <%= link_to "Completed Orders", completed_orders_path, class: "SideBarComponentsUsersSide"%>
   </p>
   <br>
   <br>
   <hr>
-<% orders_completed=Order.cache(Order.where(status: AllConstants::DELIVERED)).to_a%>
+<% orders_completed=Order.cache(Order.where(status: AllConstants::DELIVERED))%>
 <% orders_completed.each do |order|%>
     <div class = "main_card_orders">
      <br>
@@ -67,5 +67,4 @@
 <% end%>
 
 </section>
-
 </body>

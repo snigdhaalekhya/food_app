@@ -11,8 +11,8 @@
   <% if @current_user %>
 
   <div class = "action">
-   <div class = "profile" onclick="menuToggle();">
-   <img class = "image" src="https://media.istockphoto.com/vectors/user-member-vector-icon-for-ui-user-interface-or-profile-face-avatar-vector-id1130884625?k=20&m=1130884625&s=612x612&w=0&h=OITK5Otm_lRj7Cx8mBhm7NtLTEHvp6v3XnZFLZmuB9o=">
+   <div class = "profile" onclick = "menuToggle();">
+   <img class = "image" src = "https://media.istockphoto.com/vectors/user-member-vector-icon-for-ui-user-interface-or-profile-face-avatar-vector-id1130884625?k=20&m=1130884625&s=612x612&w=0&h=OITK5Otm_lRj7Cx8mBhm7NtLTEHvp6v3XnZFLZmuB9o=">
    </div>
    <div class = "MenuToggle">
    <table class = "users-table">
@@ -33,7 +33,7 @@
     <th class = "users-th"><%= @current_user.address%></th>
   <tr> 
   </table>
-   <%= button_to "Sign-out", destroy_session_path, method: "delete", class:"button_property SignOut"%>
+   <%= button_to "Sign-out", destroy_session_path, method: "delete", class: "button_property SignOut"%>
   </div>
   <script>
      function menuToggle(){
@@ -64,27 +64,27 @@
 <section class = "style_card">
  <p class = "menu_style">
 <img class = "order_now_image" src = "https://cdn.w600.comps.canstockphoto.com/order-now-clip-art_csp22578022.jpg">
-   <%= link_to "Menu", main_index_path, class:"SideBarComponentsUsersSide", style: "margin-left:1200px;"%>
-  <%= link_to "My Orders", orders_path, class:"SideBarComponentsUsersSide"%>
-  <%= link_to "Cart", carts_path, class:"SideBarComponentsUsersSide CartComponent"%>
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKGxujYqqoJ2wjE-cUDwfmfhjX-ls8t7TAcwcfgjd5LspLpQnT7-pXfP_pVapr9qF1kZQ&usqp=CAU" class = "cart_image" > 
+   <%= link_to "Menu", main_index_path, class: "SideBarComponentsUsersSide", style: "margin-left:1200px;"%>
+  <%= link_to "My Orders", orders_path, class: "SideBarComponentsUsersSide"%>
+  <%= link_to "Cart", carts_path, class: "SideBarComponentsUsersSide CartComponent"%>
+  <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKGxujYqqoJ2wjE-cUDwfmfhjX-ls8t7TAcwcfgjd5LspLpQnT7-pXfP_pVapr9qF1kZQ&usqp=CAU" class = "cart_image" > 
 
   <% if total_cart_count != 0 %>
   <%= tag.span total_cart_count, class: "notification_color"%>
   <% end %>
   
-  <input type = "image" class = "notification_image" src="https://icones.pro/wp-content/uploads/2022/02/icone-de-cloche-grise.png"  onclick = "notificationToggle();">
-  <% if method_status("Delivered").count > 0 %>
-   <%= tag.span method_status("Delivered").count , {class:"notification_color"}%>
+  <input type = "image" class = "notification_image" src = "https://icones.pro/wp-content/uploads/2022/02/icone-de-cloche-grise.png"  onclick = "notificationToggle();">
+  <% if status_type("Delivered").count > 0 %>
+   <%= tag.span status_type("Delivered").count , {class: "notification_color"}%>
   <% end %>
   <div class = "notification_action">
    <div class = "NotificationToggle">
-   <% if method_status("Delivered").count > 0 %>
-   <% method_status("Delivered").each do |del|%>
+   <% if status_type("Delivered").count > 0 %>
+   <% status_type("Delivered").each do |del|%>
    <section class = "display_css">
    <p>Order no: #<%= del.id %> was delivered</p>
-   <%= button_to "Yes", "/orders/#{del.id}", method: "put", class:"button_property YesHeader"%>
-   <%= button_to "No", "/orders/#{del.id}/updateto_not_delivered", method: "put", class:"button_property YesHeader"%>
+   <%= button_to "Yes", "/orders/#{del.id}", method: "put", class: "button_property YesHeader"%>
+   <%= button_to "No", "/orders/#{del.id}/updateto_not_delivered", method: "put", class: "button_property YesHeader"%>
    </section>
    <%end%>
    <% else %>
@@ -147,7 +147,7 @@
     <th class = "users-th"><%= @current_owner.address%></th>
   <tr> 
   </table>
-   <%= button_to "Sign-out", destroy_session_res_path, method: "delete", class:"button_property SignOut"%>
+   <%= button_to "Sign-out", destroy_session_res_path, method: "delete", class: "button_property SignOut"%>
   </div>
   <script>
      function menuToggle(){
@@ -178,23 +178,23 @@
 
 <div class = "notification_action">
 <div class = "profile_res" onclick = "notificationToggle_Res();">
-<img class = "notification_image_res" src="https://icones.pro/wp-content/uploads/2022/02/icone-de-cloche-grise.png">
+<img class = "notification_image_res" src = "https://icones.pro/wp-content/uploads/2022/02/icone-de-cloche-grise.png">
 </div>
 <% if status_not_delivered.count > 0 %>
-   <%= tag.p status_not_delivered.count , class:"notification_color"%>
+   <%= tag.p status_not_delivered.count , class: "notification_color"%>
 <% end %>
    <div class = "NotificationToggle">
   <% if status_not_delivered.count > 0 %>
    <% status_not_delivered.each do |del|%>
    <section>
-   <%= form_with(url: "/orders1/#{del.id}/send_mail")do |form| %>
+   <%= form_with(url: "/orders1/#{del.id}/send_mail") do |form| %>
    <div class = "Reason" >
  <section class = "display">
 <p class = "FormInput-label"> Order no: <%="#{del.id}" %> was not delivered </p>
 </section>
 <section class = "display">
  <%= form.text_field :reason, class: "form-input form-input-reason", placeholder: "Enter the reason"%>
- <%= form.submit "Submit", class:"Form-submit-reason"%>
+ <%= form.submit "Submit", class: "Form-submit-reason"%>
  </section>
  </div>
    <% end %>

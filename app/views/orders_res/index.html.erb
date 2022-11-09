@@ -6,18 +6,18 @@
 <div class = "main_card" >
 <section>
 <img class = "delicious" src = "https://thumbs.dreamstime.com/b/restaurant-cafe-bistro-cooking-chef-logo-design-template-restaurant-cafe-bistro-cooking-chef-logo-design-113852274.jpg"  >
-  <p class = "SidebarComponents"> <%= link_to "Orders", orders1_index_path, class:"RestaurantSideBarComponents"%></p>
- <p class = "SidebarComponents"> <%= link_to "Menu", menus_path, class:"RestaurantSideBarComponents"%></p>
-  <p class = "SidebarComponents"><%= link_to "Users", show_customers_path, class:"RestaurantSideBarComponents"%></p>
-  <p class = "SidebarComponents"><%= link_to "Reports", reports_path, class:"RestaurantSideBarComponents"%></p>
+  <p class = "SidebarComponents"> <%= link_to "Orders", orders1_index_path, class: "RestaurantSideBarComponents"%></p>
+ <p class = "SidebarComponents"> <%= link_to "Menu", menus_path, class: "RestaurantSideBarComponents"%></p>
+  <p class = "SidebarComponents"><%= link_to "Users", show_customers_path, class: "RestaurantSideBarComponents"%></p>
+  <p class = "SidebarComponents"><%= link_to "Reports", reports_path, class: "RestaurantSideBarComponents"%></p>
 </section>
 
 <section class = "style_card">
 <br>
 <p class = "queue-css">
-<%= link_to "My Queue", orders1_index_path, class:"SideBarComponentsUsersSide"%>
-<%= link_to "All Orders", all_orders_path, class:"SideBarComponentsUsersSide"%>
-  <%= link_to "Completed Orders", completed_orders_path, class:"SideBarComponentsUsersSide"%>
+<%= link_to "My Queue", orders1_index_path, class: "SideBarComponentsUsersSide"%>
+<%= link_to "All Orders", all_orders_path, class: "SideBarComponentsUsersSide"%>
+  <%= link_to "Completed Orders", completed_orders_path, class: "SideBarComponentsUsersSide"%>
   </p>
   <br>
   <br>
@@ -60,17 +60,17 @@
      <section>
         <br> 
         <section class = "status" >
-        <%= form_with(url: "/orders1/#{order.id}"  , method: "put") do |form| %> 
+        <%= form_with(url:   "/orders1/#{order.id}", method: "put") do |form| %> 
        <% if order.status != AllConstants::PENDING %>
            <% status=order.status%>
       <% else %>
           <% status = AllConstants::PENDING %>
        <% end %>
-         <%= form.select :status, options_for_select(AllConstants::STATUS,status)%>
+         <%= form.select :status, options_for_select(AllConstants::STATUS, status)%>
         <% if Owner.find_by(email: current_owner.email)%>
-        <%= form.submit "Update",{class: "Update"} %>
+        <%= form.submit "Update", {class: "Update"} %>
         <% elsif Worker.find_by(email: current_owner.email)%>
-        <%= form.submit "Update",class: "Update Update_Not", disabled: "true" %>
+        <%= form.submit "Update", class: "Update Update_Not", disabled: "true" %>
         <% end %>
       </section>
       <%end%>
@@ -95,5 +95,4 @@
 <% end%>
 </section>
 </div>
-
 </body>

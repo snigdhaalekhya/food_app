@@ -4,18 +4,18 @@
 <% end %> 
 <section class = "display">
 
-<%= form_tag(main_index_path, method:"get") do%>
+<%= form_tag(main_index_path, method: "get") do%>
     <section class = "SearchMenu">
-     <%= search_field_tag :search, params[:search], placeholder: "Search menu",class:"searchmenu"%>
+     <%= search_field_tag :search, params[:search], placeholder: "Search menu", class: "searchmenu"%>
     </section>
   <% end %>
   
-<%=form_with(url:"/view_user/category_wise"  , method: "get")  do |form| %>
-   <%= form.select :menu_category, AllConstants::CATEGORY ,{:prompt=>"Choose category",},{class:"select select_menus_users",:onchange=>"this.form.submit()"}%>
+<%=form_with(url:  "/view_user/category_wise", method: "get")  do |form| %>
+   <%= form.select :menu_category, AllConstants::CATEGORY , {:prompt => "Choose category"}, {class: "select select_menus_users", :onchange => "this.form.submit()"}%>
 <% end %>
   
 </section>
-<% if !params[:search].blank? && @result_count<=0 %>
+<% if !params[:search].blank? && @result_count <= 0 %>
    <p>Oops no records found!! <p>
 <% else %>
 <% @results.cachemethod.each do |menu|%>
@@ -28,8 +28,8 @@
       <p class = "description"><%= menu.menu_description %></p>
       <p class = "cost"><%= menu.menu_cost%> ₹</p>
       <div class = "buttoncard">
-      <%= form_with(url: "/carts/#{menu.id}"  , method: "get") do %>
-         <input type = "submit" value = "+" class = "buttons_plus_minus plus" name="Add" id = "Add"  >     
+      <%= form_with(url:   "/carts/#{menu.id}"  , method: "get") do %>
+         <input type = "submit" value = "+" class = "buttons_plus_minus plus" name = "Add" id = "Add">     
       <% end %>
      
        <section class = "count_show">
@@ -39,8 +39,8 @@
          <% end%>
       </section>
 
-      <%= form_with(url: "/carts/#{menu.id}/remove"  , method: "get") do %>
-         <input type = "submit" value = "-" class = "buttons_plus_minus minus" name="Add" id = "Subtract"  > 
+      <%= form_with(url:   "/carts/#{menu.id}/remove", method: "get") do %>
+         <input type = "submit" value = "-" class = "buttons_plus_minus minus" name = "Add" id = "Subtract"> 
       <% end%>
       </div>
       <br>
@@ -51,4 +51,3 @@
 </section>
 </div>
 </body>
-

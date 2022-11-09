@@ -15,7 +15,7 @@
  <section class = "display">
 <p class = "FormInput-label"> Menu_Category<section class = "mandatory">*</section> </p>
 </section>
- <p class =  "form-input Form-input-menus"><%= form.select :menu_category, AllConstants::CATEGORY, class:"dropdown_menu",  placeholder: "Select category"%></p>
+ <p class =  "form-input Form-input-menus"><%= form.select :menu_category, AllConstants::CATEGORY, class: "dropdown_menu",  placeholder: "Select category"%></p>
  </div>
  <div class = "Form-section-menu">
  <section class = "display">
@@ -37,10 +37,7 @@
 </section>
  <%= form.text_field :menu_image, class: "form-input", placeholder: "Add item image url"%>
  </div>
- 
- <!--
- <%= form.file_field :image%>
- -->
+
  <div class = "Form-section-menu">
  <%= form.submit "Create Item", class: "submit-button"%>
  </div>

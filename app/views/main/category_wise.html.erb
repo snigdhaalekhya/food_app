@@ -1,6 +1,6 @@
 <body> 
-<%=form_with(url:"/view_user/category_wise"  , method: "get")  do |form| %>
-   <%= form.select :menu_category, AllConstants::CATEGORY,{:prompt=>"Choose category"},{class:"select select_menus_users_category",:onchange=>"this.form.submit()"}%>
+<%=form_with(url:  "/view_user/category_wise", method: "get")  do |form| %>
+   <%= form.select :menu_category, AllConstants::CATEGORY, {:prompt => "Choose category"}, {class: "select select_menus_users_category", :onchange => "this.form.submit()"}%>
 <% end %>
 <% Menu.cache(@menus_category).each do |menu|%>
 <div class = "row">
@@ -12,8 +12,8 @@
       <p class = "description"><%= menu.menu_description %></p>
       <p class = "cost"><%= menu.menu_cost%> ₹</p>
       <div class = "buttoncard">
-      <%= form_with(url: "/carts/#{menu.id}"  , method: "get") do %>
-         <input type = "submit" value = "+" class = "buttons_plus_minus plus" name = "Add" id = "Add"  >     
+      <%= form_with(url:   "/carts/#{menu.id}"  , method: "get") do %>
+         <input type = "submit" value = "+" class = "buttons_plus_minus plus" name = "Add" id = "Add">     
       <% end %>
      
        <section class = "count_show">
@@ -23,8 +23,8 @@
          <% end%>
       </section>
 
-      <%= form_with(url: "/carts/#{menu.id}/remove"  , method: "get") do %>
-         <input type = "submit" value = "-" class = "buttons_plus_minus minus" name = "Add" id = "Add"  > 
+      <%= form_with(url:   "/carts/#{menu.id}/remove"  , method: "get") do %>
+         <input type = "submit" value = "-" class = "buttons_plus_minus minus" name = "Add" id = "Add"> 
       <% end%>
       </div>
       <br>

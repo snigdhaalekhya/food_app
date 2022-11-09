@@ -9,8 +9,8 @@ class OrdersResControllerTest < ActiveSupport::TestCase
         Order.all.destroy_all
         @user = FactoryGirl.create(:user)
         @owner = FactoryGirl.create(:owner)
-        @order = FactoryGirl.create(:order, user_id: @user.id, owner_id:@owner.id)
-        value = {identity: "Owner", email: @owner.email , password:@owner.password }
+        @order = FactoryGirl.create(:order, user_id: @user.id, owner_id: @owner.id)
+        value = {identity: "Owner", email: @owner.email , password: @owner.password }
         post  "/signin_restaurant" , value
     end
 
@@ -26,17 +26,18 @@ class OrdersResControllerTest < ActiveSupport::TestCase
 
     def test_send_mail_if_reason_notnull
         field_value = {status: AllConstants::REMOVE, reason: Faker::Lorem.paragraph}
-        response = post "/orders1/#{@order.id}/send_mail" , field_value
+        response = post "/orders1/#{@order.id}/send_mail", field_value
         assert_equal(Order.last.status, field_value[:status])
         mail = ActionMailer::Base.deliveries.last
-        assert_equal(mail['from'].to_s , @owner.email)
+        assert_equal(mail['from'].to_s, @owner.email)
         assert_equal( mail['to'].to_s, @user.email)
-        assert_equal(response.status,302)
+        assert_equal(response.status, 302)
     end
 
     def test_send_mail_if_reason_null
         field_value = {status: AllConstants::REMOVE, reason: ""}
-        response = post "/orders1/#{@order.id}/send_mail" , field_value
-        assert_equal(response.status,302)
+        response = post "/orders1/#{@order.id}/send_mail", field_value
+        assert_equal(response.status, 302)
     end
+
 end

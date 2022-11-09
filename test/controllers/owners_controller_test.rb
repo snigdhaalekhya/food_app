@@ -10,24 +10,24 @@ class OwnersControllerTest < ActiveSupport::TestCase
 
 
   def test_owner_creation
-     value = pass_params(Faker::Name.name[1..18], Faker::Internet.email, @owner.password , Faker::Lorem.paragraph)
+     value = pass_params(Faker::Name.name[1..18], Faker::Internet.email, @owner.password, Faker::Lorem.paragraph)
      response =  post "/owners", value
      assert_equal(Owner.last.email, value[:email])
-     assert_equal(response.status,302)
+     assert_equal(response.status, 302)
   end
 
   def test_owner_creation_notsuccess_withoutemail
-    value = pass_params(Faker::Name.name[1..18], "", @owner.password , Faker::Lorem.paragraph)
+    value = pass_params(Faker::Name.name[1..18], "", @owner.password, Faker::Lorem.paragraph)
     response = post  "/owners", value
     assert_not_equal(Faker::Internet.email, value[:email])
-    assert_equal(response.status,302)
+    assert_equal(response.status, 302)
   end
 
   def test_owner_creation_notsuccess_without_notfollowed_passwordrules
     value = pass_params(Faker::Name.name[1..18], Faker::Internet.email, Faker::Internet.password , Faker::Lorem.paragraph)
     assert_not_equal(@owner.password, value[:password])
     response = post  "/owners", value
-    assert_equal(response.status,302)
+    assert_equal(response.status, 302)
   end
 
   def test_owner_creation_notsuccess_without_allrequiredfields
@@ -37,14 +37,14 @@ class OwnersControllerTest < ActiveSupport::TestCase
     assert_not_equal(Faker::Internet.email, value[:email])
     assert_not_equal(@owner.password, value[:password])
     assert_not_equal(Faker::Lorem.paragraph, value[:address])
-    assert_equal(response.status,302)
+    assert_equal(response.status, 302)
   end
 
   def test_owner_email_check_present_in_db
     value = {email: @owner.email }
     response = post "/owners", value 
     assert_equal(Owner.last.email , value[:email])
-    assert_equal(response.status,302)
+    assert_equal(response.status, 302)
   end
 
   private
@@ -53,4 +53,3 @@ class OwnersControllerTest < ActiveSupport::TestCase
   end
 
 end
-

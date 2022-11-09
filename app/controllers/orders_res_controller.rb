@@ -14,7 +14,7 @@ class OrdersResController < ApplicationController
     def send_mail
         order_id = find_by_id
         if !params[:reason].blank?
-           NotifierMailer.with(order: order_id,reason: params[:reason]).send_mail_notsuccess.deliver_now
+           NotifierMailer.with(order: order_id, reason: params[:reason]).send_mail_notsuccess.deliver_now
            order_id.update(status: AllConstants::REMOVE)
         end
            redirect_to orders1_index_path

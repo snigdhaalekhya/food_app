@@ -27,7 +27,7 @@ end
 
     def update_password
         if params[:mobile_no].blank? || params[:password].blank? || params[:password_confirm].blank?
-                flash[:error]="Please fill all the required fields."
+                flash[:error] = "Please fill all the required fields."
                 redirect_to signin_users_update_password_path
         else 
             user = find_mobileno
@@ -57,6 +57,6 @@ end
 
     private 
     def find_mobileno
-      User.find_by(mobile_no: params[:mobile_no])
+        User.find_by(mobile_no: params[:mobile_no])
     end
 end

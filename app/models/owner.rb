@@ -1,4 +1,4 @@
 class Owner < ApplicationRecord
-include CommonValidation
+  include CommonValidation
     
 end

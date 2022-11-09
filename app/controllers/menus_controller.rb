@@ -7,13 +7,13 @@ class MenusController < ApplicationController
 
 
     def create
-           menu = Menu.new(menu_name:params[:menu_name] , menu_category:params[:menu_category] , menu_cost:params[:menu_cost] , menu_description:params[:menu_description] , menu_image: params[:menu_image] )    
-            if menu.save
-               redirect_to AllConstants::MENU_ROOT       
-            else
-               flash[:error] = menu.errors.full_messages.join(", ")
-               redirect_to new_menu_path
-            end
+        menu = Menu.new(menu_name: params[:menu_name], menu_category: params[:menu_category], menu_cost: params[:menu_cost], menu_description: params[:menu_description], menu_image: params[:menu_image])    
+        if menu.save
+            redirect_to AllConstants::MENU_ROOT       
+        else
+            flash[:error] = menu.errors.full_messages.join(", ")
+            redirect_to new_menu_path
+        end
     end
 
    
@@ -23,12 +23,12 @@ class MenusController < ApplicationController
 
     def update 
       menu = find_id
-      html_field = {menu_name:  params[:menu][:menu_name], menu_description: params[:menu][:menu_description], menu_category: params[:menu][:menu_category], menu_cost: params[:menu][:menu_cost], menu_image:  params[:menu][:menu_image] }
-      db_field = {menu_name: menu.menu_name, menu_description: menu.menu_description, menu_category:menu.menu_category, menu_cost: menu.menu_cost, menu_image: menu.menu_image}
-      html_field.each do |key,value|
-        if  value != db_field[key]
-          menu.update(key => value)
-          if !menu.update(key => value)
+      menu_params = params[:menu]
+      menu_identity_type = %w(menu_name menu_description menu_category menu_cost menu_image)
+      for i in 0..menu_identity_type.length
+        if menu_params[menu_identity_type[i]] !=  menu[menu_identity_type[i]]
+          menu.update(menu_identity_type[i] => menu_params[menu_identity_type[i]])
+          if !menu.update(menu_identity_type[i] => menu_params[menu_identity_type[i]])
             flash[:error] = menu.errors.full_messages.join(", ")
           end
         end
@@ -46,8 +46,9 @@ class MenusController < ApplicationController
         redirect_to AllConstants::MENU_ROOT
     end
 
-    private 
+    private
     def find_id
-     Menu.find(params[:id])
+      Menu.find(params[:id])
     end
+
 end

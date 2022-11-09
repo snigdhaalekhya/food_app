@@ -86,7 +86,5 @@ group :test do
 end
 
  gem 'kaminari'
-
-gem 'rack-test', group: :test
-
-gem 'assert-rails', group: :test
+ gem 'rack-test', group: :test
+ gem 'assert-rails', group: :test

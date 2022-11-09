@@ -8,13 +8,9 @@ module MainHelper
       currentuser_model(model).sort_by(&:updated_at).reverse
     end
 
-    def method_status(status)
+    def status_type(status)
         currentuser_model(Order).select{|s| s.status == status }
     end 
-
-    def method_status_not(status)
-        currentuser_model(Order).select{|s| s.status != status }
-    end
 
     def cart_notempty
         Cart.find_by(user_id: current_user)
@@ -48,9 +44,9 @@ module MainHelper
         return cart_totalcount
     end
 
-    def total_cost(parameter)
+    def total_cost(params)
      total_cost = 0
-      parameter.menu.split("+") do |o|
+      params.menu.split("+") do |o|
         str = o.split("*")
         total_cost = str[2].to_i + total_cost
       end
@@ -60,7 +56,6 @@ module MainHelper
     def status_not_delivered
         Order.where(status: "Not Delivered")
     end
+
 end 
-
-
     

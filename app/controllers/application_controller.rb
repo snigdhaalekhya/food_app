@@ -14,9 +14,7 @@ class ApplicationController < ActionController::Base
         @check_firstlogin_user = session[:bool_user] 
         @current_user = User.find(current_user_id) if current_user_id.present?
     end
-
-   
-    
+ 
     def ensure_owner_logged_in
         unless current_owner
             redirect_to new_owner_path
@@ -28,11 +26,10 @@ class ApplicationController < ActionController::Base
 
         current_owner_id = session[:current_owner_id]
         @check_firstlogin_owner = session[:bool_owner] 
-        @current_owner = check_owner_identity if current_owner_id.present?
+        @current_owner = check_owner_identity_type if current_owner_id.present?
     end
-    
-        
-    define_method "check_owner_identity"  do
+         
+    define_method "check_owner_identity_type"  do
           [Owner, Worker].each do |model|
                if model.find_by(email: session[:current_owner_id]).present?
                   current = model.find_by(email: session[:current_owner_id])
@@ -46,8 +43,8 @@ class ApplicationController < ActionController::Base
         @category = params[:menu_category]
         if  Menu.find_by(menu_category: @category).present?
             @menus_category = Menu.where(menu_category: @category)
-        end
-        
+        end   
     end
-   
+     
 end
+

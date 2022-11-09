@@ -10,7 +10,7 @@ class UsersController < ApplicationController
          flash[:error] = "This email is already registered. Please retry."
           redirect_to new_user_path 
      else
-        user = User.new(name:params[:name] , mobile_no:params[:mobile_no] , email:params[:email] , password:params[:password] , address:params[:address])
+        user = User.new(name: params[:name], mobile_no: params[:mobile_no], email: params[:email], password: params[:password], address: params[:address])
            if user.save
              session[:current_user_id] = user.id
              session[:bool_user] = true
