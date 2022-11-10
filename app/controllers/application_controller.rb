@@ -43,4 +43,4 @@ class ApplicationController < ActionController::Base
             @menus_category = Menu.where(menu_category: @category)
         end
     end
-end
+en
