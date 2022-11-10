@@ -57,4 +57,3 @@ module MainHelper
         Order.where(status: "Not Delivered")
     end
 end
-    

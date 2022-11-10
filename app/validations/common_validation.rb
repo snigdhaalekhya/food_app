@@ -14,4 +14,3 @@ module CommonValidation
       has_secure_password
     end   
 end
-  
