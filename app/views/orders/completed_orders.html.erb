@@ -1,78 +1,64 @@
-<body> 
-<div class="card2">
-<p style="margin-left: 60%;margin-top:30px;display:inline-flex"><%= link_to "Menu", view_user_path, class:"SidebarComponentsRuby1"%>
-  <%= link_to "My Orders", orders_path, class:"SidebarComponentsRuby1"%>
-  <%= link_to "Cart", carts_path, class:"SidebarComponentsRuby1"%>
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKGxujYqqoJ2wjE-cUDwfmfhjX-ls8t7TAcwcfgjd5LspLpQnT7-pXfP_pVapr9qF1kZQ&usqp=CAU" width="40px" height=40px >
-  <input type="image" class="image1" src="https://icones.pro/wp-content/uploads/2022/02/icone-de-cloche-grise.png" width="35px" height=35px onclick="menuToggle1();">
-   <%= @orders.where(status: "Delivered").count %>
-  <div class="action1">
-   <div class="MenuToggle1">
-   <% @orders.where(status: "Delivered").each do |del|%>
-   <section style="display:inline-flex">
-   <p>Order no: #<%= del.id %> was Delivered?</p>
-   <%= button_to "Yes", "/orders/#{del.id}", method: "put", class:"UserHeader2"%>
-   </section>
-   <%end%>
-  </div>
-  </p>
-  <script>
-     function menuToggle1(){
-        const toggleMenu = document.querySelector('.MenuToggle1');
-        toggleMenu.classList.toggle('active')
-     }
-  </script>
+<div class = "main_card">
+  <section class = "width">
+    <p class = "SidebarComponents"> <%= link_to "All Orders", orders_path, class: "RestaurantSideBarComponents orders_sidebarcomponents" %></p>
+    <p class = "SidebarComponents"> <%= link_to "Active Orders", user_active_orders_path, class: "RestaurantSideBarComponents orders_sidebarcomponents" %></p>
+    <p class = "SidebarComponents"><%= link_to "Completed Orders", user_completed_orders_path, class: "RestaurantSideBarComponents orders_sidebarcomponents" %></p>
+  </section>
+  <section class = "style_card">
+    <%=form_with(url: "/user_completed_orders", method: "get")  do |form| %>
+      <%= form.select :status_almost, AllConstants::COMPLETED_ORDERS, { :prompt => "Choose status", :selected => params[:status_almost] }, { class: "select select_status", :onchange => "this.form.submit()" } %>
+    <% end %>
+    <% if params[:status_almost].blank? %>
+      <% orders_completed = users_completed_orders.cachemethod.sort_by(&:updated_at).reverse %> 
+    <% else %>
+      <% orders_completed = currentuser_records(Order).where(status: params[:status_almost]) %>
+      <% orders_completed = currentuser_records_in_reverse_order(orders_completed) %>
+      <% orders_completed = Order.cache(orders_completed) %>
+    <% end %>
+    <% orders_completed.each do |order| %>
+        <div class = "main_card_orders">
+          <br>
+          <br>
+          <section class = "display" >
+            <section class = "left_right_division">
+              <p class="OrderNo">Order Id &nbsp; #<%= order.id %></p>
+              <p class = "menu">
+              <table class = "order">
+                <tr class = "orders_tr">
+                    <th class = "orders_th">Items</th>
+                    <th class = "orders_th">Quantity</th>
+                    <th class = "orders_th">Cost(₹)</th>
+                </tr>
+                <% order.menu.split("+") do |o| %>
+                <tr class = "orders_tr">
+                <% str= o.split("*") %>
+                    <td class = "orders_td "> <%= str[0] %></td>
+                    <td class = "orders_td "><%= str[1] %></td>
+                    <td class = "orders_td "><%= str[2] %></td>
+                </tr>
+                <% end %>
+                <br>
+                </p>
+              </table>
+                <p class = "Total_cost">Total: &nbsp;&nbsp;<%= total_cost(order).to_s + " ₹" %></p>
+            </section>
 
-  <br>
-  <hr>
-<div class=card1" style="display:flex">
-<section style="width:25%">
-  <p class="SidebarComponents"> <%= link_to "All Orders", orders_path, class:"SidebarComponentsRuby3"%></p>
- <p class="SidebarComponents"> <%= link_to "Active Orders", user_active_orders_path, class:"SidebarComponentsRuby3"%></p>
-  <p class="SidebarComponents"><%= link_to "Completed Orders", user_completed_orders_path, class:"SidebarComponentsRuby3"%></p>
-</section>
-<section class="card2">
-<% @orders_completed.each do |order|%>
-<% cache order do%>
-    <div class="card10">
-     <br>
-      <section class="card11">
-        <p class="OrderNo">Order Id: #<%= order.id %></p>
-        <p class="name">Status: <%= order.status %></p>
+            <section>
+              <p class = "status">Status: <%= order.status %></p>
+              <section class = "date_style">
+                <p class = "on"> Ordered on: </p>
+                <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
+                <p class = "date date_created"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p") %></p>
+              </section>
+              <section class = "date_style">
+                <p class = "on"> Delivered on: </p>
+                <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
+                <p class = "date date_updated"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p") %></p>
+              </section>
+            </section>
+
       </section>
-      <section style="display:flex">
-      <p class="user_name"><%= @user.name%> - </p> 
-      <p class="mobile_no"><%= @user.mobile_no %></p>
-      </section>
-      <section style="display:flex;margin-left:7%;width:400px">
-      <p style="color:rgb(1, 158, 0);margin-top:3px"> Orderd on: </p>
-      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" style="width:30px;height:23px">
-      <p class="date"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
-      </section>
-      <section style="display:flex;margin-left:7%;width:400px">
-      <p style="color:rgb(1, 158, 0);margin-top:3px"> Delivered on: </p>
-      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" style="width:30px;height:23px">
-      <p class="date"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
-      </section>
-      <p class="items">Items: </p>
-      <p class="menu">
-      <% @cost=0 %>
-      <% order.menu.split("+") do |o| %>
-       <br>
-       <br>
-        <% str= o.split("*")%>
-        <%= str[0]%>
-        &nbsp;&nbsp;&nbsp;&nbsp;<%= "X "+str[1]%>
-        <% @cost=str[2].to_i+@cost%>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= str[2]+" ₹"%>
-      <%end%>
-      <br>
-      </p>
-      <p class="menu1">Total: &nbsp;&nbsp;<%= @cost.to_s+" ₹"%></p>
-      <%# <%= button_to "Add", new_menu_path, method: "get", class:"Add"%> 
-      <%# <%= menu.id%> 
+  </div>
+  <% end %>
+  </section>
 </div>
-<% end%>
-<% end %>
-</section>
-      

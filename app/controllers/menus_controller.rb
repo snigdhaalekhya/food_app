@@ -1,70 +1,50 @@
-class MenusController < ApplicationController 
-   skip_before_action :ensure_user_logged_in  
-   before_action :ensure_owner_logged_in
-  
-    def index   
-      if Owner.find_by(email: current_owner.email)
-        @owner_worker= current_owner.email
-      elsif Worker.find_by(email: current_owner.email)
-        @owner_worker= current_owner.email
-      end  
+class MenusController < ApplicationController
+  include MainHelper
+
+  skip_before_action :ensure_user_logged_in
+  before_action :ensure_owner_logged_in
+  before_action :menuwise_category, only: [:category_wise]
+
+  def create
+      menu = Menu.new(menu_name: params[:menu_name], menu_category: params[:menu_category], menu_cost: params[:menu_cost], menu_description: params[:menu_description], menu_image: params[:menu_image])    
+      if menu.save
+          redirect_to AllConstants::MENU_ROOT
+      else
+          flash[:error] = menu.errors.full_messages.join(", ")
+          redirect_to new_menu_path
+      end
+  end
+
+  def edit
+    @menu_edit = find_id
+  end
+
+  def update
+    menu = find_id
+    menu_params = params[:menu]
+    menu_identity_type = %w(menu_name menu_description menu_category menu_cost menu_image)
+    for i in 0..menu_identity_type.length
+      if menu_params[menu_identity_type[i]] !=  menu[menu_identity_type[i]]
+        menu.update(menu_identity_type[i] => menu_params[menu_identity_type[i]])
+        if !menu.update(menu_identity_type[i] => menu_params[menu_identity_type[i]])
+          flash[:error] = menu.errors.full_messages.join(", ")
+        end
+      end
     end
-
-    def create
-        menu=Menu.new(
-            menu_name: params[:menu_name],
-            menu_category: params[:menu_category],
-            menu_cost: params[:menu_cost],
-            menu_description: params[:menu_description],
-            menu_image: params[:menu_image]
-          )
-
-           if menu.save
-              redirect_to "/menu_restaurant" 
-       
-            else
-               flash[:error]= menu.errors.full_messages.join(", ")
-               redirect_to "/menus/new"
-            end
+    if flash[:error].present?
+      redirect_to edit_menu_path
+    else
+      redirect_to AllConstants::MENU_ROOT
     end
+  end
 
-    def new
-      id= params[:id]
-      menu=Menu.find_by(id)
-    end
+  def destroy
+      find_id.destroy
+      redirect_to AllConstants::MENU_ROOT
+  end
 
-    #get
-    def category_wise
-      if Owner.find_by(email: current_owner.email)
-        @owner_worker= current_owner.email
-      elsif Worker.find_by(email: current_owner.email)
-        @owner_worker= current_owner.email
-      end  
-      @category=params[:menu_category]
-      @menus_category= Menu.where(menu_category: params[:menu_category])
-    end 
-
-
-
-    def edit
-      id=params[:id]
-      @menu_edit=Menu.find(id)
-    end
-
-    def update
-      id=params[:id]
-      @menu=Menu.find(id)
-      @menu.update(menu_name: params[:menu][:menu_name], menu_description: params[:menu][:menu_description], menu_category: params[:menu][:menu_category], menu_cost: params[:menu][:menu_cost], menu_image: params[:menu][:menu_image] )
-      redirect_to "/menu_restaurant"
-    end
-
-
-    def destroy
-        id = params[:id]
-        menu_delete=Menu.find(id)
-        menu_delete.destroy
-        redirect_to "/menu_restaurant"
-        # render plain: "deleted"
-    end
-    
+  private
+  def find_id
+    Menu.find(params[:id])
+  end
 end

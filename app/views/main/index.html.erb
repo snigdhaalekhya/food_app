@@ -1,123 +1,44 @@
-<body> 
-<div class="card1">
-<section class="card2">
- <p style="margin-left: 60%;margin-top:30px;display:inline-flex">
-   <%= link_to "Menu", view_user_path, class:"SidebarComponentsRuby1"%>
-  <%= link_to "My Orders", orders_path, class:"SidebarComponentsRuby1"%>
-  <%= link_to "Cart", carts_path, class:"SidebarComponentsRuby1"%>
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKGxujYqqoJ2wjE-cUDwfmfhjX-ls8t7TAcwcfgjd5LspLpQnT7-pXfP_pVapr9qF1kZQ&usqp=CAU" width="40px" height=40px > 
-   <% c=0%>
-  <% @carts.each do |cart|%>
-    <%c=c+cart.count%>
-  <% end %>
-  <% if c!=0%>
-  <%= c%>
-  <% end %>
-  <input type="image" class="image1" src="https://icones.pro/wp-content/uploads/2022/02/icone-de-cloche-grise.png" width="35px" height=35px onclick="menuToggle1();">
-   <%= @orders.where(status: "Delivered").count %>
-  <div class="action1">
-   <div class="MenuToggle1">
-   <% @orders.where(status: "Delivered").each do |del|%>
-   <section style="display:inline-flex">
-   <p>Order no: #<%= del.id %> was Delivered?</p>
-   <%= button_to "Yes", "/orders/#{del.id}", method: "put", class:"UserHeader2"%>
-   </section>
-   <%end%>
-  </div>
-  </p>
-  <script>
-     function menuToggle1(){
-        const toggleMenu = document.querySelector('.MenuToggle1');
-        toggleMenu.classList.toggle('active')
-     }
-  </script>
-
-  <br>
-  <hr>
-  <%= form_tag(view_user_path, method:"get") do%>
-    <section class="SearchMenu">
-     <%= search_field_tag :search, params[:search], placeholder:"Search menu",class:"searchmenu"%>
-    </section>
-  <% end %>
-<% if params[:search].blank? %>
-<% Menu.cachemethod.each do |menu|%>
-<% cache menu do%>
-<div class="row">
-  <div class="column">
-    <div class="card3">
-     <br>
-      <p class="name"><%= menu.menu_name %></p>
-      <p class="description"><%= menu.menu_description %></p>
-      <p class="cost"><%= menu.menu_cost%> ₹</p>
-      <%# <%= button_to "Add", new_menu_path, method: "get", class:"Add"%> 
-      <%# <%= menu.id%> 
-      <div class="card9" style="display=flex">
-      <%= form_with(url: "/carts/#{menu.id}"  , method: "get") do %>
-         <input type="submit" value="+" class="plus1" name="Add" id="Add"  >     
-      <% end %>
-     
-       <section style="color:red;margin-top:4px; margin-left:3px">
-         <% @carts_menuid=@carts.where(menu_id: menu.id)%>
-         <% @carts_menuid.each do |cart|%>
-         <%= cart.count%>   
-         <% end%>
+<% if  @check_firstlogin_user %>
+   <p class = "UserHeader"> Welcome <%= current_user.name %>!</p>
+<% end %> 
+<section class = "display">
+   <%= form_tag(main_index_path, method: "get") do %>
+      <section class = "SearchMenu">
+         <%= search_field_tag :search, params[:search], placeholder: "Search menu", class: "searchmenu" %>
       </section>
-
-      <%= form_with(url: "/carts/#{menu.id}/remove"  , method: "get") do %>
-         <input type="submit" value="-" class="minus1" name="Add" id="Subtract"  > 
-      <% end%>
-      </div>
-      <br>
-    </div>
-  </div>
-  <% end%>
-<%end%>
-<% elsif @results.count>0%>
-       <% @results.each do |result| %>
-       <div class="row">
-  <div class="column">
-    <div class="card3">
-     <br>
-      <p class="name"><%= result.menu_name %></p>
-      <p class="description"><%= result.menu_description %></p>
-      <p class="cost"><%= result.menu_cost%> ₹</p>
-      <%# <%= button_to "Add", new_menu_path, method: "get", class:"Add"%> 
-      <%# <%= menu.id%> 
-      <div class="card9" style="display=flex">
-      <%= form_with(url: "/carts/#{result.id}"  , method: "get") do %>
-         <input type="submit" value="+" class="plus1" name="Add" id="Add"  >     
-      <% end %>
-     
-       <section style="color:red;margin-top:4px; margin-left:3px">
-         <% @carts_menuid=@carts.where(menu_id: result.id)%>
-         <% @carts_menuid.each do |cart|%>
-         <%= cart.count%>   
-         <% end%>
-      </section>
-
-      <%= form_with(url: "/carts/#{result.id}/remove"  , method: "get") do %>
-         <input type="submit" value="-" class="minus1" name="Add" id="Subtract"  > 
-      <% end%>
-      </div>
-      <br>
-    </div>
-  </div>
-       <% end %>
-<% else %>
-<p> Oops not found! </p>
-<% end %>
-
+   <% end %> 
+   <%=form_with(url: "/view_user/category_wise", method: "get")  do |form| %>
+      <%= form.select :menu_category, AllConstants::CATEGORY , { :prompt => "Choose category" }, { class: "select select_menus_users", :onchange => "this.form.submit()" } %>
+   <% end %>  
 </section>
-</div>
-</body>
-<!--
-<script>
- function disableButton() {
-        btn=document.getElementById("Add")
-        btn.style.backgroundColor = 'salmon';
-        btn.style.color="white";
-        document.getElementById("Add").disabled = true;
-
- }
-</script>
--->
+   <% if !params[:search].blank? && @result_count <= 0 %>
+      <p>Oops no records found!! <p>
+   <% else %>
+      <% @results.cachemethod.each do |menu|%>
+      <div class = "row">
+         <div class = "column">
+            <div class = "displaycard">
+               <img src="<%= menu.menu_image%>" class = "menu_image menu_image_users">
+                  <p class = "name"><%= menu.menu_name %></p>
+                  <p class = "description"><%= menu.menu_description %></p>
+                  <p class = "cost"><%= menu.menu_cost %> ₹</p>
+                  <div class = "buttoncard">
+                  <%= form_with(url:   "/carts/#{menu.id}"  , method: "get") do %>
+                     <input type = "submit" value = "+" class = "buttons_plus_minus plus" name = "Add" id = "Add">     
+                  <% end %>
+                  <section class = "count_show">
+                  <% carts_menuid = currentuser_records(Cart).select{|s| s.menu_id == menu.id } %>
+                     <% carts_menuid.each do |cart| %>
+                     <%= cart.count %>   
+                     <% end%>
+                  </section>
+                  <%= form_with(url: "/carts/#{menu.id}/remove", method: "get") do %>
+                     <input type = "submit" value = "-" class = "buttons_plus_minus minus" name = "Add" id = "Subtract"> 
+                  <% end %>
+                  </div>
+                  <br>
+            </div>
+      </div>
+      <% end %>
+   <% end %>
+</section>

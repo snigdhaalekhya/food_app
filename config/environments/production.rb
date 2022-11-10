@@ -38,7 +38,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  config.active_storage.service = :google
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
@@ -92,13 +92,13 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
 
-  config.cache_store = :mem_cache_store,
-                    (ENV["MEMCACHIER_SERVERS"] || "").split(","),
-                    {:username => ENV["MEMCACHIER_USERNAME"],
-                     :password => ENV["MEMCACHIER_PASSWORD"],
-                     :failover => true,
-                     :socket_timeout => 1.5,
-                     :socket_failure_delay => 0.2,
-                     :down_retry_delay => 60
-                    }
+#   config.cache_store = :mem_cache_store,
+#                     (ENV["MEMCACHIER_SERVERS"] || "").split(","),
+#                     {:username => ENV["MEMCACHIER_USERNAME"],
+#                      :password => ENV["MEMCACHIER_PASSWORD"],
+#                      :failover => true,
+#                      :socket_timeout => 1.5,
+#                      :socket_failure_delay => 0.2,
+#                      :down_retry_delay => 60
+#                     }
 end

@@ -1,0 +1,83 @@
+<div class = "card">
+  <div class = "main_card" >
+    <section>
+      <img class = "delicious" src = "https://thumbs.dreamstime.com/b/restaurant-cafe-bistro-cooking-chef-logo-design-template-restaurant-cafe-bistro-cooking-chef-logo-design-113852274.jpg">
+        <p class = "SidebarComponents"> <%= link_to "Orders", orders1_index_path, class: "RestaurantSideBarComponents" %></p>
+        <p class = "SidebarComponents"> <%= link_to "Menu", menus_path, class: "RestaurantSideBarComponents" %></p>
+        <p class = "SidebarComponents"><%= link_to "Users", show_customers_path, class: "RestaurantSideBarComponents" %></p>
+        <p class = "SidebarComponents"><%= link_to "Reports", reports_path, class: "RestaurantSideBarComponents" %></p>
+    </section>
+    <section class = "style_card" >
+      <br>
+      <p class = "queue-css"><%= link_to "My Queue", orders1_index_path, class: "SideBarComponentsUsersSide" %>
+      <%= link_to "All Orders", all_orders_path, class: "SideBarComponentsUsersSide" %>
+      <%= link_to "Completed Orders", completed_orders_path, class: "SideBarComponentsUsersSide" %>
+      </p>
+      <br>
+      <br>
+      <hr>
+      <% Order.cachemethod.each do |order| %>
+        <div class = "main_card_orders">
+        <br>
+        <br>
+        <section class = "display" >
+        <section class = "left_right_division">
+          <p class = "order_details_text">Order Details</p>
+          <p class="OrderNo">Order Id &nbsp; #<%= order.id %></p>
+          <p class = "menu">
+          <table class = "order">
+            <tr class = "orders_tr">
+              <th class = "orders_th">Items</th>
+              <th class = "orders_th">Quantity</th>
+            </tr>
+            <% order.menu.split("+") do |o| %>
+            <tr class = "orders_tr">
+            <% str= o.split("*") %>
+              <td class = "orders_td "> <%= str[0] %></td>
+              <td class = "orders_td "><%= str[1] %></td>     
+            </tr>
+            <% end %>
+            <br>
+            </p>
+          </table>
+        </section>
+        <section class = "size">
+          <p class = "order_details_text user_details_text"> Customer Details </p>
+          <% user = User.find(order.user_id) %>
+          <p class="user_details">Name: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= user.name %></p>
+          <p class="user_details">MobileNo: &nbsp;<%= user.mobile_no %></p>
+        </section>
+        <section>
+          <p class = "status color">Status: <%= order.status %></p>
+          <br>
+          <section class = "date_style"> 
+            <p class = "on"> Ordered on: </p>
+            <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
+            <p class = "date date_orders_res_all">&nbsp;&nbsp;&nbsp;<%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p") %></p>
+          </section>
+          <% if order.status == AllConstants::DELIVERED %>
+          <section class = "date_style">
+            <p class = "on"> Delivered on: </p>
+            <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
+            <p class = "date date_orders_res_all"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
+          </section>
+          <% elsif order.status == AllConstants::CANCELLED %>
+          <section class = "date_style">
+            <p class = "on"> Cancelled on: </p>
+            <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
+            <p class = "date date_orders_res_all"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p") %></p>
+          </section>
+          <% elsif order.status == AllConstants::PREPARING or order.status == AllConstants::ADD_TO_QUEUE %>
+            <section class = "date_style">
+            <p class = "on"> Updated on: </p>
+            <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
+            <p class = "date date_orders_res_all"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p") %>
+          </section>
+          <% end %>
+      </section>
+    </section> 
+    <br>  
+  </div>
+    <% end %>
+  </div>
+</div>

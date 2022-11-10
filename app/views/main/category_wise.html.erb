@@ -1,41 +1,31 @@
-<body> 
-<div class="card1">
-<section class="card2">
- <p style="margin-left: 60%;margin-top:30px;display:inline-flex"><%= link_to "Menu", view_user_path, class:"SidebarComponentsRuby1"%>
-  <%= link_to "My Orders", orders_path, class:"SidebarComponentsRuby1"%>
-  <%= link_to "Cart", carts_path, class:"SidebarComponentsRuby1"%>
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKGxujYqqoJ2wjE-cUDwfmfhjX-ls8t7TAcwcfgjd5LspLpQnT7-pXfP_pVapr9qF1kZQ&usqp=CAU" width="40px" height=40px >
-  </p>
-  <br>
-  <hr>
-<% @menus_category.each do |menu|%>
-<div class="row">
-  <div class="column">
-    <div class="card3">
-     <br>
-      <p class="name"><%= menu.menu_name %></p>
-      <p class="description"><%= menu.menu_description %></p>
-      <p class="cost"><%= menu.menu_cost%> ₹</p>
-      <div class="card9" style="display=flex">
-      <%= form_with(url: "/carts/#{menu.id}"  , method: "get") do %>
-         <input type="submit" value="+" class="plus1" name="Add" id="Add"  >     
-      <% end %>
-     
-       <section style="color:red;margin-top:4px; margin-left:3px;">
-         <% @carts_menuid=@carts.where(menu_id: menu.id)%>
-         <% @carts_menuid.each do |cart|%>
-         <%= cart.count%>   
-         <% end%>
-      </section>
-
-      <%= form_with(url: "/carts/#{menu.id}/remove"  , method: "get") do %>
-         <input type="submit" value="-" class="minus1" name="Add" id="Add"  > 
-      <% end%>
-      </div>
+<%=form_with(url: "/view_user/category_wise", method: "get")  do |form| %>
+   <%= form.select :menu_category, AllConstants::CATEGORY, { :prompt => "Choose category" }, { class: "select select_menus_users_category", :onchange => "this.form.submit()" } %>
+<% end %>
+<% Menu.cache(@menus_category).each do |menu| %>
+<div class = "row">
+   <div class = "column">
+      <div class = "displaycard">
       <br>
-    </div>
-  </div>
-<%end%>
-</section>
+      <img src="<%= menu.menu_image%>" class = "menu_image menu_image_users">
+         <p class = "name"><%= menu.menu_name %></p>
+         <p class = "description"><%= menu.menu_description %></p>
+         <p class = "cost"><%= menu.menu_cost%> ₹</p>
+         <div class = "buttoncard">
+         <%= form_with(url:   "/carts/#{menu.id}"  , method: "get") do %>
+            <input type = "submit" value = "+" class = "buttons_plus_minus plus" name = "Add" id = "Add">     
+         <% end %>
+         <section class = "count_show">
+            <% carts_menuid = currentuser_records(Cart).where(menu_id: menu.id)%>
+            <% carts_menuid.each do |cart|%>
+            <%= cart.count%>   
+            <% end%>
+         </section>
+         <%= form_with(url:   "/carts/#{menu.id}/remove"  , method: "get") do %>
+            <input type = "submit" value = "-" class = "buttons_plus_minus minus" name = "Add" id = "Add"> 
+         <% end%>
+         </div>
+         <br>
+      </div>
+   </div>
 </div>
-</body>
+<% end %>

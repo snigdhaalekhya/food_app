@@ -1,68 +1,36 @@
-<body >
-<div class="card2">
- <p style="margin-left: 60%;margin-top:30px;display:inline-flex"><%= link_to "Menu", view_user_path, class:"SidebarComponentsRuby1"%>
-  <%= link_to "My Orders", orders_path, class:"SidebarComponentsRuby1"%>
-  <%= link_to "Cart", carts_path, class:"SidebarComponentsRuby1"%>
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKGxujYqqoJ2wjE-cUDwfmfhjX-ls8t7TAcwcfgjd5LspLpQnT7-pXfP_pVapr9qF1kZQ&usqp=CAU" width="40px" height=40px >
-   <% @carts.each do |cart|%>    
-     <% @cart_totalcount=@cart_totalcount+cart.count%>
-   <% end %>
-   <% if @cart_totalcount!=0%>
-    <%= @cart_totalcount%>
-  <% end %>
-  <input type="image" class="image1" src="https://icones.pro/wp-content/uploads/2022/02/icone-de-cloche-grise.png" width="35px" height=35px onclick="menuToggle1();">
-   <%= @orders.where(status: "Delivered").count %>
-  <div class="action1">
-   <div class="MenuToggle1">
-   <% @orders.where(status: "Delivered").each do |del|%>
-   <section style="display:inline-flex">
-   <p>Order no: #<%= del.id %> was Delivered?</p>
-   <%= button_to "Yes", "/orders/#{del.id}", method: "put", class:"UserHeader2"%>
-   </section>
-   <%end%>
-  </div>
-  </p>
-  <script>
-     function menuToggle1(){
-        const toggleMenu = document.querySelector('.MenuToggle1');
-        toggleMenu.classList.toggle('active')
-     }
-  </script>
-
-  <br>
-  <hr>
- <% @cart_totalcount=0%>
-<div class="card1" style="display:inline-flex">
-<section class="card5">
-<% @carts.each do |cart|%>
-     <br>
-     <div class="card7">
-      <p class="name"><%= Menu.find(cart.menu_id).menu_name %> 
-      <div class="card8" style="display=flex">         
-     <p class="style"> Quantity: <%= cart.count %>
-     <% @cart_totalcount=@cart_totalcount+cart.count%>
-      </div>
-      </div>
-      <p class="cost1"><%= @c=cart.count*Menu.find(cart.menu_id).menu_cost %> ₹</p> 
-      <br>
-    <br>
-<%end%>
-<p class="name" style="margin-bottom:15px;font-size:18px;margin-top:10px">Total Quantity: <%= @cart_totalcount%></p>
-<% @carts.each do |cart|%>
-<% @cost=@cost+(cart.count*Menu.find(cart.menu_id).menu_cost)%>
-<%end%>
-<br>
-<p class="Total">Grand Total: <%= @cost %> ₹</h1>
-</section>
-<section class="card6">
-<p class="user_title"> User details</p>
-      <p class="user_name">Name:  <%= @user.name%> </p>
-      <p class="user_name">Mobile Number:  <%= @user.mobile_no %> </p>
-      <p class="user_name">Address:  <%= @user.address %> </p>
-      <% if @carts_notempty%>
-         <%= button_to "Place Order", orders_path, method: "post", class:"Order" %> 
-      <% end %> 
-</section>
+<div class = "main_card">
+    <div>
+    <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjZ7COuI02M3UjwL7kT2wR2epRNFO7tCkcsIUlsvjS5SEi-WRNRq96ywvUI7Rde7AvNiw&usqp=CAU" class = "place_order_image">
+    </div>
+    <section class = "card_cartsindex">
+    <table>
+        <br>
+        <tr>
+            <th class = "carts_th">Items </th>
+            <th class = "carts_th" >Quantity</th>
+            <th class = "carts_th" >Cost</th>
+        </tr>
+        <% cost = 0 %>
+        <% currentuser_records(Cart).cachemethod.each do |cart| %>
+        <tr>
+            <% if Menu.find(cart.menu_id).present? %>
+                <th class = "orders_th_name"><%= Menu.find(cart.menu_id).menu_name %> </th>
+                <th class = "orders_th_name" > <%= cart.count %></th>
+                <% cost=cost+(cart.count*Menu.find(cart.menu_id).menu_cost)%>
+                <th class = "orders_th_name" > <%= c = cart.count*Menu.find(cart.menu_id).menu_cost %> ₹</th>
+            <% else %>
+                <% currentuser_records(Cart).find_by(menu_id: cart.menu_id).destroy %>
+            <% end %>
+        </tr>
+        <% end %>
+        <tr>
+            <th class = "carts_th_total">Total </th>
+            <th class = "carts_th_total cost_color" ><%= total_cart_count %></th>
+            <th class = "carts_th_total cost_color" > <%= cost %> ₹</th>
+        </tr>
+    </table>
+    <% if cart_notempty %>
+            <%= button_to "Place Order", orders_path, method: "post", class: "Order" %> 
+    <% end %> 
+    </section> 
 </div>
-</div>
-</body>

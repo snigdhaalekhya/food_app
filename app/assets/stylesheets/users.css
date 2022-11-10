@@ -1,166 +1,228 @@
 body {
     font-family: sams-serif;
-    max-width: 80%;
-    height:auto;
-    margin-top:15px;
-    margin-left: auto;
-    margin-right:auto;
-  }
-.NewUsers-title{
+    max-width: 98%;
+    height: auto;
+    margin-left: 0px;
+    margin-top: 5px;
+    margin-right: auto;
+}
+
+.NewUsers-title {
     margin-bottom: 5px;
     font-size: 30px;
     margin-left: 33%;
     margin-top: 8px;
 }
-.NewUsers-Undertitle{
+
+.NewUsers-Undertitle {
     margin-bottom: 30px;
     margin-left: 33%;
     font-size: 15px;
-    width:400px;
+    width: 400px;
     color: #888787;
 }
-.Form-section{
+
+.Form-section {
     margin-bottom: 20px;
     margin-left: 33%;
 }
-.mandatory{
-    margin-left:5px;
-    color:red;
+
+.mandatory {
+    margin-left: 5px;
+    color: red;
 }
-.Form-input{
- font-size: 15px;
- padding: 4px;
- width: 320px;
- color:#888787;
- border: 3px;
- border-radius: 4px ;
- border:0;
- background-color :#F0F0F0;
- 
- 
+
+.Form-input {
+    font-size: 15px;
+    padding: 4px;
+    width: 320px;
+    color: #888787;
+    border: 3px;
+    border-radius: 4px;
+    border: 0;
+    background-color: #F0F0F0;
 }
-.FormInput-label{
- color: #2f0303;
- margin-bottom: 10px;
- font-size: 18px;
+
+.FormInput-label {
+    color: #2f0303;
+    margin-bottom: 10px;
+    font-size: 18px;
 }
-.Form-submit{
+
+.Form-submit {
     font-size: 18px;
     padding: 8px;
     width: 330px;
     color: white;
     margin-top: 19px;
-    margin-bottom:3px;
+    margin-bottom: 3px;
     background-color: rgb(69, 156, 120);
     border-radius: 4px;
-    border:0;
+    border: 0;
 }
-.Text
-{
+
+.Form-submit-reason {
+    font-size: 14px;
+    color: white;
+    margin-left: 10px;
+    background-color: #D35400;
+    border-radius: 2px;
+    border: 2px;
+    margin-right: 5px;
+    padding: 4px;
+}
+
+.Text {
     margin-left: 33%;
     margin-bottom: 25%;
-    padding-bottom:80px;
+    padding-bottom: 80px;
 
 }
-.TextStyle{
+
+.TextStyle {
     text-decoration: none;
-    color:green;
+    color: green;
     margin-left: 8px;
 }
-.TextStylePassword{
+
+.TextStylePassword {
     white-space: nowrap;
-    text-decoration: none;
-    color:green;
     font-size: 15px;
     margin-left: 84%;
     width: 200px;
-    margin-bottom:10px;
+    margin-bottom: 10px;
 }
-.Text1
-{
+
+.Text_rightedge {
     margin-left: 100%;
-    margin-top:15px;
+    margin-top: 15px;
     padding: 20px;
 }
-.card {
 
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.8s;
     margin-top: 0;
-    padding:0;
-  }
-  
-  .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  } 
-  .card1 {
+    margin-left: 30px;
+    padding: 0;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.main_card {
     display: flex;
-    justify-content:space-between;
-  }
-  .Image{
+    width: 100%;
+}
+
+.Image {
     box-shadow: 0 6px 6px 2px rgba(249, 3, 3, 0.2);
-    box-sizing:auto;
+    box-sizing: auto;
     border-radius: 10px;
-    width:700px;
-    margin-top:80px;
-    margin-bottom:100px;
+    width: 700px;
+    margin-top: 80px;
+    margin-bottom: 100px;
     margin-left: 20%;
     height: auto;
-  }
-.image1{
-    margin-left:80px;
-    margin-top:3px;
 }
-  .Flash-error{
+
+.User_Image {
+    margin-right: 28px;
+}
+
+.notification_image {
+    margin-left: 20px;
+    margin-top: 3px;
+    width: 35px;
+    height: 35px;
+}
+
+.notification_image:hover {
+    color: rgb(142, 0, 1);
+}
+
+.Flash-error {
     color: darkred;
-    margin-top:75px;
-    padding:0;
+    margin-top: 75px;
+    padding: 0;
     font-size: 18px;
 }
-.Or{
-    margin-left:70%;
-    margin-bottom:3px;
-    color: #888787;
-}
-.Form-submitGoogle{
-    font-size: 14px;
-    padding: 8px;
-    width: 150px;
-    color: black;
-    margin-top: 19px;
-    margin-bottom:3px;
-    margin-left:30%;
-    background-color: #ECECEC;
-    border-radius: 6px ;
-    border:0;
-}
-.Title{
-    color:Black;
-    font-size:20px;
+
+.Title {
+    color: Black;
+    font-size: 20px;
     margin-left: 75%;
     margin-top: 50px;
 }
-.card7 {
-    display: flex;
-  }
-.style{
-    padding:10px;
-}
-.card8 {
-    display: flex;
-} 
-.card9{
-    display: flex;
-    margin-top:15px;
 
-} 
-.card11{
+.style {
+    padding: 10px;
+}
+
+.card_profile {
     display: flex;
-    justify-content:space-between;
-    margin-top:15px;
-    
-} 
-.card_profile{
+    justify-content: space-between;
+}
+
+.cart_image {
+    width: 40px;
+    height: 40px;
+}
+
+.date_image {
+    width: 30px;
+    height: 23px;
+}
+
+.width {
+    width: 14%;
+}
+
+.date_style {
     display: flex;
-    justify-content:space-between;
-} 
+    margin-left: 300px;
+    width: 400px;
+}
+
+.date_style_restaurant {
+    margin-left: 6.2%;
+}
+
+.on {
+    color: rgb(1, 158, 0);
+    margin-top: 3px;
+}
+
+.left_right_division {
+    width: 50%;
+}
+
+.middle {
+    font-family: sams-serif;
+    max-width: 98%;
+    height: auto;
+    margin-top: 30px;
+    margin-right: auto;
+    width: 40%;
+    margin-left: 30%
+}
+
+.quantity {
+    margin-bottom: 15px;
+    font-size: 18px;
+    margin-top: 10px;
+    margin-left: 1%;
+    color: red;
+}
+
+.status {
+    margin-left: 300px;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.sessions_image {
+    width: 700px;
+    height: 500px;
+}

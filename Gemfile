@@ -30,7 +30,7 @@ gem "jbuilder"
 gem "letter_opener"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
-
+gem "active_storage_validations"
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
@@ -42,7 +42,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
-gem "dalli"
+# gem "dalli"
 gem "actionpack-action_caching", github: "rails/actionpack-action_caching"
 # Use Sass to process CSS
 # gem "sassc-rails"
@@ -69,10 +69,16 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
- 
+
 group :test do
-  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
-  gem "selenium-webdriver"
-  gem "webdrivers"
+  gem 'poltergeist'
+  gem "minitest-rails"
+  gem 'simplecov', require: true
+  gem 'faker'
+  gem 'rubocop-faker'
+  gem 'factory_girl_rails'
 end
+
+gem 'kaminari'
+gem 'rack-test', group: :test
+gem 'assert-rails', group: :test

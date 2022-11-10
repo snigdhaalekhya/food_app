@@ -2,70 +2,238 @@
 <html>
   <head>
     <title>FoodApp</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %> 
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
   </head>
 
   <body>
   <% if @current_user %>
- 
-  <div class="action">
-   <div class="profile" onclick="menuToggle();">
-   <img class="image" src="https://media.istockphoto.com/vectors/user-member-vector-icon-for-ui-user-interface-or-profile-face-avatar-vector-id1130884625?k=20&m=1130884625&s=612x612&w=0&h=OITK5Otm_lRj7Cx8mBhm7NtLTEHvp6v3XnZFLZmuB9o=">
-   </div>
-   <div class="MenuToggle">
-   <p>Name: <%= @current_user.name%></p>
-   <p>Mobile No: <%= @current_user.mobile_no%></p>
-   <p>Email Id: <%= @current_user.email%></p>
-   <p>Address: <%= @current_user.address%></p>
-   <%= button_to "Sign-out", destroy_session_path, method: "delete", class:"UserHeader1"%>
+    <div class = "action">
+    <div class = "profile" onclick = "menuToggle();">
+    <img class = "image" src = "https://media.istockphoto.com/vectors/user-member-vector-icon-for-ui-user-interface-or-profile-face-avatar-vector-id1130884625?k=20&m=1130884625&s=612x612&w=0&h=OITK5Otm_lRj7Cx8mBhm7NtLTEHvp6v3XnZFLZmuB9o=">
+    </div>
+    <div class = "MenuToggle">
+    <table class = "users-table">
+    <tr>
+      <th class = "users-th">Name :</th>
+      <th class = "users-th"><%= @current_user.name %></th>
+    <tr> 
+    <tr>
+      <th class = "users-th">Mobile No :</th>
+      <th class = "users-th"><%= @current_user.mobile_no %></th>
+    <tr> 
+    <tr>
+      <th class = "users-th">Email Id :</th>
+      <th class = "users-th"><%= @current_user.email %></th>
+    <tr> 
+    <tr>
+      <th class = "users-th">Address :</th>
+      <th class = "users-th"><%= @current_user.address %></th>
+    <tr> 
+    </table>
+    <%= button_to "Sign-out", destroy_session_path, method: "delete", class: "button_property SignOut" %>
+    </div>
+    <script>
+      function menuToggle(){
+          const toggleMenu = document.querySelector('.MenuToggle');
+          const show = toggleMenu.classList.toggle('active');
+          const category_mainpage = document.querySelector(".select_menus_users");
+          const category = document.querySelector(".select_menus_users_category");
+          const status = document.querySelector(".select_status");
+          if(show)
+          {
+              if(category_mainpage!= null)category_mainpage.style.display = "none";
+              if(status!=null) status.style.display = "none";
+              category.style.display = "none";
+
+          }
+          else
+          {
+              if(category_mainpage!= null) category_mainpage.style.display = "block";
+              if(status!=null) status.style.display = "block";
+              category.style.display = "block";
+          }
+      }
+    </script>
+  </div>
+    
+  <div class = "main_card">
+  <section class = "style_card">
+  <p class = "menu_style">
+  <img class = "order_now_image" src = "https://cdn.w600.comps.canstockphoto.com/order-now-clip-art_csp22578022.jpg">
+    <%= link_to "Menu", main_index_path, class: "SideBarComponentsUsersSide", style: "margin-left:1200px;" %>
+    <%= link_to "My Orders", orders_path, class: "SideBarComponentsUsersSide" %>
+    <%= link_to "Cart", carts_path, class: "SideBarComponentsUsersSide CartComponent" %>
+    <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKGxujYqqoJ2wjE-cUDwfmfhjX-ls8t7TAcwcfgjd5LspLpQnT7-pXfP_pVapr9qF1kZQ&usqp=CAU" class = "cart_image"> 
+
+    <% if total_cart_count != 0 %>
+    <%= tag.span total_cart_count, class: "notification_color" %>
+    <% end %>
+    
+    <input type = "image" class = "notification_image" src = "https://icones.pro/wp-content/uploads/2022/02/icone-de-cloche-grise.png"  onclick = "notificationToggle();">
+    <% if status_type("Delivered").count > 0 %>
+    <%= tag.span status_type("Delivered").count , {class: "notification_color"}%>
+    <% end %>
+    <div class = "notification_action">
+    <div class = "NotificationToggle">
+    <% if status_type("Delivered").count > 0 %>
+    <% status_type("Delivered").each do |del| %>
+    <section class = "display_css">
+    <p>Order no: #<%= del.id %> was delivered</p>
+    <%= button_to "Yes", "/orders/#{del.id}", method: "put", class: "button_property YesHeader" %>
+    <%= button_to "No", "/orders/#{del.id}/updateto_not_delivered", method: "put", class: "button_property YesHeader" %>
+    </section>
+    <% end %>
+    <% else %>
+    <p> Oops no more new notifications found!! </p>
+    <% end %>
+    </div>
+    </p>
+    <script>
+      function notificationToggle(){
+          const toggleNotification = document.querySelector('.NotificationToggle');
+          const show = toggleNotification.classList.toggle('active');
+          const category_mainpage = document.querySelector(".select_menus_users");
+          const category = document.querySelector(".select_menus_users_category");
+          const search = document.querySelector(".searchmenu");
+          const status = document.querySelector(".select_status");
+          if(show)
+          {
+              if(category_mainpage!= null) category_mainpage.style.display = "none";
+              if(search!=null) search.style.display = "none";
+              if(status!=null) status.style.display = "none";
+              category.style.display = "none";
+          }
+          else
+          {
+            if(category_mainpage!= null) category_mainpage.style.display = "block";
+              if(search!=null) search.style.display = "block";
+              if(status!=null) status.style.display = "block";
+              category.style.display = "block";
+          }
+      }
+    </script>
+    <br>
+    <hr>
+<% end %>
+
+<% if @current_owner %>
+    <div class = "action">
+    <div class = "profile" onclick = "menuToggle();">
+    <img class = "image" src = "https://media.istockphoto.com/vectors/user-member-vector-icon-for-ui-user-interface-or-profile-face-avatar-vector-id1130884625?k=20&m=1130884625&s=612x612&w=0&h=OITK5Otm_lRj7Cx8mBhm7NtLTEHvp6v3XnZFLZmuB9o=">
+    </div>
+    <div class = "MenuToggle">
+    <table class = "users-table">
+      <tr>
+        <th class = "users-th">Name :</th>
+        <th class = "users-th"><%= @current_owner.name %></th>
+      <tr> 
+      <% if Worker.find_by(email: @current_owner.email) %>
+      <tr>
+        <th class = "users-th">Mobile No :</th>
+        <th class = "users-th"><%= @current_owner.mobile_no %></th>
+      <tr> 
+      <% end %>
+      <tr>
+        <th class = "users-th">Email Id :</th>
+        <th class = "users-th"><%= @current_owner.email %></th>
+      <tr> 
+      <tr>
+        <th class = "users-th">Address :</th>
+        <th class = "users-th"><%= @current_owner.address %></th>
+      <tr> 
+    </table>
+  <%= button_to "Sign-out", destroy_session_res_path, method: "delete", class: "button_property SignOut" %>
   </div>
   <script>
      function menuToggle(){
         const toggleMenu = document.querySelector('.MenuToggle');
-        toggleMenu.classList.toggle('active')
+        const show = toggleMenu.classList.toggle('active');
+        const name = document.getElementById("name");
+        const status = document.getElementById("status");
+        const date = document.getElementById("date");
+        const reports= document.querySelector('.Reports');
+        if(show)
+        {
+           if(name != null) name.style.display = "none";
+           if(status != null) status.style.display = "none";
+           if(date != null) date.style.display = "none";
+           if(reports != null) reports.style.display = "none";
+        }
+        else
+        {
+            if(name != null) name.style.display = "block";
+            if(status != null) status.style.display = "block";
+            if(date != null) date.style.display = "block";
+            if(reports != null) reports.style.display = "block";
+        }
      }
   </script>
- 
-  <div class="card_profile">
-  <p class="UserHeader"> Welcome <%= @current_user.name%>!</p>
   </div>
-  <% end%>
 
-   <% if @current_owner %>
-  <div class="action">
-   <div class="profile" onclick="menuToggle();">
-   <img class="image" src="https://media.istockphoto.com/vectors/user-member-vector-icon-for-ui-user-interface-or-profile-face-avatar-vector-id1130884625?k=20&m=1130884625&s=612x612&w=0&h=OITK5Otm_lRj7Cx8mBhm7NtLTEHvp6v3XnZFLZmuB9o=">
-   </div>
-   <div class="MenuToggle">
-   <p>Name: <%= @current_owner.name%></p>
-   <p>Email Id: <%= @current_owner.email%></p>
-   <p>Address: <%= @current_owner.address%></p>
-   <%= button_to "Sign-out", destroy_session_res_path, method: "delete", class:"UserHeader1"%>
-  </div>
-  <script>
-     function menuToggle(){
-        const toggleMenu = document.querySelector('.MenuToggle');
-        toggleMenu.classList.toggle('active')
-     }
-  </script>
-  <div class="card_profile">
-  <p class="UserHeader"> Welcome <%= @current_owner.name%>!</p>
-  </div>
-  <% end%>
+    <div class = "notification_action">
+    <div class = "profile_res" onclick = "notificationToggle_Res();">
+    <img class = "notification_image_res" src = "https://icones.pro/wp-content/uploads/2022/02/icone-de-cloche-grise.png">
+    </div>
+    <% if status_not_delivered.count > 0 %>
+      <%= tag.p status_not_delivered.count , class: "notification_color" %>
+    <% end %>
+      <div class = "NotificationToggle">
+    <% if status_not_delivered.count > 0 %>
+      <% status_not_delivered.each do |del|%>
+      <section>
+      <%= form_with(url: "/orders1/#{del.id}/send_mail") do |form| %>
+      <div class = "Reason" >
+    <section class = "display">
+    <p class = "FormInput-label"> Order no: <%="#{del.id}" %> was not delivered </p>
+    </section>
+    <section class = "display">
+    <%= form.text_field :reason, class: "form-input form-input-reason", placeholder: "Enter the reason" %>
+    <%= form.submit "Submit", class: "Form-submit-reason" %>
+    </section>
+    </div>
+      <% end %>
+      </section>
+      <% end %>
+      <% else %>
+      <p> Oops no more new notifications found!! </p>
+      <% end %>
+    </div>
+    </div>
+    </p>
+    <script>
+        function notificationToggle_Res(){
+          const toggleNotification= document.querySelector('.NotificationToggle');
+          const show =  toggleNotification.classList.toggle('active');
+          const name = document.getElementById("name");
+          const status = document.getElementById("status");
+          const date = document.getElementById("date");
+          const reports= document.querySelector('.Reports');
+          if(show)
+          {
+              name.style.display = "none"
+              status.style.display = "none"
+              date.style.display = "none"
+              reports.style.display = "none"
+          }
+          else
+          {
+              name.style.display = "block"
+              status.style.display = "block"
+              date.style.display = "block"
+              reports.style.display = "block"
+          }
 
+        }
+    </script>
+<% end %>
 
-  <% if flash[:error] %>
-    <p class="Flash-error">
+<% if flash[:error] %>
+    <p class = "Flash-error">
       <%= flash[:error] %>
     </p>
-  <% end %>
-    <%= yield %>
+<% end %>
+  <%= yield %>
   </body>
 </html>

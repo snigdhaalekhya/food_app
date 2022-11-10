@@ -1,37 +1,29 @@
 class UsersController < ApplicationController
     skip_before_action :ensure_user_logged_in
     
-    def index
-        render "index"
-    end 
-    
-    def new
-        render "new"
-    end
-
     def create
-     user=User.find_by(mobile_no: params[:mobile_no])
+     user = findby_params(mobile_no: params[:mobile_no])
      if user
-         flash[:error]="This mobile number is already registered. Please retry."
-         redirect_to new_user_path 
-     elsif User.find_by(email: params[:email])
-         flash[:error]="This email is already registered. Please retry."
-          redirect_to new_user_path 
+         flash[:error] = "This mobile number is already registered. Please retry."
+         redirect_to new_user_path
+     elsif findby_params(email: params[:email])
+         flash[:error] = "This email is already registered. Please retry."
+          redirect_to new_user_path
      else
-         user=User.new(
-            name: params[:name],
-            mobile_no: params[:mobile_no],
-            email: params[:email],
-            password: params[:password],
-            address: params[:address],
-         )
-          session[:current_user_id]= user.id
+        user = User.new(name: params[:name], mobile_no: params[:mobile_no], email: params[:email], password: params[:password], address: params[:address])
            if user.save
-              redirect_to new_sessions_path 
+             session[:current_user_id] = user.id
+             session[:bool_user] = true
+             redirect_to main_index_path
             else
-               flash[:error]= user.errors.full_messages.join(", ")
+               flash[:error] = user.errors.full_messages.join(", ")
                redirect_to new_user_path
             end
         end
+    end
+
+    private
+    def findby_params(params = {})
+        User.find_by(params)
     end
 end
