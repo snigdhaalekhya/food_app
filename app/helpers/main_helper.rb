@@ -54,6 +54,6 @@ module MainHelper
     end
 
     def status_not_delivered
-        Order.where(status: "Not Delivered")
+        Order.where(status: AllConstants::NOT_DELIVERED)
     end
 end

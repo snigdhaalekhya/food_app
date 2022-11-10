@@ -1,7 +1,7 @@
 module CommonValidation
     extend ActiveSupport::Concern
     included do
-        PASSWORD_REQUIREMENTS = /\A
+      PASSWORD_REQUIREMENTS = /\A
         (?=.{8,})          # Must contain 8 or more characters
         (?=.*\d)           # Must contain a digit
         (?=.*[A-Z])        # Must contain an upper case character

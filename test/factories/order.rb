@@ -6,4 +6,3 @@ FactoryGirl.define do
         owner_id AllConstants::ID_OR_COUNT
     end
 end
- 

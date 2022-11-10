@@ -28,14 +28,14 @@ class SessionsResController < ApplicationController
             new_password = params[:password]
             confirm_password = params[:password_confirm]
             if new_password.eql?(confirm_password)
-                if new_password == "" && confirm_password == ""
-                  flash[:error] = "New password and Confirm password couldn't be empty"
-                  redirect_to signin_restaurant_update_password_path
-                else
-                  owner.password = params[:password]
-                  owner.save
-                  redirect_to new_signin_restaurant_path
-                end
+              if new_password == "" && confirm_password == ""
+                flash[:error] = "New password and Confirm password couldn't be empty"
+                redirect_to signin_restaurant_update_password_path
+              else
+                owner.password = params[:password]
+                owner.save
+                redirect_to new_signin_restaurant_path
+              end
             else
               flash[:error] = "New password and Confirm password doesn't match"
               redirect_to signin_restaurant_update_password_path
