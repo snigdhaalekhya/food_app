@@ -20,5 +20,4 @@ class ActiveSupport::TestCase
   def app
     Rails.application
   end
-
 end

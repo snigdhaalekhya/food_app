@@ -2,15 +2,15 @@ module MainHelper
 
     def currentuser_records(model)
          model.where(user_id: current_user.id)
-    end 
+    end
 
     def currentuser_records_in_reverse_order(model)
       currentuser_records(model).sort_by(&:updated_at).reverse
     end
 
     def status_type(status)
-        currentuser_records(Order).select{|s| s.status == status }
-    end 
+        currentuser_records(Order).select{ |s| s.status == status }
+    end
 
     def cart_notempty
         Cart.find_by(user_id: current_user)
@@ -19,17 +19,17 @@ module MainHelper
     def menu_details
         menu = ""
         currentuser_records(Cart).each do |cart|
-            menu_id = cart.menu_id 
+            menu_id = cart.menu_id
             menu_name = Menu.find(cart.menu_id).menu_name
             count = cart.count
-            cost = cart.count * Menu.find(cart.menu_id).menu_cost 
+            cost = cart.count * Menu.find(cart.menu_id).menu_cost
             menu = menu+menu_name + "*" + count.to_s + "*" + cost.to_s + "+"
         end
         menu.chop
     end
 
     def users_active_orders
-        currentuser_records(Order).where.not(status: AllConstants::ACTIVE_ORDERS )           
+        currentuser_records(Order).where.not(status: AllConstants::ACTIVE_ORDERS)
     end
 
     def users_completed_orders
@@ -56,6 +56,5 @@ module MainHelper
     def status_not_delivered
         Order.where(status: "Not Delivered")
     end
-
-end 
+end
     

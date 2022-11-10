@@ -5,33 +5,33 @@ class SessionsController < ApplicationController
     def create
         if params[:mobile_no].blank? || params[:password].blank?
             flash[:error] = "Please fill all the required fields"
-             redirect_to new_signin_user_path
+            redirect_to new_signin_user_path
         else
-        user = find_mobileno
-        if user
-              if user && user.authenticate(params[:password]) 
-                  session[:current_user_id] = user.id
-                  session[:bool_user] = false
-                  redirect_to main_index_path
-              else
+            user = find_mobileno
+            if user
+                if user && user.authenticate(params[:password])
+                    session[:current_user_id] = user.id
+                    session[:bool_user] = false
+                    redirect_to main_index_path
+                else
                     flash[:error] = "Your login attempt was invalid. Please retry."
                     redirect_to new_signin_user_path
-               end
-        else
-            flash[:error] = "User doesn't exist with this registered mobile number."
-            redirect_to new_signin_user_path
+                end
+            else
+                flash[:error] = "User doesn't exist with this registered mobile number."
+                redirect_to new_signin_user_path
+            end
         end
     end
-end
     
 
     def update_password
         if params[:mobile_no].blank? || params[:password].blank? || params[:password_confirm].blank?
                 flash[:error] = "Please fill all the required fields."
                 redirect_to signin_users_update_password_path
-        else 
+        else
             user = find_mobileno
-            if user 
+            if user
                 new_password = params[:password]
                 confirm_password = params[:password_confirm]
                 if new_password.eql?(confirm_password)
@@ -42,12 +42,12 @@ end
                     flash[:error] = "New password and Confirm password doesn't match"
                     redirect_to signin_users_update_password_path
                 end
-            else 
+            else
                 flash[:error] = "User doesn't exist with this registered mobile number."
                 redirect_to new_user_path
             end
         end
-    end 
+    end
 
     def destroy
         session[:current_user_id] = nil
@@ -55,7 +55,7 @@ end
         redirect_to new_user_path
     end
 
-    private 
+    private
     def find_mobileno
         User.find_by(mobile_no: params[:mobile_no])
     end

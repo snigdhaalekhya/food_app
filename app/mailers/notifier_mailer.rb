@@ -38,13 +38,13 @@ class NotifierMailer < ApplicationMailer
     end
 
     def menu_items
-       @cost = 0 
+       @cost = 0
        order_all_details = ""
-       @menu.split("+") do |o| 
+       @menu.split("+") do |o|
          str= o.split("*")
          @cost = @cost + str[2].to_i
          order_all_details = "#{order_all_details} #{str[0]}   #{AllConstants::QUANTITY}  #{str[1]}  #{AllConstants::ASSIGN} #{str[2]} #{AllConstants::COST} \n"
-       end 
+       end
          return order_all_details
     end
 

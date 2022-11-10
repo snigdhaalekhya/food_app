@@ -24,5 +24,4 @@ class OrdersResController < ApplicationController
     def find_by_id
         Order.find(params[:id])
     end
-    
 end

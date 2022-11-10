@@ -1,5 +1,4 @@
 require_relative '../test_helper'
-
 class UsersControllerTest < ActiveSupport::TestCase
   def setup
     super
@@ -46,22 +45,21 @@ class UsersControllerTest < ActiveSupport::TestCase
   end
 
   def test_user_mobileno_check_present_in_db
-   field_value = {mobile_no: @user.mobile_no }
+   field_value = { mobile_no: @user.mobile_no }
    response = post "/users", field_value
    assert_equal(User.last.mobile_no, field_value[:mobile_no])
    assert_equal(response.status, 302)
   end
 
   def test_user_email_check_present_in_db
-    field_value = {email: @user.email }
-    response = post "/users", field_value 
+    field_value = { email: @user.email }
+    response = post "/users", field_value
     assert_equal(User.last.email, field_value[:email])
     assert_equal(response.status, 302)
   end
 
   private
   def pass_params(name, mobile_no, email, password, address)
-    value = {name: name, mobile_no: mobile_no, email: email, password: password, address: address}
+    value = { name: name, mobile_no: mobile_no, email: email, password: password, address: address }
   end
-
 end

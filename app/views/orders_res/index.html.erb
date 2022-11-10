@@ -1,98 +1,90 @@
-<body> 
-<% if  @check_firstlogin_owner %>
-<p class = "UserHeader"> Welcome <%= current_owner.name%>!</p>
+<% if @check_firstlogin_owner %>
+  <p class = "UserHeader"> Welcome <%= current_owner.name %>!</p>
 <% end %> 
-  <div class = "card">
-<div class = "main_card" >
-<section>
-<img class = "delicious" src = "https://thumbs.dreamstime.com/b/restaurant-cafe-bistro-cooking-chef-logo-design-template-restaurant-cafe-bistro-cooking-chef-logo-design-113852274.jpg"  >
-  <p class = "SidebarComponents"> <%= link_to "Orders", orders1_index_path, class: "RestaurantSideBarComponents"%></p>
- <p class = "SidebarComponents"> <%= link_to "Menu", menus_path, class: "RestaurantSideBarComponents"%></p>
-  <p class = "SidebarComponents"><%= link_to "Users", show_customers_path, class: "RestaurantSideBarComponents"%></p>
-  <p class = "SidebarComponents"><%= link_to "Reports", reports_path, class: "RestaurantSideBarComponents"%></p>
-</section>
-
-<section class = "style_card">
-<br>
-<p class = "queue-css">
-<%= link_to "My Queue", orders1_index_path, class: "SideBarComponentsUsersSide"%>
-<%= link_to "All Orders", all_orders_path, class: "SideBarComponentsUsersSide"%>
-  <%= link_to "Completed Orders", completed_orders_path, class: "SideBarComponentsUsersSide"%>
-  </p>
-  <br>
-  <br>
-  <hr>
-<% orders_queue = Order.cache(Order.where.not(status: AllConstants::ACTIVE_ORDERS))%>
-<% orders_queue.each do |order|%>
-    
-      <div class = "main_card_orders">
-    <br>
+<div class = "card">
+  <div class = "main_card" >
+    <section>
+      <img class = "delicious" src = "https://thumbs.dreamstime.com/b/restaurant-cafe-bistro-cooking-chef-logo-design-template-restaurant-cafe-bistro-cooking-chef-logo-design-113852274.jpg">
+      <p class = "SidebarComponents"> <%= link_to "Orders", orders1_index_path, class: "RestaurantSideBarComponents" %></p>
+      <p class = "SidebarComponents"> <%= link_to "Menu", menus_path, class: "RestaurantSideBarComponents" %></p>
+      <p class = "SidebarComponents"><%= link_to "Users", show_customers_path, class: "RestaurantSideBarComponents" %></p>
+      <p class = "SidebarComponents"><%= link_to "Reports", reports_path, class: "RestaurantSideBarComponents" %></p>
+    </section>
+    <section class = "style_card">
       <br>
-     <section class = "display" >
-     <section class = "left_right_division">
-     <p class = "order_details_text">Order Details</p>
-      <p class="OrderNo">Order Id &nbsp; #<%= order.id %></p>
-      <p class = "menu">
-      <table class = "order">
-        <tr class = "orders_tr">
-             <th class = "orders_th">Items</th>
-             <th class = "orders_th">Quantity</th>
-        </tr>
-         <% order.menu.split("+") do |o| %>
-        <tr class = "orders_tr">
-        <% str= o.split("*")%>
-            <td class = "orders_td "> <%= str[0]%></td>
-            <td class = "orders_td "><%= str[1]%></td>     
-        </tr>
-        <%end%>
+      <p class = "queue-css">
+      <%= link_to "My Queue", orders1_index_path, class: "SideBarComponentsUsersSide" %>
+      <%= link_to "All Orders", all_orders_path, class: "SideBarComponentsUsersSide" %>
+      <%= link_to "Completed Orders", completed_orders_path, class: "SideBarComponentsUsersSide" %></p>
       <br>
-      </p>
-    </table>
-      </section>
-      <section class = "size">
-      <p class = "order_details_text user_details_text"> Customer Details </p>
-      <% user = User.find(order.user_id)%>
-      <p class="user_details">Name: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= user.name%></p>
-       <p class="user_details">MobileNo: &nbsp;<%= user.mobile_no%></p>
-      </section>
-
-     
-     <section>
-        <br> 
-        <section class = "status" >
-        <%= form_with(url:   "/orders1/#{order.id}", method: "put") do |form| %> 
-       <% if order.status != AllConstants::PENDING %>
-           <% status=order.status%>
-      <% else %>
-          <% status = AllConstants::PENDING %>
-       <% end %>
-         <%= form.select :status, options_for_select(AllConstants::STATUS, status)%>
-        <% if Owner.find_by(email: current_owner.email)%>
-        <%= form.submit "Update", {class: "Update"} %>
-        <% elsif Worker.find_by(email: current_owner.email)%>
-        <%= form.submit "Update", class: "Update Update_Not", disabled: "true" %>
-        <% end %>
-      </section>
-      <%end%>
-      
-      <section class = "date_style "> 
-      <p class = "on"> Ordered on: </p>
-      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
-      <p class = "date"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
-      </section>
-      <% if order.status != AllConstants::PENDING %>
-      <section class = "date_style ">
-      <p class = "on"> Updated on: </p>
-      <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
-      <p class = "date"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p")%></p>
-      </section>
-      <% end %>
-      </section>
-</section> 
-       <br>
-       
+      <br>
+      <hr>
+      <% orders_queue = Order.cache(Order.where.not(status: AllConstants::ACTIVE_ORDERS)) %>
+      <% orders_queue.each do |order| %>   
+        <div class = "main_card_orders">
+        <br>
+        <br>
+        <section class = "display" >
+          <section class = "left_right_division">
+          <p class = "order_details_text">Order Details</p>
+            <p class="OrderNo">Order Id &nbsp; #<%= order.id %></p>
+            <p class = "menu">
+            <table class = "order">
+              <tr class = "orders_tr">
+                <th class = "orders_th">Items</th>
+                <th class = "orders_th">Quantity</th>
+              </tr>
+              <% order.menu.split("+") do |o| %>
+              <tr class = "orders_tr">
+              <% str= o.split("*") %>
+                <td class = "orders_td "> <%= str[0] %></td>
+                <td class = "orders_td "><%= str[1] %></td>     
+              </tr>
+              <% end %>
+            <br>
+            </p>
+            </table>
+          </section>
+          <section class = "size">
+            <p class = "order_details_text user_details_text"> Customer Details </p>
+            <% user = User.find(order.user_id) %>
+            <p class="user_details">Name: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= user.name %></p>
+            <p class="user_details">MobileNo: &nbsp;<%= user.mobile_no %></p>
+          </section>
+          <section>
+            <br> 
+            <section class = "status" >
+            <%= form_with(url:   "/orders1/#{order.id}", method: "put") do |form| %> 
+              <% if order.status != AllConstants::PENDING %>
+                <% status=order.status %>
+              <% else %>
+                <% status = AllConstants::PENDING %>
+              <% end %>
+                <%= form.select :status, options_for_select(AllConstants::STATUS, status) %>
+                <% if Owner.find_by(email: current_owner.email) %>
+                <%= form.submit "Update", {class: "Update"} %>
+                <% elsif Worker.find_by(email: current_owner.email) %>
+                <%= form.submit "Update", class: "Update Update_Not", disabled: "true" %>
+                <% end %>
+              <% end %>
+              </section>
+              <section class = "date_style "> 
+                <p class = "on"> Ordered on: </p>
+                <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
+                <p class = "date"><%= order.created_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p") %></p>
+              </section>
+              <% if order.status != AllConstants::PENDING %>
+                <section class = "date_style ">
+                  <p class = "on"> Updated on: </p>
+                  <img src="https://www.shutterstock.com/image-illustration/calendar-icon-isolated-date-line-600w-1055897141.jpg" class = "date_image">
+                  <p class = "date"><%= order.updated_at.in_time_zone("Chennai").strftime("%b %d, %Y at %l:%M %p") %></p>
+                </section>
+            <% end %>
+            </section>
+        </section> 
+        <br>      
+    </div>
+    <% end %>
+    </section>
+  </div>
 </div>
-<% end%>
-</section>
-</div>
-</body>

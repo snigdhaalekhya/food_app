@@ -1,49 +1,45 @@
 <body class = "middle">
-<div class = "displaycard">
-<section>
-<%= form_with url: menus_path do |form| %>
-<br>
-<br>
-<div class = "Form-section-menu">
-<section class = "display">
-<p class = "FormInput-label"> Menu Name<section class = "mandatory">*</section> </p>
-</section>
- <%= form.text_field :menu_name, class: "form-input", placeholder: "Enter item name"%>
- </div>
- <section class = "parllel_cost_description">
- <div class = "Form-section-menu">
- <section class = "display">
-<p class = "FormInput-label"> Menu_Category<section class = "mandatory">*</section> </p>
-</section>
- <p class =  "form-input Form-input-menus"><%= form.select :menu_category, AllConstants::CATEGORY, class: "dropdown_menu",  placeholder: "Select category"%></p>
- </div>
- <div class = "Form-section-menu">
- <section class = "display">
-<p class = "FormInput-label"> Menu Cost<section class = "mandatory">*</section> </p>
-</section>
- <%= form.text_field :menu_cost, class: "form-input form-input-css", placeholder: "Enter cost", data: { numeric: true }%>
- </div>
- </section>
- <div class = "Form-section-menu">
- <section class = "display">
-<p class = "FormInput-label"> Menu Description<section class = "mandatory">*</section> </p>
-</section>
- <%= form.text_field :menu_description, class: "form-input form-input-csschanges", placeholder: "Enter description"%>
- </div>
-
- <div class = "Form-section-menu">
-<section class = "display">
-<p class = "FormInput-label"> Menu Image<section class = "mandatory">*</section> </p>
-</section>
- <%= form.text_field :menu_image, class: "form-input", placeholder: "Add item image url"%>
- </div>
-
- <div class = "Form-section-menu">
- <%= form.submit "Create Item", class: "submit-button"%>
- </div>
- </section>
-<% end%>
-
-</div>
-</div>
+    <div class = "displaycard">
+        <section>
+            <%= form_with url: menus_path do |form| %>
+                <br>
+                <br>
+                <div class = "Form-section-menu">
+                    <section class = "display">
+                        <p class = "FormInput-label"> Menu Name<section class = "mandatory">*</section> </p>
+                    </section>
+                    <%= form.text_field :menu_name, class: "form-input", placeholder: "Enter item name" %>
+                </div>
+                <section class = "parllel_cost_description">
+                    <div class = "Form-section-menu">
+                        <section class = "display">
+                            <p class = "FormInput-label"> Menu_Category<section class = "mandatory">*</section> </p>
+                        </section>
+                        <p class =  "form-input Form-input-menus"><%= form.select :menu_category, AllConstants::CATEGORY, class: "dropdown_menu",  placeholder: "Select category" %></p>
+                    </div>
+                    <div class = "Form-section-menu">
+                        <section class = "display">
+                            <p class = "FormInput-label"> Menu Cost<section class = "mandatory">*</section> </p>
+                        </section>
+                        <%= form.text_field :menu_cost, class: "form-input form-input-css", placeholder: "Enter cost", data: { numeric: true } %>
+                    </div>
+                </section>
+                <div class = "Form-section-menu">
+                    <section class = "display">
+                        <p class = "FormInput-label"> Menu Description<section class = "mandatory">*</section> </p>
+                    </section>
+                    <%= form.text_field :menu_description, class: "form-input form-input-csschanges", placeholder: "Enter description" %>
+                </div>
+                <div class = "Form-section-menu">
+                    <section class = "display">
+                        <p class = "FormInput-label"> Menu Image<section class = "mandatory">*</section> </p>
+                    </section>
+                    <%= form.text_field :menu_image, class: "form-input", placeholder: "Add item image url" %>
+                </div>
+                <div class = "Form-section-menu">
+                    <%= form.submit "Create Item", class: "submit-button" %>
+                </div>
+            <% end %>
+        </section>
+    </div>
 </body>

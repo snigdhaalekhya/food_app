@@ -69,15 +69,9 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
- 
- group :test do
-#   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-#   gem "capybara"
-   gem 'poltergeist'
-
- end
 
 group :test do
+  gem 'poltergeist'
   gem "minitest-rails"
   gem 'simplecov', require: true
   gem 'faker'
@@ -85,6 +79,6 @@ group :test do
   gem 'factory_girl_rails'
 end
 
- gem 'kaminari'
- gem 'rack-test', group: :test
- gem 'assert-rails', group: :test
+gem 'kaminari'
+gem 'rack-test', group: :test
+gem 'assert-rails', group: :test

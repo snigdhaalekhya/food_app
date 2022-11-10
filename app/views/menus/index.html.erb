@@ -1,59 +1,50 @@
 <body> 
   <div class = "card">
-<div class = "main_card" >
-<section>
-<img class = "delicious" src = "https://thumbs.dreamstime.com/b/restaurant-cafe-bistro-cooking-chef-logo-design-template-restaurant-cafe-bistro-cooking-chef-logo-design-113852274.jpg"  >
-  <p class = "SidebarComponents"> <%= link_to "Orders", orders1_index_path, class: "RestaurantSideBarComponents"%></p>
- <p class = "SidebarComponents"> <%= link_to "Menu", menus_path, class: "RestaurantSideBarComponents"%></p>
-  <p class = "SidebarComponents"><%= link_to "Users", show_customers_path, class: "RestaurantSideBarComponents"%></p>
-  <p class = "SidebarComponents"><%= link_to "Reports", reports_path, class: "RestaurantSideBarComponents"%></p>
-</section>
-
-<section class = "style_card">
-<section class = "display">
-<%=form_with(url:   "/menus/category_wise"  , method: "get")  do |form| %>
-   <%= form.select :menu_category, AllConstants::CATEGORY ,{:prompt => "Choose category"}, {class: "select select_menus", :onchange => "this.form.submit()"}%>
-<% end %>
-
-<% if Owner.find_by(email: current_owner.email)%>
-      <%= button_to "Add Menu", new_menu_path, method: "get", class: "Button AddMenu"%>
-  <% elsif Worker.find_by(email: current_owner.email)%>
-      <%= button_to "Add Menu", new_menu_path, method: "get", class: "Button AddMenu_Not", disabled: "true"%>
-  <% end %>
-</section>
-<br>
-<hr>
-<% Menu.cachemethod.each do |menu|%>
-
-  <div class = "column">
-    <div class = "displaycard">
-   
-     <br>
-     <img src="<%= menu.menu_image%>" class = "menu_image">
-      <p class = "name"><%= menu.menu_name %></p>
-      <p class = "description"><%= menu.menu_description %></p>
-      <p class = "cost"><%= menu.menu_cost%> ₹</p> 
-
-      <section class = "display_css">
-    <% if Owner.find_by(email:current_owner.email)%> 
-      <%= button_to '', "/menus/#{menu.id}/edit", method: "get", class: "fas fa-edit", style: "text-decoration: none; margin-left:230px;color: green; font-size:18px;margin-bottom:20px; border:hidden; background: none;"%>
-    <% elsif Worker.find_by(email: current_owner.email)%>
-    <%= button_to '', "/menus/#{menu.id}/edit", method: "get", class: "fas fa-edit", style: " cursor: not-allowed;text-decoration: none; margin-left:230px;color: black; font-size:18px;margin-bottom:20px; border:hidden; background: none;",disabled:"true"%>
-    <%end%>
-
-    <% if Owner.find_by(email: current_owner.email)%>
-     <%= button_to '', "/menus/#{menu.id}", method: "delete", class: "fa fa-trash", style: "text-decoration: none; margin-left:30px;color: red; font-size:18px; border:hidden; background: none;"%>
-    <% elsif Worker.find_by(email: current_owner.email)%>
-    <%= button_to '', "/menus/#{menu.id}", method: "delete", class: "fa fa-trash", style: "cursor: not-allowed;text-decoration: none; margin-left:30px;color: black; font-size:18px; border:hidden; background: none;",disabled:"true"%>
-     <%end%>
-    
+    <div class = "main_card" >
+      <section>
+        <img class = "delicious" src = "https://thumbs.dreamstime.com/b/restaurant-cafe-bistro-cooking-chef-logo-design-template-restaurant-cafe-bistro-cooking-chef-logo-design-113852274.jpg"  >
+        <p class = "SidebarComponents"> <%= link_to "Orders", orders1_index_path, class: "RestaurantSideBarComponents" %></p>
+        <p class = "SidebarComponents"> <%= link_to "Menu", menus_path, class: "RestaurantSideBarComponents" %></p>
+        <p class = "SidebarComponents"><%= link_to "Users", show_customers_path, class: "RestaurantSideBarComponents" %></p>
+        <p class = "SidebarComponents"><%= link_to "Reports", reports_path, class: "RestaurantSideBarComponents" %></p>
       </section>
-  
+      <section class = "style_card">
+      <p class = "top" ></p>
+      <hr>
+      <section class = "display">
+        <%=form_with(url: "/menus/category_wise", method: "get")  do |form| %>
+          <%= form.select :menu_category, AllConstants::CATEGORY, { :prompt => "Choose category" }, { class: "select select_menus", :onchange => "this.form.submit()"} %>
+        <% end %>
+        <% if Owner.find_by(email: current_owner.email)%>
+          <%= button_to "Add Menu", new_menu_path, method: "get", class: "Button AddMenu" %>
+        <% elsif Worker.find_by(email: current_owner.email)%>
+          <%= button_to "Add Menu", new_menu_path, method: "get", class: "Button AddMenu_Not", disabled: "true" %>
+        <% end %>
+      </section>
+      <% Menu.cachemethod.each do |menu| %>
+        <div class = "column">
+          <div class = "displaycard">
+          <br>
+          <img src = "<%= menu.menu_image %>" class = "menu_image">
+            <p class = "name"><%= menu.menu_name %></p>
+            <p class = "description"><%= menu.menu_description %></p>
+            <p class = "cost"><%= menu.menu_cost%> ₹</p> 
+          <section class = "display_css">
+            <% if Owner.find_by(email:current_owner.email) %> 
+              <%= button_to '', "/menus/#{menu.id}/edit", method: "get", class: "fas fa-edit", style: "text-decoration: none; margin-left:230px;color: green; font-size:18px;margin-bottom:20px; border:hidden; background: none;" %>
+            <% elsif Worker.find_by(email: current_owner.email) %>
+              <%= button_to '', "/menus/#{menu.id}/edit", method: "get", class: "fas fa-edit", style: " cursor: not-allowed;text-decoration: none; margin-left:230px;color: black; font-size:18px;margin-bottom:20px; border:hidden; background: none;",disabled: "true" %>
+            <% end %>
+            <% if Owner.find_by(email: current_owner.email) %>
+              <%= button_to '', "/menus/#{menu.id}", method: "delete", class: "fa fa-trash", style: "text-decoration: none; margin-left:30px;color: red; font-size:18px; border:hidden; background: none;" %>
+            <% elsif Worker.find_by(email: current_owner.email) %>
+              <%= button_to '', "/menus/#{menu.id}", method: "delete", class: "fa fa-trash", style: "cursor: not-allowed;text-decoration: none; margin-left:30px;color: black; font-size:18px; border:hidden; background: none;",disabled: "true" %>
+            <% end %>
+          </section>
+          </div>
+        </div>
+      <% end %>
+      </section>
     </div>
   </div>
-
-<% end %>
-</section>
-</div>
-</div>
 </body>

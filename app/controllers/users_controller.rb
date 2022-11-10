@@ -5,10 +5,10 @@ class UsersController < ApplicationController
      user = findby_params(mobile_no: params[:mobile_no])
      if user
          flash[:error] = "This mobile number is already registered. Please retry."
-         redirect_to new_user_path 
+         redirect_to new_user_path
      elsif findby_params(email: params[:email])
          flash[:error] = "This email is already registered. Please retry."
-          redirect_to new_user_path 
+          redirect_to new_user_path
      else
         user = User.new(name: params[:name], mobile_no: params[:mobile_no], email: params[:email], password: params[:password], address: params[:address])
            if user.save
@@ -22,9 +22,8 @@ class UsersController < ApplicationController
         end
     end
 
-    private 
+    private
     def findby_params(params = {})
         User.find_by(params)
     end
-    
 end

@@ -4,5 +4,4 @@ class Menu < ApplicationRecord
     def self.search(search)
         all.where(["menu_name LIKE?","%#{search}%"])
     end
-    
 end

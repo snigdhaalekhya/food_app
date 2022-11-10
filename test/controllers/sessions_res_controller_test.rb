@@ -33,43 +33,43 @@ class SessionsResControllerTest < ActiveSupport::TestCase
     assert_equal(response.status, 302)
   end
 
-  def test_signin_creation_notsuccess1
-    value = pass_params("Worker", @worker.email, Faker::Internet.password(min_length: 8,  mix_case: true, special_characters: true)+ Faker::Internet.password)
+  def test_signin_creation_notsuccess_case1
+    value = pass_params("Worker", @worker.email, Faker::Internet.password(min_length: 8,  mix_case: true, special_characters: true) + Faker::Internet.password)
     response = post "/signin_restaurant", value
     assert_not_equal(@worker.password, value[:password])
     assert_equal(response.status, 302)
   end
 
-  def test_signin_creation_notsuccess2
+  def test_signin_creation_notsuccess_case2
     value = pass_params("Worker", @owner.email, @worker.password)
     response = post "/signin_restaurant", value
     assert_not_equal(@worker.email, value[:email])
     assert_equal(response.status, 302)
   end
 
-  def test_signin_creation_notsuccess3
-    value = pass_params("Worker", @owner.email, Faker::Internet.password(min_length: 8,  mix_case: true, special_characters: true)+ Faker::Internet.password)
+  def test_signin_creation_notsuccess_case3
+    value = pass_params("Worker", @owner.email, Faker::Internet.password(min_length: 8,  mix_case: true, special_characters: true) + Faker::Internet.password)
     response = post "/signin_restaurant", value
     assert_not_equal(@worker.email, value[:email])
     assert_equal(response.status, 302)
   end
 
-  def test_signin_creation_notsuccess4
-    value = pass_params("Owner", @owner.email, Faker::Internet.password(min_length: 8,  mix_case: true, special_characters: true)+ Faker::Internet.password)
+  def test_signin_creation_notsuccess_case4
+    value = pass_params("Owner", @owner.email, Faker::Internet.password(min_length: 8,  mix_case: true, special_characters: true) + Faker::Internet.password)
     response = post "/signin_restaurant", value
     assert_not_equal(@owner.password, value[:password])
     assert_equal(response.status, 302)
   end
 
-  def test_signin_creation_notsuccess5
+  def test_signin_creation_notsuccess_case5
     value = pass_params("Owner", @worker.email, @owner.password)
     response = post "/signin_restaurant", value
     assert_not_equal(@owner.email, value[:email])
     assert_equal(response.status, 302)
   end
 
-  def test_signin_creation_notsuccess6
-    value = pass_params("Owner", @worker.email, Faker::Internet.password(min_length: 8,  mix_case: true, special_characters: true)+ Faker::Internet.password)
+  def test_signin_creation_notsuccess_case6
+    value = pass_params("Owner", @worker.email, Faker::Internet.password(min_length: 8,  mix_case: true, special_characters: true) + Faker::Internet.password)
     response = post "/signin_restaurant", value
     assert_not_equal(@owner.email, value[:email])
     assert_not_equal(@owner.password, value[:password])
@@ -89,7 +89,7 @@ class SessionsResControllerTest < ActiveSupport::TestCase
   end
 
   def test_password_equal_notblank
-    value = pass_params_for_updatepassword("Owner", @owner.email, Faker::Internet.password(min_length: 8,  mix_case: true, special_characters: true)+ Faker::Internet.password, Faker::Internet.password(min_length: 8,  mix_case: true, special_characters: true)+ Faker::Internet.password)
+    value = pass_params_for_updatepassword("Owner", @owner.email, Faker::Internet.password(min_length: 8,  mix_case: true, special_characters: true) + Faker::Internet.password, Faker::Internet.password(min_length: 8,  mix_case: true, special_characters: true) + Faker::Internet.password)
     response = post "/signin_restaurant/update_password", value
     assert_equal(response.status, 302)
   end
@@ -113,11 +113,10 @@ class SessionsResControllerTest < ActiveSupport::TestCase
 
   private
   def pass_params(identity, email, password)
-    value = {identity: identity, email: email, password: password}
+    value = { identity: identity, email: email, password: password }
   end
 
   def pass_params_for_updatepassword(identity, email, password, password_confirm)
-    value = {identity: identity, email: email, password: password, password_confirm: password_confirm}
+    value = { identity: identity, email: email, password: password, password_confirm: password_confirm }
   end
-
 end

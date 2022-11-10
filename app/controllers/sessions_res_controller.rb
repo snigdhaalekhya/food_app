@@ -5,7 +5,7 @@ class SessionsResController < ApplicationController
       identity = params[:identity]
       if !identity.blank?
         owner = identify_owner_type
-        if  owner && owner.authenticate(params[:password]) 
+        if  owner && owner.authenticate(params[:password])
           session[:current_owner_id] = owner.email
           session[:bool_owner] = false
           redirect_to orders1_index_path
@@ -28,33 +28,32 @@ class SessionsResController < ApplicationController
             new_password = params[:password]
             confirm_password = params[:password_confirm]
             if new_password.eql?(confirm_password)
-                 if new_password == "" && confirm_password == ""
-                     flash[:error] = "New password and Confirm password couldn't be empty"
-                     redirect_to signin_restaurant_update_password_path
-                 else
-                 owner.password = params[:password]
-                 owner.save
-                 redirect_to new_signin_restaurant_path
-                 end
+                if new_password == "" && confirm_password == ""
+                  flash[:error] = "New password and Confirm password couldn't be empty"
+                  redirect_to signin_restaurant_update_password_path
+                else
+                  owner.password = params[:password]
+                  owner.save
+                  redirect_to new_signin_restaurant_path
+                end
             else
-                flash[:error] = "New password and Confirm password doesn't match"
-                redirect_to signin_restaurant_update_password_path
+              flash[:error] = "New password and Confirm password doesn't match"
+              redirect_to signin_restaurant_update_password_path
             end
-          else 
+          else
             flash[:error] = "User doesn't exist with this registered email id."
             redirect_to new_owner_path
         end
-        
       else
         flash[:error] = "Select login type from given radio options"
         redirect_to signin_restaurant_update_password_path
       end
     end
 
-    def destroy  
+    def destroy
         session[:current_owner_id] = nil
         current_owner = nil
-        redirect_to new_user_path   
+        redirect_to new_user_path
     end
 
     private
@@ -68,5 +67,4 @@ class SessionsResController < ApplicationController
           return owner
         end
    end
-
 end

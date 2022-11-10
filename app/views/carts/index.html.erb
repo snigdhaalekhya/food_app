@@ -1,38 +1,36 @@
-<body>
 <div class = "main_card">
-<div>
-<img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjZ7COuI02M3UjwL7kT2wR2epRNFO7tCkcsIUlsvjS5SEi-WRNRq96ywvUI7Rde7AvNiw&usqp=CAU" class = "place_order_image">
+    <div>
+    <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjZ7COuI02M3UjwL7kT2wR2epRNFO7tCkcsIUlsvjS5SEi-WRNRq96ywvUI7Rde7AvNiw&usqp=CAU" class = "place_order_image">
+    </div>
+    <section class = "card_cartsindex">
+    <table>
+        <br>
+        <tr>
+            <th class = "carts_th">Items </th>
+            <th class = "carts_th" >Quantity</th>
+            <th class = "carts_th" >Cost</th>
+        </tr>
+        <% cost = 0 %>
+        <% currentuser_records(Cart).cachemethod.each do |cart| %>
+        <tr>
+            <% if Menu.find(cart.menu_id).present? %>
+                <th class = "orders_th_name"><%= Menu.find(cart.menu_id).menu_name %> </th>
+                <th class = "orders_th_name" > <%= cart.count %></th>
+                <% cost=cost+(cart.count*Menu.find(cart.menu_id).menu_cost)%>
+                <th class = "orders_th_name" > <%= c = cart.count*Menu.find(cart.menu_id).menu_cost %> ₹</th>
+            <% else %>
+                <% currentuser_records(Cart).find_by(menu_id: cart.menu_id).destroy %>
+            <% end %>
+        </tr>
+        <% end %>
+        <tr>
+            <th class = "carts_th_total">Total </th>
+            <th class = "carts_th_total cost_color" ><%= total_cart_count %></th>
+            <th class = "carts_th_total cost_color" > <%= cost %> ₹</th>
+        </tr>
+    </table>
+    <% if cart_notempty %>
+            <%= button_to "Place Order", orders_path, method: "post", class: "Order" %> 
+    <% end %> 
+    </section> 
 </div>
-<section class = "card_cartsindex">
-<table>
-<br>
-<tr>
-    <th class = "carts_th">Items </th>
-    <th class = "carts_th" >Quantity</th>
-    <th class = "carts_th" >Cost</th>
-<tr>
-<% cost = 0 %>
-<% currentuser_records(Cart).cachemethod.each do |cart|%>
-<tr>
-    <% if Menu.find(cart.menu_id).present?%>
-    <th class = "orders_th_name"><%= Menu.find(cart.menu_id).menu_name %> </th>
-    <th class = "orders_th_name" > <%= cart.count %></th>
-    <% cost=cost+(cart.count*Menu.find(cart.menu_id).menu_cost)%>
-     <th class = "orders_th_name" > <%= c = cart.count*Menu.find(cart.menu_id).menu_cost %> ₹</th>
-    <% else %>
-      <% currentuser_records(Cart).find_by(menu_id: cart.menu_id).destroy %>
-    <% end %>
-</tr>
-<% end %>
-<tr>
-    <th class = "carts_th_total">Total </th>
-    <th class = "carts_th_total cost_color" ><%= total_cart_count%></th>
-    <th class = "carts_th_total cost_color" > <%= cost %> ₹</th>
-</tr>
-</table>
-<% if cart_notempty %>
-         <%= button_to "Place Order", orders_path, method: "post", class: "Order" %> 
-<% end %> 
-</div>
-</div>
-</body>

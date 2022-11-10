@@ -7,5 +7,5 @@ FactoryGirl.define do
       menu_category AllConstants::CATEGORY[0]
       owner_id AllConstants::ID_OR_COUNT
     end
-  end
+end
   

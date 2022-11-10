@@ -5,5 +5,5 @@ FactoryGirl.define do
         status AllConstants::PENDING 
         owner_id AllConstants::ID_OR_COUNT
     end
-  end
+end
   

@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
   
     def current_user
         return @current_user if @current_user
-
         current_user_id = session[:current_user_id]
         @check_firstlogin_user = session[:bool_user] 
         @current_user = User.find(current_user_id) if current_user_id.present?
@@ -23,9 +22,8 @@ class ApplicationController < ActionController::Base
 
     def current_owner
         return @current_owner if @current_owner
-
         current_owner_id = session[:current_owner_id]
-        @check_firstlogin_owner = session[:bool_owner] 
+        @check_firstlogin_owner = session[:bool_owner]
         @current_owner = check_owner_identity_type if current_owner_id.present?
     end
          
@@ -43,7 +41,6 @@ class ApplicationController < ActionController::Base
         @category = params[:menu_category]
         if  Menu.find_by(menu_category: @category).present?
             @menus_category = Menu.where(menu_category: @category)
-        end   
+        end
     end
-     
 end

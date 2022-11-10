@@ -7,5 +7,4 @@ module ApplicationHelper
     def current_owner
         return @current_owner
     end
-    
 end

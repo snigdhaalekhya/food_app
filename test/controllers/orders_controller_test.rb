@@ -1,5 +1,4 @@
 require_relative '../test_helper'
-
 class OrdersControllerTest < ActiveSupport::TestCase
 
     def setup
@@ -13,9 +12,9 @@ class OrdersControllerTest < ActiveSupport::TestCase
         @order = FactoryGirl.create(:order)
         @user = FactoryGirl.create(:user)
         @menu = FactoryGirl.create(:menu)
-        @cart = FactoryGirl.create(:cart, user_id: @user.id, menu_id: @menu.id )
+        @cart = FactoryGirl.create(:cart, user_id: @user.id, menu_id: @menu.id)
         value = { mobile_no: @user.mobile_no, password: @user.password }
-        post  "/signin_users" , value
+        post  "/signin_users", value
     end
 
     def test_order_creation
